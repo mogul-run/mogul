@@ -1,0 +1,13 @@
+.wip-wrapper {
+    max-height: 500px;
+    max-width: 500px;
+}
+
+.title-text {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.desc-text {
+    font-size: 14px;
+}

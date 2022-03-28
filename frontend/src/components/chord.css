@@ -1,0 +1,32 @@
+.chords {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+svg {
+    margin: 1rem 0;
+    cursor: pointer;
+}
+.deets > div {
+    margin: 0.25rem;
+}
+.wip-wrapper {
+    max-height: 500px;
+    max-width: 500px;
+}
+
+.title-text {
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.desc-text {
+    /* font-size: 14px; */
+}
