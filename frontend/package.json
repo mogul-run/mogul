@@ -4,6 +4,8 @@
   "homepage": "http://mogul.run",
   "private": true,
   "dependencies": {
+    "@maticnetwork/maticjs": "^3.2.4",
+    "@maticnetwork/maticjs-ethers": "^1.0.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -13,6 +15,7 @@
     "@types/react-dom": "^17.0.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
