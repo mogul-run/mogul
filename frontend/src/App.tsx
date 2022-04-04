@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import WIP from "./pages/WIP";
 import TestSale from "./pages/test-sale";
+import NY26 from "./pages/ny26";
 
 function App() {
   const [userAccount, setUserAccount] = useState("");
@@ -90,6 +91,7 @@ function App() {
         <div className="app">
             <Routes>
                 <Route path="/test-sale" element={<TestSale userAccount={userAccount}/>}/>
+                <Route path="/nyc26" element={<NY26 />}/>
                 <Route path="/" element={<WIP/>}/>
             </Routes>
         </div>
