@@ -3,7 +3,7 @@ import strava from "strava-v3";
 
 function NY26() {
     const getStravaEvent = async () => {
-
+        /// TODO: Fix errors with strava api?
         // console.log(process.env);
         // strava.config({
         //     access_token: process.env.REACT_APP_STRAVA_ACCESS_TOKEN || "",

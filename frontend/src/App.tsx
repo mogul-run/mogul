@@ -3,8 +3,9 @@ import {ethers} from "ethers";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import WIP from "./pages/WIP";
+import HomePage from "./pages/homepage";
 import TestSale from "./pages/test-sale";
-import NY26 from "./pages/ny26";
+import NYC26 from "./pages/ny26";
 
 function App() {
   const [userAccount, setUserAccount] = useState("");
@@ -91,8 +92,9 @@ function App() {
         <div className="app">
             <Routes>
                 <Route path="/test-sale" element={<TestSale userAccount={userAccount}/>}/>
-                <Route path="/nyc26" element={<NY26 />}/>
-                <Route path="/" element={<WIP/>}/>
+                <Route path="/nyc26" element={<NYC26 />}/>
+                {/* <Route path="/" element={<WIP/>}/> */}
+                <Route path="/" element={<HomePage/>}/>
             </Routes>
         </div>
     );
