@@ -12,7 +12,7 @@ function HomePage(props:any) {
                 <div className="logo">Mogul</div>
                 <div className="navbuttons">
                     <div className="navlinks">
-                        <div className="navlink" onClick={scrollToContent}>About</div>
+                        {/* <div className="navlink" onClick={scrollToContent}>About</div> */}
                         <a
                             href="https://discord.gg/8AXyshRRVM"
                             target="__blank"
@@ -38,8 +38,8 @@ function HomePage(props:any) {
 
 function ContentUno() {
     return (
-        <div className="content-container">
-            <div className="content-left">
+        <div className="content-container uno">
+            <div className="content-left uno-left">
                 {" "}
                 <div className="content-header header-block">
                     Live the life you want to live. Be your own Mogul.
@@ -95,7 +95,7 @@ function ContentUno() {
                     </div>
                 </div>
             </div>
-            <div className="content-right">
+            <div className="content-right uno-right">
                 <div className="stonemasters-wrap">
                     <img className="stonemasters" src={Stonemasters} />
                 </div>
@@ -138,9 +138,6 @@ function ContentDos() {
                         practitioners are bums.
                     </span>
                 </div>
-            </div>
-            <div className="note">
-               <i> <b>Important Note:</b> Not all bumsport enthusiasts are bums. </i>
             </div>
             <div>
                 <div className="blurb">
