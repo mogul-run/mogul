@@ -5,6 +5,7 @@
 
 a {
     color: #00acc1;
+    text-decoration: none;
 }
 
 .nostyle {
@@ -85,6 +86,10 @@ a {
 .dos {
     background-color: #e7e3dc;
     flex-direction: column;
+}
+
+.note {
+    margin: 15px 0px;
 }
 
 .blurb {

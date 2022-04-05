@@ -2,7 +2,7 @@ import "./homepage.css";
 import Stonemasters from "../img/stonemasters.jpg";
 import { useRef } from "react";
 
-function HomePage() {
+function HomePage(props:any) {
     const myRef = useRef(document.createElement("div"));
     const scrollToContent = () => myRef.current.scrollIntoView();
 
@@ -23,7 +23,7 @@ function HomePage() {
 
                         <div className="navlink" onClick={() => alert("you are a curious cat, there's nothing here... yet")}>????</div>
                     </div>
-                    <div className="connect">connect</div>
+                    <div className="connect" onClick={() => props.connectWalletHandler()}>connect</div>
                 </div>
             </div>
             <div className="content" ref={myRef}>
@@ -45,7 +45,8 @@ function ContentUno() {
                     Live the life you want to live. Be your own Mogul.
                 </div>
                 <div className="content-desc">
-                    <div className="content-block">
+                    {/* <div className="content-block">
+                        <i>
                     ⛷️ Skiing your first{" "}
                         <a
                             href="https://en.wikipedia.org/wiki/Mogul_skiing"
@@ -57,14 +58,17 @@ function ContentUno() {
                         can be a pretty bumpy experience.
                         <br />
                         <br />
-                        But just as in life: the satisfaction comes with pushing
+                        But just as in life, the satisfaction comes with pushing
                         through the difficulties, getting up when you fall, and
                         finding your own line.
-                    </div>
-                    <div className="content-block">
+                        </i>
+                    </div> */}
+                    <div className="content-block"> 
+                        <b>
                         Mogul provides the tools for{" "}
-                        <span className="highlight">bumsport</span> creators to
-                        build and join intimate online communities.
+                        <span className="highlight">bumsport</span> enthusiasts to
+                        build and participate in intimate digital communities.
+                        </b>
                     </div>
                     <div className="content-block">
                         Powered by public smart contracts on{" "}
@@ -131,9 +135,12 @@ function ContentDos() {
                 <div className="content-right">
                     <span className="definition">
                         Any sport in which a significant percentage of
-                        practitioners are bums of definition (1.)
+                        practitioners are bums.
                     </span>
                 </div>
+            </div>
+            <div className="note">
+               <i> <b>Important Note:</b> Not all bumsport enthusiasts are bums. </i>
             </div>
             <div>
                 <div className="blurb">
