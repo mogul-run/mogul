@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import {ethers} from "ethers";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import WIP from "./pages/WIP";
 import HomePage from "./pages/homepage";
 import TestSale from "./pages/test-sale";
 import NYC26 from "./pages/ny26";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-WGSG8KJ0Z1");
+ReactGA.send("pageview");
 
 function App() {
   const [userAccount, setUserAccount] = useState("");

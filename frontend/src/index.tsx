@@ -6,10 +6,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "@fontsource/dm-mono";
 import "@fontsource/alegreya";
-import ReactGA from "react-ga4";
-
-ReactGA.initialize("G-0R87583JZD");
-ReactGA.send("pageview");
 
 ReactDOM.render(
     <React.StrictMode>

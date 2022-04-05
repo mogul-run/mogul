@@ -60,6 +60,7 @@ a {
 
 .connect:hover {
     background-color: #00acc1; 
+    color: white;
 }
 
 .navlink {
