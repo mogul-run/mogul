@@ -7,6 +7,11 @@ a {
     color: #00acc1;
 }
 
+.nostyle {
+    text-decoration: none !important;
+    color: black !important;
+}
+
 .logo {
     font-family: "Alegreya";
     font-weight: 1000;
@@ -89,7 +94,7 @@ a {
 }
 
 .content-left {
-    max-width: 35%;
+    max-width: 45%;
 }
 .content-right{
     max-width: 50%;

@@ -1,22 +1,33 @@
 import "./homepage.css";
 import Stonemasters from "../img/stonemasters.jpg";
-import { nargs } from "yargs";
+import { useRef } from "react";
 
 function HomePage() {
+    const myRef = useRef(document.createElement("div"));
+    const scrollToContent = () => myRef.current.scrollIntoView();
+
     return (
         <div className="homepage">
             <div className="navbar">
                 <div className="logo">Mogul</div>
                 <div className="navbuttons">
                     <div className="navlinks">
-                        <div className="navlink">about</div>
-                        <div className="navlink">discord</div>
+                        <div className="navlink" onClick={scrollToContent}>About</div>
+                        <a
+                            href="https://discord.gg/8AXyshRRVM"
+                            target="__blank"
+                            className="nostyle"
+                        >
+                            <div className="navlink"> Discord</div>
+                        </a>
+
                         <div className="navlink">????</div>
                     </div>
                     <div className="connect">connect</div>
                 </div>
             </div>
-            <div className="content">
+            <div className="content" ref={myRef}>
+
                 <ContentUno />
                 <ContentDos />
                 <ContentTres />
@@ -31,21 +42,36 @@ function ContentUno() {
             <div className="content-left">
                 {" "}
                 <div className="content-header header-block">
-                   Live the life you want to live. Be your own Mogul.  
+                    Live the life you want to live. Be your own Mogul.
                 </div>
                 <div className="content-desc">
                     <div className="content-block">
-                        Skiing your first <a href="https://en.wikipedia.org/wiki/Mogul_skiing" target="__blank"> mogul run</a> can be a pretty bumpy experience. 
-                        <br/>
-                        <br/>
-                        But just as in life: the satisfaction comes with pushing through the difficulties, getting up when you fall, and finding your own line.
+                    ⛷️ Skiing your first{" "}
+                        <a
+                            href="https://en.wikipedia.org/wiki/Mogul_skiing"
+                            target="__blank"
+                        >
+                            {" "}
+                            mogul run
+                        </a>{" "}
+                        can be a pretty bumpy experience.
+                        <br />
+                        <br />
+                        But just as in life: the satisfaction comes with pushing
+                        through the difficulties, getting up when you fall, and
+                        finding your own line.
                     </div>
                     <div className="content-block">
-                        Mogul provides the tools for <span className="highlight">bumsport</span> creators to build and join intimate online communities.
+                        Mogul provides the tools for{" "}
+                        <span className="highlight">bumsport</span> creators to
+                        build and join intimate online communities.
                     </div>
-                    <div className="content-block"> 
+                    <div className="content-block">
                         Powered by public smart contracts on{" "}
-                        <a href="https://ethereum.org" target="__blank"> Ethereum</a>
+                        <a href="https://ethereum.org" target="__blank">
+                            {" "}
+                            Ethereum
+                        </a>
                         <br />
                     </div>
                     <div className="content-block">
@@ -53,8 +79,14 @@ function ContentUno() {
                         <ul>
                             <li>Beach Bums and Derelicts</li>
                             <li>Diehard Dirtbags and Weekend Warriors</li>
-                            <li>Vanlifers: From shiny new Sprinters to your mom's old Sienna</li>
-                            <li>Lovers of the mountains, the sea and Mother Earth</li>
+                            <li>
+                                Vanlifers: From shiny new Sprinters to your
+                                mom's old Sienna
+                            </li>
+                            <li>
+                                Lovers of the mountains, the sea and Mother
+                                Earth
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -113,17 +145,24 @@ function ContentDos() {
                         <br />
                         <br />
                     </div>
-                    <span className="highlight">Bums</span> come in all sorts: ski bums, surf bums, rock climbing bums, kayaking bums, skate bums and more!
-
+                    <span className="highlight">Bums</span> come in all different varieties:
+                    ski bums, surf bums, rock climbing bums, kayaking bums,
+                    skate bums and more!
                     <br />
                     <br />
-                    <span className="highlight">Bumsports</span> were once niche activites overshadowed by conventional sports (think basketball or football), but have seen recent growth of unprecedented rates.
+                    <span className="highlight">Bumsports</span> were once niche
+                    activites overshadowed by conventional sports (think
+                    basketball or football), but have seen recent growth of
+                    unprecedented rates.
+                    <br />
+                    <br />3 out of the 5 sports introduced in the 2022 Tokyo
+                    Olympics were <span className="highlight">bumsports</span>:
+                    Surfing, Rock Climbing, and Skateboarding.
                     <br />
                     <br />
-                    3 out of the 5 sports introduced in the 2022 Tokyo Olympics were <span className="highlight">bumsports</span>: Surfing, Rock Climbing, and Skateboarding.
-                    <br />
-                    <br />
-                    <b>Mogul</b> wants to help <span className="highlight">bums</span> make a living doing what they love. 
+                    <b>Mogul</b> wants to help{" "}
+                    <span className="highlight">bums</span> make a living doing
+                    what they love.
                     <br />
                     <br />
                 </div>
