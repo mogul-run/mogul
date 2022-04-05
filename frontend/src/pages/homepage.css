@@ -5,19 +5,19 @@
 
 .logo {
     font-weight: 1000;
-    margin: 15px;
+    margin: 15px 0px;
     cursor: pointer;
 }
 
 .navbar {
-    width: 100vw;
     display: flex;
     flex-direction: row;
+    margin: 0px 50px;
 }
 
 .navbuttons{
     font-weight: bold;
-    width: 100vw;
+    width: 100%;
     margin-left: 100px;
     display: flex;
     flex-direction: row;
@@ -35,7 +35,7 @@
 .connect {
     cursor: pointer;
     outline: 0.5px solid #4c5770;
-    margin: 10px 50px;
+    margin: 10px 0px;
     padding: 5px;
     border-radius: 5px;
     font-weight: 100;
@@ -52,20 +52,41 @@
 
 .content {
     flex-grow: 1;
-    padding: 25px;
 }
 
 .content-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 25px 50px;
+}
+
+.definition-header {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.definition-container {
+    margin: 25px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dos {
+    background-color: #e7e3dc;
+    flex-direction: column;
+}
+
+.blurb {
+    outline: 1px solid #00acc1;
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .content-left {
-    max-width: 250px;
+    max-width: 35%;
 }
 .content-right{
-    max-width: 450px;
+    max-width: 50%;
 }
 
 .stonemasters-wrap {
@@ -79,13 +100,39 @@
     border-radius: 5px;
 }
 
-
 .content-header {
     color: #ff9800;
     font-weight: 1000;
     font-size: 32px;
-    margin-bottom: 15px;
     text-overflow: wrap;
+}
+
+.header-block {
+    margin-bottom: 15px;
+}
+
+.content-subheader {
+    color: #ff9800;
+    font-weight: 1000;
+    font-size: 20px;
+    text-overflow: wrap;
+}
+
+.highlight {
+    background-color:  #ff9800;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.definition {
+    color: black;
+}
+
+.definition-word {
+    text-align: left;
+    color: #ff9800;
+    font-size: 40px;
 }
 
 .content-block {
