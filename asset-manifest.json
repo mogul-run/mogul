@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.eb798450.css",
-    "main.js": "/static/js/main.16e568a1.js",
+    "main.css": "/static/css/main.f93e73ec.css",
+    "main.js": "/static/js/main.20fb62f9.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/stonemasters.jpg": "/static/media/stonemasters.e7d19b6f602eb7cfdae9.jpg",
     "static/media/alegreya-all-400-normal.woff": "/static/media/alegreya-all-400-normal.e75c68ac5553c88e9a1e.woff",
@@ -16,12 +16,12 @@
     "static/media/alegreya-greek-ext-400-normal.woff2": "/static/media/alegreya-greek-ext-400-normal.4bec66ff733ace43eca1.woff2",
     "static/media/alegreya-vietnamese-400-normal.woff2": "/static/media/alegreya-vietnamese-400-normal.26e3a381c0e20a890bfb.woff2",
     "index.html": "/index.html",
-    "main.eb798450.css.map": "/static/css/main.eb798450.css.map",
-    "main.16e568a1.js.map": "/static/js/main.16e568a1.js.map",
+    "main.f93e73ec.css.map": "/static/css/main.f93e73ec.css.map",
+    "main.20fb62f9.js.map": "/static/js/main.20fb62f9.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb798450.css",
-    "static/js/main.16e568a1.js"
+    "static/css/main.f93e73ec.css",
+    "static/js/main.20fb62f9.js"
   ]
 }
