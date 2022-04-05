@@ -21,7 +21,7 @@ function HomePage() {
                             <div className="navlink"> Discord</div>
                         </a>
 
-                        <div className="navlink">????</div>
+                        <div className="navlink" onClick={() => alert("you are a curious cat, there's nothing here... yet")}>????</div>
                     </div>
                     <div className="connect">connect</div>
                 </div>
