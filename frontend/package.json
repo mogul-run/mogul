@@ -4,6 +4,7 @@
   "homepage": "http://mogul.run",
   "private": true,
   "dependencies": {
+    "@fontsource/alegreya": "^4.5.6",
     "@fontsource/dm-mono": "^4.5.7",
     "@maticnetwork/maticjs": "^3.2.4",
     "@maticnetwork/maticjs-ethers": "^1.0.1",

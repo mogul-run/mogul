@@ -3,9 +3,15 @@
     flex-direction: column;
 }
 
+a {
+    color: #00acc1;
+}
+
 .logo {
+    font-family: "Alegreya";
     font-weight: 1000;
-    margin: 15px 0px;
+    font-size: 28px;
+    margin: 5px 0px;
     cursor: pointer;
 }
 
@@ -42,7 +48,7 @@
 }
 
 .connect:hover {
-    background-color: #79849e; 
+    background-color: #00acc1; 
 }
 
 .navlink {
@@ -121,8 +127,8 @@
 .highlight {
     background-color:  #ff9800;
     color: white;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 3px;
+    padding: 1px 5px;
 }
 
 .definition {
@@ -133,6 +139,7 @@
     text-align: left;
     color: #ff9800;
     font-size: 40px;
+    font-family: 'Alegreya'; 
 }
 
 .content-block {
