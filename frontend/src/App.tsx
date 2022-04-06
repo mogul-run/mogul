@@ -7,6 +7,7 @@ import TestSale from "./pages/test-sale";
 import NYC26 from "./pages/ny26";
 import ReactGA from "react-ga4";
 import TGOB from "./pages/TGOB";
+import Navbar from "./components/navbar";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
@@ -94,6 +95,7 @@ function App() {
 
     return (
         <div className="app">
+          <Navbar/>
             <Routes>
                 <Route path="/test-sale" element={<TestSale userAccount={userAccount}/>}/>
                 <Route path="/nyc26" element={<NYC26 />}/>
