@@ -1,0 +1,78 @@
+
+.TGOB {
+    margin: 50px 100px;
+    background-color: #e7e3dc;
+    border-radius: 5px;
+    box-shadow: 10px 10px #ff9800;
+}
+
+.head-wrapper {
+    width: 100%;
+    margin: 30px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.head {
+    width: max-content;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.head:hover {
+    background-color: #00acc1;
+}
+
+.bum-link {
+    color: black;
+    text-decoration: none;
+}
+
+.bum-link:hover {
+    color: white;
+}
+
+.title {
+    font-family: "Alegreya";
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.title-big {
+    line-height: 0.85;
+    font-size: 70px;
+    text-decoration: none;
+}
+
+.header {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.info-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: space-evenly;
+}
+
+.desc-wrapper {
+    margin: 30px;
+}
+
+.desc {
+    margin: 10px 0px;
+    font-family: "DM Mono";
+}
+
+.subtext {
+    margin: 15px 0px;
+    font-size: 16px;
+    font-weight: 100;
+    font-family: "DM Mono";
+}

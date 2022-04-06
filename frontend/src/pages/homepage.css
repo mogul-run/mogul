@@ -13,13 +13,6 @@ a {
     color: black !important;
 }
 
-.logo {
-    font-family: "Alegreya";
-    font-weight: 1000;
-    font-size: 28px;
-    margin: 5px 0px;
-    cursor: pointer;
-}
 
 .uno-left {
     display: flex;

@@ -5,6 +5,19 @@
     margin: 0px 50px;
 }
 
+.logo {
+    font-family: "Alegreya";
+    font-weight: 1000;
+    font-size: 28px;
+    margin: 5px 0px;
+    cursor: pointer;
+}
+
+.nostyle {
+    text-decoration: none !important;
+    color: black !important;
+}
+
 .navbuttons{
     font-weight: bold;
     width: 100%;
