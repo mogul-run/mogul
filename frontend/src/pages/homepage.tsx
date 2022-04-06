@@ -1,6 +1,7 @@
 import "./homepage.css";
 import Stonemasters from "../img/stonemasters.jpg";
 import { useRef } from "react";
+import {Link} from "react-router-dom";
 
 function HomePage(props:any) {
     const myRef = useRef(document.createElement("div"));
@@ -21,7 +22,12 @@ function HomePage(props:any) {
                             <div className="navlink"> Discord</div>
                         </a>
 
-                        <div className="navlink" onClick={() => alert("you are a curious cat, there's nothing here... yet")}>????</div>
+                        <Link
+                            to="/the-game-of-bum"
+                            className="nostyle"
+                        >
+                        <div className="navlink">T.G.o.B</div>
+                        </Link>
                     </div>
                     <div className="connect" onClick={() => props.connectWalletHandler()}>connect</div>
                 </div>
