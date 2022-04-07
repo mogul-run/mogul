@@ -13,8 +13,9 @@ export const ContestPage: React.FC = () => {
 
     return <>
         Hello world: {data}
-
-        <div>
+        
+        <div className='text-bold border-solid border-black'>
+            asdfas
         </div>
     </>
 }
