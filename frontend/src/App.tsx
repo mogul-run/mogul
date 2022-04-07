@@ -7,7 +7,8 @@ import TestSale from "./pages/test-sale";
 import NYC26 from "./pages/ny26";
 import ReactGA from "react-ga4";
 import { ContestPage } from "./pages/contest";
-import { AppContextProvider } from "./appContext";
+import { AppContextProvider } from "./context/appContext";
+import { NotFound } from "./404";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
@@ -101,7 +102,8 @@ function App() {
                 <Route path="/nyc26" element={<NYC26 />}/>
                 {/* <Route path="/" element={<WIP/>}/> */}
                 <Route path="/" element={<HomePage connectWalletHandler={connectWalletHandler}/>}/>
-                <Route path="/contest" element={<ContestPage/>}></Route>
+                <Route path="/contest" element={<ContestPage/>}/>
+                <Route path="*" element={<NotFound/>}/>
             </Routes>
             </AppContextProvider>
         </div>
