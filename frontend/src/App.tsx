@@ -87,9 +87,9 @@ function App() {
   //   )
   // }
 
-  useEffect(() => {
-    checkWalletIsConnected();
-  }, [])
+  // useEffect(() => {
+  //   checkWalletIsConnected();
+  // }, [])
 
     return (
         <div className="app">
