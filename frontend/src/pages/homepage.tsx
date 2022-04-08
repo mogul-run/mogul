@@ -162,7 +162,8 @@ function ContentTres() {
     return (
         <div className="content-container">
             <div className="header">
-                The Platform
+                More to come...
+                {/* The Platform */}
                 </div>
             {/* <div className="content-left">picture</div>
             <div className="content-right">content</div> */}

@@ -99,9 +99,8 @@ function App() {
             <Routes>
                 <Route path="/test-sale" element={<TestSale userAccount={userAccount}/>}/>
                 <Route path="/nyc26" element={<NYC26 />}/>
-                {/* <Route path="/" element={<WIP/>}/> */}
-                <Route path="/" element={<HomePage connectWalletHandler={connectWalletHandler}/>}/>
                 <Route path="/tgob" element={<TGOB/> }/>
+                <Route path="/" element={<HomePage connectWalletHandler={connectWalletHandler}/>}/>
             </Routes>
         </div>
     );
