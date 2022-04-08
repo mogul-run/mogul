@@ -1,9 +1,26 @@
 
 .TGOB {
-    margin: 50px 100px;
+    margin: 50px 70px;
     background-color: #e7e3dc;
     border-radius: 5px;
     box-shadow: 10px 10px #ff9800;
+}
+li {
+    margin: 5px 0px;
+}
+
+.center {
+    justify-content: center;
+    display: flex;
+}
+
+.button {
+    background-color: #00acc1; 
+    color: white;
+    width: max-content;
+    padding: 5px 10px;
+    border-radius: 5px ;
+    font-weight: bold;
 }
 
 .head-wrapper {
@@ -50,20 +67,37 @@
 }
 
 .header {
+    font-size: 22px;
+    font-weight: bold;
+}
+.subheader {
     font-size: 24px;
     font-weight: bold;
+    color: #434343;
 }
 
 .info-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     align-items: space-evenly;
 }
 
 .desc-wrapper {
-    margin: 30px;
+    margin: 10px 30px;
     width: 45%;
+}
+.full-wrapper {
+    margin: 10px 30px;
+    width: 90%;
+}
+
+.submit-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .desc {
@@ -76,4 +110,8 @@
     font-size: 16px;
     font-weight: 100;
     font-family: "DM Mono";
+}
+
+.discord-wrapper {
+    margin: 15px 0px;
 }

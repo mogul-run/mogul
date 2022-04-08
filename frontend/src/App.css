@@ -1,11 +1,7 @@
 .app {
   display: flex;
   flex-direction: column;
-  /* justify-content: center;
-  align-items: center; */
-  height: 100vh;
   width: 100vw;
-  /* background: #373737; */
   background-color: #fbf9f6;
   font-family: "DM Mono";
 }
