@@ -1,6 +1,9 @@
 import "./homepage.css";
 import Stonemasters from "../img/stonemasters.jpg";
 import { useRef } from "react";
+import {Link} from "react-router-dom";
+import Navbar from "../components/navbar";
+
 
 function HomePage(props:any) {
     const myRef = useRef(document.createElement("div"));
@@ -8,24 +11,6 @@ function HomePage(props:any) {
 
     return (
         <div className="homepage">
-            <div className="navbar">
-                <div className="logo">Mogul</div>
-                <div className="navbuttons">
-                    <div className="navlinks">
-                        {/* <div className="navlink" onClick={scrollToContent}>About</div> */}
-                        <a
-                            href="https://discord.gg/8AXyshRRVM"
-                            target="__blank"
-                            className="nostyle"
-                        >
-                            <div className="navlink"> Discord</div>
-                        </a>
-
-                        <div className="navlink" onClick={() => alert("you are a curious cat, there's nothing here... yet")}>????</div>
-                    </div>
-                    <div className="connect" onClick={() => props.connectWalletHandler()}>connect</div>
-                </div>
-            </div>
             <div className="content" ref={myRef}>
 
                 <ContentUno />
