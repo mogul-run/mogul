@@ -101,7 +101,7 @@ function App() {
                 <Route path="/nyc26" element={<NYC26 />}/>
                 {/* <Route path="/" element={<WIP/>}/> */}
                 <Route path="/" element={<HomePage connectWalletHandler={connectWalletHandler}/>}/>
-                <Route path="/the-game-of-bum" element={<TGOB/> }/>
+                <Route path="/tgob" element={<TGOB/> }/>
             </Routes>
         </div>
     );

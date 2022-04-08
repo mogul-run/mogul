@@ -65,7 +65,7 @@ function ContentUno() {
                     </div>
                     <div className="content-block">
                         <div className="emphasis">Built for:</div>
-                        <ul>
+                        <ul className="built">
                             <li>Beach Bums and Derelicts</li>
                             <li>Diehard Dirtbags and Weekend Warriors</li>
                             <li>
@@ -73,7 +73,7 @@ function ContentUno() {
                                 mom's old Sienna
                             </li>
                             <li>
-                                Lovers of the mountains, the sea and Mother
+                                Lovers of the Mountains, the Sea and Mother
                                 Earth
                             </li>
                         </ul>
@@ -163,7 +163,9 @@ function ContentDos() {
 function ContentTres() {
     return (
         <div className="content-container">
-            More to come...
+            <div className="header">
+                The Platform
+                </div>
             {/* <div className="content-left">picture</div>
             <div className="content-right">content</div> */}
         </div>

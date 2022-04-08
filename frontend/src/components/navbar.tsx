@@ -18,7 +18,7 @@ export default function Navbar(props: any) {
                         <div className="navlink"> Discord</div>
                     </a>
 
-                    <Link to="/the-game-of-bum" className="nostyle">
+                    <Link to="/tgob" className="nostyle">
                         <div className="navlink">T.G.o.B</div>
                     </Link>
                 </div>

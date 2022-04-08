@@ -129,6 +129,12 @@ a {
     font-weight: 1000;
     color: #ff9800;
 }
+
+.built {
+    padding-inline-start: 1ch;
+    list-style-type: "🤙";
+}
+
 @media only screen and (max-width: 800px) {
     .uno {
         flex-direction: column;
