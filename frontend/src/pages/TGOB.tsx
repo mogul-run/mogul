@@ -50,7 +50,7 @@ function TGOB() {
                 <div className="desc-wrapper">
                     <div className="header">Categories</div>
                     Categories for T.G.o.B will be:
-                    <ul>
+                    <ul className="categories">
                         <li>
                             🏄 <b>Surfing:</b> Big Boards AND Small Boards!
                         </li>
@@ -85,17 +85,19 @@ function TGOB() {
                         covered!
                         <br />
                         <br />
-                        Validators will be tasked with viewing content posted by
-                        competitors and being the judge. There will be 2 types
+                        Validators will act as the judge for content posted by
+                        competitors. There will be 2 types
                         of validations:
-                        <ul>
+                        <ul className="validator">
                             <li>
-                                <b>Completion based validations:</b> Decide whether the competitor has completed the specified challenge. 
+                                <b>Completion based validations:</b> Make a pass/fail decision whether the competitor has completed the specified challenge. 
                             </li>
                             <li>
                                 <b>Score based validations:</b> Score a competitor's performance on a specified challenge. Criteria may include style, creativity, or quality of content.
                             </li>
                         </ul>
+
+                        Validators will be airdropped $MOGUL stakeholder tokens for their work. The amount of tokens will vary based on quality of past validations.
                     </div>
                 </div>
             </div>
@@ -104,9 +106,9 @@ function TGOB() {
                 <div className="desc-wrapper">
                     <div className="header">Prizes and Goodies</div>
                     <div className="desc">
-                        <ul>
+                        <ul className="prizes">
                             <li>
-                                <b>💰 Cash</b>
+                                <b> Cash</b>
                                 <ul>
                                     <li>
                                         $1000 in Ethereum to the top contestant
