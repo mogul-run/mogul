@@ -36,7 +36,7 @@ li {
     font-weight: bold;
 }
 
-.head-wrapper {
+.jupper {
     width: 100%;
     margin: 15px 0px;
     display: flex;
@@ -46,16 +46,13 @@ li {
 }
 
 .head {
-    width: max-content;
-    border-radius: 5px;
-    padding: 10px;
-    display: flex;
+     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
-.head:hover {
-    background-color: #00acc1;
+.title:hover {
 }
 
 .bum-link {
@@ -71,6 +68,13 @@ li {
     font-family: "Alegreya";
     font-size: 35px;
     font-weight: bold;
+    width: max-content;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.title:hover {
+    background-color: #00acc1;
 }
 
 .title-big {
@@ -108,7 +112,7 @@ li {
 .submit-header {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: max-content;
     justify-content: center;
     align-items: center;
 }
@@ -127,4 +131,40 @@ li {
 
 .discord-wrapper {
     margin: 15px 0px;
+}
+
+
+@media only screen and (max-width: 800px){
+    .desc-wrapper {
+        width: 90%;
+        margin: 5px 30px;
+    }
+    .sub-text{
+        width: max-content;
+    }
+    .info-wrapper {
+        width: 90%;
+        flex-direction: column;
+    }
+    .TGOB {
+        margin: 0px;
+    }
+
+    .full-wrapper {
+        margin: 5px 30px;
+    }
+
+    .head-wrapper {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .head {
+        width: 80%;
+        margin-left: 20px;
+    }
+    .submit-header {
+        width: max-content;
+        align-items: flex-start;
+    }
 }

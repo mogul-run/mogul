@@ -16,9 +16,11 @@ function TGOB() {
                             <div className="title-big">B.U.M</div>
                         </a>
                     </div>
-                </div>
-                <div className="subtext">
-                    <i>🦅 Dedicated to Shane McConkey and Brad Gobright 🦅</i>
+                    <div className="subtext">
+                        <i>
+                            🦅 Dedicated to Shane McConkey and Brad Gobright 🦅
+                        </i>
+                    </div>
                 </div>
             </div>
             <div className="info-wrapper">
@@ -30,7 +32,7 @@ function TGOB() {
                         and more.
                         <br />
                         <br />
-                        <div className="header">Challenges</div>
+                        <div className="desc header">Challenges</div>
                         Challenges will be categorized under specific bumsports
                         and activities. Challenges may range from simple
                         completion based challenges (e.g. ski 20,000 vertical
@@ -48,7 +50,7 @@ function TGOB() {
             </div>
             <div className="info-wrapper">
                 <div className="desc-wrapper">
-                    <div className="header">Categories</div>
+                    <div className="desc header">Categories</div>
                     Categories for T.G.o.B will be:
                     <ul className="categories">
                         <li>
@@ -86,18 +88,23 @@ function TGOB() {
                         <br />
                         <br />
                         Validators will act as the judge for content posted by
-                        competitors. There will be 2 types
-                        of validations:
+                        competitors. There will be 2 types of validations:
                         <ul className="validator">
                             <li>
-                                <b>Completion based validations:</b> Make a pass/fail decision whether the competitor has completed the specified challenge. 
+                                <b>Completion based validations:</b> Make a
+                                pass/fail decision whether the competitor has
+                                completed the specified challenge.
                             </li>
                             <li>
-                                <b>Score based validations:</b> Score a competitor's performance on a specified challenge. Criteria may include style, creativity, or quality of content.
+                                <b>Score based validations:</b> Score a
+                                competitor's performance on a specified
+                                challenge. Criteria may include style,
+                                creativity, or quality of content.
                             </li>
                         </ul>
-
-                        Validators will be airdropped $MOGUL stakeholder tokens for their work. The amount of tokens will vary based on quality of past validations.
+                        Validators will be airdropped $MOGUL stakeholder tokens
+                        for their work. The amount of tokens will vary based on
+                        quality of past validations.
                     </div>
                 </div>
             </div>
@@ -152,10 +159,8 @@ function TGOB() {
                                 </ul>
                             </li>
                             <li>
-                                <b>
-                                    $MOGUL Stakeholder Tokens -- for both
-                                    competitors and verifiers{" "}
-                                </b>
+                                <b>$MOGUL Stakeholder Tokens </b>
+                                -- for both competitors and verifiers{" "}
                                 {/* <ul>
                                     <li>Sick gear from our sponsors.</li>
                                 </ul> */}
@@ -167,10 +172,7 @@ function TGOB() {
                                 </ul>
                             </li>
                             <li>
-                                <b>
-                                    And most importantly... Official Bum
-                                    Bragging Rights
-                                </b>
+                                <b>Blockchain Verified Bragging Rights</b>
                             </li>
                         </ul>
                     </div>
@@ -188,7 +190,10 @@ function TGOB() {
 
             <div className="full-wrapper center">
                 <div className="submit-header">
-                    Questions? Want to know when the T.G.o.B will start?
+                    <b>
+                        Questions? Want to be the first to know when the T.G.o.B
+                        countdown time launches?
+                    </b>
                     <div className="discord-wrapper">
                         <a
                             href="https://discord.gg/8AXyshRRVM"
