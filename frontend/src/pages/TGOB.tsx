@@ -33,11 +33,9 @@ function TGOB() {
                         <br />
                         <br />
                         <div className="desc header">Challenges</div>
-                        Challenges will be categorized under specific bumsports
-                        and activities. Challenges may range from simple
-                        completion based challenges (e.g. ski 20,000 vertical
-                        feet in a day) to challenges where points are awarded
-                        based on popular vote (e.g. best wave surfed).
+                        Challenges will be categorized by under specific bumsports.
+                        Challenges may range from simple completion based
+                        challenges to challenges scored on style and creativity.
                         <br />
                         <br />
                         Competitors will be considered for both points
@@ -132,9 +130,8 @@ function TGOB() {
                                 <ul>
                                     <li>
                                         The top 3 competitors in each category
-                                        and top 5 competitors overall
-                                        will be airdropped one (1) $BUMSPORT
-                                        token.
+                                        and top 5 competitors overall will be
+                                        airdropped one (1) $BUMSPORT token.
                                     </li>
                                     <li>
                                         Each $BUMSPORT token can be redeemed for
@@ -152,9 +149,9 @@ function TGOB() {
                                         access to mint an exclusive T.G.o.B NFT.
                                     </li>
                                     <li>
-                                        Top competitors and validators will have the
-                                        opportunity to mint "The Ultimate B.U.M"
-                                        NFT.
+                                        Top competitors and validators will have
+                                        the opportunity to mint "The Ultimate
+                                        B.U.M" NFT.
                                     </li>
                                 </ul>
                             </li>
