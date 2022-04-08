@@ -36,6 +36,11 @@ li {
     font-weight: bold;
 }
 
+.button:hover {
+    background-color: #fbf9f6;
+    color: #00acc1; 
+}
+
 .jupper {
     width: 100%;
     margin: 15px 0px;

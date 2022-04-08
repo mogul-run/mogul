@@ -118,7 +118,7 @@ function TGOB() {
                                 <b> Cash</b>
                                 <ul>
                                     <li>
-                                        $1000 in Ethereum to the top contestant
+                                        $1,000 in Ethereum to the top contestant
                                         overall.
                                     </li>
                                     <li>
@@ -132,7 +132,7 @@ function TGOB() {
                                 <ul>
                                     <li>
                                         The top 3 competitors in each category
-                                        as well as the top 5 competitors overall
+                                        and top 5 competitors overall
                                         will be airdropped one (1) $BUMSPORT
                                         token.
                                     </li>
@@ -148,13 +148,13 @@ function TGOB() {
                                 <b>NFTs</b>
                                 <ul>
                                     <li>
-                                        The first 10,000 signups will be receive
+                                        The first 10,000 signups will receive
                                         access to mint an exclusive T.G.o.B NFT.
                                     </li>
                                     <li>
-                                        Top competitors will have the
+                                        Top competitors and validators will have the
                                         opportunity to mint "The Ultimate B.U.M"
-                                        NFTs.
+                                        NFT.
                                     </li>
                                 </ul>
                             </li>

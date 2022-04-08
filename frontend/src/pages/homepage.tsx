@@ -6,12 +6,10 @@ import Navbar from "../components/navbar";
 
 
 function HomePage(props:any) {
-    const myRef = useRef(document.createElement("div"));
-    const scrollToContent = () => myRef.current.scrollIntoView();
 
     return (
         <div className="homepage">
-            <div className="content" ref={myRef}>
+            <div className="content" >
 
                 <ContentUno />
                 <ContentDos />

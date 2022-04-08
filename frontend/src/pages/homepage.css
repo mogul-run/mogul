@@ -13,6 +13,10 @@ a {
     color: black !important;
 }
 
+.uno {
+    margin-top: 35px;
+}
+
 
 .uno-left {
     display: flex;
@@ -138,6 +142,7 @@ a {
 @media only screen and (max-width: 800px) {
     .uno {
         flex-direction: column;
+        margin-top: 15px;
     }
 
     .content {
