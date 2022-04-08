@@ -64,11 +64,11 @@ function TGOB() {
                             party pace gravel grinders, or rock garden warriors!{" "}
                         </li>
                         <li>
-                            🛹 <b>Skating: </b> Street, Vert, or even our casual
+                            🛹 <b>Skating: </b> Street, Vert, or even casual
                             cruisers, we don't discriminate!{" "}
                         </li>
                         <li>
-                            🚠 <b>Skiing and Snowboarding: </b> One love mon 🇯🇲{" "}
+                            🚠 <b>Skiing and Snowboarding: </b> One Love mon 🇯🇲{" "}
                         </li>
                         <li>
                             🏃‍♀<b>️ Bum Fitness: </b>Ya didn't think we'd let
