@@ -103,7 +103,7 @@ li {
     display: flex;
     flex-direction: row;
     /* justify-content: space-evenly; */
-    align-items: space-evenly;
+    align-items: baseline;
 }
 
 .desc-wrapper {
