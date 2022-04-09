@@ -113,7 +113,7 @@ function ContentDos() {
                     <div>
                         <i>
                             {" "}
-                            <b> Let's practice using these words</b>{" "}
+                            <b> Let's practice using these words:</b>{" "}
                         </i>
                         <br />
                         <br />
@@ -150,8 +150,8 @@ function ContentTres() {
             <div className="community-grid">
                 <div className="community-text">
                     <div className="community-header">
-                        Tight-knit communities have been a vital part of
-                        Bumsports since the start
+                        Tight-knit communities have always been a vital part of
+                        Bumsports 
                     </div>
                     <div className="">
                         Ragtag bands of bums have pushed the physical limits in
