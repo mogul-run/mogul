@@ -1,5 +1,6 @@
 import "./homepage.css";
 import Stonemasters from "../img/stonemasters.jpg";
+import Squallywood from "../img/squallywood.jpg";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
@@ -12,6 +13,9 @@ function HomePage(props: any) {
                 <ContentUno />
                 <ContentDos />
                 <ContentTres />
+                <Content4 />
+                <Content5 />
+                <Footer />
             </div>
         </div>
     );
@@ -162,12 +166,12 @@ function ContentTres() {
         <div className="content-container tres">
             <div className="community-grid">
                 <div className="community-text">
-                    <div className="header">
-                        Communities have been a vital part of Bumsports since the start
+                    <div className="community-header">
+                        Tight-knit communities have been a vital part of Bumsports since
+                        the start
                     </div>
                     <div className="">
-                        Bumsport history provides countless examples of tight-knit
-                        communities that have banded together to push forward together
+                        Ragtag bands of bums have pushed the physical limits in bumsports like surfing, climbing, and skiing.
                     </div>
                 </div>
                 <div className="community-item">
@@ -177,7 +181,7 @@ function ContentTres() {
                             src="https://hips.hearstapps.com/amv-prod-alt.s3.amazonaws.com/wp-content/uploads/2019/09/ATA100119frost_img03.jpg?resize=480:*"
                         />
                     </div>
-                    <div className="community-cap">Camp 4</div>
+                    <div className="community-cap">Royal Robbins and T.M. Herbert racking up for the Salathé Wall in Camp 4, Yosemite Valley, CA</div>
                 </div>
                 <div className="community-item">
                     <div className="community-img-wrap">
@@ -186,21 +190,67 @@ function ContentTres() {
                             src="https://a968e88b3a163aaa3fa0-8d76d5503b19f9a2f56cd75842c1c0e4.ssl.cf1.rackcdn.com/00435_s_11ah3lk59w0446.jpg"
                         />
                     </div>
-                    <div className="community-cap">North Shore, Oahu</div>
+                    <div className="community-cap">
+                        Gerry Lopez and Derek Ho share a barrel at Pipeline, North Shore Oahu
+                    </div>
                 </div>
                 <div className="community-item">
                     <div className="community-img-wrap">
-                        <img
-                            className="community-img"
-                            src="https://hips.hearstapps.com/amv-prod-alt.s3.amazonaws.com/wp-content/uploads/2019/09/ATA100119frost_img03.jpg?resize=480:*"
-                        />
+                        <img className="community-img" src={Squallywood} />
                     </div>
-                    <div className="community-cap">Camp 4</div>
+                    <div className="community-cap">
+                        Shane McConkey and Squallywood's finest dropping in at Mainline Pocket, Squaw Valley, CA
+                    </div>
                 </div>
                 {/* The Platform */}
             </div>
         </div>
     );
+}
+
+function Content4() {
+    return (
+        <div className="content-container four">
+            <div className="content-left four-left">
+                <div className="header">How can we nurture these communities online?</div>
+            </div>
+            <div className="content-right four-right">
+                <div className="sub-block">
+                    <div className="subheader">
+                       Creator-Centric Houses 
+                    </div>
+                    <div className="sub-desc">
+                        Give creators the tools to curate quality content and services for their houses.
+                    </div>
+                </div>
+                <div className="sub-block">
+                    <div className="subheader">House Tokens</div>
+                    <div className="sub-desc">
+                       Provide members a sense of stake in the house. Can be used to regulate membership in a house or exchanged for goods and services.  
+                    </div>
+                </div>
+                <div className="sub-block">
+                    <div className="subheader">More Value for Creators</div>
+                    <div className="sub-desc">
+                        Lower the barrier of entry for creators to start making a living off their craft.
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function Content5() {
+    return(
+        <div className="content-container five">
+           Want to be one of the first creators on Mogul?  
+        </div>
+
+    )
+}
+
+function Footer() {
+    return <div className="footer">psyched up!</div>;
 }
 
 export default HomePage;

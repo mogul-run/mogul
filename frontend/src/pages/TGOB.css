@@ -93,11 +93,6 @@ li {
     font-size: 28px;
     font-weight: bold;
 }
-.subheader {
-    font-size: 24px;
-    font-weight: bold;
-    color: #434343;
-}
 
 .info-wrapper {
     display: flex;
