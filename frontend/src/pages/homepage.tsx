@@ -1,6 +1,8 @@
 import "./homepage.css";
 import Stonemasters from "../img/stonemasters.jpg";
-import Squallywood from "../img/squallywood.jpg";
+import Gnar from "../img/shane.jpg";
+import Camp4 from "../img/camp4.jpg";
+import NorthShore from "../img/north-shore.jpg";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
@@ -125,8 +127,8 @@ function ContentDos() {
                     </span>
                 </div>
             </div>
-            <div>
-                <div className="blurb">
+            <div className="examples-wrapper">
+                <div className="blurb examples">
                     <div>
                         <i>
                             {" "}
@@ -167,39 +169,45 @@ function ContentTres() {
             <div className="community-grid">
                 <div className="community-text">
                     <div className="community-header">
-                        Tight-knit communities have been a vital part of Bumsports since
-                        the start
+                        Tight-knit communities have been a vital part of
+                        Bumsports since the start
                     </div>
                     <div className="">
-                        Ragtag bands of bums have pushed the physical limits in bumsports like surfing, climbing, and skiing.
+                        Ragtag bands of bums have pushed the physical limits in
+                        bumsports like surfing, climbing, and skiing.
+                    </div>
+                </div>
+                <div className="community-item">
+                    <div className="community-img-wrap">
+                        <img className="community-img" src={Gnar} />
+                    </div>
+                    <div className="community-cap">
+                        Shane McConkey and Squallywood's finest dropping in at
+                        Squaw Valley, CA
                     </div>
                 </div>
                 <div className="community-item">
                     <div className="community-img-wrap">
                         <img
                             className="community-img"
-                            src="https://hips.hearstapps.com/amv-prod-alt.s3.amazonaws.com/wp-content/uploads/2019/09/ATA100119frost_img03.jpg?resize=480:*"
+                            src={Camp4}
                         />
                     </div>
-                    <div className="community-cap">Royal Robbins and T.M. Herbert racking up for the Salathé Wall in Camp 4, Yosemite Valley, CA</div>
+                    <div className="community-cap">
+                        Royal Robbins and T.M. Herbert racking up for the
+                        Salathé Wall in Camp 4, Yosemite Valley, CA
+                    </div>
                 </div>
                 <div className="community-item">
                     <div className="community-img-wrap">
                         <img
                             className="community-img"
-                            src="https://a968e88b3a163aaa3fa0-8d76d5503b19f9a2f56cd75842c1c0e4.ssl.cf1.rackcdn.com/00435_s_11ah3lk59w0446.jpg"
+                            src={NorthShore}
                         />
                     </div>
                     <div className="community-cap">
-                        Gerry Lopez and Derek Ho share a barrel at Pipeline, North Shore Oahu
-                    </div>
-                </div>
-                <div className="community-item">
-                    <div className="community-img-wrap">
-                        <img className="community-img" src={Squallywood} />
-                    </div>
-                    <div className="community-cap">
-                        Shane McConkey and Squallywood's finest dropping in at Mainline Pocket, Squaw Valley, CA
+                        Gerry Lopez and Derek Ho share a barrel at Pipeline,
+                        North Shore Oahu
                     </div>
                 </div>
                 {/* The Platform */}
@@ -212,27 +220,38 @@ function Content4() {
     return (
         <div className="content-container four">
             <div className="content-left four-left">
-                <div className="header">How can we nurture these communities online?</div>
+                <div className="header">
+                    How can we nurture these communities online?
+                </div>
             </div>
-            <div className="content-right four-right">
-                <div className="sub-block">
-                    <div className="subheader">
-                       Creator-Centric Houses 
+            <div className="content-right four-wrap">
+                <div className="four-right">
+                    {" "}
+                    <div className="sub-block">
+                        <div className="subheader">
+                            🏠 Creator-Centric Houses
+                        </div>
+                        <div className="sub-desc">
+                            Give creators the tools to curate quality content
+                            and services for their houses.
+                        </div>
                     </div>
-                    <div className="sub-desc">
-                        Give creators the tools to curate quality content and services for their houses.
+                    <div className="sub-block">
+                        <div className="subheader">🪙 House Tokens</div>
+                        <div className="sub-desc">
+                            Provide members a sense of stake in the house. Can
+                            be used to regulate membership in a house or
+                            exchanged for goods and services.
+                        </div>
                     </div>
-                </div>
-                <div className="sub-block">
-                    <div className="subheader">House Tokens</div>
-                    <div className="sub-desc">
-                       Provide members a sense of stake in the house. Can be used to regulate membership in a house or exchanged for goods and services.  
-                    </div>
-                </div>
-                <div className="sub-block">
-                    <div className="subheader">More Value for Creators</div>
-                    <div className="sub-desc">
-                        Lower the barrier of entry for creators to start making a living off their craft.
+                    <div className="sub-block">
+                        <div className="subheader">
+                            💸 More Value for Creators
+                        </div>
+                        <div className="sub-desc">
+                            Lower the barrier of entry for creators to start
+                            making a living off their craft.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -241,16 +260,45 @@ function Content4() {
 }
 
 function Content5() {
-    return(
+    return (
         <div className="content-container five">
-           Want to be one of the first creators on Mogul?  
+            <div className="tgob-pitch">
+                <div className="pitch-header">
+                    Want to be one of the first creators on Mogul?
+                </div>
+                You've got to earn your spot in...
+                <div className="tgob-script">
+                    <Link to="/tgob" className="tgob-link">
+                        The Game of B.U.M.
+                    </Link>
+                </div>
+            </div>
         </div>
-
-    )
+    );
 }
 
 function Footer() {
-    return <div className="footer">psyched up!</div>;
+    return (
+        <div className="footer">
+            <div className="footer-items">
+                <div className="footer-item">
+                    <Link to="/">About</Link>
+                </div>
+                <div className="footer-item">
+                    <Link to="/">Team</Link>
+                </div>
+                <div className="footer-item">
+                    <Link to="/">FAQ</Link>
+                </div>
+                <div className="footer-item">
+                    <a href="https://discord.gg/8AXyshRRVM">Discord</a>
+                </div>
+            </div>
+            <div className="post-footer">
+            Psyched up!
+            </div>
+        </div>
+    );
 }
 
 export default HomePage;
