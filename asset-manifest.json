@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.3cfc8260.css",
-    "main.js": "/static/js/main.0557f810.js",
+    "main.css": "/static/css/main.1fa76dff.css",
+    "main.js": "/static/js/main.e6298fbd.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/north-shore.jpg": "/static/media/north-shore.9abe91aa942ac8bb5f50.jpg",
     "static/media/stonemasters.jpg": "/static/media/stonemasters.0486d6423a912ca29fa1.jpg",
+    "static/media/shane.jpg": "/static/media/shane.58b75d6692176cd8263a.jpg",
     "static/media/alegreya-all-400-normal.woff": "/static/media/alegreya-all-400-normal.e75c68ac5553c88e9a1e.woff",
+    "static/media/camp4.jpg": "/static/media/camp4.e364b6829c41d9ba7c3a.jpg",
     "static/media/dm-mono-all-400-normal.woff": "/static/media/dm-mono-all-400-normal.71863af5fd990865914d.woff",
     "static/media/alegreya-latin-400-normal.woff2": "/static/media/alegreya-latin-400-normal.79d99060c233131b3d92.woff2",
     "static/media/alegreya-latin-ext-400-normal.woff2": "/static/media/alegreya-latin-ext-400-normal.a95f16fbe33f474873e7.woff2",
@@ -16,12 +19,12 @@
     "static/media/alegreya-greek-ext-400-normal.woff2": "/static/media/alegreya-greek-ext-400-normal.4bec66ff733ace43eca1.woff2",
     "static/media/alegreya-vietnamese-400-normal.woff2": "/static/media/alegreya-vietnamese-400-normal.26e3a381c0e20a890bfb.woff2",
     "index.html": "/index.html",
-    "main.3cfc8260.css.map": "/static/css/main.3cfc8260.css.map",
-    "main.0557f810.js.map": "/static/js/main.0557f810.js.map",
+    "main.1fa76dff.css.map": "/static/css/main.1fa76dff.css.map",
+    "main.e6298fbd.js.map": "/static/js/main.e6298fbd.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3cfc8260.css",
-    "static/js/main.0557f810.js"
+    "static/css/main.1fa76dff.css",
+    "static/js/main.e6298fbd.js"
   ]
 }
