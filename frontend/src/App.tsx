@@ -8,6 +8,7 @@ import NYC26 from "./pages/ny26";
 import ReactGA from "react-ga4";
 import TGOB from "./pages/TGOB";
 import Navbar from "./components/navbar";
+import ScrollToTop from "./utils/scrollToTop";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
@@ -54,6 +55,7 @@ function App() {
 
     return (
         <div className="app">
+          <ScrollToTop/>
           <Navbar/>
             <Routes>
                 <Route path="/test-sale" element={<TestSale userAccount={userAccount}/>}/>
