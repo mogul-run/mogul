@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: space-around;
-    height: 100vh;
+    height: max-content;
+    background-color: #fbf9f6;
 }
 
 a {
@@ -99,6 +99,7 @@ a {
     text-overflow: wrap;
 }
 
+
 .header-block {
     margin-bottom: 15px;
 }
@@ -140,6 +141,30 @@ a {
 .built {
     padding-inline-start: 1ch;
     list-style-type: "🤙";
+}
+
+.tres {
+    flex-direction: column;
+    align-items: center;
+}
+
+.community-grid {
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.community-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.community-img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin: 10px;
 }
 
 @media only screen and (max-width: 800px) {

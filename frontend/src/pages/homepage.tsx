@@ -1,16 +1,14 @@
 import "./homepage.css";
 import Stonemasters from "../img/stonemasters.jpg";
 import { useRef } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
+import "./homepage.css";
 
-
-function HomePage(props:any) {
-
+function HomePage(props: any) {
     return (
         <div className="homepage">
-            <div className="content" >
-
+            <div className="content">
                 <ContentUno />
                 <ContentDos />
                 <ContentTres />
@@ -46,11 +44,12 @@ function ContentUno() {
                         finding your own line.
                         </i>
                     </div> */}
-                    <div className="content-block"> 
+                    <div className="content-block">
                         <b>
-                        Mogul provides the tools for{" "}
-                        <span className="highlight">bumsport</span> enthusiasts to
-                        build and participate in intimate digital communities.
+                            Mogul provides the tools for{" "}
+                            <span className="highlight">bumsport</span>{" "}
+                            enthusiasts to build and participate in intimate
+                            digital communities.
                         </b>
                     </div>
                     <div className="content-block">
@@ -132,9 +131,9 @@ function ContentDos() {
                         <br />
                         <br />
                     </div>
-                    <span className="highlight">Bums</span> come in all different varieties:
-                    ski bums, surf bums, rock climbing bums, kayaking bums,
-                    skate bums and more!
+                    <span className="highlight">Bums</span> come in all
+                    different varieties: ski bums, surf bums, rock climbing
+                    bums, kayaking bums, skate bums and more!
                     <br />
                     <br />
                     <span className="highlight">Bumsports</span> were once niche
@@ -160,13 +159,46 @@ function ContentDos() {
 
 function ContentTres() {
     return (
-        <div className="content-container">
-            <div className="header">
-                More to come...
-                {/* The Platform */}
+        <div className="content-container tres">
+            <div className="community-grid">
+                <div className="community-text">
+                    <div className="header">
+                        Communities have been a vital part of Bumsports since the start
+                    </div>
+                    <div className="">
+                        Bumsport history provides countless examples of tight-knit
+                        communities that have banded together to push forward together
+                    </div>
                 </div>
-            {/* <div className="content-left">picture</div>
-            <div className="content-right">content</div> */}
+                <div className="community-item">
+                    <div className="community-img-wrap">
+                        <img
+                            className="community-img"
+                            src="https://hips.hearstapps.com/amv-prod-alt.s3.amazonaws.com/wp-content/uploads/2019/09/ATA100119frost_img03.jpg?resize=480:*"
+                        />
+                    </div>
+                    <div className="community-cap">Camp 4</div>
+                </div>
+                <div className="community-item">
+                    <div className="community-img-wrap">
+                        <img
+                            className="community-img"
+                            src="https://a968e88b3a163aaa3fa0-8d76d5503b19f9a2f56cd75842c1c0e4.ssl.cf1.rackcdn.com/00435_s_11ah3lk59w0446.jpg"
+                        />
+                    </div>
+                    <div className="community-cap">North Shore, Oahu</div>
+                </div>
+                <div className="community-item">
+                    <div className="community-img-wrap">
+                        <img
+                            className="community-img"
+                            src="https://hips.hearstapps.com/amv-prod-alt.s3.amazonaws.com/wp-content/uploads/2019/09/ATA100119frost_img03.jpg?resize=480:*"
+                        />
+                    </div>
+                    <div className="community-cap">Camp 4</div>
+                </div>
+                {/* The Platform */}
+            </div>
         </div>
     );
 }
