@@ -13,7 +13,7 @@ function TGOB() {
                             target="__blank"
                         >
                             The Game of
-                            <div className="title-big">B.U.M</div>
+                            <div className="title-big">B.U.M.</div>
                         </a>
                     </div>
                     <div className="subtext">

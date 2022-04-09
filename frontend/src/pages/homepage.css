@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: space-around;
-    height: 100vh;
+    height: max-content;
+    background-color: #fbf9f6;
 }
 
 a {
@@ -13,13 +13,12 @@ a {
 
 .nostyle {
     text-decoration: none !important;
-    color: black !important;
+    color: #424242 !important;
 }
 
 .uno {
     margin-top: 35px;
 }
-
 
 .uno-left {
     display: flex;
@@ -27,7 +26,7 @@ a {
 }
 
 .connect:hover {
-    background-color: #00acc1; 
+    background-color: #00acc1;
     color: white;
 }
 
@@ -72,10 +71,19 @@ a {
     border-radius: 5px;
 }
 
+.examples-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.examples {
+    width: max-content;
+}
+
 .content-left {
     max-width: 45%;
 }
-.content-right{
+.content-right {
     max-width: 50%;
 }
 
@@ -86,7 +94,6 @@ a {
     outline: 5px dashed #00acc1;
 }
 
-
 .stonemasters {
     max-width: 350px;
     border-radius: 5px;
@@ -95,7 +102,7 @@ a {
 .content-header {
     color: #ff9800;
     font-weight: 1000;
-    font-size: 32px;
+    font-size: 30px;
     text-overflow: wrap;
 }
 
@@ -111,21 +118,21 @@ a {
 }
 
 .highlight {
-    background-color:  #ff9800;
+    background-color: #ff9800;
     color: white;
     border-radius: 3px;
     padding: 0px 5px;
 }
 
 .definition {
-    color: black;
+    color: #424242;
 }
 
 .definition-word {
     text-align: left;
     color: #ff9800;
     font-size: 40px;
-    font-family: 'Alegreya'; 
+    font-family: "Alegreya";
 }
 
 .content-block {
@@ -142,6 +149,155 @@ a {
     list-style-type: "🤙";
 }
 
+.tres {
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0px;
+}
+
+.community-grid {
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.community-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.community-header {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.community-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.community-img-wrap {
+    /* height: 400px;
+    width: 400px; */
+    overflow: hidden;
+}
+
+.community-img {
+    width: 400px;
+    height: auto;
+    border-radius: 5px;
+    margin: 15px 0px;
+}
+
+.four {
+    background-color: #00acc1;
+    color: white;
+    min-height: 500px;
+}
+.four-left {
+    display: flex;
+    align-items: center;
+    max-width: 50%;
+}
+
+.four-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.four-right {
+    outline: 0.5px solid white;
+    height: max-content;
+    padding: 10px 25px;
+    border-radius: 5px;
+}
+.five {
+    min-height: 450px;
+    justify-content: center;
+    align-items: center;
+}
+
+.tgob-pitch {
+    width: 80%;
+    font-size: 20px;
+    background-color: #e7e3dc;
+    box-shadow: 10px 10px #ff9800;
+    padding: 25px 50px;
+    width: max-content;
+    border-radius: 5px;
+}
+
+.pitch-header {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.tgob-script {
+    margin: 45px 0px 15px 0px;
+    font-weight: bold;
+    font-size: 60px;
+    font-family: "Alegreya";
+    justify-content: center;
+}
+
+
+.tgob-link {
+    color: #ff9800;
+    outline: 5px dashed #ff9800;
+    padding: 5px 30px;
+    border-radius: 15px;
+}
+.tgob-link:hover {
+    color: white;
+    padding: 10px 30px;
+    background-color: #00acc1;
+    outline: none;
+}
+
+
+.community-cap {
+    font-size: 14px;
+    max-width: 400px;
+}
+
+.subheader {
+    font-size: 20px;
+    font-weight: bold;
+}
+.sub-block {
+    margin: 20px 0px;
+}
+
+.footer {
+    background-color: #424242;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+.post-footer {
+    height: 50px;
+}
+
+.footer-item {
+    margin: 0px 20px;
+}
+
 @media only screen and (max-width: 800px) {
     .uno {
         flex-direction: column;
@@ -155,7 +311,7 @@ a {
     .uno-left {
         max-width: 100%;
     }
-    .uno-right{
+    .uno-right {
         max-width: 100%;
     }
     .navbuttons {
