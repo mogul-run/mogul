@@ -28,14 +28,14 @@ function ContentUno() {
             <div className="content-left uno-left">
                 {" "}
                 <div className="content-header header-block">
-                            Mogul provides the tools for{" "}
-                            creatives to participate in intimate
-                            digital communities.
+                    Building digital communities that harness the power of human
+                    creativity
                 </div>
                 <div className="content-desc">
                     <div className="content-block">
                         <b>
-                            Mint tokens, transact, and interact with your favorite creators all on one platform.
+                            Mint tokens, transact, and interact with your
+                            favorite creators all on one platform.
                         </b>
                     </div>
                     <div className="content-block">
@@ -150,7 +150,7 @@ function ContentTres() {
                 <div className="community-text">
                     <div className="community-header">
                         Tight-knit communities have always been a vital part of
-                        Bumsports 
+                        Bumsports
                     </div>
                     <div className="">
                         Ragtag bands of bums have pushed the physical limits in
@@ -168,10 +168,7 @@ function ContentTres() {
                 </div>
                 <div className="community-item">
                     <div className="community-img-wrap">
-                        <img
-                            className="community-img"
-                            src={Camp4}
-                        />
+                        <img className="community-img" src={Camp4} />
                     </div>
                     <div className="community-cap">
                         Royal Robbins and T.M. Herbert racking up for the
@@ -180,10 +177,7 @@ function ContentTres() {
                 </div>
                 <div className="community-item">
                     <div className="community-img-wrap">
-                        <img
-                            className="community-img"
-                            src={NorthShore}
-                        />
+                        <img className="community-img" src={NorthShore} />
                     </div>
                     <div className="community-cap">
                         Gerry Lopez and Derek Ho share a barrel at Pipeline,
