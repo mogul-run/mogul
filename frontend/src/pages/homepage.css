@@ -221,6 +221,7 @@ a {
     min-height: 450px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .tgob-pitch {
@@ -284,6 +285,9 @@ a {
 
 .footer {
     background-color: #424242;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
     color: white;
     display: flex;
     align-items: center;
@@ -349,7 +353,6 @@ a {
     }
     .connect {
         margin-right: 15px;
-        display: none;
     }
     .community-grid {
         grid-template-columns: 1fr;

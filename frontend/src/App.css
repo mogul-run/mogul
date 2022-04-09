@@ -1,8 +1,14 @@
 .app {
   display: flex;
-  flex-direction: column;
-  width: 100vw;
+  flex-flow: column;
+  height: 100%;
+  margin: 0;
   background-color: #fbf9f6;
   color: #424242;
   font-family: "DM Mono";
+}
+
+html {
+  height: 100%;
+  margin: 0;
 }

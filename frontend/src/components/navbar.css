@@ -1,6 +1,9 @@
 
 .navbar {
     display: flex;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
     flex-direction: row;
     margin: 0px 50px;
 }
@@ -36,7 +39,7 @@
 }
 
 .connect {
-    cursor: pointer;
+    cursor: not-allowed;
     outline: 0.5px solid #4c5770;
     margin: 10px 0px;
     padding: 5px;

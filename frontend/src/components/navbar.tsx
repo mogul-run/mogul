@@ -24,7 +24,7 @@ export default function Navbar(props: any) {
                 </div>
                 <div
                     className="connect"
-                    onClick={() => props.connectWalletHandler()}
+                    // onClick={() => props.connectWalletHandler()}
                 >
                     connect
                 </div>
