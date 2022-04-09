@@ -29,33 +29,14 @@ function ContentUno() {
             <div className="content-left uno-left">
                 {" "}
                 <div className="content-header header-block">
-                    Live the life you want to live. Be your own Mogul.
+                            Mogul provides the tools for{" "}
+                            creatives to participate in intimate
+                            digital communities.
                 </div>
                 <div className="content-desc">
-                    {/* <div className="content-block">
-                        <i>
-                    ⛷️ Skiing your first{" "}
-                        <a
-                            href="https://en.wikipedia.org/wiki/Mogul_skiing"
-                            target="__blank"
-                        >
-                            {" "}
-                            mogul run
-                        </a>{" "}
-                        can be a pretty bumpy experience.
-                        <br />
-                        <br />
-                        But just as in life, the satisfaction comes with pushing
-                        through the difficulties, getting up when you fall, and
-                        finding your own line.
-                        </i>
-                    </div> */}
                     <div className="content-block">
                         <b>
-                            Mogul provides the tools for{" "}
-                            <span className="highlight">bumsport</span>{" "}
-                            enthusiasts to build and participate in intimate
-                            digital communities.
+                            Mint tokens, transact, and interact with your favorite creators all on one platform.
                         </b>
                     </div>
                     <div className="content-block">
@@ -174,7 +155,7 @@ function ContentTres() {
                     </div>
                     <div className="">
                         Ragtag bands of bums have pushed the physical limits in
-                        bumsports like surfing, climbing, and skiing.
+                        bumsports like skiing, climbing, and surfing.
                     </div>
                 </div>
                 <div className="community-item">
