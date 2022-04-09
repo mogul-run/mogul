@@ -1,19 +1,23 @@
 import "./homepage.css";
 import Stonemasters from "../img/stonemasters.jpg";
+import Gnar from "../img/shane.jpg";
+import Camp4 from "../img/camp4.jpg";
+import NorthShore from "../img/north-shore.jpg";
 import { useRef } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
+import "./homepage.css";
 
-
-function HomePage(props:any) {
-
+function HomePage(props: any) {
     return (
         <div className="homepage">
-            <div className="content" >
-
+            <div className="content">
                 <ContentUno />
                 <ContentDos />
                 <ContentTres />
+                <Content4 />
+                <Content5 />
+                <Footer />
             </div>
         </div>
     );
@@ -25,32 +29,14 @@ function ContentUno() {
             <div className="content-left uno-left">
                 {" "}
                 <div className="content-header header-block">
-                    Live the life you want to live. Be your own Mogul.
+                            Mogul provides the tools for{" "}
+                            creatives to participate in intimate
+                            digital communities.
                 </div>
                 <div className="content-desc">
-                    {/* <div className="content-block">
-                        <i>
-                    ⛷️ Skiing your first{" "}
-                        <a
-                            href="https://en.wikipedia.org/wiki/Mogul_skiing"
-                            target="__blank"
-                        >
-                            {" "}
-                            mogul run
-                        </a>{" "}
-                        can be a pretty bumpy experience.
-                        <br />
-                        <br />
-                        But just as in life, the satisfaction comes with pushing
-                        through the difficulties, getting up when you fall, and
-                        finding your own line.
-                        </i>
-                    </div> */}
-                    <div className="content-block"> 
+                    <div className="content-block">
                         <b>
-                        Mogul provides the tools for{" "}
-                        <span className="highlight">bumsport</span> enthusiasts to
-                        build and participate in intimate digital communities.
+                            Mint tokens, transact, and interact with your favorite creators all on one platform.
                         </b>
                     </div>
                     <div className="content-block">
@@ -122,8 +108,8 @@ function ContentDos() {
                     </span>
                 </div>
             </div>
-            <div>
-                <div className="blurb">
+            <div className="examples-wrapper">
+                <div className="blurb examples">
                     <div>
                         <i>
                             {" "}
@@ -132,9 +118,9 @@ function ContentDos() {
                         <br />
                         <br />
                     </div>
-                    <span className="highlight">Bums</span> come in all different varieties:
-                    ski bums, surf bums, rock climbing bums, kayaking bums,
-                    skate bums and more!
+                    <span className="highlight">Bums</span> come in all
+                    different varieties: ski bums, surf bums, rock climbing
+                    bums, kayaking bums, skate bums and more!
                     <br />
                     <br />
                     <span className="highlight">Bumsports</span> were once niche
@@ -160,13 +146,138 @@ function ContentDos() {
 
 function ContentTres() {
     return (
-        <div className="content-container">
-            <div className="header">
-                More to come...
-                {/* The Platform */}
+        <div className="content-container tres">
+            <div className="community-grid">
+                <div className="community-text">
+                    <div className="community-header">
+                        Tight-knit communities have been a vital part of
+                        Bumsports since the start
+                    </div>
+                    <div className="">
+                        Ragtag bands of bums have pushed the physical limits in
+                        bumsports like skiing, climbing, and surfing.
+                    </div>
                 </div>
-            {/* <div className="content-left">picture</div>
-            <div className="content-right">content</div> */}
+                <div className="community-item">
+                    <div className="community-img-wrap">
+                        <img className="community-img" src={Gnar} />
+                    </div>
+                    <div className="community-cap">
+                        Shane McConkey and Squallywood's finest dropping in at
+                        Squaw Valley, CA
+                    </div>
+                </div>
+                <div className="community-item">
+                    <div className="community-img-wrap">
+                        <img
+                            className="community-img"
+                            src={Camp4}
+                        />
+                    </div>
+                    <div className="community-cap">
+                        Royal Robbins and T.M. Herbert racking up for the
+                        Salathé Wall in Camp 4, Yosemite Valley, CA
+                    </div>
+                </div>
+                <div className="community-item">
+                    <div className="community-img-wrap">
+                        <img
+                            className="community-img"
+                            src={NorthShore}
+                        />
+                    </div>
+                    <div className="community-cap">
+                        Gerry Lopez and Derek Ho share a barrel at Pipeline,
+                        North Shore Oahu
+                    </div>
+                </div>
+                {/* The Platform */}
+            </div>
+        </div>
+    );
+}
+
+function Content4() {
+    return (
+        <div className="content-container four">
+            <div className="content-left four-left">
+                <div className="header">
+                    How can we nurture these communities online?
+                </div>
+            </div>
+            <div className="content-right four-wrap">
+                <div className="four-right">
+                    {" "}
+                    <div className="sub-block">
+                        <div className="subheader">
+                            🏠 Creator-Centric Houses
+                        </div>
+                        <div className="sub-desc">
+                            Give creators the tools to curate quality content
+                            and services for their houses.
+                        </div>
+                    </div>
+                    <div className="sub-block">
+                        <div className="subheader">🪙 House Tokens</div>
+                        <div className="sub-desc">
+                            Provide members a sense of stake in the house. Can
+                            be used to regulate membership in a house or
+                            exchanged for goods and services.
+                        </div>
+                    </div>
+                    <div className="sub-block">
+                        <div className="subheader">
+                            💸 More Value for Creators
+                        </div>
+                        <div className="sub-desc">
+                            Lower the barrier of entry for creators to start
+                            making a living off their craft.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function Content5() {
+    return (
+        <div className="content-container five">
+            <div className="tgob-pitch">
+                <div className="pitch-header">
+                    Want to be one of the first creators on Mogul?
+                </div>
+                You've got to earn your spot in...
+                <div className="tgob-script">
+                    <Link to="/tgob" className="tgob-link">
+                        The Game of B.U.M.
+                    </Link>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function Footer() {
+    return (
+        <div className="footer">
+            <div className="footer-items">
+                <div className="footer-item">
+                    <Link to="/">About</Link>
+                </div>
+                <div className="footer-item">
+                    <Link to="/">Team</Link>
+                </div>
+                <div className="footer-item">
+                    <Link to="/">FAQ</Link>
+                </div>
+                <div className="footer-item">
+                    <a href="https://discord.gg/8AXyshRRVM">Discord</a>
+                </div>
+            </div>
+            <div className="post-footer">
+            Psyched up!
+            </div>
         </div>
     );
 }

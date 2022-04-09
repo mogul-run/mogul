@@ -43,35 +43,6 @@ function App() {
     }
   }
 
-  // const mintNftHandler = async () => { 
-  //   try {
-  //     const { ethereum } = window as any;
-
-  //     if(ethereum) {
-  //       // provider, signer, then generate nftcontract 
-  //       const provider = new ethers.providers.Web3Provider(ethereum);
-  //       // provider uses private key to provide signer object to "sign" tx (access balance)
-  //       const signer = provider.getSigner();
-  //       const nftContract = new ethers.Contract(contractAddress, abi, signer);
-
-  //       console.log("init payment");
-  //       const nftTx = await nftContract.mintNFTs(1, {value: ethers.utils.parseEther("0.01")});
-
-  //       console.log("mining, please wait");
-  //       await nftTx.wait();
-
-  //       console.log(`Mined, please check transaction at https://ropsten.etherscan.io/tx/${nftTx.hash}`);
-  //     }
-  //     else {
-  //       alert("please install metamask");
-  //     }
-
-  //   }
-  //   catch(err) {
-  //       console.log("error while minting nft:", err);
-  //   }
-
-  // }
 
   const connectWalletButton = () => {
     return (
@@ -80,18 +51,6 @@ function App() {
       </button>
     )
   }
-
-  // const mintNftButton = () => {
-  //   return (
-  //     <button onClick={mintNftHandler} className='cta-button mint-nft-button'>
-  //       Mint NFT
-  //     </button>
-  //   )
-  // }
-
-  // useEffect(() => {
-  //   checkWalletIsConnected();
-  // }, [])
 
     return (
         <div className="app">
