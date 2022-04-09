@@ -90,6 +90,7 @@ a {
 .stonemasters-wrap {
     width: max-content;
     padding: 15px;
+    margin-bottom: 25px;
     border-radius: 10px;
     outline: 5px dashed #00acc1;
 }
