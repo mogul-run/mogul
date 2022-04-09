@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.97f4b3d6.css",
-    "main.js": "/static/js/main.ccf3b93d.js",
+    "main.css": "/static/css/main.19716334.css",
+    "main.js": "/static/js/main.dcfa2e2e.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/lucas.jpg": "/static/media/lucas.1bd23e701a8d1287240f.jpg",
     "static/media/north-shore.jpg": "/static/media/north-shore.9abe91aa942ac8bb5f50.jpg",
     "static/media/stonemasters.jpg": "/static/media/stonemasters.0486d6423a912ca29fa1.jpg",
     "static/media/shane.jpg": "/static/media/shane.58b75d6692176cd8263a.jpg",
@@ -19,12 +20,12 @@
     "static/media/alegreya-greek-ext-400-normal.woff2": "/static/media/alegreya-greek-ext-400-normal.4bec66ff733ace43eca1.woff2",
     "static/media/alegreya-vietnamese-400-normal.woff2": "/static/media/alegreya-vietnamese-400-normal.26e3a381c0e20a890bfb.woff2",
     "index.html": "/index.html",
-    "main.97f4b3d6.css.map": "/static/css/main.97f4b3d6.css.map",
-    "main.ccf3b93d.js.map": "/static/js/main.ccf3b93d.js.map",
+    "main.19716334.css.map": "/static/css/main.19716334.css.map",
+    "main.dcfa2e2e.js.map": "/static/js/main.dcfa2e2e.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.97f4b3d6.css",
-    "static/js/main.ccf3b93d.js"
+    "static/css/main.19716334.css",
+    "static/js/main.dcfa2e2e.js"
   ]
 }
