@@ -218,13 +218,17 @@ a {
 }
 .five {
     min-height: 450px;
-    justify-content: center;
+    display: flex;
     align-items: center;
 }
 
 .tgob-pitch {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     width: 80%;
-    font-size: 20px;
+    font-size: 18px;
     background-color: #e7e3dc;
     box-shadow: 10px 10px #ff9800;
     padding: 25px 50px;
@@ -233,32 +237,34 @@ a {
 }
 
 .pitch-header {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
 
 .tgob-script {
-    margin: 45px 0px 15px 0px;
+    margin: 25px 0px 15px 0px;
     font-weight: bold;
-    font-size: 60px;
+    font-size: 40px;
     font-family: "Alegreya";
     justify-content: center;
 }
 
 
 .tgob-link {
-    color: #ff9800;
-    outline: 5px dashed #ff9800;
-    padding: 5px 30px;
-    border-radius: 15px;
-}
-.tgob-link:hover {
-    color: white;
+    color: #fbf9f6;
     padding: 10px 30px;
+    border-radius: 15px;
     background-color: #00acc1;
     outline: none;
+}
+.tgob-link:hover {
+    outline: 5px dashed #ff9800;
+    background-color: #e7e3dc;
+    color: #ff9800;
+    padding: 5px 30px;
+    border-radius: 15px;
 }
 
 
