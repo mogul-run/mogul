@@ -158,12 +158,16 @@ a {
 
 .community-grid {
     max-width: 1000px;
+    border-radius: 10px;
+    outline: 5px dashed #00acc1;
+    padding: 30px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 20px;
 }
 
 .community-text {
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -357,13 +361,14 @@ a {
     }
     .community-grid {
         grid-template-columns: 1fr;
+        outline: none;
     }
     .community-text{
-        max-width: 80%;
+        max-width: 300px;
         margin: 10px;
     }
     .community-item{
-        max-width: 90%;
+        max-width: 300px;
         margin: 10px;
     }
 
