@@ -1,5 +1,11 @@
 # mogul 
 
+**M** onorepo
+**O** n
+**G** ithub
+**U** 
+**L** like?
+ 
 # landing-page
 
 - contains files for main landing page (mogul.run)
