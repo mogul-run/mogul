@@ -7,3 +7,11 @@
 # app
 
 - contains files for app.mogul.run
+
+# toy-mint-token
+
+- toy example of solidity smart contracts for minting of $LUCAS, an ERC-777 token
+
+# toy-token-sale 
+
+- solidity smart contracts for token sale of $LUCAS deployed on polygon 
