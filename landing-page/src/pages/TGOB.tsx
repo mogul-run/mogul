@@ -33,7 +33,7 @@ function TGOB() {
                         <br />
                         <br />
                         <div className="desc header">Challenges</div>
-                        Challenges will be categorized by under specific bumsports.
+                        Challenges will be categorized by specific bumsport.
                         Challenges may range from simple completion based
                         challenges to challenges scored on style and creativity.
                         <br />
