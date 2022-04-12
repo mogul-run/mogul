@@ -1,0 +1,171 @@
+.TGOB {
+    margin: 50px 70px;
+    background-color: #e7e3dc;
+    border-radius: 5px;
+    box-shadow: 10px 10px #ff9800;
+}
+li {
+    margin: 5px 0px;
+    padding-inline-start: 1ch;
+}
+
+.prizes {
+    list-style-type: "💎";
+}
+
+.validator {
+    list-style-type: "⚖️ ";
+}
+.categories{
+    list-style-type: "";
+    padding-inline-start: 1ch;
+
+}
+
+.center {
+    justify-content: center;
+    display: flex;
+}
+
+.button {
+    background-color: #00acc1;
+    color: white;
+    width: max-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #fbf9f6;
+    color: #00acc1; 
+}
+
+.head-wrapper {
+    width: 100%;
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.head {
+    display: flex;
+    margin: 15px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title:hover {
+}
+
+.bum-link {
+    color: black;
+    text-decoration: none;
+}
+
+.bum-link:hover {
+    color: white;
+}
+
+.title {
+    font-family: "Alegreya";
+    font-size: 35px;
+    font-weight: bold;
+    width: max-content;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.title:hover {
+    background-color: #00acc1;
+}
+
+.title-big {
+    line-height: 0.85;
+    font-size: 70px;
+    text-decoration: none;
+}
+
+.header {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.info-wrapper {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+    align-items: baseline;
+}
+
+.desc-wrapper {
+    margin: 10px 30px;
+    width: 45%;
+}
+.full-wrapper {
+    margin: 10px 30px;
+    width: 90%;
+}
+
+.submit-header {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.desc {
+    margin: 10px 0px;
+    font-family: "DM Mono";
+}
+
+.subtext {
+    margin: 15px 0px;
+    font-size: 16px;
+    font-weight: 100;
+    font-family: "DM Mono";
+}
+
+.discord-wrapper {
+    margin: 15px 0px;
+}
+
+
+@media only screen and (max-width: 800px){
+    .desc-wrapper {
+        width: 90%;
+        margin: 5px 30px;
+    }
+    .sub-text{
+        width: max-content;
+    }
+    .info-wrapper {
+        width: 90%;
+        flex-direction: column;
+    }
+    .TGOB {
+        margin: 0px;
+    }
+
+    .full-wrapper {
+        margin: 5px 30px;
+    }
+
+    .head-wrapper {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .head {
+        width: 80%;
+        margin-left: 20px;
+    }
+    .submit-header {
+        width: max-content;
+        align-items: flex-start;
+    }
+}
