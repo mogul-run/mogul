@@ -11,7 +11,8 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import ScrollToTop from "./utils/scrollToTop";
 import Team from "./pages/team";
-import { AppContextProvider } from '.context/appContext';
+import { AppContextProvider } from './context/appContext';
+import { NotFound } from "./pages/notFound";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
