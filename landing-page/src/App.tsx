@@ -11,6 +11,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import ScrollToTop from "./utils/scrollToTop";
 import Team from "./pages/team";
+import { AppContextProvider } from '.context/appContext';
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
@@ -47,6 +48,7 @@ function App() {
 
     return (
         <div className="app">
+            <AppContextProvider>
             <ScrollToTop />
             <Navbar />
             <Routes>
@@ -65,8 +67,10 @@ function App() {
                         />
                     }
                 />
+                <Route path="*" element={<NotFound/>}/>
             </Routes>
             <Footer />
+            </AppContextProvider>
         </div>
     );
 }
