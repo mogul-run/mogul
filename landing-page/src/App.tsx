@@ -13,6 +13,7 @@ import ScrollToTop from "./utils/scrollToTop";
 import Team from "./pages/team";
 import { AppContextProvider } from './context/appContext';
 import { NotFound } from "./pages/notFound";
+import { ContestPage } from "./pages/contest";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
@@ -54,13 +55,6 @@ function App() {
             <Navbar />
             <Routes>
                 <Route
-                    path="/test-sale"
-                    element={<TestSale userAccount={userAccount} />}
-                />
-                <Route path="/nyc26" element={<NYC26 />} />
-                <Route path="/tgob" element={<TGOB />} />
-                <Route path="/team" element={<Team />} />
-                <Route
                     path="/"
                     element={
                         <HomePage
@@ -68,6 +62,14 @@ function App() {
                         />
                     }
                 />
+                <Route
+                    path="/test-sale"
+                    element={<TestSale userAccount={userAccount} />}
+                />
+                <Route path="/nyc26" element={<NYC26 />} />
+                <Route path="/tgob" element={<TGOB />} />
+                <Route path="/team" element={<Team />} />
+                <Route path="/contest" element={<ContestPage />} />
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
             <Footer />

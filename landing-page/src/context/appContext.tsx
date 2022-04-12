@@ -1,9 +1,12 @@
 import React from "react"
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { getFunctions, Functions, httpsCallable } from 'firebase/functions';
+import { getFirestore, Firestore } from 'firebase/firestore';
+
 
 export type AppContextType = {
     firebase: FirebaseApp
+    firestore: Firestore
     invokeFunction: (functionName: string, request: any) => Promise<any>
 }
 
@@ -23,6 +26,7 @@ export const AppContextProvider: React.FC = ({children}) => {
       // Initialize Firebase
       const firebase = initializeApp(firebaseConfig);
       const functions = getFunctions(firebase);
+      const firestore = getFirestore(firebase);
 
       const invokeFunction = (functionName: string, request: any) => {
         const func = httpsCallable(functions, functionName);
@@ -31,6 +35,7 @@ export const AppContextProvider: React.FC = ({children}) => {
 
     return <AppContext.Provider value={{
         firebase,
+        firestore,
         invokeFunction,
     }}>
         {children}

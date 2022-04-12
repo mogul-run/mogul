@@ -24,6 +24,7 @@
     "react-scripts": "5.0.0",
     "strava-v3": "^2.1.0",
     "typescript": "^4.6.3",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -53,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/uuid": "^8.3.4",
     "@visx/chord": "^2.1.2",
     "@visx/gradient": "^2.1.0",
     "@visx/group": "^2.1.0",
