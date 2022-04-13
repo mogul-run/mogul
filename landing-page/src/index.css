@@ -15,3 +15,52 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+  .card {
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.6');
+    box-shadow: theme('boxShadow.xl');
+  }
+
+  .button-std {
+    background-color: theme('colors.gray.400');
+    color: white;
+    width: max-content;
+     border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.1') theme('spacing.2'); 
+  }
+
+  .button-std:hover {
+    background-color: theme('colors.gray.600');
+  }
+
+  .button-primary{
+    background-color: #00acc1;
+    color: white;
+    width: max-content;
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.1') theme('spacing.2'); 
+  }
+
+  .button-primary:hover {
+    background-color: #fbf9f6;
+    color: #00acc1; 
+    outline: 0.5px solid #00acc1;
+  }
+
+  .button-ghost{
+    background-color: #fbf9f6;
+    color: #00acc1; 
+    width: max-content;
+     border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.1') theme('spacing.2'); 
+  }
+
+  .button-ghost:hover {
+    background-color: #00acc1;
+    color: white;
+  }
+  /* ... */
+}

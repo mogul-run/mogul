@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/homepage";
 import TestSale from "./pages/test-sale";
@@ -9,16 +9,39 @@ import ReactGA from "react-ga4";
 import TGOB from "./pages/TGOB";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import Feed from "./pages/feed";
 import ScrollToTop from "./utils/scrollToTop";
 import Team from "./pages/team";
-import { AppContextProvider } from './context/appContext';
+import Login from "./components/login";
+import { AppContextProvider } from "./context/appContext";
 import { NotFound } from "./pages/notFound";
+import {
+    getAuth,
+    signOut,
+} from "firebase/auth";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
 
 function App() {
+    const [user, setUser] = useState({});
     const [userAccount, setUserAccount] = useState("");
+
+    const auth = getAuth();
+
+        
+    // if user object exists -- user is logged in
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            setUser(user);
+        } else {
+            setUser("");
+        }
+    });
+
+    const handleLogout = () => {
+        signOut(auth);
+    };
 
     // const checkWalletIsConnected = () => {
     //     const { ethereum } = window as any;
@@ -49,29 +72,29 @@ function App() {
 
     return (
         <div className="app">
-            <AppContextProvider>
-            <ScrollToTop />
-            <Navbar />
-            <Routes>
-                <Route
-                    path="/test-sale"
-                    element={<TestSale userAccount={userAccount} />}
-                />
-                <Route path="/nyc26" element={<NYC26 />} />
-                <Route path="/tgob" element={<TGOB />} />
-                <Route path="/team" element={<Team />} />
-                <Route
-                    path="/"
-                    element={
-                        <HomePage
+                <ScrollToTop />
+                <Navbar handleLogout={handleLogout} user={user} />
+                <Routes>
+                    <Route
+                        path="/test-sale"
+                        element={<TestSale userAccount={userAccount} />}
+                    />
+                    <Route path="/nyc26" element={<NYC26 />} />
+                    <Route path="/tgob" element={<TGOB />} />
+                    <Route path="/team" element={<Team />} />
+                    <Route path="/login" element={<Login user={user} />} />
+                    <Route path="/feed" element={<Feed/>} />
+                    <Route
+                        path="/"
+                        element={
+                            <HomePage
                             // connectWalletHandler={connectWalletHandler()}
-                        />
-                    }
-                />
-                <Route path="*" element={<NotFound/>}/>
-            </Routes>
-            <Footer />
-            </AppContextProvider>
+                            />
+                        }
+                    />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+                <Footer />
         </div>
     );
 }

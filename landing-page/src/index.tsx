@@ -6,12 +6,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "@fontsource/dm-mono";
 import "@fontsource/alegreya";
+import { AppContext, AppContextProvider } from "./context/appContext";
 
 ReactDOM.render(
     <React.StrictMode>
+        <AppContextProvider>
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <App />
         </BrowserRouter>
+        </AppContextProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );

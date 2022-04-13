@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import "./navbar.css";
 
 export default function Navbar(props: any) {
+    const openLogin = () => {
+        props.setLogin(!props.login);
+    };
     return (
         <div className="navbar">
             <Link to="/" className="nostyle">
@@ -15,20 +18,38 @@ export default function Navbar(props: any) {
                         target="__blank"
                         className="nostyle"
                     >
-                        <div className="navlink"> Discord</div>
+                        <div className="navlink"> discord</div>
                     </a>
 
-                    <Link to="/tgob" className="nostyle">
-                        <div className="navlink">T.G.o.B</div>
+                    <Link to="/feed " className="nostyle">
+                        <div className="navlink">feed</div>
                     </Link>
                 </div>
-                <div
-                    className="connect"
-                    // onClick={() => props.connectWalletHandler()}
-                >
-                    connect
+                <div className="auth-buttons">
+                    <div
+                        className="connect"
+                        onClick={() => props.connectWalletHandler()}
+                    >
+                        connect
+                    </div>
+                    <div className="connect">
+                        {" "}
+                        {props.user ? (
+                            <User handleLogout={props.handleLogout} />
+                        ) : (
+                            <Link to="/login">login</Link>
+                        )}
+                    </div>
                 </div>
             </div>
+        </div>
+    );
+}
+
+function User(props: any) {
+    return (
+        <div>
+            <div onClick={props.handleLogout}>logout</div>
         </div>
     );
 }
