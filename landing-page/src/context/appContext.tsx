@@ -14,6 +14,7 @@ export const AppContextProvider: React.FC = ({children}) => {
         apiKey: "AIzaSyAQGmn8B1Sk3aJGTQeMDpj36ix91VSPXtU",
         authDomain: "mogul-run.firebaseapp.com",
         projectId: "mogul-run",
+        databaseURL: "https://mogul-run.firebaseio.com/",
         storageBucket: "mogul-run.appspot.com",
         messagingSenderId: "876100340137",
         appId: "1:876100340137:web:1942f8aee38bbece765cb8",

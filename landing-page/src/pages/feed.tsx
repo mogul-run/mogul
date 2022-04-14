@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getDatabase, push, ref, get, onValue } from "firebase/database";
+import {toArray} from "lodash";
 import "./feed.css";
 
 const test_content = [
@@ -22,22 +26,118 @@ const test_content = [
         author: "topropewarrior",
     },
 ];
-function Feed() {
-    const submitContent = async () => {
+function Feed(props: any) {
+    const [openPost, setOpenPost] = useState(false);
+    const [posts, setPosts] = useState<any[]>([]);
+    const navigate = useNavigate();
 
+    const getPosts = () => {
+        const db = getDatabase();
+        onValue(ref(db, "/posts"), (snapshot) => {
+            if(snapshot.exists()) {
+                setPosts(toArray(snapshot.val()).reverse());
+                // setPosts(snapshot.val());
+            }
+        }, {
+            onlyOnce:false  
+        })
     }
 
+    useEffect(() => {
+        if (!props.user) {
+            navigate("/");
+        }
+        else {
+            getPosts();
+        }
+    }, []);
+
+
+
     return (
-        <div className="feed-wrapper">
-            <div className="submit-content m-6">
-                <div className="text-lg my-3">Hot take incoming!</div>
-                <textarea className="text-input rounded p-2 min-w-max-content text-sm" />
-                <button className="">submit</button>
+        <div>
+            {" "}
+            <div>
+                {openPost ? (
+                    <PostContent user={props.user} setOpenPost={setOpenPost} />
+                ) : (
+                    <PostButton setOpenPost={setOpenPost} />
+                )}
             </div>
-            <div className="feed-content">
-                {test_content.map((post) => (
-                    <TextPost post={post} />
-                ))}
+            <div className="feed-wrapper">
+                <div className="feed-content">
+                    {posts.length > 0 && posts.map((post) => (
+                        <TextPost post={post} />
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function PostButton(props: any) {
+    const handlePost = () => {
+        props.setOpenPost(true);
+    };
+    return (
+        <button
+            className="mx-6 my-2 button-primary"
+            onClick={() => handlePost()}
+        >
+            {" "}
+            post{" "}
+        </button>
+    );
+}
+
+function PostContent(props: any) {
+    const [post, setPost] = useState("");
+    const [error, setError] = useState("");
+    const db = getDatabase();
+
+    const handleError = (error: string) => {
+        setError(error);
+    };
+    const handlePost = (value: string) => {
+        setPost(value);
+    };
+
+    const handlePostSubmit = () => {
+        // should add post to user's list of posts as well as global list of posts
+        // for now we'll just add to the global list of posts
+        const newPost = {
+            type: "text",
+            text: post,
+            author: props.user.displayName,
+        };
+        push(ref(db, "posts"), newPost)
+            .then(props.setOpenPost(false))
+            .catch((error) => {
+                handleError(error);
+            });
+
+        console.log("submitting post");
+    };
+
+    return (
+        <div className="submit-content m-6">
+            <div className="text-lg my-3">Hot take incoming!</div>
+            <textarea
+                onChange={(event) => handlePost(event.target.value)}
+                className="text-input rounded p-1"
+            />
+            <div className="my-2">
+                <button
+                    className="button-primary"
+                    onClick={
+                        post
+                            ? () => handlePostSubmit()
+                            : () => handleError("Can't submit an empty post")
+                    }
+                >
+                    submit
+                </button>
+                <div className="error text-red-500">{error}</div>
             </div>
         </div>
     );
@@ -52,10 +152,9 @@ function TextPost(props: any) {
                 <button className="button-ghost mr-2"> react </button>
                 <button className="button-ghost mr-2 "> comment</button>
                 <button className="button-ghost"> tip </button>
-
             </div>
         </div>
-    ); 
+    );
 }
 
 export default Feed;

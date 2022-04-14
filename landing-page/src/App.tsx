@@ -19,6 +19,7 @@ import {
     getAuth,
     signOut,
 } from "firebase/auth";
+import AccountSettings from "./pages/account-settings";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
@@ -83,7 +84,8 @@ function App() {
                     <Route path="/tgob" element={<TGOB />} />
                     <Route path="/team" element={<Team />} />
                     <Route path="/login" element={<Login user={user} />} />
-                    <Route path="/feed" element={<Feed/>} />
+                    <Route path="/account-settings" element={<AccountSettings user={user} />} />
+                    <Route path="/feed" element={<Feed user={user}/>} />
                     <Route
                         path="/"
                         element={

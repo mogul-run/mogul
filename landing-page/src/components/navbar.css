@@ -33,6 +33,7 @@
 .auth-buttons {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .navlinks {
@@ -46,7 +47,11 @@
 .connect {
     cursor: pointer;
     outline: 0.5px solid #4c5770;
-    margin: 10px 10px;
+    height: max-content;
+}
+
+.auth-button {
+    margin: 0px 5px;
     padding: 5px;
     border-radius: 5px;
     font-weight: 100;
