@@ -3,9 +3,7 @@ import Stonemasters from "../img/stonemasters.jpg";
 import Gnar from "../img/shane.jpg";
 import Camp4 from "../img/camp4.jpg";
 import NorthShore from "../img/north-shore.jpg";
-import { useRef } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/navbar";
 import "./homepage.css";
 
 function HomePage(props: any) {

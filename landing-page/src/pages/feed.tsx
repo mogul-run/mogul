@@ -35,6 +35,7 @@ function Feed(props: any) {
         const db = getDatabase();
         onValue(ref(db, "/posts"), (snapshot) => {
             if(snapshot.exists()) {
+                // .reverse() to display posts with most recent on top
                 setPosts(toArray(snapshot.val()).reverse());
                 // setPosts(snapshot.val());
             }
@@ -59,7 +60,7 @@ function Feed(props: any) {
             {" "}
             <div>
                 {openPost ? (
-                    <PostContent user={props.user} setOpenPost={setOpenPost} />
+                    <PostContent user={props.user} setOpenPost={setOpenPost} walletAddr={props.walletAddr} />
                 ) : (
                     <PostButton setOpenPost={setOpenPost} />
                 )}
@@ -109,11 +110,17 @@ function PostContent(props: any) {
             type: "text",
             text: post,
             author: props.user.displayName,
+            walletAddr: "",
         };
+        if(props.walletAddr) {
+            /// TEMP: adding wallet addr to post for tipping
+            newPost.walletAddr = props.walletAddr;
+        }
         push(ref(db, "posts"), newPost)
             .then(props.setOpenPost(false))
             .catch((error) => {
-                handleError(error);
+                console.log("error: ", error)
+                handleError(error.value());
             });
 
         console.log("submitting post");
@@ -144,6 +151,36 @@ function PostContent(props: any) {
 }
 
 function TextPost(props: any) {
+    async function handleTip() {
+        const { ethereum } = window as any;
+        const LucasTokenAddr = "0x8531f05D2F69E2591Dac5dFcaBc53b614fc636b4";
+        let data = "0x";
+        // function signature for transfer
+        data += "a9059cbb";
+        // adds receipient (32bytes right aligned)
+        data += "000000000000000000000000Ce4E67E407aB231925DF614a5e72687fD597324B"
+        // data += props.post.walletAddr.padStart(32, '0');
+        // adds amount
+        data += "00000000000000000000000000000000000000000000000002c68af0bb140000"
+        
+
+        const txParams = {
+            nonce: '0x00', // ignored by MetaMask
+            // gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
+            // gas: '0x2710', // customizable by user during MetaMask confirmation.
+            to: LucasTokenAddr, // for smart contract interactions, this should be the smart contract addr
+            // to: props.post.walletAddr, // Required except during contract publications.
+            from: ethereum.selectedAddress, // must match user's active address.
+            value: '0x20', // Only required to send ether to the recipient from the initiating external account.
+            data: data,
+            chainId: '0x3', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+          };
+          const txHash = await ethereum.request({
+            method: 'eth_sendTransaction',
+            params: [txParams],
+          });
+    }
+
     return (
         <div className="card m-5">
             <div className="author font-bold my-2">{props.post.author}</div>
@@ -151,7 +188,7 @@ function TextPost(props: any) {
             <div className="post-logic my-1">
                 <button className="button-ghost mr-2"> react </button>
                 <button className="button-ghost mr-2 "> comment</button>
-                <button className="button-ghost"> tip </button>
+                <button className="button-ghost" onClick={() => handleTip()}> tip {props.post.walletAddr && <span className="px-2 bg-gray-200 rounded"> {props.post.walletAddr && props.post.walletAddr.substring(0, 6) }</span>} </button>
             </div>
         </div>
     );

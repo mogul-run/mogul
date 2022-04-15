@@ -8,6 +8,7 @@ export default function Navbar(props: any) {
     const openLogin = () => {
         props.setLogin(!props.login);
     };
+
     return (
         <div className="navbar">
             <Link to="/" className="nostyle">
@@ -44,6 +45,7 @@ export default function Navbar(props: any) {
                             <User
                                 handleLogout={props.handleLogout}
                                 user={props.user}
+                                walletAddr={props.walletAddr}
                             />
                         ) : (
                             <div className="button-primary">
@@ -65,8 +67,9 @@ function User(props: any) {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <Menu.Button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 ">
+                <Menu.Button className="login-button inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 ">
                     {props.user.displayName && props.user.displayName}
+                    {props.walletAddr && <div className="bg-gray-200 rounded-lg px-2 mx-2"> {props.walletAddr.substring(0, 6)} </div>}
                     <ChevronDownIcon
                         className="-mr-1 ml-2 h-5 w-5"
                         aria-hidden="true"

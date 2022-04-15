@@ -15,10 +15,7 @@ import Team from "./pages/team";
 import Login from "./components/login";
 import { AppContextProvider } from "./context/appContext";
 import { NotFound } from "./pages/notFound";
-import {
-    getAuth,
-    signOut,
-} from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import AccountSettings from "./pages/account-settings";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
@@ -26,11 +23,41 @@ ReactGA.send("pageview");
 
 function App() {
     const [user, setUser] = useState({});
-    const [userAccount, setUserAccount] = useState("");
+    const [walletAddr, setWalletAddr] = useState("");
+    const [currentChain, setCurrentChain] = useState("");
 
     const auth = getAuth();
 
-        
+    // Check if user is connected with Metamask and update 'walletAddr' state
+    useEffect(() => {
+        // Setup Listen Handlers on MetaMask change events
+        const { ethereum } = window as any;
+        if (ethereum) {
+            // Add Listener when accounts switch
+            ethereum.request({
+                method: "eth_requestAccounts",
+            }).then(
+            (accounts: string[]) => {
+                setWalletAddr(accounts[0])
+            }
+            );
+
+            ethereum.on("accountsChanged", (accounts: string[]) => {
+                console.log("Account changed: ", accounts[0]);
+                setWalletAddr(accounts[0]);
+            });
+
+            // Do something here when Chain changes
+            ethereum.on("chainChanged", (chaindId: string) => {
+                console.log("Chain ID changed: ", chaindId);
+                setCurrentChain(chaindId);
+            });
+        } else {
+            alert("Please install MetaMask to use this service!");
+        }
+    });
+
+    // Firebase Auth listeners to maintain 'user' state 
     // if user object exists -- user is logged in
     auth.onAuthStateChanged((user) => {
         if (user) {
@@ -44,59 +71,48 @@ function App() {
         signOut(auth);
     };
 
-    // const checkWalletIsConnected = () => {
-    //     const { ethereum } = window as any;
-    //     if (!ethereum) {
-    //         console.log("wallet not connected!");
-    //     } else {
-    //         connectWalletHandler();
-    //         console.log("wallet successfully connected!");
-    //     }
-    // };
-
-    // const connectWalletHandler = async () => {
-    //     const { ethereum } = window as any;
-    //     if (!ethereum) {
-    //         alert("please install metamask");
-    //     } else {
-    //         try {
-    //             const accounts = await ethereum.request({
-    //                 method: "eth_requestAccounts",
-    //             });
-    //             console.log("Received accounts", accounts);
-    //             setUserAccount(accounts[0]);
-    //         } catch (err) {
-    //             console.log("Error while retrieving account address: ", err);
-    //         }
-    //     }
-    // };
-
     return (
         <div className="app">
-                <ScrollToTop />
-                <Navbar handleLogout={handleLogout} user={user} />
-                <Routes>
-                    <Route
-                        path="/test-sale"
-                        element={<TestSale userAccount={userAccount} />}
-                    />
-                    <Route path="/nyc26" element={<NYC26 />} />
-                    <Route path="/tgob" element={<TGOB />} />
-                    <Route path="/team" element={<Team />} />
-                    <Route path="/login" element={<Login user={user} />} />
-                    <Route path="/account-settings" element={<AccountSettings user={user} />} />
-                    <Route path="/feed" element={<Feed user={user}/>} />
-                    <Route
-                        path="/"
-                        element={
-                            <HomePage
-                            // connectWalletHandler={connectWalletHandler()}
-                            />
-                        }
-                    />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-                <Footer />
+            <ScrollToTop />
+            <Navbar
+                handleLogout={handleLogout}
+                user={user}
+                walletAddr={walletAddr}
+            />
+            <Routes>
+                <Route
+                    path="/test-sale"
+                    element={<TestSale userAccount={walletAddr} />}
+                />
+                <Route path="/nyc26" element={<NYC26 />} />
+                <Route path="/tgob" element={<TGOB />} />
+                <Route path="/team" element={<Team />} />
+                <Route path="/login" element={<Login user={user} />} />
+                <Route
+                    path="/account-settings"
+                    element={
+                        <AccountSettings
+                            user={user}
+                            walletAddr={walletAddr}
+                            setWalletAddr={setWalletAddr}
+                        />
+                    }
+                />
+                <Route
+                    path="/feed"
+                    element={<Feed user={user} walletAddr={walletAddr} />}
+                />
+                <Route
+                    path="/"
+                    element={
+                        <HomePage
+                        // connectWalletHandler={connectWalletHandler()}
+                        />
+                    }
+                />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
         </div>
     );
 }
