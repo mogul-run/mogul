@@ -158,6 +158,10 @@ function TextPost(props: any) {
         // function signature for transfer
         data += "a9059cbb";
         // adds receipient (32bytes right aligned)
+        console.log(props.post.walletAddr);
+
+        // data += props.post.walletAddr.padStart(24, "0")
+        // console.log(data)
         data += "000000000000000000000000Ce4E67E407aB231925DF614a5e72687fD597324B"
         // data += props.post.walletAddr.padStart(32, '0');
         // adds amount
@@ -171,7 +175,7 @@ function TextPost(props: any) {
             to: LucasTokenAddr, // for smart contract interactions, this should be the smart contract addr
             // to: props.post.walletAddr, // Required except during contract publications.
             from: ethereum.selectedAddress, // must match user's active address.
-            value: '0x20', // Only required to send ether to the recipient from the initiating external account.
+            value: '0x0', // Only required to send ether to the recipient from the initiating external account.
             data: data,
             chainId: '0x3', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
           };
