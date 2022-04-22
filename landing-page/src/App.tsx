@@ -17,6 +17,7 @@ import { AppContextProvider } from "./context/appContext";
 import { NotFound } from "./pages/notFound";
 import { getAuth, signOut } from "firebase/auth";
 import AccountSettings from "./pages/account-settings";
+import Chalet from "./pages/chalet";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
@@ -102,6 +103,10 @@ function App() {
                     path="/feed"
                     element={<Feed user={user} walletAddr={walletAddr} />}
                 />
+                <Route 
+                    path="/c/lucas"
+                    element={<Chalet user={user} walletAddr={walletAddr}/>}
+                    />
                 <Route
                     path="/"
                     element={

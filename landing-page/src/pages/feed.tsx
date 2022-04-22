@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDatabase, push, ref, get, onValue } from "firebase/database";
-import {toArray} from "lodash";
+import { toArray } from "lodash";
 import "./feed.css";
 
 const test_content = [
@@ -29,49 +29,67 @@ const test_content = [
 function Feed(props: any) {
     const [openPost, setOpenPost] = useState(false);
     const [posts, setPosts] = useState<any[]>([]);
+    const [password, setPassword] = useState(false);
     const navigate = useNavigate();
 
     const getPosts = () => {
         const db = getDatabase();
-        onValue(ref(db, "/posts"), (snapshot) => {
-            if(snapshot.exists()) {
-                // .reverse() to display posts with most recent on top
-                setPosts(toArray(snapshot.val()).reverse());
-                // setPosts(snapshot.val());
+        onValue(
+            ref(db, "/posts"),
+            (snapshot) => {
+                if (snapshot.exists()) {
+                    // .reverse() to display posts with most recent on top
+                    setPosts(toArray(snapshot.val()).reverse());
+                    // setPosts(snapshot.val());
+                }
+            },
+            {
+                onlyOnce: false,
             }
-        }, {
-            onlyOnce:false  
-        })
-    }
+        );
+    };
+
 
     useEffect(() => {
         if (!props.user) {
             navigate("/");
-        }
-        else {
+        } else {
             getPosts();
         }
     }, []);
 
-
-
     return (
         <div>
             {" "}
-            <div>
-                {openPost ? (
-                    <PostContent user={props.user} setOpenPost={setOpenPost} walletAddr={props.walletAddr} />
-                ) : (
-                    <PostButton setOpenPost={setOpenPost} />
-                )}
-            </div>
-            <div className="feed-wrapper">
-                <div className="feed-content">
-                    {posts.length > 0 && posts.map((post) => (
-                        <TextPost post={post} />
-                    ))}
+            {password ? (
+                <>
+                    {" "}
+                    <div>
+                        {openPost ? (
+                            <PostContent
+                                user={props.user}
+                                setOpenPost={setOpenPost}
+                                walletAddr={props.walletAddr}
+                            />
+                        ) : (
+                            <PostButton setOpenPost={setOpenPost} />
+                        )}
+                    </div>
+                    <div className="feed-wrapper">
+                        <div className="feed-content">
+                            {posts.length > 0 &&
+                                posts.map((post) => <TextPost post={post} />)}
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <div className="card m-4 flex flex-col align-center justify-center">
+                    <div className="my-3 text-lg font-light">Mirror Mirror on the wall, who's the greatest one of all? </div>
+                    <div className="">
+                        <input className="input p-2 rounded my-4" placeholder="who??" ></input>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
@@ -112,14 +130,14 @@ function PostContent(props: any) {
             author: props.user.displayName,
             walletAddr: "",
         };
-        if(props.walletAddr) {
+        if (props.walletAddr) {
             /// TEMP: adding wallet addr to post for tipping
             newPost.walletAddr = props.walletAddr;
         }
         push(ref(db, "posts"), newPost)
             .then(props.setOpenPost(false))
             .catch((error) => {
-                console.log("error: ", error)
+                console.log("error: ", error);
                 handleError(error.value());
             });
 
@@ -162,27 +180,28 @@ function TextPost(props: any) {
 
         // data += props.post.walletAddr.padStart(24, "0")
         // console.log(data)
-        data += "000000000000000000000000Ce4E67E407aB231925DF614a5e72687fD597324B"
+        data +=
+            "000000000000000000000000Ce4E67E407aB231925DF614a5e72687fD597324B";
         // data += props.post.walletAddr.padStart(32, '0');
         // adds amount
-        data += "00000000000000000000000000000000000000000000000002c68af0bb140000"
-        
+        data +=
+            "00000000000000000000000000000000000000000000000002c68af0bb140000";
 
         const txParams = {
-            nonce: '0x00', // ignored by MetaMask
+            nonce: "0x00", // ignored by MetaMask
             // gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
             // gas: '0x2710', // customizable by user during MetaMask confirmation.
             to: LucasTokenAddr, // for smart contract interactions, this should be the smart contract addr
             // to: props.post.walletAddr, // Required except during contract publications.
             from: ethereum.selectedAddress, // must match user's active address.
-            value: '0x0', // Only required to send ether to the recipient from the initiating external account.
+            value: "0x0", // Only required to send ether to the recipient from the initiating external account.
             data: data,
-            chainId: '0x3', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
-          };
-          const txHash = await ethereum.request({
-            method: 'eth_sendTransaction',
+            chainId: "0x3", // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+        };
+        const txHash = await ethereum.request({
+            method: "eth_sendTransaction",
             params: [txParams],
-          });
+        });
     }
 
     return (
@@ -192,7 +211,17 @@ function TextPost(props: any) {
             <div className="post-logic my-1">
                 <button className="button-ghost mr-2"> react </button>
                 <button className="button-ghost mr-2 "> comment</button>
-                <button className="button-ghost" onClick={() => handleTip()}> tip {props.post.walletAddr && <span className="px-2 bg-gray-200 rounded"> {props.post.walletAddr && props.post.walletAddr.substring(0, 6) }</span>} </button>
+                <button className="button-ghost" onClick={() => handleTip()}>
+                    {" "}
+                    tip{" "}
+                    {props.post.walletAddr && (
+                        <span className="px-2 bg-gray-200 rounded">
+                            {" "}
+                            {props.post.walletAddr &&
+                                props.post.walletAddr.substring(0, 6)}
+                        </span>
+                    )}{" "}
+                </button>
             </div>
         </div>
     );

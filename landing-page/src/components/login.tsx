@@ -37,20 +37,20 @@ function Login(props: any) {
 
     return (
         <div className="login-wrapper">
-            <div className="login-modal rounded shadow-lg p-8">
+            <div className="login-modal rounded shadow-lg p-8 m-2">
                 <div className="text-2xl"> Login </div>
                 <input
-                    className="user input rounded p-1"
+                    className="user input rounded p-1 m-2"
                     placeholder="Email"
                     onChange={(e) => handleEmailChange(e.target.value)}
                 ></input>
                 <input
-                    className="pw input rounded p-1"
+                    className="pw input rounded p-1 m-2"
                     placeholder="Password"
                     type="password"
                     onChange={(e) => handlePasswordChange(e.target.value)}
                 ></input>
-                <button className="bg-indigo-500 text-white p-2 m-2 rounded hover:bg-indigo-800" onClick={handleLogin}>
+                <button className="button-primary" onClick={() => handleLogin()}>
                     login
                 </button>
                 <div className="error">
