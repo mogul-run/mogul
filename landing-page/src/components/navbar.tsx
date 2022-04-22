@@ -3,8 +3,10 @@ import "./navbar.css";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useAuth } from "../context/authContext";
 
 export default function Navbar(props: any) {
+    const {getWallet} = useAuth();
     const openLogin = () => {
         props.setLogin(!props.login);
     };
@@ -45,7 +47,7 @@ export default function Navbar(props: any) {
                             <User
                                 handleLogout={props.handleLogout}
                                 user={props.user}
-                                walletAddr={props.walletAddr}
+                                walletAddr={getWallet()}
                             />
                         ) : (
                             <div className="button-primary">
@@ -63,7 +65,7 @@ function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(" ");
 }
 
-function User(props: any) {
+export function User(props: any) {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>

@@ -1,7 +1,9 @@
 import { updateProfile } from "@firebase/auth";
+import { useAuth } from "../context/authContext";
 import { useEffect, useState } from "react";
 
 function AccountSettings(props: any) {
+    const { getWallet, connectWallet } = useAuth();
     const [username, setUsername] = useState("");
     const [error, setError] = useState("");
 
@@ -18,30 +20,9 @@ function AccountSettings(props: any) {
     };
 
     const connectWalletHandler = async () => {
-        const { ethereum } = window as any;
-        if (!ethereum) {
-            alert("please install metamask");
-        } else {
-            try {
-                const accounts = await ethereum
-                    .request({
-                        method: "wallet_requestPermissions",
-                        params: [
-                            {
-                                eth_accounts: {},
-                            },
-                        ],
-                    })
-                    .then(() =>
-                        ethereum.request({ method: "eth_requestAccounts" })
-                    );
-                console.log("Received accounts", accounts);
-                props.setWalletAddr(accounts[0]);
-            } catch (err: any) {
-                setError(err.message);
-                console.log("Error while retrieving account address: ", err);
-            }
-        }
+        connectWallet().catch((err: Error) => {
+            setError(err.message);
+        });
     };
 
     return (
@@ -57,7 +38,7 @@ function AccountSettings(props: any) {
                 </div>
 
                 <div className="my-4">
-                    {props.walletAddr ? (
+                    {getWallet() ? (
                         <div>
                             <div className="font-bold">
                                 {" "}
@@ -65,7 +46,7 @@ function AccountSettings(props: any) {
                             </div>
                             <div className="bg-gray-200 p-2 rounded">
                                 {" "}
-                                {props.walletAddr}{" "}
+                                {getWallet()}{" "}
                             </div>
                         </div>
                     ) : (
