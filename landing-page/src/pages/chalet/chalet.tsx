@@ -7,8 +7,7 @@ import TokenInfo from "./components/TokenInfo";
 import { User } from "../../components/navbar";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import Stonemasters from "../../img/stonemasters.jpg";
-import { ERC20 } from "@maticnetwork/maticjs/dist/ts/pos/erc20";
+import Carrots from "../../img/carrots.png";
 
 const tabs = [
     {
@@ -68,78 +67,90 @@ function Chalet(props: any) {
             <div className="chalet-info">
                 <div className="chalet-top w-100 flex space-x-4 p-4 ">
                     {/* <div className="text-xl font-bold">Lucas</div> */}
-                    <div className="flex space-x-4">
+                    <div className="chalet-top-inner flex ">
                         {" "}
-                        <div className="flex grow flex-col items-start justify-center">
-                            <img
-                                className="w-60 rounded"
-                                src={Stonemasters}
-                            ></img>
-                        </div>
-                        <div className="flex flex-col items-start justify-center">
-                            <div className="text-4xl">Da Spot</div>
-                            <div className="flex space-x-2">
-                                <div className="flex justify-center message-primary items-center space-x-2 my-1">
-                                    <div>Transacts in</div>
-                                    <div className="ticker-primary">
-                                    {exampleChalet.tokenTicker}
-                                    </div>
-                                    <div className="ticker-primary ">$ETH</div>
-                                </div>
-                                <div className="flex justify-center message-primary items-center space-x-2 my-1 bold">
-                                    <div>Holding Requirement of </div>
-                                    <div className="ticker-primary">
-                                        {exampleChalet.holdingRequirement}{" "}
-                                        {exampleChalet.tokenTicker}
-                                    </div>
-                                </div>
+                        <div className="flex space-x-4">
+                            {" "}
+                            <div className="flex grow flex-col items-start justify-center">
+                                <img
+                                    className="w-72 rounded"
+                                    src={Carrots}
+                                ></img>
                             </div>
-                            <div className="my-1 text-md ">
-                                We talk about outdoor cooking, progresssion and
-                                training in many different bumsports. Some
-                                bumsports I enjoy are surfing, climbing, biking,
-                                skiing, and skating.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="auth-button">
-                        {" "}
-                        {getUser() ? (
-                            <div className="flex flex-col text-right items-end space-y-4">
-                                <User
-                                    handleLogout={props.handleLogout}
-                                    user={getUser()}
-                                    walletAddr={getWallet()}
-                                />
-                                <div className="space-y-1 flex flex-col">
-                                    <div className="flex flex-col items-end">
-                                        <div className="font-bold">
-                                        Balances{" "}
-                                        </div>
-                                        <div className={`ticker my-1 text-white ${(Number(ERC20Bal) > exampleChalet.holdingRequirement) ? "bg-green-500" : "bg-red-500"}`}>
-                                            {ERC20Bal}{" "}
+                            <div className="flex flex-col items-start justify-center">
+                                <div className="text-3xl">Sender Central</div>
+                                <div className="flex space-x-2 token-info">
+                                    <div className="flex justify-center message-primary items-center space-x-2 my-1">
+                                        <div>💸 Transact with:</div>
+                                        <div className="ticker-primary">
                                             {exampleChalet.tokenTicker}
                                         </div>
-                                        <div className="ticker my-1">
-                                            {ETHBal} $ETH
+                                        <div className="ticker-primary ">
+                                            $ETH
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-center message-primary items-center space-x-2 my-1 bold">
+                                        <div>🔑 Holding Requirement: </div>
+                                        <div className="ticker-primary">
+                                            {exampleChalet.holdingRequirement}{" "}
+                                            {exampleChalet.tokenTicker}
                                         </div>
                                     </div>
                                 </div>
+                                <div className="my-1 text-md ">
+                                    We talk about outdoor cooking, progresssion
+                                    and training in many different bumsports.
+                                    Some bumsports I enjoy are surfing,
+                                    climbing, biking, skiing, and skating.
+                                </div>
                             </div>
-                        ) : (
-                            <div className="button-primary">
-                                <Link
-                                    to="/login"
-                                    className="text-white hover:text-slate-600"
-                                >
-                                    login
-                                </Link>
-                            </div>
-                        )}
+                        </div>
+                        <div className="auth-button">
+                            {" "}
+                            {getUser() ? (
+                                <div className="flex flex-col text-right items-end space-y-4">
+                                    <User
+                                        handleLogout={props.handleLogout}
+                                        user={getUser()}
+                                        walletAddr={getWallet()}
+                                    />
+                                    <div className="space-y-1 flex flex-col">
+                                        <div className="flex flex-col items-end">
+                                            <div className="font-bold">
+                                                Balances{" "}
+                                            </div>
+                                            <div
+                                                className={`ticker my-1 text-white ${
+                                                    Number(ERC20Bal) >
+                                                    exampleChalet.holdingRequirement
+                                                        ? "bg-green-500"
+                                                        : "bg-red-500"
+                                                }`}
+                                            >
+                                                {ERC20Bal}{" "}
+                                                {exampleChalet.tokenTicker}
+                                            </div>
+                                            <div className="ticker my-1">
+                                                {ETHBal} $ETH
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="button-primary">
+                                    <Link
+                                        to="/login"
+                                        className="text-white hover:text-slate-600"
+                                    >
+                                        login
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+                        {/* <div className="text-xl font-bold">Lucas</div> */}
                     </div>
-                    {/* <div className="text-xl font-bold">Lucas</div> */}
                 </div>
+
                 <div className="chalet-tabs w-100">
                     <div className="tabs-list flex space-x-4 justify-center">
                         {tabs.map((tab) => {
@@ -157,10 +168,12 @@ function Chalet(props: any) {
                     </div>
                 </div>
             </div>
-            <div className="chalet-content">
-                <div className="">
+            <div className="flex flex-col items-center p-3 m-4">
+                <div className="chalet-content flex flex-col items-start">
                     <ChaletContent
                         selected={selected}
+                        ERC20Bal={ERC20Bal}
+                        holdingRequirement={exampleChalet.holdingRequirement}
                         userAllowed={userAllowed}
                     />
                 </div>
@@ -170,10 +183,11 @@ function Chalet(props: any) {
 }
 
 function ChaletContent(props: any) {
+    console.log("erc20", Number(props.holdingRequirement))
     const content = () => {
         switch (props.selected) {
             case "home":
-                return <Home userAllowed={props.userAllowed} />;
+                return <Home userAllowed={props.userAllowed} ERC20Bal={props.ERC20Bal} holdingRequirement={props.holdingRequirement}/>;
             case "menu":
                 return <Menu />;
             case "token-info":
@@ -182,7 +196,7 @@ function ChaletContent(props: any) {
                 return <About />;
         }
     };
-    return <div>{content()}</div>;
+    return <>{content()}</>;
 }
 
 export default Chalet;

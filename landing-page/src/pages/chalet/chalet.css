@@ -3,18 +3,27 @@
     flex-direction: column;
 }
 
-.chalet-info{
+.chalet-info {
     width: 100%;
     justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .chalet-top {
-    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    justify-content: center;
     align-items: center;
     border-bottom: 1px solid rgb(188, 188, 188);
 }
-.chalet-tabs{
-    /* width: 100%; */
+.chalet-top-inner {
+    max-width: 1100px;
+}
+
+.chalet-tabs {
+    width: 100%;
     border-bottom: 1px solid rgb(188, 188, 188);
 }
 
@@ -29,4 +38,33 @@ ul {
 .selected {
     color: #00acc1;
     border-bottom: 3px solid #00acc1;
+}
+
+.chalet-content {
+    width: 728px;
+}
+
+.menu {
+    font-family: "Alegreya";
+}
+
+.token-wrapper {
+    justify-content: space-around;
+    min-width: 100%;
+}
+
+.token-wall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .chalet-top-inner {
+        max-width: 100%;
+    }
+    .token-info {
+        flex-direction: column;
+    }
 }

@@ -96,5 +96,7 @@ code {
         padding: theme("spacing.1");
         border-radius: theme("borderRadius.lg");
     }
+
+    
     /* ... */
 }
