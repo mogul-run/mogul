@@ -71,13 +71,13 @@ function Chalet(props: any) {
                         {" "}
                         <div className="flex space-x-4">
                             {" "}
-                            <div className="flex grow flex-col items-start justify-center">
+                            <div className="flex w-1/6 flex-col items-start justify-center">
                                 <img
-                                    className="w-72 rounded"
+                                    className="w-full rounded"
                                     src={Carrots}
                                 ></img>
                             </div>
-                            <div className="flex flex-col items-start justify-center">
+                            <div className="flex w-5/6 flex-col items-start justify-center">
                                 <div className="text-3xl">Sender Central</div>
                                 <div className="flex space-x-2 token-info">
                                     <div className="flex justify-center message-primary items-center space-x-2 my-1">
@@ -98,10 +98,7 @@ function Chalet(props: any) {
                                     </div>
                                 </div>
                                 <div className="my-1 text-md ">
-                                    We talk about outdoor cooking, progresssion
-                                    and training in many different bumsports.
-                                    Some bumsports I enjoy are surfing,
-                                    climbing, biking, skiing, and skating.
+                                    One part bumsport history class, one part outdoor training camp, one part guidebook to California's most wonderful spots, and whatever else you can fit into the mixing bowl makes Sender Central! 
                                 </div>
                             </div>
                         </div>
