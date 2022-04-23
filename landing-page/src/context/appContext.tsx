@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { getFunctions, Functions, httpsCallable } from 'firebase/functions';
 
@@ -20,6 +20,7 @@ export const AppContextProvider: React.FC = ({children}) => {
         appId: "1:876100340137:web:1942f8aee38bbece765cb8",
         measurementId: "G-YVGBHMQXPE"
       };
+
       
       // Initialize Firebase
       const firebase = initializeApp(firebaseConfig);
@@ -29,6 +30,8 @@ export const AppContextProvider: React.FC = ({children}) => {
         const func = httpsCallable(functions, functionName);
         return func(request);
       }
+
+
 
     return <AppContext.Provider value={{
         firebase,

@@ -2,8 +2,10 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from 'react';
 import "./login.css";
+import { useAuth } from "../context/authContext";
 
 function Login(props: any) {
+    const {login} = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -14,16 +16,13 @@ function Login(props: any) {
         setPassword(value);
     };
     const navigate = useNavigate();
-    const auth = getAuth();
 
     const handleLogin = () => {
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
+        login(email, password)
+            .then(() => {
                 navigate("/feed");
-                sessionStorage.setItem("Auth Token", user.refreshToken)
             })
-            .catch((error) => {
+            .catch((error:Error) => {
                 setError(error.message)
                 console.log("Error with Login: ", error);
             });
