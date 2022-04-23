@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { ethers } from "ethers";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/homepage";
 import TestSale from "./pages/test-sale";
-import NYC26 from "./pages/ny26";
 import ReactGA from "react-ga4";
 import TGOB from "./pages/TGOB";
 import Navbar from "./components/navbar";
@@ -13,19 +11,15 @@ import Feed from "./pages/feed";
 import ScrollToTop from "./utils/scrollToTop";
 import Team from "./pages/team";
 import Login from "./components/login";
-import { AppContextProvider } from "./context/appContext";
 import { useAuth } from "./context/authContext";
 import { NotFound } from "./pages/notFound";
 import AccountSettings from "./pages/account-settings";
-import Chalet from "./pages/chalet/chalet";
 
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
 
 function App() {
-    const { getUser, signOut } = useAuth();
-    const [walletAddr, setWalletAddr] = useState("");
-    const [currentChain, setCurrentChain] = useState("");
+    const { getUser, signOut, getWallet } = useAuth();
 
 
     console.log(getUser());
@@ -49,12 +43,12 @@ function App() {
             <Navbar
                 handleLogout={signOut}
                 user={getUser()}
-                walletAddr={walletAddr}
+                walletAddr={getWallet()}
             />
             <Routes>
                 <Route
                     path="/test-sale"
-                    element={<TestSale userAccount={walletAddr} />}
+                    element={<TestSale userAccount={getWallet()} />}
                 />
                 {/* <Route path="/nyc26" element={<NYC26 />} /> */}
                 <Route path="/tgob" element={<TGOB />} />
@@ -65,14 +59,13 @@ function App() {
                     element={
                         <AccountSettings
                             user={getUser()}
-                            walletAddr={walletAddr}
-                            setWalletAddr={setWalletAddr}
+                            walletAddr={getWallet()}
                         />
                     }
                 />
                 <Route
                     path="/feed"
-                    element={<Feed user={getUser()} walletAddr={walletAddr} />}
+                    element={<Feed user={getUser()} walletAddr={getWallet()} />}
                 />
                 <Route
                     path="/"

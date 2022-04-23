@@ -30,7 +30,7 @@ function Login(props: any) {
 
     useEffect(() => {
         if(props.user) {
-            navigate("/");
+            // navigate("/");
         }
     })
 
