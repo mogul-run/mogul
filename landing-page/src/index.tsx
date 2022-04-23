@@ -14,6 +14,7 @@ const parsedData = window.location.host.split(".");
 
 // temp hard code route
 const subDomain = parsedData[0];
+console.log("parsedData: ", parsedData)
 ReactDOM.render(
     <React.StrictMode>
         <AppContextProvider>

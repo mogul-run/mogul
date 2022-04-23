@@ -2,7 +2,10 @@ import { getAuth, signInWithEmailAndPassword, User } from "@firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
+import { getEmitHelpers } from "typescript";
 import { AppContextType } from "./appContext";
+import { Contract, providers } from "ethers";
+import { formatEther, formatUnits } from "ethers/lib/utils";
 
 export const AuthContext = React.createContext<any | null>(null);
 
@@ -16,6 +19,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [walletAddr, setWalletAddr] = useState("");
     const [currentChain, setCurrentChain] = useState("");
+    const { ethereum } = window as any;
 
     function login(email: string, password: string) {
         return signInWithEmailAndPassword(auth, email, password);
@@ -45,7 +49,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     // Check if user is connected with Metamask and update 'walletAddr' state
     useEffect(() => {
         // Setup Listen Handlers on MetaMask change events
-        const { ethereum } = window as any;
         if (ethereum) {
             // Add Listener when accounts switch
             ethereum
@@ -59,15 +62,17 @@ export const AuthProvider: React.FC = ({ children }) => {
             ethereum.on("accountsChanged", (accounts: string[]) => {
                 console.log("Account changed: ", accounts[0]);
                 setWalletAddr(accounts[0]);
+                window.location.reload();
             });
 
             // Do something here when Chain changes
             ethereum.on("chainChanged", (chaindId: string) => {
                 console.log("Chain ID changed: ", chaindId);
                 setCurrentChain(chaindId);
+                window.location.reload();
             });
         } else {
-            alert("Please install MetaMask to use this service!");
+            console.log("Please install MetaMask to use this service!");
         }
     });
 
@@ -76,9 +81,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     async function connectWallet() {
-        const { ethereum } = window as any;
         if (!ethereum) {
-            alert("please install metamask");
+            console.log("please install metamask");
         } else {
             try {
                 const accounts = await ethereum
@@ -101,6 +105,45 @@ export const AuthProvider: React.FC = ({ children }) => {
         }
     }
 
+    async function getERC20Balance(contract_address: string) {
+        const abi = [
+            {
+                constant: true,
+                inputs: [
+                    {
+                        name: "_owner",
+                        type: "address",
+                    },
+                ],
+                name: "balanceOf",
+                outputs: [
+                    {
+                        name: "balance",
+                        type: "uint256",
+                    },
+                ],
+                payable: false,
+                type: "function",
+            },
+        ];
+        const provider = new providers.Web3Provider(ethereum);
+        const contract = new Contract(contract_address, abi, provider);
+        const balance = await contract
+            .balanceOf(walletAddr)
+            .catch((err: Error) => {
+                console.log(err);
+            });
+        
+        // if errored out, just return 0 
+        return balance ? formatUnits(balance, 18).substring(0, 6) : "0.0";
+    }
+
+    async function getETHBalance() {
+        const provider = new providers.Web3Provider(ethereum);
+        const balance = await provider.getBalance(walletAddr);
+        return formatEther(balance).substring(0, 6);
+    }
+
     const value = {
         currentUser,
         getUser,
@@ -109,6 +152,8 @@ export const AuthProvider: React.FC = ({ children }) => {
         signUp,
         getWallet,
         connectWallet,
+        getERC20Balance,
+        getETHBalance,
     };
 
     return (
