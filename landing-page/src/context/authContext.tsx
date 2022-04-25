@@ -4,7 +4,7 @@ import React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 import { getEmitHelpers } from "typescript";
 import { AppContextType } from "./appContext";
-import { Contract, providers } from "ethers";
+import { Contract, ethers, providers } from "ethers";
 import { formatEther, formatUnits } from "ethers/lib/utils";
 
 export const AuthContext = React.createContext<any | null>(null);
@@ -80,6 +80,10 @@ export const AuthProvider: React.FC = ({ children }) => {
         return walletAddr;
     }
 
+    function getEthereum() {
+        return ethereum;
+    }
+
     async function connectWallet() {
         if (!ethereum) {
             console.log("please install metamask");
@@ -133,8 +137,8 @@ export const AuthProvider: React.FC = ({ children }) => {
             .catch((err: Error) => {
                 console.log(err);
             });
-        
-        // if errored out, just return 0 
+
+        // if errored out, just return 0
         return balance ? formatUnits(balance, 18).substring(0, 6) : "0.0";
     }
 
@@ -142,6 +146,32 @@ export const AuthProvider: React.FC = ({ children }) => {
         const provider = new providers.Web3Provider(ethereum);
         const balance = await provider.getBalance(walletAddr);
         return formatEther(balance).substring(0, 6);
+    }
+
+
+    // recipient: eth wallet addr
+    // amount: plaintext eth ex: 0.30 eth. we need to convert this to wei in txParams
+    async function sendTransaction(recipient: string, value: string) {
+        console.log("txsend", recipient, value)
+        console.log(
+            String(ethers.utils.parseEther(value)), // Only required to send ether to the recipient from the initiating external account.
+        )
+
+        const txParams = {
+            nonce: "0x00", // ignored by MetaMask
+            // gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
+            // gas: '0x2710', // customizable by user during MetaMask confirmation.
+            to: recipient, // for smart contract interactions, this should be the smart contract addr
+            // to: props.post.walletAddr, // Required except during contract publications.
+            from: ethereum.selectedAddress, // must match user's active address.
+            value: String(ethers.utils.parseEther(value)), // Only required to send ether to the recipient from the initiating external account.
+            // value: "1000000000", // Only required to send ether to the recipient from the initiating external account.
+            chainId: "0x3", // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+        };
+        const txHash = await ethereum.request({
+            method: "eth_sendTransaction",
+            params: [txParams],
+        });
     }
 
     const value = {
@@ -154,6 +184,8 @@ export const AuthProvider: React.FC = ({ children }) => {
         connectWallet,
         getERC20Balance,
         getETHBalance,
+        getEthereum,
+        sendTransaction,
     };
 
     return (

@@ -8,6 +8,6 @@ contract LucasToken is ERC777 {
     constructor(address[] memory defaultOperators)
         ERC777("LucasToken", "LUCAS", defaultOperators)
     {
-        _mint(msg.sender, 10000*10**18, "", "");
+        _mint(msg.sender, 10**7*10**18, "", "");
     }
 }

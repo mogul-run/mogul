@@ -11,9 +11,10 @@
     "chai": "^4.3.6",
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.6.2",
-    "hardhat": "^2.9.2"
+    "hardhat": "^2.9.3"
   },
   "dependencies": {
+    "@nomiclabs/hardhat-etherscan": "^3.0.3",
     "@openzeppelin/contracts": "^2.5.1",
     "dotenv": "^16.0.0"
   }

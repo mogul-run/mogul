@@ -59,6 +59,26 @@ ul {
     justify-content: center;
 }
 
+.token-sale {
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 400px;
+}
+
+.token-blurb {
+    min-width: 250px;
+    max-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* color: white; */
+    /* background-color: #ff9800; */
+}
+.token-sale-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
 @media only screen and (max-width: 800px) {
     .chalet-top-inner {

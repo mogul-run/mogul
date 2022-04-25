@@ -85,6 +85,11 @@ code {
         outline: 1px solid theme("colors.gray.300");
         border-radius: theme("borderRadius.lg");
     }
+
+    .outline-nopad {
+        outline: 1px solid theme("colors.gray.300");
+        border-radius: theme("borderRadius.lg");
+    }
     .outline-blue-dotted {
         padding: theme("spacing.2");
         outline: 3px dashed #00acc1;
