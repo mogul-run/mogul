@@ -139,7 +139,7 @@ export const AuthProvider: React.FC = ({ children }) => {
             });
 
         // if errored out, just return 0
-        return balance ? formatUnits(balance, 18).substring(0, 6) : "0.0";
+        return balance ? formatUnits(balance, 18) : "0.0";
     }
 
     async function getETHBalance() {

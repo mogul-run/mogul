@@ -30,7 +30,7 @@ const tabs = [
 
 const exampleChalet = {
     name: "Da Spot",
-    tokenAddr: "0x8531f05D2F69E2591Dac5dFcaBc53b614fc636b4",
+    tokenAddr: "0x622D77bF93ef6f33aFa895789318615878754f4f",
     owner: "Lucas",
     tokenTicker: "$LUCAS",
     holdingRequirement: 150,
@@ -44,6 +44,7 @@ function Chalet(props: any) {
     const [ERC20Bal, setERC20Bal] = useState("");
     const [ETHBal, setETHBal] = useState("");
     const [userAllowed, setUserAllowed] = useState(false);
+    const [purchased, setPurchased] = useState(false);
 
     const { getWallet, getUser, getERC20Balance, getETHBalance } = useAuth();
 
@@ -60,7 +61,8 @@ function Chalet(props: any) {
         getETHBalance(exampleChalet.tokenAddr).then((resp: string) => {
             setETHBal(resp);
         });
-    }, []);
+        setPurchased(false);
+    }, [purchased]);
 
     return (
         <div className="chalet-wrapper">
@@ -118,7 +120,7 @@ function Chalet(props: any) {
                                             </div>
                                             <div
                                                 className={`ticker my-1 text-white ${
-                                                    Number(ERC20Bal) >
+                                                    Number(ERC20Bal) >=
                                                     exampleChalet.holdingRequirement
                                                         ? "bg-green-500"
                                                         : "bg-red-500"
@@ -172,6 +174,7 @@ function Chalet(props: any) {
                         ERC20Bal={ERC20Bal}
                         holdingRequirement={exampleChalet.holdingRequirement}
                         userAllowed={userAllowed}
+                        setPurchased={setPurchased}
                     />
                 </div>
             </div>
@@ -188,7 +191,7 @@ function ChaletContent(props: any) {
             case "menu":
                 return <Menu />;
             case "token-info":
-                return <TokenInfo />;
+                return <TokenInfo setPurchased={props.setPurchased}/>;
             case "about":
                 return <About />;
         }

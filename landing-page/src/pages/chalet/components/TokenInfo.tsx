@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../chalet.css";
 import { useAuth } from "../../../context/authContext";
 
-function TokenInfo() {
+function TokenInfo(props: any) {
     return (
         <div className="flex flex-row  flex-wrap space-x-4 token-wrapper">
             <div className="m-2 token-blurb flex flex-col items-center content-center p-4 rounded outline">
@@ -15,13 +15,13 @@ function TokenInfo() {
                 </a>
             </div>
             <div className="token-sale m-2 divide-y outline-nopad">
-                <TokenSale />
+                <TokenSale setPurchased={props.setPurchased}/>
             </div>
         </div>
     );
 }
 
-function TokenSale() {
+function TokenSale(props: any) {
     const [numTokens, setNumTokens] = useState(0);
     const [cost, setCost] = useState(0);
     const [error, setError] = useState("");
@@ -46,8 +46,11 @@ function TokenSale() {
         if(numTokens > 0) {
 
         sendTransaction(tokenSaleAddr, String(cost))
-            .then((resp: string) => {
-                setSuccess(resp);
+            .then((resp: any) => {
+                setError("");
+                console.log(resp);
+                setSuccess("Successfully Purchased Tokens");
+                props.setPurchased(true);
             })
             .catch((err: Error) => {
                 setError(err.message);
