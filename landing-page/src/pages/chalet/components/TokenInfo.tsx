@@ -43,7 +43,8 @@ function TokenSale() {
     }, [numTokens]);
 
     const handleTokenPurchase = () => {
-        console.log(typeof(String(cost)))
+        if(numTokens > 0) {
+
         sendTransaction(tokenSaleAddr, String(cost))
             .then((resp: string) => {
                 setSuccess(resp);
@@ -51,6 +52,10 @@ function TokenSale() {
             .catch((err: Error) => {
                 setError(err.message);
             });
+        }
+        else {
+            setError("Token quantity must be more than zero")
+        }
 
         // should we be doing the calculations here? or in the functions/ folder?
     };
@@ -64,7 +69,7 @@ function TokenSale() {
                     href={`https://mumbai.polygonscan.com/address/${tokenSaleAddr}`}
                     target="__blank"
                 >
-                    View Token Sale Contract on polygonscan
+                    View Token Sale Contract 
                 </a>
             </div>
             <div className="token-sale-content">

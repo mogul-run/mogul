@@ -152,10 +152,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     // recipient: eth wallet addr
     // amount: plaintext eth ex: 0.30 eth. we need to convert this to wei in txParams
     async function sendTransaction(recipient: string, value: string) {
-        console.log("txsend", recipient, value)
-        console.log(
-            String(ethers.utils.parseEther(value)), // Only required to send ether to the recipient from the initiating external account.
-        )
 
         const txParams = {
             nonce: "0x00", // ignored by MetaMask
@@ -164,9 +160,10 @@ export const AuthProvider: React.FC = ({ children }) => {
             to: recipient, // for smart contract interactions, this should be the smart contract addr
             // to: props.post.walletAddr, // Required except during contract publications.
             from: ethereum.selectedAddress, // must match user's active address.
-            value: String(ethers.utils.parseEther(value)), // Only required to send ether to the recipient from the initiating external account.
+            // value: String(ethers.utils.parseUnits(value)), // Only required to send ether to the recipient from the initiating external account.
+            value: ethers.utils.parseUnits(value).toHexString(), // Only required to send ether to the recipient from the initiating external account.
             // value: "1000000000", // Only required to send ether to the recipient from the initiating external account.
-            chainId: "0x3", // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+            // chainId: "0x3", // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
         };
         const txHash = await ethereum.request({
             method: "eth_sendTransaction",
