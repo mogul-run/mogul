@@ -13,11 +13,8 @@
  
 ### frontend 
 
-- contains files for main landing page (mogul.run)
+- contains files for frontend (subdomains as well)
 
-### app
-
-- contains files for app.mogul.run
 
 ### toy-mint-token
 
