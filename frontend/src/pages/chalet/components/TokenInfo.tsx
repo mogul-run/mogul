@@ -4,7 +4,10 @@ import { useAuth } from "../../../context/authContext";
 
 function TokenInfo(props: any) {
     return (
-        <div className="flex flex-row  flex-wrap space-x-4 token-wrapper">
+        <div className="flex flex-row flex-wrap space-x-4 token-wrapper">
+            <div className="token-sale m-2 divide-y outline-nopad">
+                <TokenSale setPurchased={props.setPurchased} />
+            </div>
             <div className="m-2 token-blurb flex flex-col items-center content-center p-4 rounded outline">
                 <div className="text-xl font-bold">$LUCAS Token Info</div>
                 <a
@@ -13,9 +16,6 @@ function TokenInfo(props: any) {
                 >
                     View Token Contract
                 </a>
-            </div>
-            <div className="token-sale m-2 divide-y outline-nopad">
-                <TokenSale setPurchased={props.setPurchased} />
             </div>
         </div>
     );

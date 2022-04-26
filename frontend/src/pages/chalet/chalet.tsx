@@ -68,43 +68,9 @@ function Chalet(props: any) {
     return (
         <div className="chalet-wrapper">
             <div className="chalet-info">
-                <div className="chalet-top w-100 flex space-x-4 p-4 ">
+                <div className="chalet-top-wrapper flex space-x-4 p-4 ">
                     {/* <div className="text-xl font-bold">Lucas</div> */}
-                    <div className="chalet-top-inner flex ">
-                        {" "}
-                        <div className="flex space-x-4">
-                            {" "}
-                            <div className="flex w-1/6 flex-col items-start justify-center">
-                                <img
-                                    className="w-full rounded"
-                                    src={Carrots}
-                                ></img>
-                            </div>
-                            <div className="flex w-5/6 flex-col items-start justify-center">
-                                <div className="text-3xl">Sender Central</div>
-                                <div className="flex space-x-2 token-info">
-                                    <div className="flex justify-center message-primary items-center space-x-2 my-1">
-                                        <div>💸 Transact with:</div>
-                                        <div className="ticker-primary">
-                                            {exampleChalet.tokenTicker}
-                                        </div>
-                                        <div className="ticker-primary ">
-                                            $ETH
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-center message-primary items-center space-x-2 my-1 bold">
-                                        <div>🔑 Holding Requirement: </div>
-                                        <div className="ticker-primary">
-                                            {exampleChalet.holdingRequirement}{" "}
-                                            {exampleChalet.tokenTicker}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="my-1 text-md ">
-                                    One part bumsport history class, one part outdoor training camp, one part guidebook to California's most wonderful spots, and whatever else you can fit into the mixing bowl makes Sender Central! 
-                                </div>
-                            </div>
-                        </div>
+                    <div className="chalet-top">
                         <div className="auth-button">
                             {" "}
                             {getUser() ? (
@@ -115,7 +81,7 @@ function Chalet(props: any) {
                                         walletAddr={getWallet()}
                                     />
                                     <div className="space-y-1 flex flex-col">
-                                        <div className="flex flex-col items-end">
+                                        <div className="token-balances flex flex-col items-end">
                                             <div className="font-bold">
                                                 Balances{" "}
                                             </div>
@@ -148,6 +114,40 @@ function Chalet(props: any) {
                             )}
                         </div>
                         {/* <div className="text-xl font-bold">Lucas</div> */}
+                        {" "}
+                        <div className="chalet-top-inner flex space-x-4">
+                            {" "}
+                            <div className="chalet-img flex w-1/6 flex-col items-start justify-center">
+                                <img
+                                    className="w-full rounded"
+                                    src={Carrots}
+                                ></img>
+                            </div>
+                            <div className="chalet-header flex flex-col items-start justify-center">
+                                <div className="text-3xl">Sender Central</div>
+                                <div className="flex flex-col space-x-1 token-info">
+                                    <div className="flex justify-center message-primary items-center space-x-2 my-1">
+                                        <div>💸 Transact with:</div>
+                                        <div className="ticker-primary">
+                                            {exampleChalet.tokenTicker}
+                                        </div>
+                                        <div className="ticker-primary ">
+                                            $ETH
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-center message-primary items-center space-x-2 my-1 bold">
+                                        <div>🔑 Holding Requirement: </div>
+                                        <div className="ticker-primary">
+                                            {exampleChalet.holdingRequirement}{" "}
+                                            {exampleChalet.tokenTicker}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="my-1 text-md chalet-bio">
+                                    One part bumsport history class, one part outdoor training camp, one part guidebook to California's most wonderful spots, and whatever else you can fit into the mixing bowl makes Sender Central! 
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
