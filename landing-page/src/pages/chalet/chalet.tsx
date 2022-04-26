@@ -30,6 +30,7 @@ const tabs = [
 
 const exampleChalet = {
     name: "Da Spot",
+    id: "40404",
     tokenAddr: "0x622D77bF93ef6f33aFa895789318615878754f4f",
     owner: "Lucas",
     tokenTicker: "$LUCAS",
@@ -175,6 +176,7 @@ function Chalet(props: any) {
                         holdingRequirement={exampleChalet.holdingRequirement}
                         userAllowed={userAllowed}
                         setPurchased={setPurchased}
+                        chaletId={exampleChalet.id}
                     />
                 </div>
             </div>
@@ -186,7 +188,7 @@ function ChaletContent(props: any) {
     const content = () => {
         switch (props.selected) {
             case "home":
-                return <Home userAllowed={props.userAllowed} ERC20Bal={props.ERC20Bal} holdingRequirement={props.holdingRequirement}/>;
+                return <Home chaletId={props.chaletId} userAllowed={props.userAllowed} ERC20Bal={props.ERC20Bal} holdingRequirement={props.holdingRequirement}/>;
             case "menu":
                 return <Menu />;
             case "token-info":

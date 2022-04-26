@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDatabase, push, ref, get, onValue } from "firebase/database";
 import { toArray } from "lodash";
+import { useAuth } from "../context/authContext";
 import "./feed.css";
 
 const test_content = [
@@ -29,14 +30,15 @@ const test_content = [
 function Feed(props: any) {
     const [openPost, setOpenPost] = useState(false);
     const [posts, setPosts] = useState<any[]>([]);
-    const [password, setPassword] = useState(false);
     const navigate = useNavigate();
+    const { getUser, getWallet } = useAuth();
 
     const getPosts = () => {
         const db = getDatabase();
         onValue(
-            ref(db, "/posts"),
+            ref(db, `/posts/${props.chaletId}`),
             (snapshot) => {
+                    console.log("posts", snapshot);
                 if (snapshot.exists()) {
                     // .reverse() to display posts with most recent on top
                     setPosts(toArray(snapshot.val()).reverse());
@@ -49,9 +51,8 @@ function Feed(props: any) {
         );
     };
 
-
     useEffect(() => {
-        if (!props.user) {
+        if (!getUser()) {
             navigate("/");
         } else {
             getPosts();
@@ -59,37 +60,29 @@ function Feed(props: any) {
     }, []);
 
     return (
-        <div>
+        <div className="w-full">
             {" "}
-            {password ? (
-                <>
-                    {" "}
-                    <div>
-                        {openPost ? (
-                            <PostContent
-                                user={props.user}
-                                setOpenPost={setOpenPost}
-                                walletAddr={props.walletAddr}
-                            />
-                        ) : (
-                            <PostButton setOpenPost={setOpenPost} />
-                        )}
-                    </div>
-                    <div className="feed-wrapper">
-                        <div className="feed-content">
-                            {posts.length > 0 &&
-                                posts.map((post) => <TextPost post={post} />)}
-                        </div>
-                    </div>
-                </>
-            ) : (
-                <div className="card m-4 flex flex-col align-center justify-center">
-                    <div className="my-3 text-lg font-light">Mirror Mirror on the wall, who's the greatest one of all? </div>
-                    <div className="">
-                        <input className="input p-2 rounded my-4" placeholder="who??" ></input>
+            <>
+                {" "}
+                <div>
+                    {openPost ? (
+                        <PostContent
+                            user={getUser()}
+                            setOpenPost={setOpenPost}
+                            walletAddr={getWallet()}
+                            chaletId={props.chaletId}
+                        />
+                    ) : (
+                        <PostButton setOpenPost={setOpenPost} />
+                    )}
+                </div>
+                <div className="feed-wrapper">
+                    <div className="feed-content">
+                        {posts.length > 0 &&
+                            posts.map((post) => <TextPost post={post} />)}
                     </div>
                 </div>
-            )}
+            </>
         </div>
     );
 }
@@ -134,7 +127,7 @@ function PostContent(props: any) {
             /// TEMP: adding wallet addr to post for tipping
             newPost.walletAddr = props.walletAddr;
         }
-        push(ref(db, "posts"), newPost)
+        push(ref(db, `posts/${props.chaletId}`), newPost)
             .then(props.setOpenPost(false))
             .catch((error) => {
                 console.log("error: ", error);
@@ -145,7 +138,7 @@ function PostContent(props: any) {
     };
 
     return (
-        <div className="submit-content m-6">
+        <div className="w-full m-3 message-primary p-3">
             <div className="text-lg my-3">Hot take incoming!</div>
             <textarea
                 onChange={(event) => handlePost(event.target.value)}
@@ -205,7 +198,7 @@ function TextPost(props: any) {
     }
 
     return (
-        <div className="card m-5">
+        <div className="card w-full m-3">
             <div className="author font-bold my-2">{props.post.author}</div>
             <div className="post-text">{props.post.text}</div>
             <div className="post-logic my-1">

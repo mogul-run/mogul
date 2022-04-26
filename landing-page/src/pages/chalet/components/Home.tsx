@@ -1,11 +1,15 @@
 import Morels from "../../../img/morels.png";
+import Feed from "../../feed";
 
 function Home(props: any) {
-    return <div>{props.userAllowed ? <HomeContent /> : <TokenWall holdingRequirement={props.holdingRequirement} ERC20Bal={props.ERC20Bal} />}</div>;
+    return <div className="w-full">{props.userAllowed ? <HomeContent chaletId={props.chaletId} /> : <TokenWall holdingRequirement={props.holdingRequirement} ERC20Bal={props.ERC20Bal} />}</div>;
 }
 
-function HomeContent() {
-    return <div>You got in!</div>;
+function HomeContent(props: any) {
+    console.log(props.chaletId)
+    return <div className="w-full">
+        <Feed chaletId={props.chaletId}/>
+    </div>;
 }
 
 
