@@ -11,7 +11,7 @@
 
 ## Repo Breakdown
  
-### landing-page
+### frontend 
 
 - contains files for main landing page (mogul.run)
 
