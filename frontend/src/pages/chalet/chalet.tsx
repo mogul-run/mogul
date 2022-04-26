@@ -153,12 +153,13 @@ function Chalet(props: any) {
 
                 <div className="chalet-tabs w-100">
                     <div className="tabs-list flex justify-center">
-                        {tabs.map((tab) => {
+                        {tabs.map((tab, id) => {
                             return (
                                 <div
                                     className={`tab-button text-lg font-bold px-3 py-3 ${
                                         selected == tab.url && "selected"
                                     }`}
+                                    key={id}
                                     onClick={() => handleSelected(tab.url)}
                                 >
                                     {tab.name}

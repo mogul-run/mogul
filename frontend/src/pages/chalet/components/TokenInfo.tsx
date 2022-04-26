@@ -12,7 +12,7 @@ function TokenInfo(props: any) {
             <div className="col-span-1 token-blurb flex flex-col items-center content-center p-4 rounded outline">
                 <div className="text-xl font-bold">Where's $LUCAS?</div>
                 <a
-                    href="https://mumbai.polygonscan.com/address/0x8531f05D2F69E2591Dac5dFcaBc53b614fc636b4"
+                    href="https://mumbai.polygonscan.com/address/0x622D77bF93ef6f33aFa895789318615878754f4f"
                     target="__blank"
                 >
                     View Token Contract
@@ -28,7 +28,7 @@ function TokenInfo(props: any) {
 
 function AddToken(props: any) {
     async function handleAddToken() {
-        const tokenAddress = "0x8531f05D2F69E2591Dac5dFcaBc53b614fc636b4";
+        const tokenAddress = "0x622D77bF93ef6f33aFa895789318615878754f4f";
         const tokenSymbol = "LUCAS";
         const tokenDecimals = 18;
         const tokenImage = "http://assets.stickpng.com/images/58e8fce5eb97430e819064b9.png";
@@ -121,7 +121,7 @@ function TokenSale(props: any) {
 
     return (
         <div className="flex flex-col space-y-4">
-            <div className="p-4 bg-gray-800 text-white">
+            <div className="rounded-t-md p-4 bg-gray-800 text-white">
                 {" "}
                 <div className="text-xl font-bold">Token Sale</div>
                 <a

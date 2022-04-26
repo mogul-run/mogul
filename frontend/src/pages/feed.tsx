@@ -78,7 +78,7 @@ function Feed(props: any) {
                 <div className="feed-wrapper">
                     <div className="feed-content">
                         {posts.length > 0 &&
-                            posts.map((post) => <TextPost post={post} />)}
+                            posts.map((post, id) => <TextPost post={post} key={id}/>)}
                     </div>
                 </div>
             </>
