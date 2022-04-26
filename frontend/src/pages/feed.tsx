@@ -38,7 +38,6 @@ function Feed(props: any) {
         onValue(
             ref(db, `/posts/${props.chaletId}`),
             (snapshot) => {
-                    console.log("posts", snapshot);
                 if (snapshot.exists()) {
                     // .reverse() to display posts with most recent on top
                     setPosts(toArray(snapshot.val()).reverse());
@@ -169,7 +168,6 @@ function TextPost(props: any) {
         // function signature for transfer
         data += "a9059cbb";
         // adds receipient (32bytes right aligned)
-        console.log(props.post.walletAddr);
 
         // data += props.post.walletAddr.padStart(24, "0")
         // console.log(data)

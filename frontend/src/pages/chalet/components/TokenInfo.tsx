@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import "../chalet.css";
 import { useAuth } from "../../../context/authContext";
+import Carrots  from "../../../img/carrots.png";
 
 function TokenInfo(props: any) {
     return (
-        <div className="flex flex-row flex-wrap space-x-4 token-wrapper">
-            <div className="token-sale m-2 divide-y outline-nopad">
+        <div className="grid md:grid-cols-3 md:grid-rows-3 md:grid-flow-row-dense gap-2 token-wrapper">
+            <div className="col-span-2 row-span-2 token-sale divide-y outline-nopad">
                 <TokenSale setPurchased={props.setPurchased} />
             </div>
-            <div className="m-2 token-blurb flex flex-col items-center content-center p-4 rounded outline">
-                <div className="text-xl font-bold">$LUCAS Token Info</div>
+            <div className="col-span-1 token-blurb flex flex-col items-center content-center p-4 rounded outline">
+                <div className="text-xl font-bold">Where's $LUCAS?</div>
                 <a
                     href="https://mumbai.polygonscan.com/address/0x8531f05D2F69E2591Dac5dFcaBc53b614fc636b4"
                     target="__blank"
@@ -17,6 +18,53 @@ function TokenInfo(props: any) {
                     View Token Contract
                 </a>
             </div>
+            <div className="token-blurb col-span-1">
+
+            <AddToken/>
+            </div>
+        </div>
+    );
+}
+
+function AddToken(props: any) {
+    async function handleAddToken() {
+        const tokenAddress = "0x8531f05D2F69E2591Dac5dFcaBc53b614fc636b4";
+        const tokenSymbol = "LUCAS";
+        const tokenDecimals = 18;
+        const tokenImage = "http://assets.stickpng.com/images/58e8fce5eb97430e819064b9.png";
+        const {ethereum} = window as any;
+
+        try {
+            // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+            const wasAdded = await ethereum.request({
+                method: "wallet_watchAsset",
+                params: {
+                    type: "ERC20", // Initially only supports ERC20, but eventually more!
+                    options: {
+                        address: tokenAddress, // The address that the token is at.
+                        symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+                        decimals: tokenDecimals, // The number of decimals in the token
+                        image: tokenImage, // A string url of the token logo
+                    },
+                },
+            });
+
+            if (wasAdded) {
+                console.log("Token Added");
+            } else {
+                console.log("Token not added");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    return (
+        <div className="outline p-4 flex flex-col items-center space-y-4">
+            <div className="text-lg font-bold">
+                Add $LUCAS to your Wallet
+            </div>
+            <button className="button-primary" onClick={() => handleAddToken()}>Add $LUCAS</button>
         </div>
     );
 }
@@ -56,7 +104,9 @@ function TokenSale(props: any) {
                 .then((resp: any) => {
                     setError("");
                     console.log(resp);
-                    setSuccess("Transaction sent successfully! You're token balance should update once the transaction is confirmed.");
+                    setSuccess(
+                        "Transaction sent successfully! You're token balance should update once the transaction is confirmed."
+                    );
                     props.setPurchased(true);
                 })
                 .catch((err: Error) => {
@@ -108,13 +158,11 @@ function TokenSale(props: any) {
                         Cost: {String(cost).substring(0, 8)} {NetworkToken} +
                         gas
                     </div>
-                    {error &&
-                    <div className="message-error">Error: {error}</div>
-                    }
+                    {error && (
+                        <div className="message-error">Error: {error}</div>
+                    )}
                     {success && (
-                        <div className="message-success">
-                         {success}
-                        </div>
+                        <div className="message-success">{success}</div>
                     )}
                 </div>
             </div>
