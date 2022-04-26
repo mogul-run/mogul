@@ -15,7 +15,7 @@ function TokenInfo(props: any) {
                 </a>
             </div>
             <div className="token-sale m-2 divide-y outline-nopad">
-                <TokenSale setPurchased={props.setPurchased}/>
+                <TokenSale setPurchased={props.setPurchased} />
             </div>
         </div>
     );
@@ -32,32 +32,38 @@ function TokenSale(props: any) {
     const NetworkToken = "MATIC";
     const ERC20Token = "LUCAS";
     const tokenSaleAddr = "0x7d38Bc69529690eF742F8C6141215C5e63516267";
-    const { sendTransaction } = useAuth();
+    const { sendTransaction, getNetwork } = useAuth();
+    const canBuy = getNetwork() === "0x13881" && numTokens > 0;
 
     const handleNumTokens = (value: number) => {
         setNumTokens(value);
     };
 
     useEffect(() => {
+        // 0x13881 is the chainid for the polygon mumbai testnet
+        if (getNetwork() !== "0x13881") {
+            setError("Change network to Polygon Mumbai to purchase");
+        }
+    }, []);
+
+    useEffect(() => {
         setCost(numTokens / PurchaseRatio);
     }, [numTokens]);
 
     const handleTokenPurchase = () => {
-        if(numTokens > 0) {
-
-        sendTransaction(tokenSaleAddr, String(cost))
-            .then((resp: any) => {
-                setError("");
-                console.log(resp);
-                setSuccess("Successfully Purchased Tokens");
-                props.setPurchased(true);
-            })
-            .catch((err: Error) => {
-                setError(err.message);
-            });
-        }
-        else {
-            setError("Token quantity must be more than zero")
+        if (numTokens > 0) {
+            sendTransaction(tokenSaleAddr, String(cost))
+                .then((resp: any) => {
+                    setError("");
+                    console.log(resp);
+                    setSuccess("Transaction sent successfully! You're token balance should update once the transaction is confirmed.");
+                    props.setPurchased(true);
+                })
+                .catch((err: Error) => {
+                    setError(err.message);
+                });
+        } else {
+            setError("Token quantity must be more than zero");
         }
 
         // should we be doing the calculations here? or in the functions/ folder?
@@ -72,11 +78,11 @@ function TokenSale(props: any) {
                     href={`https://mumbai.polygonscan.com/address/${tokenSaleAddr}`}
                     target="__blank"
                 >
-                    View Token Sale Contract 
+                    View Token Sale Contract
                 </a>
             </div>
             <div className="token-sale-content">
-                <div className="p-4 text-xl bg-gray-300">
+                <div className="p-4 text-xl bg-gray-300 ">
                     <input
                         className="w-20 rounded-lg p-2"
                         placeholder={String(numTokens)}
@@ -89,8 +95,10 @@ function TokenSale(props: any) {
                 <div className="p-4 space-y-2 flex flex-col w-100 items-center">
                     <div>
                         <button
-                            onClick={() => handleTokenPurchase()}
-                            className="button-primary"
+                            onClick={() => canBuy && handleTokenPurchase()}
+                            className={`${
+                                canBuy ? "button-primary" : "button-disabled"
+                            } `}
                         >
                             {" "}
                             Purchase {numTokens} $LUCAS{" "}
@@ -100,8 +108,14 @@ function TokenSale(props: any) {
                         Cost: {String(cost).substring(0, 8)} {NetworkToken} +
                         gas
                     </div>
-                    <div className="text-red-500">{error && error}</div>
-                    <div className="text-green-500">{success && success}</div>
+                    {error &&
+                    <div className="message-error">Error: {error}</div>
+                    }
+                    {success && (
+                        <div className="message-success">
+                         {success}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

@@ -183,7 +183,6 @@ function Chalet(props: any) {
 }
 
 function ChaletContent(props: any) {
-    console.log("erc20", Number(props.holdingRequirement))
     const content = () => {
         switch (props.selected) {
             case "home":

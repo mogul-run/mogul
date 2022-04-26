@@ -21,22 +21,6 @@ ReactGA.send("pageview");
 function App() {
     const { getUser, signOut, getWallet } = useAuth();
 
-
-    console.log(getUser());
-    // Firebase Auth listeners to maintain 'user' state
-    // if user object exists -- user is logged in
-    // auth.onAuthStateChanged((user) => {
-    //     if (user) {
-    //         setUser(user);
-    //     } else {
-    //         setUser("");
-    //     }
-    // });
-
-    // const handleLogout = () => {
-    //     signOut(auth);
-    // };
-
     return (
         <div className="app">
             <ScrollToTop />

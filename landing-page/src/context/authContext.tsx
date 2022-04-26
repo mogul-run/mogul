@@ -57,6 +57,7 @@ export const AuthProvider: React.FC = ({ children }) => {
                 })
                 .then((accounts: string[]) => {
                     setWalletAddr(accounts[0]);
+                    setCurrentChain(ethereum.chainId)
                 });
 
             ethereum.on("accountsChanged", (accounts: string[]) => {
@@ -66,9 +67,9 @@ export const AuthProvider: React.FC = ({ children }) => {
             });
 
             // Do something here when Chain changes
-            ethereum.on("chainChanged", (chaindId: string) => {
-                console.log("Chain ID changed: ", chaindId);
-                setCurrentChain(chaindId);
+            ethereum.on("chainChanged", (chainId: string) => {
+                console.log("Chain ID changed: ", chainId);
+                setCurrentChain(chainId);
                 window.location.reload();
             });
         } else {
@@ -148,6 +149,10 @@ export const AuthProvider: React.FC = ({ children }) => {
         return formatEther(balance).substring(0, 6);
     }
 
+    function getNetwork() {
+        return currentChain;
+    }
+
 
     // recipient: eth wallet addr
     // amount: plaintext eth ex: 0.30 eth. we need to convert this to wei in txParams
@@ -179,6 +184,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         signUp,
         getWallet,
         connectWallet,
+        getNetwork,
         getERC20Balance,
         getETHBalance,
         getEthereum,
