@@ -14,13 +14,14 @@ const parsedData = window.location.host.split(".");
 
 // temp hard code route
 const subDomain = parsedData[0];
+console.log(subDomain)
 ReactDOM.render(
     <React.StrictMode>
         <AppContextProvider>
             <AuthProvider>
                 <BrowserRouter basename={process.env.PUBLIC_URL}>
                     {/* temporarily hardcode in chalet -- should use from sort of subdomain switch */}
-                    {parsedData.length >= 2  ? (
+                    {parsedData.length >= 2 && subDomain ==="the" || subDomain==="lucas"  ? (
                         <SubDomainRouter subdomain={parsedData[0]}/>
                     ) : (
                         <App />
