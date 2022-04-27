@@ -30,7 +30,6 @@ ${
         ? `col-span-4 row-span-2`
         : `col-span-3 row-span-1`
 }
-${selected && ``}
         `}
         >
             <div
@@ -120,7 +119,9 @@ function Comments(props: any) {
                 ref(db, `the-mogul-run/posts/${props.post_key}/comments`),
                 newComment
             )
-                .then(() => {setComment("")})
+                .then(() => {
+                    setComment("");
+                })
                 .catch((error) => {
                     console.log("error: ", error);
                 });

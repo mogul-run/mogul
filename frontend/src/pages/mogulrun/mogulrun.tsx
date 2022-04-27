@@ -76,21 +76,21 @@ function Content() {
 
     return (
         <div className="mr-content space-y-2 ">
-            <div className="flex flex-col border-2 rounded-lg border-dashed border-orange-400">
+            <div className="flex flex-col border-2 p-1 rounded-lg border-dashed border-orange-400">
                 <div className="flex justify-between p-2">
                     {" "}
                     <div
-                        className="button-primary font-bold text-sm"
+                        className="button-primary font-bold text-sm flex h-10 items-center"
                         onClick={() => handlePost()}
                     >
                         Post Content{" "}
                     </div>
-                    <div className="flex space-x-2 items-center ">
+                    <div className="flex space-x-2 items-center  ">
                         <div className="font-bold text-sm">Filter:</div>
-                        <div className="tags h-full space-x-1">
+                        <div className="flex items-center tags h-10 space-x-1 ">
                             {tags.map((tag) => {
                                 return (
-                                    <strong className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-[10px] tracking-wide">
+                                    <strong className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide">
                                         {tag}
                                     </strong>
                                 );
@@ -192,7 +192,7 @@ function PostContent(props: any) {
     return (
         <div className="flex flex-col">
             <div className="w-full bg-stone-200 p-3 space-y-2">
-                <div className="text-xs my-2 text-stone-500 font-bold">
+                <div className="text-sm my-2 text-stone-500 font-bold">
                     Hot take incoming!
                 </div>
                 <div className="flex">
@@ -204,7 +204,7 @@ function PostContent(props: any) {
                     <div className="error text-red-500">{error}</div>
                 </div>
                 <div>
-                    <div className="text-xs my-2 text-stone-500 font-bold">
+                    <div className="text-sm my-2 text-stone-500 font-bold">
                         Add Tags
                     </div>
                     <div className="overflow-scroll flex space-x-2">
@@ -213,7 +213,7 @@ function PostContent(props: any) {
                                 return (
                                     <strong
                                         onClick={() => handleTags(tag)}
-                                        className="cursor-pointer border text-white bg-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-[10px] tracking-wide"
+                                        className="cursor-pointer border text-white bg-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
                                     >
                                         {tag}
                                     </strong>
@@ -222,7 +222,7 @@ function PostContent(props: any) {
                                 return (
                                     <strong
                                         onClick={() => handleTags(tag)}
-                                        className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-[10px] tracking-wide"
+                                        className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
                                     >
                                         {tag}
                                     </strong>
@@ -235,7 +235,7 @@ function PostContent(props: any) {
                     className="p1 
                 "
                 >
-                    <div className="text-xs my-2 text-stone-500 font-bold">
+                    <div className="text-sm my-2 text-stone-500 font-bold">
                         Add Bounty
                     </div>
                     <div

@@ -9,7 +9,13 @@
 
 .tags {
     max-width: 450px;
-    overflow: scroll;
+    overflow-x: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.tags::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
 }
 
 
