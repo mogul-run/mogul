@@ -78,7 +78,7 @@ code {
         padding: theme("spacing.1") theme("spacing.2");
     }
 
-    .button-disabled:hover{
+    .button-disabled:hover {
         background-color: theme("colors.gray.400");
         color: white;
     }
@@ -89,9 +89,9 @@ code {
         border-radius: theme("borderRadius.lg");
         width: max-content;
     }
-    .ticker-primary{
+    .ticker-primary {
         padding: theme("spacing.1") theme("spacing.3");
-        background-color: #00acc1 ;
+        background-color: #00acc1;
         color: white;
         border-radius: theme("borderRadius.lg");
         width: max-content;
@@ -135,7 +135,19 @@ code {
         border-radius: theme("borderRadius.md");
     }
 
+    .topbar {
+        display: flex;
+        margin: 0px 50px;
+        min-height: 60px;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-    
+@media only screen and (max-width: 800px) {
+    .navbar {
+        margin: 0px;
+        justify-content: space-between;
+    }
+}
     /* ... */
 }
