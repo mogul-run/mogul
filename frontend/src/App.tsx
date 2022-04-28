@@ -3,7 +3,6 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/homepage";
 import TestSale from "./pages/test-sale";
-import ReactGA from "react-ga4";
 import TGOB from "./pages/TGOB";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
@@ -15,8 +14,6 @@ import { useAuth } from "./context/authContext";
 import { NotFound } from "./pages/notFound";
 import AccountSettings from "./pages/account-settings";
 
-ReactGA.initialize("G-WGSG8KJ0Z1");
-ReactGA.send("pageview");
 
 function App() {
     const { getUser, signOut, getWallet } = useAuth();

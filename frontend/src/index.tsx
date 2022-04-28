@@ -9,8 +9,11 @@ import "@fontsource/alegreya";
 import { AppContext, AppContextProvider } from "./context/appContext";
 import SubDomainRouter from "./SubdomainRouter";
 import { AuthProvider } from "./context/authContext";
+import ReactGA from "react-ga4";
 
 const parsedData = window.location.host.split(".");
+ReactGA.initialize("G-WGSG8KJ0Z1");
+ReactGA.send("pageview");
 
 // temp hard code route
 const subDomain = parsedData[0];
