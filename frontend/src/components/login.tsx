@@ -20,7 +20,7 @@ function Login(props: any) {
     const handleLogin = () => {
         login(email, password)
             .then(() => {
-                // navigate("/feed");
+                navigate("/");
             })
             .catch((error:Error) => {
                 setError(error.message)
