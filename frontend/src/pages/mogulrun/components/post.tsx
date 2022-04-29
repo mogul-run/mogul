@@ -1,25 +1,50 @@
-import { getDatabase, push, ref } from "firebase/database";
+import { getDatabase, push, ref, remove } from "firebase/database";
+import { toArray } from "lodash";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../../context/authContext";
 
 export function TextPost(props: any) {
-    const ref = useRef<null | HTMLDivElement>(null);
     const [selected, setSelected] = useState(false);
     const [expand, setExpand] = useState(false);
+    const { getUser } = useAuth();
+    const db = getDatabase();
 
     function handleSelected() {
-        // if (!selected && ref && ref.current) {
-        //     ref.current?.scrollIntoView({behavior: "smooth"});
-        // }
         setSelected(!selected);
     }
     function handleClose() {
         setSelected(false);
     }
 
+    function handleShaka() {
+    const shakasArr = props.post.shakas ? Object.keys(props.post.shakas).map((shaka) => {
+        return { id: shaka, name: props.post.shakas[shaka] } ;
+    }) : [];
+        const user_match = shakasArr.find(
+            (shaka) => (shaka.name = getUser().displayName)
+        );
+        console.log(user_match);
+        if (user_match) {
+            remove(
+                ref(
+                    db,
+                    `the-mogul-run/posts/${props.post.key}/shakas/${user_match.id}`
+                )
+            );
+        } else {
+            push(
+                ref(db, `the-mogul-run/posts/${props.post.key}/shakas/`),
+                getUser().displayName
+            )
+                .then(() => console.log("successful"))
+                .catch((error) => {
+                    console.log("error: ", error);
+                });
+        }
+    }
+
     return (
         <div
-            ref={ref}
             className={` 
 ${
     props.post.text.length > 50
@@ -36,10 +61,7 @@ ${
                 }
             `}
             >
-                <div
-                    className="flex flex-col cursor-pointer justify-end h-full p-4  bg-stone-200 sm:p-8 rounded-xl hover:bg-opacity-90"
-                    onClick={() => handleSelected()}
-                >
+                <div className="flex flex-col cursor-pointer justify-end h-full p-4  bg-stone-200 sm:p-8 rounded-xl hover:bg-opacity-90">
                     <div className="md:mt-10 sm:mt-6">
                         {/* <p className="text-xs font-medium text-gray-500"> */}
                         <p className="text-sm text-stone-400 font-medium">
@@ -68,11 +90,25 @@ ${
                                     })}
                             </ul>
                         </div>
-                        <div className="text-sm text-stone-400 mt-3 cursor-pointer hover:text-stone-600 decoration-solid">
-                            {props.post.comments
-                                ? props.post.comments.length
-                                : "0"}{" "}
-                            comments
+                        <div className="flex w-full justify-between items-center mt-3 space-x-2">
+                            <div
+                                className="text-stone-400 text-sm outline px-2 py-1"
+                                onClick={() => handleShaka()}
+                            >
+                                🤙 +
+                                {props.post.shakas
+                                    ? toArray(props.post.shakas).length
+                                    : "0"}
+                            </div>
+                            <div
+                                onClick={() => handleSelected()}
+                                className="text-sm text-stone-400 cursor-pointer hover:text-stone-600 decoration-solid"
+                            >
+                                {props.post.comments
+                                    ? props.post.comments.length
+                                    : "0"}{" "}
+                                comments
+                            </div>
                         </div>
                     </div>
                 </div>
