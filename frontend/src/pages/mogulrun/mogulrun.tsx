@@ -41,6 +41,7 @@ function Content() {
     const [posts, setPosts] = useState<any[]>([]);
     const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
     const [selectedTags, setSelectedTags] = useState<String[]>([]);
+    const { getUser, getWallet } = useAuth();
 
     const handleTags = (value: string) => {
         if (selectedTags.includes(value)) {

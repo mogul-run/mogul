@@ -5,9 +5,13 @@ import { useAuth } from "../../../context/authContext";
 
 export function TextPost(props: any) {
     const [selected, setSelected] = useState(false);
-    const [expand, setExpand] = useState(false);
     const { getUser } = useAuth();
     const db = getDatabase();
+    const shakasArr = props.post.shakas
+        ? Object.keys(props.post.shakas).map((shaka) => {
+                return { id: shaka, name: props.post.shakas[shaka] };
+            })
+        : [];
 
     function handleSelected() {
         setSelected(!selected);
@@ -17,29 +21,39 @@ export function TextPost(props: any) {
     }
 
     function handleShaka() {
-    const shakasArr = props.post.shakas ? Object.keys(props.post.shakas).map((shaka) => {
-        return { id: shaka, name: props.post.shakas[shaka] } ;
-    }) : [];
         const user_match = shakasArr.find(
             (shaka) => (shaka.name = getUser().displayName)
         );
-        console.log(user_match);
+
         if (user_match) {
             remove(
                 ref(
                     db,
                     `the-mogul-run/posts/${props.post.key}/shakas/${user_match.id}`
                 )
-            );
+            ).catch((error) => {
+                console.log("error: ", error);
+            });
+
+            remove(
+                ref(db, `users/${getUser().uid}/shakas/${props.post.key}`)
+            ).catch((error) => {
+                console.log("error: ", error);
+            });
         } else {
             push(
                 ref(db, `the-mogul-run/posts/${props.post.key}/shakas/`),
                 getUser().displayName
-            )
-                .then(() => console.log("successful"))
-                .catch((error) => {
-                    console.log("error: ", error);
-                });
+            ).catch((error) => {
+                console.log("error: ", error);
+            });
+
+            push(
+                ref(db, `users/${getUser().uid}/shakas/`),
+                props.post.key
+            ).catch((error) => {
+                console.log("error: ", error);
+            });
         }
     }
 
@@ -61,38 +75,45 @@ ${
                 }
             `}
             >
-                <div className="flex flex-col cursor-pointer justify-end h-full p-4  bg-stone-200 sm:p-8 rounded-xl hover:bg-opacity-90">
+                <div className="flex flex-col justify-end h-full p-4  bg-stone-200 sm:p-8 rounded-xl hover:bg-opacity-90">
                     <div className="md:mt-10 sm:mt-6">
-                        {/* <p className="text-xs font-medium text-gray-500"> */}
-                        <p className="text-sm text-stone-400 font-medium">
-                            {props.post.posted && props.post.posted}
-                        </p>
-                        <h5 className="mt-2 text-xl font-bold ">
-                            {/* <h5 className="mt-2 text-xl font-bold text-white"> */}
-                            {props.post.text}
-                        </h5>
-                        <p className="text-sm text-stone-400 font-medium">
-                            {props.post.author}
-                        </p>
-                        <div className="flex items-center justify-between mt-6">
-                            <p className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-                                {props.post.bounty &&
-                                    `${props.post.bounty} MATIC`}
+                        <div
+                            className="cursor-pointer p-2 rounded hover:bg-opacity-80"
+                            onClick={() => handleSelected()}
+                        >
+                            {" "}
+                            {/* <p className="text-xs font-medium text-gray-500"> */}
+                            <p className="text-sm text-stone-400 font-medium">
+                                {props.post.posted && props.post.posted}
                             </p>
-                            <ul className="flex space-x-1 overflow-scroll max-w-64">
-                                {props.post.tags &&
-                                    props.post.tags.map((tag: string) => {
-                                        return (
-                                            <strong className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-[10px] tracking-wide">
-                                                {tag}
-                                            </strong>
-                                        );
-                                    })}
-                            </ul>
+                            <h5 className="mt-2 text-xl font-bold ">
+                                {/* <h5 className="mt-2 text-xl font-bold text-white"> */}
+                                {props.post.text}
+                            </h5>
+                            <p className="text-sm text-stone-400 font-medium">
+                                {props.post.author}
+                            </p>
+                            <div className="flex items-center justify-between mt-6">
+                                <p className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
+                                    {props.post.bounty &&
+                                        `${props.post.bounty} MATIC`}
+                                </p>
+                                <ul className="flex space-x-1 overflow-scroll max-w-64">
+                                    {props.post.tags &&
+                                        props.post.tags.map((tag: string) => {
+                                            return (
+                                                <strong className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-[10px] tracking-wide">
+                                                    {tag}
+                                                </strong>
+                                            );
+                                        })}
+                                </ul>
+                            </div>
                         </div>
+
                         <div className="flex w-full justify-between items-center mt-3 space-x-2">
                             <div
-                                className="text-stone-400 text-sm outline px-2 py-1"
+                                className={`cursor-pointer text-sm outline px-2 py-1 hover:bg-opacity-80 ${shakasArr.some((shaka) => shaka.name === getUser().displayName)? `bg-orange-500 text-white` : `text-stone-600`}`}
                                 onClick={() => handleShaka()}
                             >
                                 🤙 +
