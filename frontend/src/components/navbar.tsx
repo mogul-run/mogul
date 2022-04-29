@@ -52,7 +52,7 @@ function classNames(...classes: any[]) {
 }
 
 export function User(props: any) {
-    const { getUser, getWallet, handleLogout } = useAuth();
+    const { getUser, getWallet, signOut } = useAuth();
     return (
         <div>
             {getUser() ? (
@@ -109,7 +109,7 @@ export function User(props: any) {
                                                     : "text-gray-700",
                                                 "block w-full text-left px-4 py-2 text-sm"
                                             )}
-                                            onClick={() => handleLogout()}
+                                            onClick={() => signOut()}
                                         >
                                             Sign out
                                         </button>
@@ -120,14 +120,12 @@ export function User(props: any) {
                     </Transition>
                 </Menu>
             ) : (
-                <div className="button-primary">
                     <Link
                         to="/login"
-                        className="text-white hover:text-slate-600"
+                        className="button-primary"
                     >
                         login
                     </Link>
-                </div>
             )}
         </div>
     );

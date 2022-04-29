@@ -16,13 +16,10 @@ export function TextPost(props: any) {
     function handleSelected() {
         setSelected(!selected);
     }
-    function handleClose() {
-        setSelected(false);
-    }
 
     function handleShaka() {
         const user_match = shakasArr.find(
-            (shaka) => (shaka.name = getUser().displayName)
+            (shaka) => (shaka.name === getUser().uid)
         );
 
         if (user_match) {
@@ -35,22 +32,10 @@ export function TextPost(props: any) {
                 console.log("error: ", error);
             });
 
-            remove(
-                ref(db, `users/${getUser().uid}/shakas/${props.post.key}`)
-            ).catch((error) => {
-                console.log("error: ", error);
-            });
         } else {
             push(
                 ref(db, `the-mogul-run/posts/${props.post.key}/shakas/`),
-                getUser().displayName
-            ).catch((error) => {
-                console.log("error: ", error);
-            });
-
-            push(
-                ref(db, `users/${getUser().uid}/shakas/`),
-                props.post.key
+                getUser().uid
             ).catch((error) => {
                 console.log("error: ", error);
             });
@@ -113,12 +98,12 @@ ${
 
                         <div className="flex w-full justify-between items-center mt-3 space-x-2">
                             <div
-                                className={`cursor-pointer text-sm outline px-2 py-1 hover:bg-opacity-80 ${shakasArr.some((shaka) => shaka.name === getUser().displayName)? `bg-orange-500 text-white` : `text-stone-600`}`}
+                                className={`cursor-pointer text-sm outline px-2 py-1 hover:bg-opacity-80 ${shakasArr.some((shaka) => shaka.name === getUser()?.uid)? `bg-orange-500 text-white` : `text-stone-600`}`}
                                 onClick={() => handleShaka()}
                             >
                                 🤙 +
                                 {props.post.shakas
-                                    ? toArray(props.post.shakas).length
+                                    ? shakasArr.length
                                     : "0"}
                             </div>
                             <div
