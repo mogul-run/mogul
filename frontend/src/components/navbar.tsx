@@ -61,7 +61,7 @@ export function User(props: any) {
                         <Menu.Button className="login-button inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 ">
                             {getUser().displayName && getUser().displayName}
                             {getWallet() && (
-                                <div className="bg-gray-200 rounded-lg px-2 mx-2">
+                                <div className="display-wallet bg-gray-200 rounded-lg px-2 mx-2">
                                     {" "}
                                     {getWallet().substring(0, 6)}{" "}
                                 </div>

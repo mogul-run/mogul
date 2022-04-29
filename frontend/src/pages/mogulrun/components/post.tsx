@@ -17,18 +17,14 @@ export function TextPost(props: any) {
         setSelected(false);
     }
 
-    useEffect(() => {
-        console.log(props.post);
-    }, []);
-
     return (
         <div
             ref={ref}
             className={` 
 ${
     props.post.text.length > 50
-        ? `col-span-4 row-span-2`
-        : `col-span-3 row-span-1`
+        ? `md:col-span-4 sm:col-span-1 row-span-2`
+        : `md:col-span-3 sm:col-span-1 row-span-1`
 }
         `}
         >
@@ -40,11 +36,11 @@ ${
                 }
             `}
             >
-                <div className="flex flex-col justify-end h-full p-6 bg-stone-200 sm:p-8 rounded-xl hover:bg-opacity-90">
-                    <div
-                        className="mt-10 cursor-pointer"
-                        onClick={() => handleSelected()}
-                    >
+                <div
+                    className="flex flex-col cursor-pointer justify-end h-full p-4  bg-stone-200 sm:p-8 rounded-xl hover:bg-opacity-90"
+                    onClick={() => handleSelected()}
+                >
+                    <div className="md:mt-10 sm:mt-6">
                         {/* <p className="text-xs font-medium text-gray-500"> */}
                         <p className="text-sm text-stone-400 font-medium">
                             {props.post.posted && props.post.posted}

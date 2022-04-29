@@ -148,6 +148,9 @@ code {
         margin: 0px;
         justify-content: space-between;
     }
+    .topbar {
+        margin: 10px;
+    }
 }
     /* ... */
 }

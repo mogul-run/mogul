@@ -7,7 +7,6 @@ import { useAuth } from "../../context/authContext";
 import { TextPost } from "./components/post";
 import "./mogulrun.css";
 
-
 const tags = [
     "surf",
     "climb",
@@ -30,7 +29,7 @@ function MogulRun() {
                     <User />
                 </div>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center p-2">
                 <Content />
             </div>
         </div>
@@ -40,6 +39,22 @@ function MogulRun() {
 function Content() {
     const [openPost, setOpenPost] = useState(false);
     const [posts, setPosts] = useState<any[]>([]);
+    const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
+    const [selectedTags, setSelectedTags] = useState<String[]>([]);
+
+    const handleTags = (value: string) => {
+        if (selectedTags.includes(value)) {
+            setSelectedTags(
+                selectedTags.filter((v) => {
+                    if (v != value) {
+                        return v;
+                    }
+                })
+            );
+        } else {
+            setSelectedTags([...selectedTags, value]);
+        }
+    };
 
     const getPosts = () => {
         const db = getDatabase();
@@ -48,16 +63,15 @@ function Content() {
             (snapshot) => {
                 if (snapshot.exists()) {
                     // .reverse() to display posts with most recent on top
-                    let new_posts:any[] = []; 
+                    let new_posts: any[] = [];
                     snapshot.forEach((data: any) => {
                         let new_post = data.val();
-                        new_post.key = data.key
-                        new_post.comments = toArray(new_post.comments)
+                        new_post.key = data.key;
+                        new_post.comments = toArray(new_post.comments);
                         new_posts.push(new_post);
-                    }
-
-                    )
+                    });
                     setPosts(new_posts.reverse());
+                    setFilteredPosts(new_posts);
                 }
             },
             {
@@ -70,30 +84,71 @@ function Content() {
         getPosts();
     }, []);
 
+    useEffect(() => {
+        if (selectedTags.length > 0) {
+            let filtered_posts: any[] = [];
+
+            selectedTags.forEach((tag) => {
+                let tag_post = posts.filter((post) => post.tags.includes(tag))
+                filtered_posts.push(...tag_post);
+            });
+            setFilteredPosts(filtered_posts);
+        } else {
+            setFilteredPosts(posts);
+        }
+    }, [selectedTags]);
+
     function handlePost() {
         setOpenPost(!openPost);
     }
 
     return (
         <div className="mr-content space-y-2 ">
-            <div className="flex flex-col border-2 p-1 rounded-lg border-dashed border-orange-400">
-                <div className="flex justify-between p-2">
+            <div className="flex flex-col md:border-2 md:p-1 rounded-lg border-dashed border-orange-400">
+                <div className="flex space-x-1 justify-between md:p-2">
                     {" "}
                     <div
-                        className="button-primary font-bold text-sm flex h-10 items-center"
+                        className="button-primary font-bold text-sm flex h-10 items-center md:px-3"
                         onClick={() => handlePost()}
                     >
-                        Post Content{" "}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                            />
+                        </svg>
                     </div>
                     <div className="flex space-x-2 items-center  ">
-                        <div className="font-bold text-sm">Filter:</div>
+                        <div className="font-bold text-sm ">Filter:</div>
                         <div className="flex items-center tags h-10 space-x-1 ">
                             {tags.map((tag) => {
-                                return (
-                                    <strong className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide">
-                                        {tag}
-                                    </strong>
-                                );
+                                if (selectedTags.includes(tag)) {
+                                    return (
+                                        <strong
+                                            onClick={() => handleTags(tag)}
+                                            className="cursor-pointer border text-white bg-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
+                                        >
+                                            {tag}
+                                        </strong>
+                                    );
+                                } else {
+                                    return (
+                                        <strong
+                                            onClick={() => handleTags(tag)}
+                                            className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
+                                        >
+                                            {tag}
+                                        </strong>
+                                    );
+                                }
                             })}
                         </div>
                     </div>
@@ -101,8 +156,8 @@ function Content() {
 
                 {openPost && <PostContent setOpenPost={setOpenPost} />}
             </div>
-            <div className="grid gap-4 grid-cols-7 grid-flow-rows auto-rows-max">
-                {posts.map((post) => {
+            <div className="grid gap-4 md:grid-cols-7 sm:grid-cols-1 grid-flow-row-dense auto-rows-max">
+                {filteredPosts.map((post) => {
                     switch (post.type) {
                         case "text":
                             return <TextPost post={post} />;
@@ -140,7 +195,6 @@ function PostContent(props: any) {
                 })
             );
         } else {
-            console.log("add", value);
             setSelectedTags([...selectedTags, value]);
         }
     };
@@ -176,7 +230,6 @@ function PostContent(props: any) {
             bounty: bounty,
             comments: [],
         };
-        console.log("submitting post: ", newPost);
         if (props.walletAddr) {
             /// TEMP: adding wallet addr to post for tipping
             newPost.walletAddr = props.walletAddr;
@@ -274,6 +327,5 @@ function PostContent(props: any) {
         </div>
     );
 }
-
 
 export default MogulRun;

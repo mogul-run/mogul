@@ -11,18 +11,23 @@
     max-width: 450px;
     overflow-x: scroll;
     scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
-.tags::-webkit-scrollbar { /* WebKit */
+.tags::-webkit-scrollbar {
+    /* WebKit */
     width: 0;
     height: 0;
 }
 
-
 @media only screen and (max-width: 800px) {
     .content {
-        width: 100%;    
+        width: 100%;
         padding: 50px;
     }
+    .mr-content {
+        width: 100%;
+    }
+    .tags {
+        max-width: 250px;
+    }
 }
-

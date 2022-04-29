@@ -53,6 +53,7 @@ contract PostBounty {
         public
         onlyAuthor
     {
+        // need to add validation that hunters to be paid are in the hunters[] 
         uint split = address(this).balance/hunters.length;
         for (uint256 i = 0; i < paid_hunters.length; i++) {
             paid_hunters[i].transfer(split);

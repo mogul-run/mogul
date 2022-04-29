@@ -100,3 +100,9 @@
         margin-right: 15px;
     }
 }
+
+@media only screen and (max-width: 648px) {
+    .display-wallet {
+        display: none;
+    }
+}
