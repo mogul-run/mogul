@@ -47,7 +47,7 @@ function Content() {
         if (selectedTags.includes(value)) {
             setSelectedTags(
                 selectedTags.filter((v) => {
-                    if (v != value) {
+                    if (v !== value) {
                         return v;
                     }
                 })
@@ -190,7 +190,7 @@ function PostContent(props: any) {
         if (selectedTags.includes(value)) {
             setSelectedTags(
                 selectedTags.filter((v) => {
-                    if (v != value) {
+                    if (v !== value) {
                         return v;
                     }
                 })

@@ -98,7 +98,7 @@ ${
 
                         <div className="flex w-full justify-between items-center mt-3 space-x-2">
                             <div
-                                className={`cursor-pointer text-sm outline px-2 py-1 hover:bg-opacity-80 ${shakasArr.some((shaka) => shaka.name === getUser()?.uid)? `bg-orange-500 text-white` : `text-stone-600`}`}
+                                className={`hover:scale-110 hover:-rotate-2 cursor-pointer text-sm outline px-2 py-1 hover:bg-opacity-80 ${shakasArr.some((shaka) => shaka.name === getUser()?.uid)? `bg-orange-500 text-white` : `text-stone-600`}`}
                                 onClick={() => handleShaka()}
                             >
                                 🤙 +
