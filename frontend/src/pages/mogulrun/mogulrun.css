@@ -8,7 +8,7 @@
 }
 
 .tags {
-    max-width: 450px;
+    max-width: 500px;
     overflow-x: scroll;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */

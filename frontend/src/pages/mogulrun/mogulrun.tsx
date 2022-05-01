@@ -90,7 +90,7 @@ function Content() {
             let filtered_posts: any[] = [];
 
             selectedTags.forEach((tag) => {
-                let tag_post = posts.filter((post) => post.tags.includes(tag))
+                let tag_post = posts.filter((post) => post.tags.includes(tag));
                 filtered_posts.push(...tag_post);
             });
             setFilteredPosts(filtered_posts);
@@ -106,29 +106,10 @@ function Content() {
     return (
         <div className="mr-content space-y-2 ">
             <div className="flex flex-col md:border-2 md:p-1 rounded-lg border-dashed border-orange-400">
-                <div className="flex space-x-1 justify-between md:p-2">
+                <div className="flex flex-row-reverse space-x-1 justify-between items-center md:p-2">
                     {" "}
-                    <div
-                        className="button-primary font-bold text-sm flex h-10 items-center md:px-3"
-                        onClick={() => handlePost()}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                            />
-                        </svg>
-                    </div>
-                    <div className="flex space-x-2 items-center  ">
-                        <div className="font-bold text-sm ">Filter:</div>
+                    <div className="space-x-2 items-center  ">
+                        <div className="font-bold text-sm text-stone-500 ">Filter:</div>
                         <div className="flex items-center tags h-10 space-x-1 ">
                             {tags.map((tag) => {
                                 if (selectedTags.includes(tag)) {
@@ -153,6 +134,27 @@ function Content() {
                             })}
                         </div>
                     </div>
+                    {getUser() && (
+                        <div
+                            className="button-primary font-bold text-sm flex h-10 items-center md:px-3"
+                            onClick={() => handlePost()}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                />
+                            </svg>
+                        </div>
+                    )}
                 </div>
 
                 {openPost && <PostContent setOpenPost={setOpenPost} />}
