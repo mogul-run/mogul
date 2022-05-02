@@ -100,6 +100,11 @@ ul {
     }
     .chalet-top{
         flex-direction: column;
+        /* flex-direction: row-rever */
+    }
+    .auth-button {
+        display: flex;
+        justify-content: end;
     }
     .chalet-top{
         max-width: 100%;
