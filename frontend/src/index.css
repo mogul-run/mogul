@@ -55,7 +55,6 @@ code {
     }
 
     .button-ghost {
-        background-color: #fbf9f6;
         color: #00acc1;
         width: max-content;
         border-radius: theme("borderRadius.lg");
@@ -63,11 +62,7 @@ code {
     }
 
     .button-ghost:hover {
-        outline: 0.5px solid #fbf9f6;
-        background-color: theme("colors.gray.400");
-        border-radius: theme("borderRadius.lg");
-        padding: theme("spacing.1") theme("spacing.2");
-        color: white;
+        outline: 1px solid theme("colors.mblue");
     }
 
     .button-disabled {
@@ -141,6 +136,11 @@ code {
         min-height: 60px;
         align-items: center;
         justify-content: space-between;
+    }
+    .wallet {
+        background-color: theme("colors.stone.300");
+        padding: 0px theme("spacing.2");
+        border-radius: theme("borderRadius.md");
     }
 
 @media only screen and (max-width: 800px) {

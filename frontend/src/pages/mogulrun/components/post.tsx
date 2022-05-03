@@ -1,6 +1,7 @@
 import { getDatabase, push, ref, remove } from "firebase/database";
 import { toArray } from "lodash";
 import { useEffect, useRef, useState } from "react";
+import UserPopup from "../../../components/userPopup";
 import { useAuth } from "../../../context/authContext";
 
 export function TextPost(props: any) {
@@ -9,8 +10,8 @@ export function TextPost(props: any) {
     const db = getDatabase();
     const shakasArr = props.post.shakas
         ? Object.keys(props.post.shakas).map((shaka) => {
-                return { id: shaka, name: props.post.shakas[shaka] };
-            })
+              return { id: shaka, name: props.post.shakas[shaka] };
+          })
         : [];
 
     function handleSelected() {
@@ -19,7 +20,7 @@ export function TextPost(props: any) {
 
     function handleShaka() {
         const user_match = shakasArr.find(
-            (shaka) => (shaka.name === getUser().uid)
+            (shaka) => shaka.name === getUser().uid
         );
 
         if (user_match) {
@@ -31,7 +32,6 @@ export function TextPost(props: any) {
             ).catch((error) => {
                 console.log("error: ", error);
             });
-
         } else {
             push(
                 ref(db, `the-mogul-run/posts/${props.post.key}/shakas/`),
@@ -42,16 +42,25 @@ export function TextPost(props: any) {
         }
     }
 
+    function returnColSpan() {
+        if (props.post.bounty) {
+            // bounty posts should be full width
+            return "sm:col-span-1 md:col-span-7";
+        } else {
+            if (props.post.text.length > 70) {
+                return "md:col-span-5 sm:col-span-1 row-span-2";
+            }
+            if (props.post.text.length > 35) {
+                return "md:col-span-4 sm:col-span-1 row-span-2";
+            }
+            else {
+                return `md:col-span-3 sm:col-span-1 row-span-1`;
+            }
+        }
+    }
+
     return (
-        <div
-            className={` 
-${
-    props.post.text.length > 50
-        ? `md:col-span-4 sm:col-span-1 row-span-2`
-        : `md:col-span-3 sm:col-span-1 row-span-1`
-}
-        `}
-        >
+        <div className={returnColSpan()}>
             <div
                 className={`p-1 shadow-xl rounded-2xl ${
                     props.post.bounty
@@ -60,8 +69,8 @@ ${
                 }
             `}
             >
-                <div className="flex flex-col justify-end h-full p-4  bg-stone-200 sm:p-8 rounded-xl hover:bg-opacity-90">
-                    <div className="md:mt-10 sm:mt-6">
+                <div className="flex flex-col justify-end h-full bg-stone-200 rounded-xl hover:bg-opacity-90">
+                    <div className="md:mt-10 sm:mt-6 sm:pt-8 p-4">
                         <div
                             className="cursor-pointer p-2 rounded hover:bg-opacity-80"
                             onClick={() => handleSelected()}
@@ -75,9 +84,20 @@ ${
                                 {/* <h5 className="mt-2 text-xl font-bold text-white"> */}
                                 {props.post.text}
                             </h5>
-                            <p className="text-sm text-stone-400 font-medium">
-                                {props.post.author}
-                            </p>
+                            <div className="flex flex-row items-center mt-2">
+                                <img
+                                    className="object-cover w-6 h-6 rounded-full mr-2.5"
+                                    src={
+                                        getUser().photoURL
+                                            ? getUser().photoURL
+                                            : "https://www.hyperui.dev/photos/man-4.jpeg"
+                                    }
+                                    alt="profile pic"
+                                />
+                                <p className="text-sm text-stone-400 font-medium">
+                                    {props.post.author.displayName}
+                                </p>
+                            </div>
                             <div className="flex items-center justify-between mt-6">
                                 <p className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
                                     {props.post.bounty &&
@@ -98,24 +118,63 @@ ${
 
                         <div className="flex w-full justify-between items-center mt-3 space-x-2">
                             <div
-                                className={`hover:scale-110 hover:-rotate-2 cursor-pointer text-sm outline px-2 py-1 hover:bg-opacity-80 ${shakasArr.some((shaka) => shaka.name === getUser()?.uid)? `bg-orange-500 text-white` : `text-stone-600`}`}
+                                className={`hover:scale-110 hover:-rotate-2 cursor-pointer text-sm outline px-2 py-1 hover:bg-opacity-80 ${
+                                    shakasArr.some(
+                                        (shaka) => shaka.name === getUser()?.uid
+                                    )
+                                        ? `bg-orange-500 text-white`
+                                        : `text-stone-600`
+                                }`}
                                 onClick={() => handleShaka()}
                             >
-                                🤙 +
-                                {props.post.shakas
-                                    ? shakasArr.length
-                                    : "0"}
+                                🤙 +{props.post.shakas ? shakasArr.length : "0"}
                             </div>
                             <div
                                 onClick={() => handleSelected()}
-                                className="text-sm text-stone-400 cursor-pointer hover:text-stone-600 decoration-solid"
+                                className="flex items-center text-sm text-stone-400 cursor-pointer hover:text-stone-600 decoration-solid"
                             >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-4 h-4 mr-1"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+                                    />
+                                </svg>
                                 {props.post.comments
                                     ? props.post.comments.length
                                     : "0"}{" "}
                                 comments
                             </div>
                         </div>
+                    </div>
+                    <div className="flex justify-end">
+                        <strong className="inline-flex items-center gap-1 rounded-tl-xl rounded-br-xl bg-green-600 py-1.5 px-3 text-white">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-4 h-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                                />
+                            </svg>
+
+                            <span className="text-[10px] font-medium sm:text-xs">
+                                Solved!
+                            </span>
+                        </strong>
                     </div>
                 </div>
                 {selected && (
@@ -148,7 +207,9 @@ function Comments(props: any) {
                 posted: formatted_date,
                 text: comment,
                 author: {
+                    uid: getUser().uid,
                     displayName: getUser().displayName,
+                    photoURL: getUser().photoURL,
                     walletAddr: getWallet(),
                 },
             };
@@ -195,17 +256,10 @@ function Comments(props: any) {
 function Comment(props: any) {
     return (
         <div className="flex flex-col space-x-2 ">
-            <div className="inline-flex items-center bg-stone-200 px-5 py-1.5 rounded-full">
-                <img
-                    className="object-cover w-6 h-6 rounded-full -ml-2.5 mr-2.5"
-                    src="https://www.hyperui.dev/photos/man-4.jpeg"
-                    alt="Simon Lewis"
-                />
+            <div className="inline-flex items-center bg-stone-200 px-5 py-1.5 rounded-full space-x-2 text-sm">
+                <UserPopup user={props.comment.author} />
 
-                <span className="text-sm ">
-                    <b> {props.comment.author.displayName}:</b>{" "}
-                    {props.comment.text}
-                </span>
+                <span>{props.comment.text}</span>
             </div>{" "}
         </div>
     );

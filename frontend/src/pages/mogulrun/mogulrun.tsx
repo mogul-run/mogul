@@ -109,7 +109,7 @@ function Content() {
                 <div className="flex flex-row-reverse space-x-1 justify-between items-center md:p-2">
                     {" "}
                     <div className="space-x-2 items-center  ">
-                        <div className="font-bold text-sm text-stone-500 ">Filter:</div>
+                        <div className="font-bold text-sm text-stone-500 ">Filter by tag:</div>
                         <div className="flex items-center tags h-10 space-x-1 ">
                             {tags.map((tag) => {
                                 if (selectedTags.includes(tag)) {
@@ -159,7 +159,7 @@ function Content() {
 
                 {openPost && <PostContent setOpenPost={setOpenPost} />}
             </div>
-            <div className="grid gap-4 md:grid-cols-7 sm:grid-cols-1 grid-flow-row-dense auto-rows-max">
+            <div className="grid gap-4 place-content-stretch md:grid-cols-7 sm:grid-cols-1 grid-flow-row-dense auto-rows-max">
                 {filteredPosts.map((post) => {
                     switch (post.type) {
                         case "text":
@@ -223,19 +223,24 @@ function PostContent(props: any) {
         // for now we'll just add to the global list of posts
         const date = new Date(Date.now()).toString();
         const formatted_date = date.split(" GMT")[0];
+        const author = {
+            displayName: getUser().displayName,
+            walletAddr: getWallet(),
+            uid: getUser().uid,
+
+        }
         const newPost = {
             posted: formatted_date,
             type: "text",
             text: post,
-            author: getUser().displayName,
-            walletAddr: getWallet(),
+            author: author,
             tags: selectedTags,
             bounty: bounty,
             comments: [],
         };
         if (props.walletAddr) {
             /// TEMP: adding wallet addr to post for tipping
-            newPost.walletAddr = props.walletAddr;
+            newPost.author.walletAddr = props.walletAddr;
         }
         push(ref(db, `the-mogul-run/posts`), newPost)
             .then(props.setOpenPost(false))
