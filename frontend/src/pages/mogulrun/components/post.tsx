@@ -84,7 +84,7 @@ export function TextPost(props: any) {
                                 {/* <h5 className="mt-2 text-xl font-bold text-white"> */}
                                 {props.post.text}
                             </h5>
-                            <div className="flex flex-row items-center mt-2">
+                            <div className="flex flex-row items-center mt-2 text-stone-500 font-normal">
                                 <UserPopup user={props.post.author}/>
                             </div>
                             <div className="flex items-center justify-between mt-6">
@@ -107,7 +107,7 @@ export function TextPost(props: any) {
 
                         <div className="flex w-full justify-between items-center mt-3 space-x-2">
                             <div
-                                className={`hover:scale-110 hover:-rotate-2 cursor-pointer text-sm outline px-2 py-1 hover:bg-opacity-80 ${
+                                className={`hover:scale-110 hover:-rotate-2 cursor-pointer text-sm outline outline-stone-300 px-2 py-1 hover:bg-opacity-80 ${
                                     shakasArr.some(
                                         (shaka) => shaka.name === getUser()?.uid
                                     )

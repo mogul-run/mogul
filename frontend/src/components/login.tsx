@@ -35,6 +35,7 @@ function Login(props: any) {
     useEffect(() => {
         if (getUser()) {
             navigate("/");
+            window.location.reload();
         }
     });
 
