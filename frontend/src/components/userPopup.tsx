@@ -7,7 +7,6 @@ function UserPopup(props: any) {
     };
 
     const handleClose = (event: any) => {
-        console.log(event.target);
         if ("close-modal" === event.target.id) {
             setOpen(false);
         }
@@ -17,7 +16,7 @@ function UserPopup(props: any) {
         <div>
             {open && <Popup handleClose={handleClose} user={props.user} />}
             <div
-                className="cursor-pointer flex items-center rounded-full hover:bg-morange hover:text-stone-100 py-1 -mx-2 px-2"
+                className="cursor-pointer flex items-center rounded-full hover:bg-mblue hover:text-stone-100 py-1 -mx-2 px-2"
                 onClick={(e) => handleOpen(e)}
             >
                 <img
@@ -69,7 +68,7 @@ function Popup(props: any) {
                         />
                     </svg>
                 </button>
-                <div className="flex items-center mx-10 pointer-events-none">
+                <div className="flex items-center mx-10">
                     <div className="flex flex-col items-center space-y-2">
                         <div className="grid grid-cols-3 gap-4 justify-evenly">
                             <div className="flex flex-col items-center justify-center">
@@ -112,6 +111,7 @@ function Popup(props: any) {
                                             href={`https://mumbai.polygonscan.com/address/${props.user.walletAddr}`}
                                             target="__blank"
                                             className="button-ghost"
+                                            onClick={()=> console.log("clicked")}
                                         >
                                             View on Polygonscan
                                         </a>

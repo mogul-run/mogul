@@ -227,7 +227,7 @@ function PostContent(props: any) {
             displayName: getUser().displayName,
             walletAddr: getWallet(),
             uid: getUser().uid,
-
+            photoURL: getUser().photoURL,
         }
         const newPost = {
             posted: formatted_date,
