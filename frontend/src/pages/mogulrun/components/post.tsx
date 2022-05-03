@@ -85,18 +85,7 @@ export function TextPost(props: any) {
                                 {props.post.text}
                             </h5>
                             <div className="flex flex-row items-center mt-2">
-                                <img
-                                    className="object-cover w-6 h-6 rounded-full mr-2.5"
-                                    src={
-                                        getUser().photoURL
-                                            ? getUser().photoURL
-                                            : "https://www.hyperui.dev/photos/man-4.jpeg"
-                                    }
-                                    alt="profile pic"
-                                />
-                                <p className="text-sm text-stone-400 font-medium">
-                                    {props.post.author.displayName}
-                                </p>
+                                <UserPopup user={props.post.author}/>
                             </div>
                             <div className="flex items-center justify-between mt-6">
                                 <p className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
@@ -256,7 +245,7 @@ function Comments(props: any) {
 function Comment(props: any) {
     return (
         <div className="flex flex-col space-x-2 ">
-            <div className="inline-flex items-center bg-stone-200 px-5 py-1.5 rounded-full space-x-2 text-sm">
+            <div className="inline-flex items-center bg-stone-200 px-5 py-1.5 rounded-full space-x-3 text-sm">
                 <UserPopup user={props.comment.author} />
 
                 <span>{props.comment.text}</span>
