@@ -94,7 +94,7 @@ export function User(props: any) {
                                 <Menu.Item>
                                     {({ active }) => (
                                         <Link
-                                            to="/account-settings"
+                                            to="/settings"
                                             className={classNames(
                                                 active
                                                     ? "bg-gray-100 text-gray-900"

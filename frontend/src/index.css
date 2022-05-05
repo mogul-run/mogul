@@ -153,9 +153,10 @@ code {
     }
 
     .sidebar-link:hover {
-        color: theme("colors.stone.100");
+        color: theme("colors.stone.200");
         background-color: theme("colors.mblue");
         box-shadow: theme("boxShadow.md");
+        font-weight: bold;
     }
 
     @media only screen and (max-width: 800px) {

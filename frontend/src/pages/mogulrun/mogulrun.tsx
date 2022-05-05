@@ -104,7 +104,7 @@ function Content() {
     }
 
     return (
-        <div className="mr-content space-y-2 ">
+        <div className="mr-content w-full p-2 space-y-2 ">
             <div className="flex flex-col md:border-2 md:p-1 rounded-lg border-dashed border-orange-400">
                 <div className="flex flex-row-reverse space-x-1 justify-between items-center md:p-2">
                     {" "}

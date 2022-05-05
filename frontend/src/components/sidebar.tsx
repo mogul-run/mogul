@@ -1,16 +1,64 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { User } from "./navbar";
+import UserPopup from "./userPopup";
 
-function Sidebar() {
+function Sidebar(props: any) {
     const { getUser } = useAuth();
     return (
-        <div className="w-60 h-full shadow-inner bg-stone-200 absolute">
+        <div className="w-60 h-full shadow-inner bg-stone-200 fixed">
             <div className="flex flex-col h-full justify-between items-start">
                 <div className="flex flex-col space-y-3">
-                    <div className="pt-4 pb-2 pr-2">
-                        <User />
+                    <div className="flex justify-between items-center">
+                        <div className="p-2 m-2">
+                            <UserPopup user={getUser()} />
+                        </div>
+                        <div
+                            className="mr-2 cursor-pointer hover:bg-stone-300 rounded"
+                            onClick={props.handleOpen}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6 p-1"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </div>
                     </div>
-                    <div className="pt-10 space-y-6">
+
+                    <div className="space-y-3">
+                        <div className="relative">
+                            <input
+                                className="h-8 m-1 px-2 pr-14 text-sm bg-stone-100 placeholder-stone-300 border-stone-200 rounded-lg focus:z-10"
+                                placeholder="Search"
+                                type="text"
+                            />
+
+                            <button
+                                className="absolute inset-y-0 right-2 p-2 mr-px text-stone-400 rounded-r-lg"
+                                type="submit"
+                            >
+                                <svg
+                                    className="w-5 h-5"
+                                    fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        clip-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        fill-rule="evenodd"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </div>
                         <div>
                             <div className="sidebar-link">
                                 <svg
@@ -29,6 +77,25 @@ function Sidebar() {
                                 </svg>
                                 <div className="ml-2">Home</div>
                             </div>
+                            <Link to="/questions" className="nostyle">
+                                <div className="sidebar-link">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6 p-1"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                                        />
+                                    </svg>
+                                    <div className="ml-2">Question Board</div>
+                                </div>
+                            </Link>
                             <div className="sidebar-link">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -90,10 +157,31 @@ function Sidebar() {
                         </div>
                     </div>
                 </div>
-                <div className="text-center bottom-0">
-                    <p className="py-2 text-sm text-gray-700">
-                        tailwind-elements.com
-                    </p>
+                <div className="text-center w-full">
+                    <Link to="/settings" className="nostyle">
+                        <div className="sidebar-link">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6 p-1"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                                />
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                            </svg>
+                            <div className="ml-2">Settings</div>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>
