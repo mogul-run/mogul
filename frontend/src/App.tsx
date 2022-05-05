@@ -134,7 +134,7 @@ function App() {
                 <Route
                     path="/"
                     element={
-                        getUser ? (
+                        getUser() ? (
                             <WithSidebar>
                                 <MogulPad />
                             </WithSidebar>

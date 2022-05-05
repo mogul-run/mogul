@@ -60,6 +60,7 @@ function Sidebar(props: any) {
                             </button>
                         </div>
                         <div>
+                            <Link to="/" className="nostyle">
                             <div className="sidebar-link">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -77,6 +78,7 @@ function Sidebar(props: any) {
                                 </svg>
                                 <div className="ml-2">Home</div>
                             </div>
+                            </Link>
                             <Link to="/questions" className="nostyle">
                                 <div className="sidebar-link">
                                     <svg

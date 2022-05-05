@@ -7,7 +7,9 @@ function MogulPad(props: any) {
 }
 
 function Content() {
-    return <div>content</div>;
+    return <div>
+        
+        content</div>;
 }
 
 export default MogulPad;
