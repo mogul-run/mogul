@@ -16,9 +16,9 @@ export default function Navbar(props: any) {
             <div className="navbuttons">
                 <div className="navlinks">
                     {/* <div className="navlink" onClick={scrollToContent}>About</div> */}
-                    <Link to="/feed " className="nostyle">
+                    {/* <Link to="/feed " className="nostyle">
                         {getUser() && <div className="navlink">feed</div>}
-                    </Link>
+                    </Link> */}
                     {/* <a
                         href="https://discord.gg/8AXyshRRVM"
                         target="__blank"

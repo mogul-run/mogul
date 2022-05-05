@@ -5,17 +5,18 @@ import Camp4 from "../img/camp4.jpg";
 import NorthShore from "../img/north-shore.jpg";
 import { Link } from "react-router-dom";
 import "./homepage.css";
+import { useAuth } from "../context/authContext";
 
 function HomePage(props: any) {
     return (
         <div className="homepage">
-            <div className="content">
-                <ContentUno />
-                <ContentDos />
-                <ContentTres />
-                <Content4 />
-                <Content5 />
-            </div>
+                <div className="content">
+                    <ContentUno />
+                    <ContentDos />
+                    <ContentTres />
+                    <Content4 />
+                    <Content5 />
+                </div>
         </div>
     );
 }

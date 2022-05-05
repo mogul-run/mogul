@@ -142,15 +142,30 @@ code {
         padding: 0px theme("spacing.2");
         border-radius: theme("borderRadius.md");
     }
+    .sidebar-link {
+        cursor: pointer;
+        padding: theme("spacing.3");
+        border-radius: 0  theme("borderRadius.lg")  theme("borderRadius.lg") 0;
+        color: theme("colors.stone.500");
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+    }
 
-@media only screen and (max-width: 800px) {
-    .navbar {
-        margin: 0px;
-        justify-content: space-between;
+    .sidebar-link:hover {
+        color: theme("colors.stone.100");
+        background-color: theme("colors.mblue");
+        box-shadow: theme("boxShadow.md");
     }
-    .topbar {
-        margin: 10px;
+
+    @media only screen and (max-width: 800px) {
+        .navbar {
+            margin: 0px;
+            justify-content: space-between;
+        }
+        .topbar {
+            margin: 10px;
+        }
     }
-}
     /* ... */
 }

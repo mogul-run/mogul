@@ -5,6 +5,7 @@ import HomePage from "./pages/homepage";
 import TestSale from "./pages/test-sale";
 import TGOB from "./pages/TGOB";
 import Navbar from "./components/navbar";
+import Sidebar from "./components/sidebar";
 import Footer from "./components/footer";
 import Feed from "./pages/feed";
 import ScrollToTop from "./utils/scrollToTop";
@@ -13,7 +14,39 @@ import Login from "./components/login";
 import { useAuth } from "./context/authContext";
 import { NotFound } from "./pages/notFound";
 import AccountSettings from "./pages/account-settings";
+import MogulPad from "./pages/mogulpad";
 
+function WithNavFooter({
+    children,
+}: {
+    children: React.ReactNode | React.ReactNode[];
+}) {
+    const { getUser, signOut, getWallet } = useAuth();
+    return (
+        <div>
+            <Navbar
+                handleLogout={signOut}
+                user={getUser()}
+                walletAddr={getWallet()}
+            />
+            {children}
+            <Footer />
+        </div>
+    );
+}
+function WithSidebar({
+    children,
+}: {
+    children: React.ReactNode | React.ReactNode[];
+}) {
+    const { getUser, signOut, getWallet } = useAuth();
+    return (
+        <div>
+            <Sidebar />
+            {children}
+        </div>
+    );
+}
 
 function App() {
     const { getUser, signOut, getWallet } = useAuth();
@@ -21,44 +54,66 @@ function App() {
     return (
         <div className="app">
             <ScrollToTop />
-            <Navbar
-                handleLogout={signOut}
-                user={getUser()}
-                walletAddr={getWallet()}
-            />
             <Routes>
-                <Route
-                    path="/test-sale"
-                    element={<TestSale userAccount={getWallet()} />}
-                />
                 {/* <Route path="/nyc26" element={<NYC26 />} /> */}
-                <Route path="/tgob" element={<TGOB />} />
-                <Route path="/team" element={<Team />} />
-                <Route path="/login" element={<Login user={getUser()} />} />
                 <Route
-                    path="/account-settings"
+                    path="/tgob"
                     element={
-                        <AccountSettings
-                            user={getUser()}
-                            walletAddr={getWallet()}
-                        />
+                        <WithNavFooter>
+                            <TGOB />
+                        </WithNavFooter>
                     }
                 />
                 <Route
-                    path="/feed"
-                    element={<Feed user={getUser()} walletAddr={getWallet()} />}
+                    path="/team"
+                    element={
+                        <WithNavFooter>
+                            <Team />
+                        </WithNavFooter>
+                    }
+                />
+                <Route
+                    path="/login"
+                    element={
+                        <WithNavFooter>
+                            <Login user={getUser()} />
+                        </WithNavFooter>
+                    }
+                />
+                <Route
+                    path="/account-settings"
+                    element={
+                        <WithNavFooter>
+                            <AccountSettings
+                                user={getUser()}
+                                walletAddr={getWallet()}
+                            />
+                        </WithNavFooter>
+                    }
                 />
                 <Route
                     path="/"
                     element={
-                        <HomePage
-                        // connectWalletHandler={connectWalletHandler()}
-                        />
+                        getUser ? (
+                            <WithSidebar>
+                                <MogulPad />
+                            </WithSidebar>
+                        ) : (
+                            <WithNavFooter>
+                                <HomePage />
+                            </WithNavFooter>
+                        )
                     }
                 />
-                <Route path="*" element={<NotFound />} />
+                <Route
+                    path="*"
+                    element={
+                        <WithNavFooter>
+                            <NotFound />
+                        </WithNavFooter>
+                    }
+                />
             </Routes>
-            <Footer />
         </div>
     );
 }
