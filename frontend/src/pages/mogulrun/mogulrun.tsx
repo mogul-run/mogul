@@ -6,6 +6,7 @@ import { User } from "../../components/navbar";
 import { useAuth } from "../../context/authContext";
 import { TextPost } from "./components/post";
 import "./mogulrun.css";
+import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from "firebase/storage";
 
 const tags = [
     "surf",
@@ -17,6 +18,28 @@ const tags = [
     "fitness",
     "beta",
 ];
+
+const mediaTypes = [
+    "photo", 
+    "video"
+]
+
+export interface postType {
+    posted: string;
+    type: "text";
+    text: string;
+    mediaType?: string;
+    media?: any;
+    author: {
+        displayName: any;
+        walletAddr: any;
+        uid: any;
+        photoURL: any;
+    };
+    tags: String[];
+    bounty: string,
+    comments: any,
+}
 
 function MogulRun() {
     return (
@@ -174,6 +197,9 @@ function Content() {
 function PostContent(props: any) {
     const [post, setPost] = useState("");
     const [selectedTags, setSelectedTags] = useState<String[]>([]);
+    const [selectedMedia, setSelectedMedia] = useState<string|undefined>(undefined);
+    const [selectedMediaFile, setSelectedMediaFile] = useState(undefined);
+    const [submitting, setSubmitting] = useState<boolean>(false);
     const [bounty, setBounty] = useState("");
     const [error, setError] = useState("");
     const db = getDatabase();
@@ -201,6 +227,24 @@ function PostContent(props: any) {
             setSelectedTags([...selectedTags, value]);
         }
     };
+    const handleMedia = (value: string) => {
+        if (selectedMedia === value) {
+            setSelectedMedia(undefined)
+        } else {
+            setSelectedMedia(value);
+        }
+    };
+    const handleUploadPicture = (event: any) => {
+        const image = event.target.files[0];
+        if (!image.name.match(/\.(jpg|jpeg|png|gif)$/)) {
+            console.log("Error: File must be one of these formats: jpg, jpeg, png, gif");
+            return null;
+        }
+        else {
+            console.log("Success: it's a file!")
+            setSelectedMediaFile(image);
+        }
+    };
     // {
     //     type: "text",
     //     text: "are there any good spots to surf in santa cruz rn?",
@@ -218,7 +262,7 @@ function PostContent(props: any) {
     //     ],
     // },
 
-    const handlePostSubmit = () => {
+    const handlePostSubmit = async () => {
         // should add post to user's list of posts as well as global list of posts
         // for now we'll just add to the global list of posts
         const date = new Date(Date.now()).toString();
@@ -229,7 +273,7 @@ function PostContent(props: any) {
             uid: getUser().uid,
             photoURL: getUser().photoURL,
         }
-        const newPost = {
+        const newPost: postType = {
             posted: formatted_date,
             type: "text",
             text: post,
@@ -238,12 +282,28 @@ function PostContent(props: any) {
             bounty: bounty,
             comments: [],
         };
+        if (selectedMedia === "photo" && selectedMediaFile) {
+            newPost.mediaType = selectedMedia;
+            const storage = getStorage();
+            const postImageRef = storageRef(
+                storage,
+                `user/${getUser().uid}/post_images/${formatted_date.split(" ").join("-")}`
+            );
+            await uploadBytes(postImageRef, selectedMediaFile)
+                .then((snapshot) => {
+                    return getDownloadURL(snapshot.ref)
+                })
+                .then(url => {
+                    newPost.media = url;
+                });
+            setSubmitting(true);
+        }
         if (props.walletAddr) {
             /// TEMP: adding wallet addr to post for tipping
             newPost.author.walletAddr = props.walletAddr;
         }
         push(ref(db, `the-mogul-run/posts`), newPost)
-            .then(props.setOpenPost(false))
+            .then(x => {console.log("ok.", newPost); props.setOpenPost(false);})
             .catch((error) => {
                 console.log("error: ", error);
                 handleError(error.value());
@@ -265,6 +325,35 @@ function PostContent(props: any) {
                     <div className="error text-red-500">{error}</div>
                 </div>
                 <div>
+                    <div className="text-sm my-2 text-stone-500 font-bold">
+                        Add Media
+                    </div>
+                    <div className="overflow-scroll flex space-x-2">
+                        {mediaTypes.map((mediaType) => {
+                            if (selectedMedia === mediaType) {
+                                return (
+                                    <strong
+                                        onClick={() => handleMedia(mediaType)}
+                                        className="cursor-pointer border text-white bg-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
+                                    >
+                                        {mediaType}
+                                    </strong>
+                                );
+                            } else {
+                                return (
+                                    <strong
+                                        onClick={() => handleMedia(mediaType)}
+                                        className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
+                                    >
+                                        {mediaType}
+                                    </strong>
+                                );
+                            }
+                        })}
+                    </div>
+                    <div className="my-2">
+                        {selectedMedia && <input type="file" name="myImage" onChange={handleUploadPicture} />}
+                    </div>
                     <div className="text-sm my-2 text-stone-500 font-bold">
                         Add Tags
                     </div>
