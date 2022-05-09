@@ -3,6 +3,7 @@ import { useAuth } from "../context/authContext";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import UploadButton from "../components/upload-button";
 
 function AccountSettings(props: any) {
     const { getWallet, connectWallet } = useAuth();
@@ -20,10 +21,6 @@ function AccountSettings(props: any) {
     }, []);
     const handleUsername = (username: string) => {
         setUsername(username);
-    };
-
-    const handleFileClick = () => {
-        hiddenFileInput.current && hiddenFileInput.current.click();
     };
 
     const handleProfileUpload = (event: ChangeEvent<HTMLInputElement>) => {
@@ -84,7 +81,7 @@ function AccountSettings(props: any) {
                                 UserName
                             </label>
                             <input
-                                className="appearance-none block w-full bg-stone-200 text-stone-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                className="appearance-none block w-full bg-stone-300 text-stone-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                 id="grid-first-name"
                                 type="text"
                                 placeholder={getUser().displayName}
@@ -96,7 +93,7 @@ function AccountSettings(props: any) {
                                 Bio
                             </label>
                             <input
-                                className="appearance-none block w-full bg-stone-200 text-stone-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                                className="appearance-none block w-full bg-stone-300 text-stone-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                 id="grid-first-name"
                                 type="text"
                                 // placeholder={getUser().displayName}
@@ -109,7 +106,7 @@ function AccountSettings(props: any) {
                                     Wallet Address
                                 </label>
                                 <div
-                                    className="cursor-not-allowed appearance-none block w-full bg-stone-200 text-stone-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white outline outline-mblue"
+                                    className="cursor-not-allowed appearance-none block w-full bg-stone-300 text-stone-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white outline outline-mblue"
                                     id="grid-first-name"
                                 >
                                     {getWallet()}{" "}
@@ -130,7 +127,8 @@ function AccountSettings(props: any) {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                             Profile Photo
                         </label>
-                        <button
+                        <UploadButton selectedImage={selectedImage} handlePhotoUpload={handleProfileUpload}/>
+                        {/* <button
                             onClick={handleFileClick}
                             className="bg-stone-200 hover:bg-stone-300 text-stone-700 font-bold py-2 px-4 rounded inline-flex items-center"
                         >
@@ -166,7 +164,7 @@ function AccountSettings(props: any) {
                                 />
                                 <br />
                             </div>
-                        )}
+                        )} */}
                     </div>
                 </div>
                 <button
