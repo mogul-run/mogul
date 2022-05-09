@@ -343,32 +343,6 @@ function PostContent(props: any) {
                     <div className="text-sm my-2 text-stone-500 font-bold">
                        Upload Images 
                     </div>
-                    {/* <div className="overflow-scroll flex space-x-2">
-                        {mediaTypes.map((mediaType) => {
-                            if (selectedMedia === mediaType) {
-                                return (
-                                    <strong
-                                        onClick={() => handleMedia(mediaType)}
-                                        className="cursor-pointer border text-white bg-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
-                                    >
-                                        {mediaType}
-                                    </strong>
-                                );
-                            } else {
-                                return (
-                                    <strong
-                                        onClick={() => handleMedia(mediaType)}
-                                        className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
-                                    >
-                                        {mediaType}
-                                    </strong>
-                                );
-                            }
-                        })}
-                    </div>
-                    <div className="my-2">
-                        {selectedMedia && <input type="file" name="myImage" onChange={handleUploadPicture} />}
-                    </div> */}
                     <UploadButton
                         handlePhotoUpload={handleUploadPicture}
                         selectedImage={selectedMediaFile}

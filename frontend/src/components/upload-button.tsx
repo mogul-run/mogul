@@ -11,9 +11,6 @@ function UploadButton(props: any) {
 
     return (
         <div>
-            {/* <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Profile Photo
-            </label> */}
             <button
                 onClick={handleFileClick}
                 className="bg-stone-300 hover:bg-morange hover:text-white text-stone-600 font-bold py-2 px-4 rounded inline-flex items-center"
