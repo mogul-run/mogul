@@ -59,6 +59,7 @@ export function TextPost(props: any) {
         }
     }
 
+    console.log(props.post)
     return (
         <div className={returnColSpan()}>
             <div
@@ -83,6 +84,9 @@ export function TextPost(props: any) {
                             <h5 className="mt-2 text-xl font-bold ">
                                 {/* <h5 className="mt-2 text-xl font-bold text-white"> */}
                                 {props.post.text}
+                            </h5>
+                            <h5 className="mt-2 text-xl font-bold ">
+                                {props.post.media && <img src={props.post.media} />}
                             </h5>
                             <div className="flex flex-row items-center mt-2 text-stone-500 font-normal">
                                 <UserPopup user={props.post.author}/>
