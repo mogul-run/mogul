@@ -59,7 +59,6 @@ export function TextPost(props: any) {
         }
     }
 
-    console.log(props.post)
     return (
         <div className={returnColSpan()}>
             <div

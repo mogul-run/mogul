@@ -16,6 +16,7 @@ import { NotFound } from "./pages/notFound";
 import AccountSettings from "./pages/account-settings";
 import MogulPad from "./pages/mogulpad";
 import MogulRun from "./pages/mogulrun/mogulrun";
+import Write from "./pages/write";
 
 function WithNavFooter({
     children,
@@ -127,6 +128,15 @@ function App() {
                             <AccountSettings
                                 user={getUser()}
                                 walletAddr={getWallet()}
+                            />
+                        </WithSidebar>
+                    }
+                />
+                <Route
+                    path="/write"
+                    element={
+                        <WithSidebar>
+                            <Write 
                             />
                         </WithSidebar>
                     }
