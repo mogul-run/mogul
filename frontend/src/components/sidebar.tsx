@@ -132,6 +132,7 @@ function Sidebar(props: any) {
                                 </svg>{" "}
                                 <div className="ml-2">Saved</div>
                             </div>
+                    <Link to={`/${getUser().uid}/posts`} className="nostyle">
                             <div className="sidebar-link">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -149,6 +150,7 @@ function Sidebar(props: any) {
                                 </svg>
                                 <div className="ml-2">Your Posts</div>
                             </div>
+                            </Link>
                         </div>
                         <div className="">
                             <label className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-2 ml-2">

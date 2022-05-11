@@ -17,6 +17,7 @@ import AccountSettings from "./pages/account-settings";
 import MogulPad from "./pages/mogulpad";
 import MogulRun from "./pages/mogulrun/mogulrun";
 import Write from "./pages/write";
+import UserPosts from "./pages/user-posts";
 
 function WithNavFooter({
     children,
@@ -138,6 +139,14 @@ function App() {
                         <WithSidebar>
                             <Write 
                             />
+                        </WithSidebar>
+                    }
+                />
+                <Route
+                    path="/:user_id/posts"
+                    element={
+                        <WithSidebar>
+                            <UserPosts/>
                         </WithSidebar>
                     }
                 />
