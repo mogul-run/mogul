@@ -4,8 +4,8 @@ body {
     /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
-    background-color: #fbf9f6;
-    color: #424242;
+    background-color: theme("colors.stone.100");
+    color: theme("colors.stone.800");
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -28,7 +28,7 @@ code {
 
     .button-std {
         cursor: pointer;
-        background-color: theme("colors.gray.400");
+        background-color: theme("colors.stone.400");
         color: white;
         width: max-content;
         border-radius: theme("borderRadius.lg");
@@ -36,7 +36,7 @@ code {
     }
 
     .button-std:hover {
-        background-color: theme("colors.gray.600");
+        background-color: theme("colors.stone.600");
     }
 
     .button-primary {
@@ -157,6 +157,17 @@ code {
         background-color: theme("colors.mblue");
         box-shadow: theme("boxShadow.md");
         font-weight: bold;
+    }
+    .script{
+        font-family:  "Alegreya";
+    }
+
+    .quote {
+        font-family:  "Alegreya";
+        outline: 0.5px solid theme("colors.stone.700");
+        box-shadow: 3px 3px 0 0 theme("colors.stone.700");
+        border-radius: theme("borderRadius.md");
+        background-color: theme("colors.stone.200");
     }
 
     @media only screen and (max-width: 800px) {

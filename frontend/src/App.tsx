@@ -18,6 +18,7 @@ import MogulPad from "./pages/mogulpad";
 import MogulRun from "./pages/mogulrun/mogulrun";
 import Write from "./pages/write";
 import UserPosts from "./pages/user-posts";
+import EventPage from "./pages/event-page";
 
 function WithNavFooter({
     children,
@@ -142,6 +143,12 @@ function App() {
                         </WithSidebar>
                     }
                 />
+                <Route 
+                    path="/m/:event_id"
+                    element={
+                        <EventPage/>
+                    }
+                    />
                 <Route
                     path="/:user_id/posts"
                     element={
