@@ -1,44 +1,51 @@
-import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    getAuth,
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    updateProfile,
+} from "firebase/auth";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
 import GoogleButton from "../components/google-button";
 
-function Login(props: any) {
+function Signup(props: any) {
     const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [error, setError] = useState("");
-    const handleEmailChange = (value: string) => {
-        setEmail(value);
-        console.log("setemail");
-    };
-    const handlePasswordChange = (value: string) => {
-        setPassword(value);
-        console.log("setpassword");
-    };
     const navigate = useNavigate();
 
     const { getUser } = useAuth();
 
-    const handleLogin = () => {
-        login(email, password)
-            .then(() => {
+    const handleSignup = () => {
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                updateProfile(user, {
+                    displayName: username,
+                }).catch((error) => {
+                    setError(error.message);
+                    // An error happened.
+                });
+
                 navigate(-1);
             })
-            .catch((error: Error) => {
+            .catch((error) => {
                 setError(error.message);
-                console.log("Error with Login: ", error);
             });
     };
 
     useEffect(() => {
         if (getUser()) {
-            // navigate("/");
+            navigate("/");
         }
     }, []);
 
@@ -63,7 +70,6 @@ function Login(props: any) {
 
                         <div className="relative">
                             <input
-                                type="email"
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="countryloafcarrie"
                                 onChange={(e) => setUsername(e.target.value)}
@@ -82,7 +88,7 @@ function Login(props: any) {
                                     className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                     placeholder="Carrie"
                                     onChange={(e) =>
-                                        handleEmailChange(e.target.value)
+                                        setFirstName(e.target.value)
                                     }
                                 />
                             </div>
@@ -94,11 +100,10 @@ function Login(props: any) {
 
                             <div className="relative">
                                 <input
-                                    type="email"
                                     className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                     placeholder="Cornstow"
                                     onChange={(e) =>
-                                        handleEmailChange(e.target.value)
+                                        setLastName(e.target.value)
                                     }
                                 />
                             </div>
@@ -114,9 +119,7 @@ function Login(props: any) {
                                 type="email"
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="Enter email"
-                                onChange={(e) =>
-                                    handleEmailChange(e.target.value)
-                                }
+                                onChange={(e) => setEmail(e.target.value)}
                             />
 
                             <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -150,9 +153,7 @@ function Login(props: any) {
                                 type="password"
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="Enter password"
-                                onChange={(e) =>
-                                    handlePasswordChange(e.target.value)
-                                }
+                                onChange={(e) => setPassword(e.target.value)}
                             />
 
                             <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -191,12 +192,11 @@ function Login(props: any) {
 
                             <button
                                 className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-mblue rounded-lg"
-                                onClick={() => handleLogin()}
+                                onClick={() => handleSignup()}
                             >
                                 Sign up
                             </button>
                         </div>
-                        <div className="error">{error}</div>
                     </div>
                     <div className="flex justify-center">
                         <span className="bg-stone-200 h-px flex-grow t-2 relative top-2"></span>
@@ -208,10 +208,15 @@ function Login(props: any) {
                     <div className="flex justify-center">
                         <GoogleButton text="Sign up" />
                     </div>
+                    {error && (
+                        <div className="mt-4 error text-red message-error">
+                            {error}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
     );
 }
 
-export default Login;
+export default Signup;

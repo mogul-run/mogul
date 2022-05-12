@@ -151,9 +151,13 @@ function Login(props: any) {
                             <span className="bg-stone-200 h-px flex-grow t-2 relative top-2"></span>
                         </div>
                         <div className="mt-4 flex justify-center">
-                            <GoogleButton text={"Sign in"}/>
+                            <GoogleButton text={"Sign in"} />
                         </div>
-                        <div className="error">{error}</div>
+                        {error && (
+                            <div className="mt-4 error text-red message-error">
+                                {error}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ import { User } from "./navbar";
 import UserPopup from "./userPopup";
 
 function Sidebar(props: any) {
-    const { getUser } = useAuth();
+    const { getUser, signOut } = useAuth();
     return (
         <div className="w-60 h-full shadow-inner bg-stone-200 fixed">
             <div className="flex flex-col h-full justify-between items-start">
@@ -132,24 +132,27 @@ function Sidebar(props: any) {
                                 </svg>{" "}
                                 <div className="ml-2">Saved</div>
                             </div>
-                    <Link to={`/${getUser().uid}/posts`} className="nostyle">
-                            <div className="sidebar-link">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6 p-1"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                                    />
-                                </svg>
-                                <div className="ml-2">Your Posts</div>
-                            </div>
+                            <Link
+                                to={`/${getUser().uid}/posts`}
+                                className="nostyle"
+                            >
+                                <div className="sidebar-link">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6 p-1"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                                        />
+                                    </svg>
+                                    <div className="ml-2">Your Posts</div>
+                                </div>
                             </Link>
                         </div>
                         <div className="">
@@ -205,6 +208,23 @@ function Sidebar(props: any) {
                             <div className="ml-2">Settings</div>
                         </div>
                     </Link>
+                    <div className="sidebar-link" onClick={signOut}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6 p-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                            />
+                        </svg>
+                        <div className="ml-2">Logout</div>
+                    </div>
                 </div>
             </div>
         </div>
