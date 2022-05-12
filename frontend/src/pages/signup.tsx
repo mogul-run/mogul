@@ -1,15 +1,17 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import "./login.css";
 import { useAuth } from "../context/authContext";
-import GoogleButton from "./google-button";
 import { Link } from "react-router-dom";
+import GoogleButton from "../components/google-button";
 
 function Login(props: any) {
     const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
     const [error, setError] = useState("");
     const handleEmailChange = (value: string) => {
         setEmail(value);
@@ -36,7 +38,7 @@ function Login(props: any) {
 
     useEffect(() => {
         if (getUser()) {
-            navigate("/");
+            // navigate("/");
         }
     }, []);
 
@@ -45,17 +47,65 @@ function Login(props: any) {
             <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
                 <div className="max-w-lg mx-auto text-center">
                     <h1 className="text-2xl font-bold sm:text-3xl">
-                        🛹 Yew!!! You're almost there
+                        🧗 Welcome, it's very nice to meet you
                     </h1>
 
                     <h2 className="mt-4 text-gray-500">
-                        We're just gonna need to check some credentials...
+                        This should be quick!
                     </h2>
                 </div>
 
                 <div className="max-w-md mx-auto mt-8 mb-0 space-y-4">
                     <div>
-                        <label id="email" className="sr-only">
+                        <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                            Username
+                        </label>
+
+                        <div className="relative">
+                            <input
+                                type="email"
+                                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                                placeholder="countryloafcarrie"
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className="flex justify-between space-x-2">
+                        <div>
+                            <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                First Name
+                            </label>
+
+                            <div className="relative">
+                                <input
+                                    type="email"
+                                    className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                                    placeholder="Carrie"
+                                    onChange={(e) =>
+                                        handleEmailChange(e.target.value)
+                                    }
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                Last Name
+                            </label>
+
+                            <div className="relative">
+                                <input
+                                    type="email"
+                                    className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                                    placeholder="Cornstow"
+                                    onChange={(e) =>
+                                        handleEmailChange(e.target.value)
+                                    }
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                             Email
                         </label>
 
@@ -89,7 +139,10 @@ function Login(props: any) {
                     </div>
 
                     <div>
-                        <label id="password" className="sr-only">
+                        <label
+                            id="password"
+                            className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1"
+                        >
                             Password
                         </label>
                         <div className="relative">
@@ -130,9 +183,9 @@ function Login(props: any) {
                     <div className="flex flex-col">
                         <div className="flex items-center justify-between">
                             <p className="text-sm text-gray-500">
-                                No account?{" "}
-                                <Link to="/signup" className="underline">
-                                    Sign up
+                                Got an account?{" "}
+                                <Link className="underline" to="/login">
+                                    Log in
                                 </Link>
                             </p>
 
@@ -140,20 +193,20 @@ function Login(props: any) {
                                 className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-mblue rounded-lg"
                                 onClick={() => handleLogin()}
                             >
-                                Sign in
+                                Sign up
                             </button>
                         </div>
-                        <div className="mt-3 flex justify-center">
-                            <span className="bg-stone-200 h-px flex-grow t-2 relative top-2"></span>
-                            <span className="flex-none uppercase text-xs text-stone-600 font-semibold px-2">
-                                or
-                            </span>
-                            <span className="bg-stone-200 h-px flex-grow t-2 relative top-2"></span>
-                        </div>
-                        <div className="mt-4 flex justify-center">
-                            <GoogleButton text={"Sign in"}/>
-                        </div>
                         <div className="error">{error}</div>
+                    </div>
+                    <div className="flex justify-center">
+                        <span className="bg-stone-200 h-px flex-grow t-2 relative top-2"></span>
+                        <span className="flex-none uppercase text-xs text-stone-600 font-semibold px-2">
+                            or
+                        </span>
+                        <span className="bg-stone-200 h-px flex-grow t-2 relative top-2"></span>
+                    </div>
+                    <div className="flex justify-center">
+                        <GoogleButton text="Sign up" />
                     </div>
                 </div>
             </div>

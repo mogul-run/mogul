@@ -94,8 +94,8 @@ code {
 
     .outline {
         padding: theme("spacing.2");
-        outline: 1px solid theme("colors.gray.300");
-        border-radius: theme("borderRadius.lg");
+        outline: 1px solid theme("colors.stone.300");
+        border-radius: theme("borderRadius.md");
     }
 
     .outline-nopad {
@@ -162,12 +162,15 @@ code {
         font-family:  "Alegreya";
     }
 
-    .quote {
-        font-family:  "Alegreya";
-        outline: 0.5px solid theme("colors.stone.700");
-        box-shadow: 3px 3px 0 0 theme("colors.stone.700");
+    .outline-box{
+        padding: theme("spacing.8") theme("spacing.4") ;
+        outline: 0.5px solid theme("colors.stone.600");
+        box-shadow: 6px 6px 0 0 theme("colors.stone.600");
         border-radius: theme("borderRadius.md");
-        background-color: theme("colors.stone.200");
+    }
+    .outline-box:hover {
+        box-shadow: 6px 6px 0 0 theme("colors.stone.600"), 10px 10px 0 0 theme("colors.morange");
+        border-radius: theme("borderRadius.md");
     }
 
     @media only screen and (max-width: 800px) {

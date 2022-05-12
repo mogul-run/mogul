@@ -127,9 +127,20 @@ export function User(props: any) {
                     </Transition>
                 </Menu>
             ) : (
-                <Link to="/login" className="button-primary">
-                    login
-                </Link>
+                <div className="space-x-1">
+                    <Link
+                        className="px-5 py-2 text-sm font-medium text-gray-600 bg-stone-200 hover:bg-stone-300 rounded-lg"
+                        to="/login"
+                    >
+                        Log in
+                    </Link>
+                    <Link
+                        className="px-5 py-2 text-sm font-medium text-white bg-mblue hover:opacity-80 rounded-lg"
+                        to="/signup"
+                    >
+                        Sign up
+                    </Link>
+                </div>
             )}
         </div>
     );

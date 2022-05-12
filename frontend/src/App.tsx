@@ -19,6 +19,8 @@ import MogulRun from "./pages/mogulrun/mogulrun";
 import Write from "./pages/write";
 import UserPosts from "./pages/user-posts";
 import EventPage from "./pages/event-page";
+import EventSignup from "./pages/event-signup";
+import Signup from "./pages/signup";
 
 function WithNavFooter({
     children,
@@ -124,6 +126,14 @@ function App() {
                     }
                 />
                 <Route
+                    path="/Signup"
+                    element={
+                        <WithNavFooter>
+                            <Signup user={getUser()} />
+                        </WithNavFooter>
+                    }
+                />
+                <Route
                     path="/settings"
                     element={
                         <WithSidebar>
@@ -147,6 +157,12 @@ function App() {
                     path="/m/:event_id"
                     element={
                         <EventPage/>
+                    }
+                    />
+                <Route 
+                    path="/m/:event_id/signup"
+                    element={
+                        <EventSignup/>
                     }
                     />
                 <Route
