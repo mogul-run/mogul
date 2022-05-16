@@ -2,6 +2,7 @@ import { sample } from "lodash";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { User } from "../components/navbar";
+import Transfer from "../components/transfer";
 import UserPopup from "../components/userPopup";
 import { useAuth } from "../context/authContext";
 import { ModalContext, useAuthModal } from "../context/modalContext";
@@ -26,15 +27,15 @@ const sample_event = {
         "Water",
         "Climbing harness",
     ],
+    seat_price: "0.03",
     media: ["https://i.imgur.com/cov0ZJB.jpg", ""],
 };
 
 function EventPage() {
     const [loading, setLoading] = useState(true);
-    const [signup, setSignup] = useState(true);
+    const [signup, setSignup] = useState(false);
     const { event_id } = useParams();
     const { getUser } = useAuth();
-    const navigate = useNavigate();
     let { handleModal } = useAuthModal();
 
     const getEvent = () => {
@@ -43,10 +44,9 @@ function EventPage() {
 
     const handleSignup = () => {
         if (!getUser()) {
-            handleModal()
+            handleModal();
         } else {
             setSignup(!signup);
-
         }
     };
 
@@ -134,8 +134,8 @@ function EventPage() {
                         </div>
                         <div
                             className={`${
-                                signup ? "col-span-5" : "col-span-2"
-                            } outline-box`}
+                                signup ? "col-span-5 flex-col" : "col-span-2"
+                            } outline-box flex justify-between`}
                         >
                             <div className="flex flex-col text-xl items-center justify-center bg-stone-100 h-full space-y-5 ">
                                 <div className="grid grid-cols-2 gap-3">
@@ -162,7 +162,7 @@ function EventPage() {
                                             <span> Seat Price</span>
 
                                             <span className="block mt-1 text-stone-600 text-lg">
-                                                0.03ETH
+                                                {sample_event.seat_price} ETH
                                             </span>
                                         </label>
                                     </div>
@@ -180,8 +180,14 @@ function EventPage() {
                                     </button>
                                 </div>
                             </div>
+                            {signup && (
+                                <Transfer
+                                    to={"123"}
+                                    amount={sample_event.seat_price}
+                                />
+                            )}
                         </div>
-                        <div className="col-span-3 space-y-6 outline-box">
+                        <div className="col-span-3 space-y-6 p-4">
                             <div>
                                 <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
                                     What to expect
