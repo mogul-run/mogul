@@ -6,22 +6,19 @@ import { useAuth } from "../context/authContext";
 import GoogleButton from "./google-button";
 import { Link } from "react-router-dom";
 
-function Login(props: any) {
+export function LoginPage() {
     const { login } = useAuth();
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const handleEmailChange = (value: string) => {
-        setEmail(value);
-        console.log("setemail");
-    };
-    const handlePasswordChange = (value: string) => {
-        setPassword(value);
-        console.log("setpassword");
-    };
-    const navigate = useNavigate();
-
     const { getUser } = useAuth();
+
+    useEffect(() => {
+        if (getUser()) {
+            navigate("/");
+        }
+    }, []);
 
     const handleLogin = () => {
         login(email, password)
@@ -33,13 +30,12 @@ function Login(props: any) {
                 console.log("Error with Login: ", error);
             });
     };
+    return (
+        <Login handleLogin={handleLogin} setEmail={setEmail} setPassword={setPassword} error={error}/>
+    )
+}
 
-    useEffect(() => {
-        if (getUser()) {
-            navigate("/");
-        }
-    }, []);
-
+function Login(props: any) {
     return (
         <div className="login-wrapper">
             <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
@@ -65,7 +61,7 @@ function Login(props: any) {
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="Enter email"
                                 onChange={(e) =>
-                                    handleEmailChange(e.target.value)
+                                    props.setEmail(e.target.value)
                                 }
                             />
 
@@ -98,7 +94,7 @@ function Login(props: any) {
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="Enter password"
                                 onChange={(e) =>
-                                    handlePasswordChange(e.target.value)
+                                    props.setPassword(e.target.value)
                                 }
                             />
 
@@ -138,7 +134,7 @@ function Login(props: any) {
 
                             <button
                                 className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-mblue rounded-lg"
-                                onClick={() => handleLogin()}
+                                onClick={() => props.handleLogin()}
                             >
                                 Sign in
                             </button>
@@ -153,9 +149,9 @@ function Login(props: any) {
                         <div className="mt-4 flex justify-center">
                             <GoogleButton text={"Sign in"} />
                         </div>
-                        {error && (
+                        {props.error && (
                             <div className="mt-4 error text-red message-error">
-                                {error}
+                                {props.error}
                             </div>
                         )}
                     </div>

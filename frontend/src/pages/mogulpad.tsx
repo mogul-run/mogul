@@ -8,8 +8,8 @@ function MogulPad(props: any) {
 
 function Content() {
     return <div>
-        
-        content</div>;
+        Welcome to Mogul! Take a look around 
+        </div>;
 }
 
 export default MogulPad;

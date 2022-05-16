@@ -58,7 +58,7 @@ export function User(props: any) {
             {getUser() ? (
                 <Menu as="div" className="relative inline-block text-left">
                     <div>
-                        <Menu.Button className="login-button inline-flex items-center justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 ">
+                        <Menu.Button className="login-button inline-flex items-center justify-center w-full rounded-md border border-stone-300 shadow-sm px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-100 ">
                             {getUser().photoURL && (
                                 <img
                                     className="object-cover w-6 h-6 rounded-full mr-2.5"
@@ -97,8 +97,8 @@ export function User(props: any) {
                                             to="/settings"
                                             className={classNames(
                                                 active
-                                                    ? "bg-gray-100 text-gray-900"
-                                                    : "text-gray-700",
+                                                    ? "bg-stone-100 text-stone-900"
+                                                    : "text-stone-700",
                                                 "block px-4 py-2 text-sm"
                                             )}
                                         >
@@ -112,8 +112,8 @@ export function User(props: any) {
                                             type="submit"
                                             className={classNames(
                                                 active
-                                                    ? "bg-gray-100 text-gray-900"
-                                                    : "text-gray-700",
+                                                    ? "bg-stone-100 text-stone-900"
+                                                    : "text-stone-700",
                                                 "block w-full text-left px-4 py-2 text-sm"
                                             )}
                                             onClick={() => signOut()}
@@ -129,7 +129,7 @@ export function User(props: any) {
             ) : (
                 <div className="space-x-1">
                     <Link
-                        className="px-5 py-2 text-sm font-medium text-gray-600 bg-stone-200 hover:bg-stone-300 rounded-lg"
+                        className="px-5 py-2 text-sm font-medium text-stone-600 bg-stone-200 hover:bg-stone-300 rounded-lg"
                         to="/login"
                     >
                         Log in

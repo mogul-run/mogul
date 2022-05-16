@@ -12,8 +12,7 @@ import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
 import GoogleButton from "../components/google-button";
 
-function Signup(props: any) {
-    const { login } = useAuth();
+export function SignupPage(props: any) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
@@ -48,7 +47,20 @@ function Signup(props: any) {
             navigate("/");
         }
     }, []);
+    return (
+        <Signup
+            setEmail={setEmail}
+            setPassword={setPassword}
+            setUsername={setUsername}
+            setLastName={setLastName}
+            setFirstName={setFirstName}
+            error={error}
+            handleSignup={handleSignup}
+        />
+    );
+}
 
+function Signup(props: any) {
     return (
         <div className="login-wrapper">
             <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
@@ -72,7 +84,9 @@ function Signup(props: any) {
                             <input
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="countryloafcarrie"
-                                onChange={(e) => setUsername(e.target.value)}
+                                onChange={(e) =>
+                                    props.setUsername(e.target.value)
+                                }
                             />
                         </div>
                     </div>
@@ -88,7 +102,7 @@ function Signup(props: any) {
                                     className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                     placeholder="Carrie"
                                     onChange={(e) =>
-                                        setFirstName(e.target.value)
+                                        props.setFirstName(e.target.value)
                                     }
                                 />
                             </div>
@@ -103,7 +117,7 @@ function Signup(props: any) {
                                     className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                     placeholder="Cornstow"
                                     onChange={(e) =>
-                                        setLastName(e.target.value)
+                                        props.setLastName(e.target.value)
                                     }
                                 />
                             </div>
@@ -119,7 +133,7 @@ function Signup(props: any) {
                                 type="email"
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="Enter email"
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => props.setEmail(e.target.value)}
                             />
 
                             <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -153,7 +167,9 @@ function Signup(props: any) {
                                 type="password"
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="Enter password"
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) =>
+                                    props.setPassword(e.target.value)
+                                }
                             />
 
                             <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -192,7 +208,7 @@ function Signup(props: any) {
 
                             <button
                                 className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-mblue rounded-lg"
-                                onClick={() => handleSignup()}
+                                onClick={() => props.handleSignup()}
                             >
                                 Sign up
                             </button>
@@ -208,9 +224,9 @@ function Signup(props: any) {
                     <div className="flex justify-center">
                         <GoogleButton text="Sign up" />
                     </div>
-                    {error && (
+                    {props.error && (
                         <div className="mt-4 error text-red message-error">
-                            {error}
+                            {props.error}
                         </div>
                     )}
                 </div>

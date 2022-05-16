@@ -1,13 +1,14 @@
 import { sample } from "lodash";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { User } from "../components/navbar";
 import UserPopup from "../components/userPopup";
 import { useAuth } from "../context/authContext";
+import { ModalContext, useAuthModal } from "../context/modalContext";
 
 const sample_event = {
     emojis: "🧘‍♂🌲",
-    title: "Breathwork and Yoga 40ft up a Coastal Redwood",
+    title: "Coast Redwood Sunset Retreat",
     author: {
         photoURL:
             "https://firebasestorage.googleapis.com/v0/b/mogul-run.appspot.com/o/user%2FvlITP8crPWNU1jjE1TCosD6L20x2%2Fprofile_img?alt=media&token=481869b3-dfd6-4844-b917-0757ed8bc2c0",
@@ -17,7 +18,7 @@ const sample_event = {
     location: "Fremont, CA",
     duration: "60 minutes",
     cover_url: "https://i.imgur.com/cov0ZJB.jpg",
-    hook: "Watch the sunset from the top of a redwood tree.",
+    hook: "Take a retreat into the welcoming branches of an old Sequoia Sempervirens. Panoramic await you -- if you dare to climb.",
     desc: "Climb up a Redwood tree with panoramic views of beautiful Fremont. As the sun comes down, ",
     materials_list: [
         "Comfortable workout clothes",
@@ -33,13 +34,21 @@ function EventPage() {
     const [signup, setSignup] = useState(true);
     const { event_id } = useParams();
     const { getUser } = useAuth();
+    const navigate = useNavigate();
+    let { handleModal } = useAuthModal();
 
     const getEvent = () => {
         setLoading(false);
     };
+
     const handleSignup = () => {
+        if (!getUser()) {
+            handleModal()
+        } else {
+            setSignup(!signup);
+
+        }
         console.log("hi");
-        setSignup(!signup);
     };
 
     useEffect(() => {
@@ -117,7 +126,7 @@ function EventPage() {
                                     <a
                                         className="text-morange italic underline-none"
                                         target="__blank"
-                                        href="https://vault.sierraclub.org/john_muir_exhibit/writings/the_mountains_of_california/"
+                                        href="https://vault.sierraclub.org/john_muir_exhibit/writings/the_mountains_of_california/chapter_10.aspx"
                                     >
                                         The Mountains of California{" "}
                                     </a>

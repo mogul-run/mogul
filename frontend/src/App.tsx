@@ -10,7 +10,7 @@ import Footer from "./components/footer";
 import Feed from "./pages/feed";
 import ScrollToTop from "./utils/scrollToTop";
 import Team from "./pages/team";
-import Login from "./components/login";
+import Login, { LoginPage } from "./components/login";
 import { useAuth } from "./context/authContext";
 import { NotFound } from "./pages/notFound";
 import AccountSettings from "./pages/account-settings";
@@ -20,7 +20,8 @@ import Write from "./pages/write";
 import UserPosts from "./pages/user-posts";
 import EventPage from "./pages/event-page";
 import EventSignup from "./pages/event-signup";
-import Signup from "./pages/signup";
+import Signup, { SignupPage } from "./pages/signup";
+import { ModalProvider } from "./context/modalContext";
 
 function WithNavFooter({
     children,
@@ -98,112 +99,105 @@ function App() {
 
     return (
         <div className="app">
-            <ScrollToTop />
-            <Routes>
-                {/* <Route path="/nyc26" element={<NYC26 />} /> */}
-                <Route
-                    path="/tgob"
-                    element={
-                        <WithNavFooter>
-                            <TGOB />
-                        </WithNavFooter>
-                    }
-                />
-                <Route
-                    path="/team"
-                    element={
-                        <WithNavFooter>
-                            <Team />
-                        </WithNavFooter>
-                    }
-                />
-                <Route
-                    path="/login"
-                    element={
-                        <WithNavFooter>
-                            <Login user={getUser()} />
-                        </WithNavFooter>
-                    }
-                />
-                <Route
-                    path="/Signup"
-                    element={
-                        <WithNavFooter>
-                            <Signup user={getUser()} />
-                        </WithNavFooter>
-                    }
-                />
-                <Route
-                    path="/settings"
-                    element={
-                        <WithSidebar>
-                            <AccountSettings
-                                user={getUser()}
-                                walletAddr={getWallet()}
-                            />
-                        </WithSidebar>
-                    }
-                />
-                <Route
-                    path="/write"
-                    element={
-                        <WithSidebar>
-                            <Write 
-                            />
-                        </WithSidebar>
-                    }
-                />
-                <Route 
-                    path="/m/:event_id"
-                    element={
-                        <EventPage/>
-                    }
-                    />
-                <Route 
-                    path="/m/:event_id/signup"
-                    element={
-                        <EventSignup/>
-                    }
-                    />
-                <Route
-                    path="/:user_id/posts"
-                    element={
-                        <WithSidebar>
-                            <UserPosts/>
-                        </WithSidebar>
-                    }
-                />
-                <Route
-                    path="/"
-                    element={
-                        getUser() ? (
-                            <WithSidebar>
-                                <MogulPad />
-                            </WithSidebar>
-                        ) : (
+            <ModalProvider>
+                <ScrollToTop />
+                <Routes>
+                    <Route
+                        path="/tgob"
+                        element={
                             <WithNavFooter>
-                                <HomePage />
+                                <TGOB />
                             </WithNavFooter>
-                        )
-                    }
-                />
-                <Route
-                    path="/questions"
-                    element={
-                        <WithSidebar>
-                            <MogulRun />
-                        </WithSidebar>
-                    }
-                />
-                <Route
-                    path="*"
-                    element={
-                        <WithNavFooter>
-                            <NotFound />
-                        </WithNavFooter>
-                    }
-                />
-            </Routes>
+                        }
+                    />
+                    <Route
+                        path="/team"
+                        element={
+                            <WithNavFooter>
+                                <Team />
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/login"
+                        element={
+                            <WithNavFooter>
+                                <LoginPage />
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/Signup"
+                        element={
+                            <WithNavFooter>
+                                <SignupPage />
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/settings"
+                        element={
+                            <WithSidebar>
+                                <AccountSettings
+                                    user={getUser()}
+                                    walletAddr={getWallet()}
+                                />
+                            </WithSidebar>
+                        }
+                    />
+                    <Route
+                        path="/write"
+                        element={
+                            <WithSidebar>
+                                <Write />
+                            </WithSidebar>
+                        }
+                    />
+                    <Route path="/m/:event_id" element={<EventPage />} />
+                    <Route
+                        path="/m/:event_id/signup"
+                        element={<EventSignup />}
+                    />
+                    <Route
+                        path="/:user_id/posts"
+                        element={
+                            <WithSidebar>
+                                <UserPosts />
+                            </WithSidebar>
+                        }
+                    />
+                    <Route
+                        path="/"
+                        element={
+                            getUser() ? (
+                                <WithSidebar>
+                                    <MogulPad />
+                                </WithSidebar>
+                            ) : (
+                                <WithNavFooter>
+                                    <HomePage />
+                                </WithNavFooter>
+                            )
+                        }
+                    />
+                    <Route
+                        path="/questions"
+                        element={
+                            <WithSidebar>
+                                <MogulRun />
+                            </WithSidebar>
+                        }
+                    />
+                    <Route
+                        path="*"
+                        element={
+                            <WithNavFooter>
+                                <NotFound />
+                            </WithNavFooter>
+                        }
+                    />
+                </Routes>
+            </ModalProvider>
         </div>
     );
 }
