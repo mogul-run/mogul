@@ -7,7 +7,7 @@ function MogulPad(props: any) {
 }
 
 function Content() {
-    return <div>
+    return <div className="sidebar-content">
         Welcome to Mogul! Take a look around 
         </div>;
 }

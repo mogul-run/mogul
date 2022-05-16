@@ -34,6 +34,7 @@ function UploadButton(props: any) {
             <input
                 type="file"
                 accept="image/*"
+                multiple={props.multiple}
                 ref={hiddenFileInput}
                 onChange={(e) => props.handlePhotoUpload(e)}
                 style={{ display: "none" }}

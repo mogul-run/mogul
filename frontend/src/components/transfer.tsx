@@ -1,8 +1,37 @@
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import UserPopup from "./userPopup";
 
 function Transfer(props: any) {
-    const { getUser } = useAuth();
+    const [error, setError] = useState("");
+    const [wallet, setWallet] = useState(false);
+    const { sendTransaction, getNetwork } = useAuth();
+    const { getUser, getWallet, connectWallet } = useAuth();
+
+    useEffect(() => {
+        // 0x13881 is the chainid for the polygon mumbai testnet
+        if (getWallet()) {
+            setWallet(true);
+            if (getNetwork() !== "0x13881") {
+                setError("Change network to Polygon Mumbai to purchase");
+            }
+        }
+    }, []);
+
+    const connectWalletHandler = async () => {
+        connectWallet().catch((err: Error) => {
+            setError(err.message);
+        });
+    };
+
+    const handleTransfer = () => {
+        console.log("transfer");
+        sendTransaction(props.to.walletAddr, props.amount).then(() => {
+            // temp frontend only validation of tx,
+            // TODO: validate in backend e.g.: https://ethereum.stackexchange.com/questions/91274/verify-a-metamask-transaction-has-happened-on-nodejs
+            props.handleSuccess();
+        });
+    };
     return (
         <div className="card">
             <div className="flex space-x-5 items-center">
@@ -10,29 +39,51 @@ function Transfer(props: any) {
                     <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
                         From
                     </label>
-                    <UserPopup user={getUser()} />
+                    {wallet ? (
+                        <UserPopup user={getUser()} />
+                    ) : (
+                        <button
+                            className="button-ghost"
+                            onClick={() => connectWalletHandler()}
+                        >
+                            Connect Metamask Wallet
+                        </button>
+                    )}
                 </div>
                 <div>
                     <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
                         To
                     </label>
-                    <UserPopup user={getUser()} />
+                    <UserPopup user={props.to} />
                 </div>
             </div>
-            <div className="flex space-x-5 justify-between items-center mt-10">
+            {props.note && (
+                <div className="mt-2 p-2 bg-stone-200 rounded">
+                    <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
+                        Note
+                    </label>
+                    {props.note}
+                </div>
+            )}
+            <div className="flex space-x-5 justify-between items-center mt-4">
                 <div className="">
                     <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
                         Amount
                     </label>
                     {props.amount} ETH
                 </div>
-                <div className="">
-                    <button className="button-primary">Transfer</button>
-                </div>
-                <div>
+                <div className="flex space-x-4 items-center">
+                    <button
+                        className={`${
+                            error || !wallet ? "button-disabled" : "button-primary"
+                        }`}
+                        onClick={handleTransfer}
+                    >
+                        Transfer
+                    </button>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
+                        className="h-5 w-5 text-stone-500"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -46,6 +97,10 @@ function Transfer(props: any) {
                     </svg>
                 </div>
             </div>
+            {error && <div className="mt-4 message-error">Error: {error}</div>}
+            {/* {success && (
+                        <div className="message-success">{success}</div>
+                    )} */}
             {/* <div>transfer network: {props.network}</div> */}
         </div>
     );

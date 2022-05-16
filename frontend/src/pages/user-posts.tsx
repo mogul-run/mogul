@@ -9,7 +9,6 @@ function UserPosts() {
 
     const getPosts = () => {
         const db = getDatabase();
-        console.log("userid", user_id);
         onValue(
             ref(db, `/${user_id}/posts`),
             (snapshot) => {
@@ -35,7 +34,7 @@ function UserPosts() {
         getPosts();
     }, []);
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col sidebar-content space-y-10">
             <div>
                 <div className="text-xl font-bold">Published Posts</div>
                 <div>

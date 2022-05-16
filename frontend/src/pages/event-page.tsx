@@ -14,7 +14,7 @@ const sample_event = {
         photoURL:
             "https://firebasestorage.googleapis.com/v0/b/mogul-run.appspot.com/o/user%2FvlITP8crPWNU1jjE1TCosD6L20x2%2Fprofile_img?alt=media&token=481869b3-dfd6-4844-b917-0757ed8bc2c0",
         displayName: "Lucas Song",
-        walletAddr: "1",
+        walletAddr: "0xCe4E67E407aB231925DF614a5e72687fD597324B",
     },
     location: "Fremont, CA",
     duration: "60 minutes",
@@ -49,6 +49,11 @@ function EventPage() {
             setSignup(!signup);
         }
     };
+
+    const handleSuccess = () => {
+        // function to add current user to event participants list when tx succeeds
+        console.log(getUser().displayName, "to be added")
+    }
 
     useEffect(() => {
         getEvent();
@@ -134,8 +139,8 @@ function EventPage() {
                         </div>
                         <div
                             className={`${
-                                signup ? "col-span-5 flex-col" : "col-span-2"
-                            } outline-box flex justify-between`}
+                                signup ? "col-span-5" : "col-span-2"
+                            } outline-box flex flex-col md:flex-row justify-between`}
                         >
                             <div className="flex flex-col text-xl items-center justify-center bg-stone-100 h-full space-y-5 ">
                                 <div className="grid grid-cols-2 gap-3">
@@ -182,8 +187,10 @@ function EventPage() {
                             </div>
                             {signup && (
                                 <Transfer
-                                    to={"123"}
+                                    note="For Treetop Yoga"
+                                    to={sample_event.author}
                                     amount={sample_event.seat_price}
+                                    handleSuccess={handleSuccess}
                                 />
                             )}
                         </div>

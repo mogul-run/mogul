@@ -19,9 +19,9 @@ import MogulRun from "./pages/mogulrun/mogulrun";
 import Write from "./pages/write";
 import UserPosts from "./pages/user-posts";
 import EventPage from "./pages/event-page";
-import EventSignup from "./pages/event-signup";
 import Signup, { SignupPage } from "./pages/signup";
 import { ModalProvider } from "./context/modalContext";
+import CreateEvent from "./pages/create-event";
 
 function WithNavFooter({
     children,
@@ -153,11 +153,16 @@ function App() {
                             </WithSidebar>
                         }
                     />
-                    <Route path="/m/:event_id" element={<EventPage />} />
                     <Route
-                        path="/m/:event_id/signup"
-                        element={<EventSignup />}
+                        path="/e/create"
+                        element={
+                            <WithSidebar>
+                                {" "}
+                                <CreateEvent />
+                            </WithSidebar>
+                        }
                     />
+                    <Route path="/e/:event_id" element={<EventPage />} />
                     <Route
                         path="/:user_id/posts"
                         element={

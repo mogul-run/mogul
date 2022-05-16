@@ -145,7 +145,7 @@ code {
     .sidebar-link {
         cursor: pointer;
         padding: theme("spacing.3");
-        border-radius: 0  theme("borderRadius.lg")  theme("borderRadius.lg") 0;
+        border-radius: 0 theme("borderRadius.lg") theme("borderRadius.lg") 0;
         color: theme("colors.stone.500");
         display: flex;
         align-items: center;
@@ -158,19 +158,28 @@ code {
         box-shadow: theme("boxShadow.md");
         font-weight: bold;
     }
-    .script{
-        font-family:  "Alegreya";
+    .script {
+        font-family: "Alegreya";
     }
 
-    .outline-box{
-        padding: theme("spacing.8") theme("spacing.4") ;
+    .outline-box {
+        padding: theme("spacing.8") theme("spacing.4");
         outline: 0.5px solid theme("colors.stone.600");
         box-shadow: 6px 6px 0 0 theme("colors.stone.600");
         border-radius: theme("borderRadius.md");
     }
     .outline-box:hover {
-        box-shadow: 6px 6px 0 0 theme("colors.stone.600"), 10px 10px 0 0 theme("colors.morange");
+        box-shadow: 6px 6px 0 0 theme("colors.stone.600"),
+            10px 10px 0 0 theme("colors.morange");
         border-radius: theme("borderRadius.md");
+    }
+
+    .sidebar-content {
+        display: flex;
+        max-width: 768px;
+        margin-left: 50px;
+        margin-top: 50px;
+        justify-content: center;
     }
 
     @media only screen and (max-width: 800px) {
@@ -180,6 +189,10 @@ code {
         }
         .topbar {
             margin: 10px;
+        }
+        .sidebar-content {
+            max-width: 100%;
+            margin: 20px 50px;
         }
     }
     /* ... */

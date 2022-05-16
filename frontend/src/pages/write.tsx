@@ -65,7 +65,7 @@ function Write() {
                     titleState={titleState}
                     setTitleState={setTitleState}
                 />
-                <MainEditor
+                <TextEditor
                     editorState={editorState}
                     setEditorState={setEditorState}
                 />
@@ -100,17 +100,12 @@ function TitleInput(props: any) {
     );
 }
 
-function MainEditor(props: any) {
+export function TextEditor(props: any) {
     const editor = useRef<any>(null);
     function focusEditor() {
         editor.current && editor.current.focus();
     }
-    useEffect(() => {
-        console.log(
-            props.editorState.getCurrentContent().getPlainText("\u0001")
-        );
-    }, [props.editorState]);
-
+    
     return (
         <div onClick={focusEditor}>
             <Editor
