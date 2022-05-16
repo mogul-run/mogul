@@ -81,7 +81,6 @@ function AuthModal() {
     const [login, setLogin] = useState(true);
     let { handleModal, modal } = useContext(ModalContext);
     const handleClose = (event: any) => {
-        console.log("close");
         if ("close-auth-modal" === event.target.id) {
             handleModal();
         }
@@ -95,8 +94,7 @@ function AuthModal() {
                 className="fixed top-0 left-0 h-screen w-full flex items-center justify-center bg-stone-800 bg-opacity-80"
             >
                 <div className="bg-stone-200 rounded">
-                    <div>
-                        <nav className="flex justify-center text-sm font-medium border-b border-stone-300">
+                        <div className="flex justify-center text-sm font-medium border-b border-stone-300">
                             <div
                                 className={`cursor-pointer p-4 -mb-px border-b ${
                                     !login
@@ -117,8 +115,7 @@ function AuthModal() {
                             >
                                 Signup
                             </div>
-                        </nav>
-                    </div>
+                        </div>
                     {login ? <LoginModal /> : <SignupModal />}
                 </div>
             </div>,

@@ -55,6 +55,7 @@ export function SignupPage(props: any) {
             setLastName={setLastName}
             setFirstName={setFirstName}
             error={error}
+            page={true}
             handleSignup={handleSignup}
         />
     );
@@ -199,12 +200,15 @@ function Signup(props: any) {
 
                     <div className="flex flex-col">
                         <div className="flex items-center justify-between">
+                            {props.page ? 
                             <p className="text-sm text-gray-500">
                                 Got an account?{" "}
                                 <Link className="underline" to="/login">
                                     Log in
                                 </Link>
-                            </p>
+                            </p> :
+                            <div/>
+                            }
 
                             <button
                                 className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-mblue rounded-lg"

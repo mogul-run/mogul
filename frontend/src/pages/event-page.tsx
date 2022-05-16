@@ -48,7 +48,6 @@ function EventPage() {
             setSignup(!signup);
 
         }
-        console.log("hi");
     };
 
     useEffect(() => {

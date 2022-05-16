@@ -31,8 +31,14 @@ export function LoginPage() {
             });
     };
     return (
-        <Login handleLogin={handleLogin} setEmail={setEmail} setPassword={setPassword} error={error}/>
-    )
+        <Login
+            handleLogin={handleLogin}
+            setEmail={setEmail}
+            setPassword={setPassword}
+            error={error}
+            page={true}
+        />
+    );
 }
 
 function Login(props: any) {
@@ -60,9 +66,7 @@ function Login(props: any) {
                                 type="email"
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="Enter email"
-                                onChange={(e) =>
-                                    props.setEmail(e.target.value)
-                                }
+                                onChange={(e) => props.setEmail(e.target.value)}
                             />
 
                             <span className="absolute inset-y-0 inline-flex items-center right-4">
@@ -125,12 +129,16 @@ function Login(props: any) {
 
                     <div className="flex flex-col">
                         <div className="flex items-center justify-between">
-                            <p className="text-sm text-gray-500">
-                                No account?{" "}
-                                <Link to="/signup" className="underline">
-                                    Sign up
-                                </Link>
-                            </p>
+                            {props.page ? (
+                                <p className="text-sm text-gray-500">
+                                    No account?{" "}
+                                    <Link to="/signup" className="underline">
+                                        Sign up
+                                    </Link>
+                                </p>
+                            ) : (
+                                <div />
+                            )}
 
                             <button
                                 className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-mblue rounded-lg"
