@@ -122,8 +122,8 @@ function CreateEvent() {
                     location: "",
                     duration: "",
                     desc: "",
-                    seat_price: 0.5,
-                    num_seats: 3,
+                    seat_price: 0,
+                    num_seats: 0,
                 }}
                 onChange={(values: EventValues) => {
                     console.log(values);
@@ -146,8 +146,8 @@ function CreateEvent() {
                                 <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                     Title
                                 </label>
-                                <input
-                                id="title"
+                                <Field
+                                    id="title"
                                     name="title"
                                     className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                     placeholder="Baking Bread with Country Loaf Carrie"
@@ -161,7 +161,9 @@ function CreateEvent() {
                                     <div className="bg-stone-200 p-4 rounded-l-lg">
                                         mogul.run/e/
                                     </div>
-                                    <input
+                                    <Field
+                                        id="id"
+                                        name="id"
                                         className="w-full p-4 pr-12 text-sm border-stone-200 rounded-r-lg shadow-sm"
                                         placeholder="country-loaf-bake"
                                     />
@@ -172,7 +174,9 @@ function CreateEvent() {
                             <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                 Hook
                             </label>
-                            <input
+                            <Field
+                                id="hook"
+                                name="hook"
                                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                 placeholder="You ever want to learn how to base jump? Me neither. Let's just bake some bread"
                             />
@@ -182,7 +186,9 @@ function CreateEvent() {
                                 <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                     Location
                                 </label>
-                                <input
+                                <Field
+                                    id="location"
+                                    name="location"
                                     className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                     placeholder="Fremont, CA"
                                 />
@@ -192,7 +198,9 @@ function CreateEvent() {
                                     Duration
                                 </label>
                                 <div className="flex items-center">
-                                    <input
+                                    <Field
+                                        id="duration"
+                                        name="duration"
                                         className="w-full p-4 pr-12 text-sm border-stone-200 rounded-lg shadow-sm"
                                         placeholder="60 minutes"
                                     />
@@ -203,7 +211,9 @@ function CreateEvent() {
                                     Date
                                 </label>
                                 <div className="flex items-center">
-                                    <input
+                                    <Field
+                                        id="date"
+                                        name="date"
                                         className="w-full p-4 pr-12 text-sm border-stone-200 rounded-lg shadow-sm"
                                         placeholder="6/9/2022"
                                     />
@@ -226,7 +236,9 @@ function CreateEvent() {
                                 <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                     Number of Seats
                                 </label>
-                                <input
+                                <Field
+                                    id="num_seats"
+                                    name="num_seats"
                                     className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                                     placeholder="420"
                                 />
@@ -236,7 +248,7 @@ function CreateEvent() {
                                     Price per Seat
                                 </label>
                                 <div className="flex items-center">
-                                    <input
+                                    <Field
                                         name="seat_price"
                                         id="seat_price"
                                         className="w-full p-4 pr-12 text-sm border-stone-200 rounded-l-lg shadow-sm"
