@@ -135,7 +135,7 @@ export function User(props: any) {
                         Log in
                     </Link>
                     <Link
-                        className="px-5 py-2 text-sm font-medium text-white bg-mblue hover:opacity-80 rounded-lg"
+                        className="px-5 py-2 text-sm font-medium text-white bg-sky-600 hover:opacity-80 rounded-lg"
                         to="/signup"
                     >
                         Sign up

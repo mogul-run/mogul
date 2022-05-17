@@ -43,8 +43,8 @@ ul {
 }
 
 .selected {
-    color: #00acc1;
-    border-bottom: 3px solid #00acc1;
+    color: theme("colors.sky.600");
+    border-bottom: 3px solid theme("colors.sky.600");
 }
 
 .chalet-content {

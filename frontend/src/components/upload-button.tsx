@@ -1,7 +1,6 @@
 import { useRef } from "react";
 
-
-//Upload Button with Hidden File 
+//Upload Button with Hidden File
 // Currently only accepts photos
 function UploadButton(props: any) {
     const hiddenFileInput = useRef<HTMLInputElement | null>(null);
@@ -10,7 +9,7 @@ function UploadButton(props: any) {
     };
 
     return (
-        <div>
+        <div> 
             <button
                 onClick={handleFileClick}
                 className="bg-stone-300 hover:bg-mblue hover:text-white text-stone-600 font-bold py-2 px-4 rounded inline-flex items-center"
@@ -39,7 +38,7 @@ function UploadButton(props: any) {
                 onChange={(e) => props.handlePhotoUpload(e)}
                 style={{ display: "none" }}
             />
-            {props.selectedImage && (
+            {props.selectedImage && !props.multiple && (
                 <div>
                     <img
                         alt="not found"
@@ -49,9 +48,26 @@ function UploadButton(props: any) {
                     <br />
                 </div>
             )}
+            {props.selectedImages && props.multiple && (
+                <div className="grid grid-cols-4">
+                    {[...props.selectedImages].map((img: File) => {
+                        for (let i = 0; i < props.selectedImages.length; i++) {
+                            return (
+                                <div className="col-span-1">
+                                    <img
+                                        alt="not found"
+                                        className="w-32 rounded mt-1"
+                                        src={URL.createObjectURL(img)}
+                                    />
+                                    <br />
+                                </div>
+                            );
+                        }
+                    })}
+                </div>
+            )}
         </div>
-    )
-    ;
+    );
 }
 
 export default UploadButton;

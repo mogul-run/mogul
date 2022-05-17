@@ -75,7 +75,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         } else {
             console.log("Please install MetaMask to use this service!");
         }
-    });
+    }, []);
 
     function getWallet() {
         return walletAddr;

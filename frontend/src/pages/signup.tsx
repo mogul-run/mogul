@@ -203,7 +203,7 @@ function Signup(props: any) {
                             {props.page ? 
                             <p className="text-sm text-gray-500">
                                 Got an account?{" "}
-                                <Link className="underline" to="/login">
+                                <Link className="" to="/login">
                                     Log in
                                 </Link>
                             </p> :
@@ -211,7 +211,7 @@ function Signup(props: any) {
                             }
 
                             <button
-                                className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-mblue rounded-lg"
+                                className="inline-block button-primary"
                                 onClick={() => props.handleSignup()}
                             >
                                 Sign up

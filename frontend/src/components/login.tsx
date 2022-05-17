@@ -132,7 +132,7 @@ function Login(props: any) {
                             {props.page ? (
                                 <p className="text-sm text-gray-500">
                                     No account?{" "}
-                                    <Link to="/signup" className="underline">
+                                    <Link to="/signup" className="">
                                         Sign up
                                     </Link>
                                 </p>
@@ -141,7 +141,7 @@ function Login(props: any) {
                             )}
 
                             <button
-                                className="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-mblue rounded-lg"
+                                className="inline-block ml-3 text-sm button-primary rounded-lg"
                                 onClick={() => props.handleLogin()}
                             >
                                 Sign in

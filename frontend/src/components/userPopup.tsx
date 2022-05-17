@@ -76,7 +76,7 @@ function Popup(props: any) {
                                 <div className="font-bold">Posts</div>
                             </div>
                             <img
-                                className="h-48 w-48 object-cover bg-mblue -mt-20 p-1 rounded-lg shadow-md"
+                                className="h-48 w-48 object-cover bg-sky-600 -mt-20 p-1 rounded-lg shadow-md"
                                 src={
                                     props.user.photoURL
                                         ? props.user.photoURL
