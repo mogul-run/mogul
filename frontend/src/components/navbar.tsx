@@ -58,7 +58,7 @@ export function User(props: any) {
             {getUser() ? (
                 <Menu as="div" className="relative inline-block text-left">
                     <div>
-                        <Menu.Button className="login-button inline-flex items-center justify-center w-full rounded-md border border-stone-300 shadow-sm px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-100 ">
+                        <Menu.Button className="inline-flex items-center justify-center w-full rounded-md border border-stone-300 shadow-sm px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-200">
                             {getUser().photoURL && (
                                 <img
                                     className="object-cover w-6 h-6 rounded-full mr-2.5"

@@ -10,9 +10,9 @@ function UploadButton(props: any) {
 
     return (
         <div> 
-            <button
+            <div
                 onClick={handleFileClick}
-                className="bg-stone-300 hover:bg-sky-600 hover:text-stone-100 text-stone-600 font-bold py-2 px-4 rounded inline-flex items-center"
+                className="cursor-pointer bg-stone-300 hover:bg-sky-600 hover:text-stone-100 text-stone-600 font-bold py-2 px-4 rounded inline-flex items-center"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ function UploadButton(props: any) {
                     />
                 </svg>
                 <span>Upload</span>
-            </button>
+            </div>
             <input
                 type="file"
                 accept="image/*"
@@ -42,7 +42,7 @@ function UploadButton(props: any) {
                 <div>
                     <img
                         alt="not found"
-                        className="w-64 rounded mt-1"
+                        className="w-48 h-48 object-cover rounded mt-1"
                         src={URL.createObjectURL(props.selectedImage)}
                     />
                     <br />

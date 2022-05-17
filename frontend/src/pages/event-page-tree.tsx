@@ -1,5 +1,5 @@
-import { child, get, getDatabase, onValue, push, ref } from "firebase/database";
-import { sample, toArray, update } from "lodash";
+import { child, get, getDatabase, ref } from "firebase/database";
+import { sample } from "lodash";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { User } from "../components/navbar";
@@ -20,7 +20,7 @@ const sample_event = {
     location: "Fremont, CA",
     duration: "60 minutes",
     cover_url: "https://i.imgur.com/cov0ZJB.jpg",
-    hook: "Take a retreat into the welcoming branches of an old Sequoia Sempervirens. Panoramic await you -- if you dare to climb.",
+    hook: "Take a retreat into the welcoming branches of an old Sequoia Sempervirens. Panoramic views await you -- if you dare to climb.",
     desc: "Climb up a Redwood tree with panoramic views of beautiful Fremont. As the sun comes down, ",
     materials_list: [
         "Comfortable workout clothes",
@@ -32,52 +32,30 @@ const sample_event = {
     media: ["https://i.imgur.com/cov0ZJB.jpg", ""],
 };
 
-type Event = {
-    title: string;
-    author: User;
-    date: string;
-    desc: string;
-    duration: string;
-    hook: string;
-    id: string;
-    location: string;
-    num_seats: number;
-    participants: User[];
-    seat_price: number;
-};
-type User = {
-    displayName: string;
-    photoURL: string;
-    walletAddr: string;
-    uid: string;
-};
-
 function EventPage() {
     const [loading, setLoading] = useState(true);
     const [signup, setSignup] = useState(false);
-    const [event, setEvent] = useState<Event>();
+    const [event, setEvent] = useState({});
     const { event_id } = useParams();
     const { getUser } = useAuth();
     let { handleModal } = useAuthModal();
     const db = getDatabase();
-    const participants = event ? toArray(event.participants) : [];
-    const seats_left = event ? event.num_seats - participants.length : 0;
 
     const getEvent = () => {
-        setLoading(true);
-        onValue(
-            ref(db, `/events/${event_id}`),
-            (snapshot) => {
+        setLoading(false);
+        console.log(event_id)
+        get(child(ref(db), `events/${event_id}`))
+            .then((snapshot) => {
                 if (snapshot.exists()) {
-                    // .reverse() to display posts with most recent on top
+                    console.log(snapshot.val())
                     setEvent(snapshot.val());
+                } else {
+                    console.log("no data");
                 }
-                setLoading(false);
-            },
-            {
-                onlyOnce: false,
-            }
-        );
+            })
+            .catch((error) => {
+                console.log("Error:", error);
+            });
     };
 
     const handleSignup = () => {
@@ -90,13 +68,6 @@ function EventPage() {
 
     const handleSuccess = () => {
         // function to add current user to event participants list when tx succeeds
-        // should add event to user's event list and add
-        push(
-            ref(db, `events/${event_id}/participants/`),
-            getUser().displayName
-        ).catch((error) => {
-            console.log("error: ", error);
-        });
         console.log(getUser().displayName, "to be added");
     };
 
@@ -106,8 +77,8 @@ function EventPage() {
 
     return (
         <div className="flex flex-col w-full justify-center items-center">
-            {loading || !event ? (
-                <LoadingPage loading={loading} event={event} />
+            {loading ? (
+                <LoadingPage />
             ) : (
                 <div>
                     <div className="mt-4 max-w-[768px] flex m-10 justify-end">
@@ -120,44 +91,37 @@ function EventPage() {
                                     {sample_event.emojis}
                                 </button>
                                 <div className="mt-2 text-3xl font-bold">
-                                    {event.title
-                                        ? event.title
-                                        : sample_event.title}
+                                    {sample_event.title}
                                 </div>
                                 <div className="flex mt-6 w-full justify-between items-center">
                                     <div className="">
                                         <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                             hosted by
                                         </label>
-                                        <UserPopup user={event.author} />
+                                        <UserPopup user={sample_event.author} />
                                     </div>
                                     <div className="">
                                         <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                             location
                                         </label>
-                                        {event.location}
+                                        {sample_event.location}
                                     </div>
                                     <div className="">
-                                        {event.duration && (
-                                            <>
-                                                {" "}
-                                                <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
-                                                    duration
-                                                </label>
-                                                {event.duration}
-                                            </>
-                                        )}
+                                        <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                            duration
+                                        </label>
+                                        {sample_event.duration}
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <div>{event.hook}</div>
+                                <div>{sample_event.hook}</div>
                             </div>
                         </div>
                         <div className="col-span-2 flex items-center justify-center">
                             <img
                                 src={sample_event.cover_url}
-                                className="object-cover w-[300px] h-[400px] rounded bg-amber-500 p-1"
+                                className="object-cover w-[300px] h-[400px] rounded bg-morange p-1"
                             />
                         </div>
                         <div className="col-span-5 flex flex-col items-center script py-6 px-8">
@@ -180,7 +144,7 @@ function EventPage() {
                                 <div>
                                     Chilling in a tree,{" "}
                                     <a
-                                        className="text-amber-800 italic underline-none"
+                                        className="text-morange italic underline-none"
                                         target="__blank"
                                         href="https://vault.sierraclub.org/john_muir_exhibit/writings/the_mountains_of_california/chapter_10.aspx"
                                     >
@@ -194,7 +158,7 @@ function EventPage() {
                                 signup ? "col-span-5" : "col-span-2"
                             } outline-box flex flex-col md:flex-row justify-between`}
                         >
-                            <div className="flex flex-col text-xl items-center justify-center bg-stone-100 h-full space-y-5">
+                            <div className="flex flex-col text-xl items-center justify-center bg-stone-100 h-full space-y-5 ">
                                 <div className="grid grid-cols-2 gap-3">
                                     <div className="relative col-span-2 ">
                                         <label className="block p-4 text-sm uppercase transition-colors border border-stone-100 rounded-lg shadow-sm cursor-pointer hover:bg-stone-50 ">
@@ -209,7 +173,7 @@ function EventPage() {
                                             <span> Seats Left</span>
 
                                             <span className="block mt-1 text-lg text-stone-600">
-                                                {seats_left}
+                                                3
                                             </span>
                                         </label>
                                     </div>
@@ -219,54 +183,40 @@ function EventPage() {
                                             <span> Seat Price</span>
 
                                             <span className="block mt-1 text-stone-600 text-lg">
-                                                {event.seat_price} ETH
+                                                {sample_event.seat_price} ETH
                                             </span>
                                         </label>
                                     </div>
                                 </div>
                                 <div>
-                                    {seats_left && seats_left > 0 ? (
-                                        <button
-                                            className="nostyle relative inline-block group focus:outline-none focus:ring"
-                                            onClick={handleSignup}
-                                        >
-                                            <span className="rounded absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-amber-500 group-hover:translate-y-0 group-hover:translate-x-0"></span>
+                                    <button
+                                        className="nostyle relative inline-block group focus:outline-none focus:ring"
+                                        onClick={handleSignup}
+                                    >
+                                        <span className="rounded absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-morange group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
-                                            <span className="rounded relative inline-block px-8 py-3 text-lg font-bold tracking-widest uppercase border-2 border-current group-active:text-opacity-75">
-                                                Grab a seat!
-                                            </span>
-                                        </button>
-                                    ) : (
-                                        <button className="nostyle cursor-not-allowed relative inline-block group focus:outline-none focus:ring">
-                                            <span className="rounded absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-red-400 animate-pulse group-hover:translate-y-0 group-hover:translate-x-0"></span>
-
-                                            <span className="rounded relative inline-block px-8 py-3 text-lg font-bold tracking-widest uppercase border-2 border-current group-active:text-opacity-75">
-                                                Sold Out!!
-                                            </span>
-                                        </button>
-                                    )}
+                                        <span className="rounded relative inline-block px-8 py-3 text-lg font-bold tracking-widest uppercase border-2 border-current group-active:text-opacity-75">
+                                            Grab a seat!
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
                             {signup && (
                                 <Transfer
-                                    note={`For a ${event.title} seat`}
-                                    to={event.author}
-                                    amount={event.seat_price}
+                                    note="For Treetop Yoga"
+                                    to={sample_event.author}
+                                    amount={sample_event.seat_price}
                                     handleSuccess={handleSuccess}
                                 />
                             )}
                         </div>
-
                         <div className="col-span-3 space-y-6 p-4">
-                            {event.desc && (
-                                <div>
-                                    {" "}
-                                    <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
-                                        What to expect
-                                    </label>
-                                    <div>{event.desc}</div>
-                                </div>
-                            )}
+                            <div>
+                                <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
+                                    What to expect
+                                </label>
+                                <div>{sample_event.desc}</div>
+                            </div>
                             <div>
                                 <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
                                     What to bring
@@ -300,16 +250,6 @@ function EventPage() {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="col-span-2 p-4">
-                                <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
-                                   Signups 
-                                </label>
-                                <div className="max-h-64 overflow-scroll">
-                                    {toArray(event.participants).map((p) => (
-                                        <div>{p}</div>
-                                    ))}
-                                </div>
-                            </div>
                         </div>
                         <div className="col-span-5 space-y-2">
                             <div className="text-xl font-bold">
@@ -330,23 +270,8 @@ function EventPage() {
     );
 }
 
-function LoadingPage(props: any) {
-    return (
-        <div className="mt-10 text-3xl">
-            {props.loading ? (
-                "event loading..."
-            ) : (
-                <div className="flex flex-col items-center justify-center">
-                    there's no event here
-                    <img
-                        className="w-96 my-2"
-                        src="https://s.yimg.com/ny/api/res/1.2/tw9KQNHLA6caLDVOJq1stw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTg1OQ--/https://s.yimg.com/uu/api/res/1.2/zVwGY_4HkGhHsbO6cYIUWg--~B/aD0yMjAwO3c9MTY0MDthcHBpZD15dGFjaHlvbg--/http://media.zenfs.com/en_us/News/Reuters/2014-02-13T074227Z_1779854471_LR2EA2D0LEGRK_RTRMADP_3_OLYMPICS-FREESTYLE.JPG"
-                    />
-                    sorry!
-                </div>
-            )}
-        </div>
-    );
+function LoadingPage() {
+    return <div>loading </div>;
 }
 
 export default EventPage;

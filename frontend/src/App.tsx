@@ -22,6 +22,7 @@ import EventPage from "./pages/event-page";
 import Signup, { SignupPage } from "./pages/signup";
 import { ModalProvider } from "./context/modalContext";
 import CreateEvent from "./pages/create-event";
+import EventPageTree from "./pages/event-page-tree";
 
 function WithNavFooter({
     children,
@@ -162,6 +163,7 @@ function App() {
                             </WithSidebar>
                         }
                     />
+                    <Route path="/e/tree" element={<EventPageTree />} />
                     <Route path="/e/:event_id" element={<EventPage />} />
                     <Route
                         path="/:user_id/posts"

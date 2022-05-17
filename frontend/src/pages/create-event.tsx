@@ -45,6 +45,7 @@ interface EventValues {
     id: string;
     location: string;
     date: string;
+    time: string;
     duration: string;
     desc: string;
     seat_price: number;
@@ -66,13 +67,15 @@ const EventSchema = Yup.object().shape({
         .required("Required"),
     location: Yup.string().max(50, "Too Long!").required("Required"),
     date: Yup.date().required("Required"),
-    seat_price: Yup.number().required("Required"),
-    num_seats: Yup.number().required("Required"),
+    time: Yup.string().required("Required"),
+    seat_price: Yup.number().min(0.0005).required("Required"),
+    num_seats: Yup.number().min(1).required("Required"),
 });
 
 function CreateEvent() {
     // state for event attributes
     const [files, setFiles] = useState<FileList | null>(null);
+    const [coverPhoto, setCoverPhoto] = useState<File | null>(null);
     const [descState, setDescState] = useState(() => EditorState.createEmpty());
 
     const [error, setError] = useState("");
@@ -89,6 +92,12 @@ function CreateEvent() {
     //         }
     //     });
     // };
+    const handleCoverPhoto = (event: ChangeEvent<HTMLInputElement>) => {
+        console.log("profile upload");
+        if (event.target.files) {
+            setCoverPhoto(event.target.files[0]);
+        }
+    };
 
     const handleMultiplePhotos = (event: ChangeEvent<HTMLInputElement>) => {
         console.log("profile upload");
@@ -110,11 +119,12 @@ function CreateEvent() {
         };
 
         let media_urls: string[] = [];
+        let cover_url: string;
         if (files !== null) {
             const storage = getStorage();
             const postImageRef = storageRef(
                 storage,
-                `user/${getUser().uid}/post_images/${formatted_date
+                `user/${getUser().uid}/event_img/${formatted_date
                     .split(" ")
                     .join("-")}`
             );
@@ -138,7 +148,7 @@ function CreateEvent() {
 
         set(ref(db, `events/${new_event.id}`), new_event)
             .then((x) => {
-                navigate(`/e/${new_event.id}`) 
+                navigate(`/e/${new_event.id}`);
             })
             .catch((error) => {
                 console.log("error: ", error);
@@ -155,6 +165,7 @@ function CreateEvent() {
                     hook: "",
                     location: "",
                     date: "",
+                    time: "",
                     duration: "",
                     desc: "",
                     seat_price: 0,
@@ -167,8 +178,9 @@ function CreateEvent() {
                 ) => {
                     setTimeout(() => {
                         console.log("submitting event formik");
-                        handleEventSubmit(values).then(() => 
-                        setSubmitting(false));
+                        handleEventSubmit(values).then(() =>
+                            setSubmitting(false)
+                        );
                         // alert(JSON.stringify(values, null, 2));
                     }, 500);
                 }}
@@ -179,60 +191,71 @@ function CreateEvent() {
                             <div className="text-2xl font-bold">
                                 Create Event
                             </div>
-                            <div className="flex space-x-4">
-                                <div className="flex flex-col w-full">
-                                    <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
-                                        Title
-                                    </label>
-                                    <Field
-                                        id="title"
-                                        name="title"
-                                        className="w-full p-4  text-sm border-gray-200 rounded-lg shadow-sm"
-                                        placeholder="Baking Bread with Country Loaf Carrie"
-                                    />
-                                    {errors.title && touched.title ? (
-                                        <div className="text-xs text-red-500 mt-1">
-                                            {errors.title}
-                                        </div>
-                                    ) : null}
-                                </div>
-                                <div className="flex flex-col w-full">
-                                    <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
-                                        url
-                                    </label>
-                                    <div className="flex items-center">
-                                        <div className="bg-stone-200 p-4 rounded-l-lg text-stone-500 font-bold text-sm">
-                                            mogul.run/e/
-                                        </div>
+                            <div className="grid grid-cols-3 items-start gap-4 border-b pb-5">
+                                <div className="col-span-2 flex flex-col space-y-4">
+                                    <div className="flex flex-col w-full h-20 justify-start">
+                                        <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                            Title
+                                        </label>
                                         <Field
-                                            id="id"
-                                            name="id"
-                                            className="w-full p-4  text-sm border-stone-200 rounded-r-lg shadow-sm"
-                                            placeholder="country-loaf-bake"
+                                            id="title"
+                                            name="title"
+                                            className="w-full p-4  text-sm border-gray-200 rounded-lg shadow-sm"
+                                            placeholder="Baking Bread with Country Loaf Carrie"
                                         />
+                                        {errors.title && touched.title ? (
+                                            <div className="text-xs text-red-500 mt-1">
+                                                {errors.title}
+                                            </div>
+                                        ) : null}
                                     </div>
-                                    {errors.id && touched.id ? (
-                                        <div className="text-xs text-red-500 mt-1">
-                                            {errors.id}
+                                    <div className="flex flex-col w-full h-20 justify-start">
+                                        <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                            url
+                                        </label>
+                                        <div className="flex items-center">
+                                            <div className="bg-stone-200 p-4 rounded-l-lg text-stone-500 font-bold text-sm">
+                                                mogul.run/e/
+                                            </div>
+                                            <Field
+                                                id="id"
+                                                name="id"
+                                                className="w-full p-4  text-sm border-stone-200 rounded-r-lg shadow-sm"
+                                                placeholder="country-loaf-bake"
+                                            />
                                         </div>
-                                    ) : null}
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
-                                    Hook
-                                </label>
-                                <Field
-                                    id="hook"
-                                    name="hook"
-                                    className="w-full p-4  text-sm border-gray-200 rounded-lg shadow-sm"
-                                    placeholder="You ever want to learn how to base jump? Me neither. Let's just bake some bread"
-                                />
-                                {errors.hook && touched.hook ? (
-                                    <div className="text-xs text-red-500 mt-1">
-                                        {errors.hook}
+                                        {errors.id && touched.id ? (
+                                            <div className="text-xs text-red-500 mt-1">
+                                                {errors.id}
+                                            </div>
+                                        ) : null}
                                     </div>
-                                ) : null}
+                                    <div className="flex flex-col w-full h-20 justify-start">
+                                        <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                            Hook
+                                        </label>
+                                        <Field
+                                            id="hook"
+                                            name="hook"
+                                            className="w-full p-4  text-sm border-gray-200 rounded-lg shadow-sm"
+                                            placeholder="You ever want to learn how to base jump? Me neither. Let's just bake some bread"
+                                        />
+                                        {errors.hook && touched.hook ? (
+                                            <div className="text-xs text-red-500 mt-1">
+                                                {errors.hook}
+                                            </div>
+                                        ) : null}
+                                    </div>
+                                </div>
+                                <div>
+                                <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                   Cover Photo 
+                                </label>
+                                    <UploadButton
+                                        handlePhotoUpload={handleCoverPhoto}
+                                        selectedImage={coverPhoto}
+                                    />
+                                </div>
                             </div>
                             <div className="flex space-x-4">
                                 <div className="flex flex-col w-full">
@@ -253,19 +276,6 @@ function CreateEvent() {
                                 </div>
                                 <div className="flex flex-col w-full">
                                     <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
-                                        Duration
-                                    </label>
-                                    <div className="flex items-center">
-                                        <Field
-                                            id="duration"
-                                            name="duration"
-                                            className="w-full p-4  text-sm border-stone-200 rounded-lg shadow-sm"
-                                            placeholder="60 minutes"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="flex flex-col w-full">
-                                    <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                         Date
                                     </label>
                                     <div className="flex items-center">
@@ -282,12 +292,43 @@ function CreateEvent() {
                                         </div>
                                     ) : null}
                                 </div>
+                                <div className="flex flex-col w-full">
+                                    <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                        Time
+                                    </label>
+                                    <div className="flex items-center">
+                                        <Field
+                                            id="time"
+                                            name="time"
+                                            className="w-full p-4  text-sm border-stone-200 rounded-lg shadow-sm"
+                                            placeholder="7:30PM"
+                                        />
+                                    </div>
+                                    {errors.time && touched.time ? (
+                                        <div className="text-xs text-red-500 mt-1">
+                                            {errors.time}
+                                        </div>
+                                    ) : null}
+                                </div>
+                                <div className="flex flex-col w-full h-24 justify-start">
+                                    <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                        Duration
+                                    </label>
+                                    <div className="flex items-center">
+                                        <Field
+                                            id="duration"
+                                            name="duration"
+                                            className="w-full p-4  text-sm border-stone-200 rounded-lg shadow-sm"
+                                            placeholder="60 minutes"
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                            <div>
+                            <div className="">
                                 <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-3">
                                     Description
                                 </label>
-                                <div className="h-20">
+                                <div className="h-16">
                                     <Field
                                         id="desc"
                                         name="desc"
@@ -297,7 +338,7 @@ function CreateEvent() {
                                 </div>
                             </div>
                             <div className="flex space-x-4 items-center">
-                                <div className="flex flex-col w-full">
+                                <div className="flex flex-col w-full h-28 justify-start">
                                     <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                         # of Seats
                                     </label>
@@ -313,7 +354,7 @@ function CreateEvent() {
                                         </div>
                                     ) : null}
                                 </div>
-                                <div className="flex flex-col w-full">
+                                <div className="flex flex-col w-full h-28 justify-start">
                                     <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                         Price per Seat
                                     </label>
@@ -334,14 +375,14 @@ function CreateEvent() {
                                         </div>
                                     ) : null}
                                 </div>
-                                <div className="">
+                                <div className="flex flex-col h-28 justify-start">
                                     <DisplayWallet short />
                                 </div>
                             </div>
                             <div className="flex justify-between">
                                 <div className="h-full">
                                     <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-3">
-                                        Add Media
+                                        Additional Media
                                     </label>
                                     <div className="h-20">
                                         <UploadButton
@@ -356,7 +397,9 @@ function CreateEvent() {
                                 <div className="mt-10">
                                     <button
                                         className={`relative inline-flex items-center px-8 py-3 overflow-hidden ${
-                                            touched.title && isValid && !isSubmitting
+                                            touched.title &&
+                                            isValid &&
+                                            !isSubmitting
                                                 ? "btn-submit"
                                                 : "btn-disabled"
                                         } rounded group focus:outline-none focus:ring`}
@@ -364,22 +407,22 @@ function CreateEvent() {
                                     >
                                         {isSubmitting ? (
                                             <span className="absolute right-0 mr-10 transition-transform translate-x-full">
-                                            <svg
-                                                role="status"
-                                                className="w-5 h-5 mx-2 my-0 text-stone-200 animate-spin dark:text-stone-200 fill-amber-500"
-                                                viewBox="0 0 100 101"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                                                    fill="currentColor"
-                                                />
-                                                <path
-                                                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                                                    fill="currentFill"
-                                                />
-                                            </svg>
+                                                <svg
+                                                    role="status"
+                                                    className="w-5 h-5 mx-2 my-0 text-stone-200 animate-spin dark:text-stone-200 fill-amber-500"
+                                                    viewBox="0 0 100 101"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path
+                                                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                                        fill="currentColor"
+                                                    />
+                                                    <path
+                                                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                                        fill="currentFill"
+                                                    />
+                                                </svg>
                                             </span>
                                         ) : (
                                             <span className="absolute right-0 transition-transform translate-x-full group-hover:-translate-x-4">
@@ -400,7 +443,13 @@ function CreateEvent() {
                                             </span>
                                         )}
 
-                                        <span className={`text-sm font-medium transition-all mx-2 ${!isSubmitting ? "group-hover:mr-4" : "-translate-x-3"}`}>
+                                        <span
+                                            className={`text-sm font-medium transition-all mx-2 ${
+                                                !isSubmitting
+                                                    ? "group-hover:mr-4"
+                                                    : "-translate-x-3"
+                                            }`}
+                                        >
                                             Create
                                         </span>
                                     </button>

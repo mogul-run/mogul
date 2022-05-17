@@ -7,7 +7,10 @@ module.exports = {
       colors: {
         'morange':'#ff9800',
         'mblue': '#00acc1',
-      }
+      },
+      transitionProperty: {
+        'width': 'width'
+    },
     },
   },
   plugins: [],
