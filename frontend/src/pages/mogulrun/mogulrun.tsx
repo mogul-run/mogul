@@ -164,7 +164,7 @@ function Content() {
                     </div>
                     {getUser() && (
                         <div
-                            className="button-primary font-bold text-sm flex h-10 items-center md:px-3"
+                            className="btn-primary font-bold text-sm flex h-10 items-center md:px-3"
                             onClick={() => handlePost()}
                         >
                             <svg
@@ -404,7 +404,7 @@ function PostContent(props: any) {
             <div className="flex w-full justify-center p-2">
                 {" "}
                 <button
-                    className={`button-primary rounded-lg text-sm flex items-center justify-center ${submitting && "cursor-not-allowed"}`}
+                    className={`btn-primary rounded-lg text-sm flex items-center justify-center ${submitting && "cursor-not-allowed"}`}
                     onClick={
                         post
                             ? () => !submitting && handlePostSubmit()

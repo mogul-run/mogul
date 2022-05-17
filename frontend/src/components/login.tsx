@@ -141,7 +141,7 @@ function Login(props: any) {
                             )}
 
                             <button
-                                className="inline-block ml-3 text-sm button-primary rounded-lg"
+                                className="inline-block ml-3 text-sm btn-primary rounded-lg"
                                 onClick={() => props.handleLogin()}
                             >
                                 Sign in

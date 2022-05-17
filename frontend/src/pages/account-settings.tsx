@@ -4,6 +4,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import UploadButton from "../components/upload-button";
+import DisplayWallet from "../components/display-wallet";
 
 function AccountSettings(props: any) {
     const { getWallet, connectWallet } = useAuth();
@@ -73,11 +74,11 @@ function AccountSettings(props: any) {
                 <div className="text-xl block uppercase font-bold">
                     Account Settings
                 </div>
-                <div className="flex ">
+                <div className="flex space-x-5">
                     <div className="">
                         {" "}
-                        <div className="w-full px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        <div className="w-full mb-6 md:mb-0">
+                            <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-2">
                                 UserName
                             </label>
                             <input
@@ -88,8 +89,8 @@ function AccountSettings(props: any) {
                                 onChange={(e) => handleUsername(e.target.value)}
                             />
                         </div>
-                        <div className="w-full px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        <div className="w-full mb-6 md:mb-0">
+                            <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-2">
                                 Bio
                             </label>
                             <input
@@ -100,28 +101,7 @@ function AccountSettings(props: any) {
                                 // onChange={(e) => handleUsername(e.target.value)}
                             />
                         </div>
-                        {getWallet() ? (
-                            <div className="w-full px-3 mb-6 md:mb-0">
-                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                    Wallet Address
-                                </label>
-                                <div
-                                    className="cursor-not-allowed appearance-none block w-full bg-stone-300 text-stone-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white outline outline-mblue"
-                                    id="grid-first-name"
-                                >
-                                    {getWallet()}{" "}
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="my-4">
-                                <button
-                                    className="button-ghost"
-                                    onClick={() => connectWalletHandler()}
-                                >
-                                    Connect Metamask Wallet
-                                </button>
-                            </div>
-                        )}
+                        <DisplayWallet/>
                     </div>
                     <div className="">
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -131,7 +111,7 @@ function AccountSettings(props: any) {
                     </div>
                 </div>
                 <button
-                    className="button-primary"
+                    className="btn-primary"
                     onClick={() => handleSubmit()}
                 >
                     Save Changes{" "}

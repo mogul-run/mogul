@@ -196,7 +196,7 @@ function TGOB() {
                             href="https://discord.gg/8AXyshRRVM"
                             target="__blank"
                         >
-                            <div className="button-primary"> Join the Discord</div>
+                            <div className="btn-primary"> Join the Discord</div>
                         </a>
                     </div>
                 </div>

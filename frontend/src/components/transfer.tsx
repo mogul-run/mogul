@@ -43,7 +43,7 @@ function Transfer(props: any) {
                         <UserPopup user={getUser()} />
                     ) : (
                         <button
-                            className="button-ghost"
+                            className="btn-ghost"
                             onClick={() => connectWalletHandler()}
                         >
                             Connect Metamask Wallet
@@ -75,7 +75,7 @@ function Transfer(props: any) {
                 <div className="flex space-x-4 items-center">
                     <button
                         className={`${
-                            error || !wallet ? "button-disabled" : "button-primary"
+                            error || !wallet ? "btn-primary" : "btn-primary"
                         }`}
                         onClick={handleTransfer}
                     >

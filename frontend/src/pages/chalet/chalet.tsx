@@ -103,7 +103,7 @@ function Chalet(props: any) {
                                     </div>
                                 </div>
                             ) : (
-                                <div className="button-primary">
+                                <div className="btn-primary">
                                     <Link
                                         to="/login"
                                         className="text-white hover:text-slate-600"

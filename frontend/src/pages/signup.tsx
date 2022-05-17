@@ -211,7 +211,7 @@ function Signup(props: any) {
                             }
 
                             <button
-                                className="inline-block button-primary"
+                                className="inline-block btn-primary"
                                 onClick={() => props.handleSignup()}
                             >
                                 Sign up

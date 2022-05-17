@@ -30,7 +30,7 @@ code {
         box-shadow: theme("boxShadow.xl");
     }
 
-    .button-std {
+    .btn-std {
         cursor: pointer;
         background-color: theme("colors.stone.400");
         color: white;
@@ -39,11 +39,11 @@ code {
         padding: theme("spacing.1") theme("spacing.2");
     }
 
-    .button-std:hover {
+    .btn-std:hover {
         background-color: theme("colors.stone.600");
     }
 
-    .button-primary {
+    .btn-primary {
         cursor: pointer;
         background-color: theme("colors.sky.600");
         color: white;
@@ -52,13 +52,13 @@ code {
         padding: theme("spacing.2") theme("spacing.4");
     }
 
-    .button-primary:hover {
+    .btn-primary:hover {
         background-color: theme("colors.stone.100");
         color: theme("colors.sky.600");
         outline: 0.5px solid theme("colors.sky.600");
     }
 
-    .button-ghost {
+    .btn-ghost {
         color: theme("colors.sky.600");
         width: max-content;
         border-radius: theme("borderRadius.lg");
@@ -75,11 +75,11 @@ code {
         
     }
 
-    .button-ghost:hover {
+    .btn-ghost:hover {
         outline: 1px solid theme("colors.sky.600");
     }
 
-    .button-disabled {
+    .btn-disabled {
         background-color: theme("colors.gray.300");
         color: white;
         cursor: not-allowed;
@@ -87,7 +87,7 @@ code {
         padding: theme("spacing.1") theme("spacing.2");
     }
 
-    .button-disabled:hover {
+    .btn-disabled:hover {
         background-color: theme("colors.stone.400");
         color: white;
     }

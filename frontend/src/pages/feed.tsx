@@ -92,7 +92,7 @@ function PostButton(props: any) {
     };
     return (
         <button
-            className="mx-6 my-2 button-primary"
+            className="mx-6 my-2 btn-primary"
             onClick={() => handlePost()}
         >
             {" "}
@@ -145,7 +145,7 @@ function PostContent(props: any) {
             />
             <div className="my-2">
                 <button
-                    className="button-primary"
+                    className="btn-primary"
                     onClick={
                         post
                             ? () => handlePostSubmit()
@@ -200,9 +200,9 @@ function TextPost(props: any) {
             <div className="author font-bold my-2">{props.post.author}</div>
             <div className="post-text">{props.post.text}</div>
             <div className="post-logic my-1">
-                <button className="button-ghost mr-2"> react </button>
-                <button className="button-ghost mr-2 "> comment</button>
-                <button className="button-ghost" onClick={() => handleTip()}>
+                <button className="btn-ghost mr-2"> react </button>
+                <button className="btn-ghost mr-2 "> comment</button>
+                <button className="btn-ghost" onClick={() => handleTip()}>
                     {" "}
                     tip{" "}
                     {props.post.walletAddr && (

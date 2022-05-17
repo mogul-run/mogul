@@ -1,5 +1,5 @@
 import { EditorState } from "draft-js";
-import { getDatabase, push, ref } from "firebase/database";
+import { get, getDatabase, push, ref, set } from "firebase/database";
 import {
     getDownloadURL,
     getStorage,
@@ -12,6 +12,8 @@ import { useAuth } from "../context/authContext";
 import { TextEditor } from "./write";
 import { Formik, Field, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
+import DisplayWallet from "../components/display-wallet";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const sample_event = {
     emojis: "🧘‍♂🌲",
@@ -73,10 +75,20 @@ function CreateEvent() {
     const [files, setFiles] = useState<FileList | null>(null);
     const [descState, setDescState] = useState(() => EditorState.createEmpty());
 
-    const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState("");
     const { getUser, getWallet } = useAuth();
     const db = getDatabase();
+    const navigate = useNavigate();
+
+    // const idValidator = (id: string) => {
+    //     get(ref(db, `/event/${id}`)).then((snapshot) => {
+    //         if (snapshot.exists()) {
+    //             // .reverse() to display posts with most recent on top
+    //             return "error";
+    //             // setPosts(snapshot.val());
+    //         }
+    //     });
+    // };
 
     const handleMultiplePhotos = (event: ChangeEvent<HTMLInputElement>) => {
         console.log("profile upload");
@@ -88,7 +100,6 @@ function CreateEvent() {
     const handleEventSubmit = async (values: EventValues) => {
         // should add post to user's list of posts as well as global list of posts
         // for now we'll just add to the global list of posts
-        setSubmitting(true);
         const date = new Date(Date.now()).toString();
         const formatted_date = date.split(" GMT")[0];
         const author = {
@@ -98,7 +109,7 @@ function CreateEvent() {
             photoURL: getUser().photoURL,
         };
 
-        let media_urls:string[] = [];
+        let media_urls: string[] = [];
         if (files !== null) {
             const storage = getStorage();
             const postImageRef = storageRef(
@@ -117,22 +128,21 @@ function CreateEvent() {
                         media_urls.push(url);
                     });
             }
-            console.log(media_urls)
+            console.log(media_urls);
         }
         let new_event = {
             ...values,
             author: author,
             media: media_urls,
-        }
+        };
 
-        push(ref(db, `events/${new_event.id}`), new_event)
+        set(ref(db, `events/${new_event.id}`), new_event)
             .then((x) => {
-                setSubmitting(false);
+                navigate(`/e/${new_event.id}`) 
             })
             .catch((error) => {
                 console.log("error: ", error);
                 setError(error.value());
-                setSubmitting(false);
             });
     };
 
@@ -156,13 +166,14 @@ function CreateEvent() {
                     { setSubmitting }: FormikHelpers<EventValues>
                 ) => {
                     setTimeout(() => {
-                        handleEventSubmit(values);
+                        console.log("submitting event formik");
+                        handleEventSubmit(values).then(() => 
+                        setSubmitting(false));
                         // alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
                     }, 500);
                 }}
             >
-                {({ errors, touched }) => (
+                {({ errors, touched, isValid, isSubmitting }) => (
                     <Form>
                         <div className="space-y-4">
                             <div className="text-2xl font-bold">
@@ -176,7 +187,7 @@ function CreateEvent() {
                                     <Field
                                         id="title"
                                         name="title"
-                                        className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                                        className="w-full p-4  text-sm border-gray-200 rounded-lg shadow-sm"
                                         placeholder="Baking Bread with Country Loaf Carrie"
                                     />
                                     {errors.title && touched.title ? (
@@ -196,7 +207,7 @@ function CreateEvent() {
                                         <Field
                                             id="id"
                                             name="id"
-                                            className="w-full p-4 pr-12 text-sm border-stone-200 rounded-r-lg shadow-sm"
+                                            className="w-full p-4  text-sm border-stone-200 rounded-r-lg shadow-sm"
                                             placeholder="country-loaf-bake"
                                         />
                                     </div>
@@ -214,7 +225,7 @@ function CreateEvent() {
                                 <Field
                                     id="hook"
                                     name="hook"
-                                    className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                                    className="w-full p-4  text-sm border-gray-200 rounded-lg shadow-sm"
                                     placeholder="You ever want to learn how to base jump? Me neither. Let's just bake some bread"
                                 />
                                 {errors.hook && touched.hook ? (
@@ -231,7 +242,7 @@ function CreateEvent() {
                                     <Field
                                         id="location"
                                         name="location"
-                                        className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                                        className="w-full p-4  text-sm border-gray-200 rounded-lg shadow-sm"
                                         placeholder="Fremont, CA"
                                     />
                                     {errors.location && touched.location ? (
@@ -248,7 +259,7 @@ function CreateEvent() {
                                         <Field
                                             id="duration"
                                             name="duration"
-                                            className="w-full p-4 pr-12 text-sm border-stone-200 rounded-lg shadow-sm"
+                                            className="w-full p-4  text-sm border-stone-200 rounded-lg shadow-sm"
                                             placeholder="60 minutes"
                                         />
                                     </div>
@@ -261,7 +272,7 @@ function CreateEvent() {
                                         <Field
                                             id="date"
                                             name="date"
-                                            className="w-full p-4 pr-12 text-sm border-stone-200 rounded-lg shadow-sm"
+                                            className="w-full p-4  text-sm border-stone-200 rounded-lg shadow-sm"
                                             placeholder="6/9/2022"
                                         />
                                     </div>
@@ -280,20 +291,20 @@ function CreateEvent() {
                                     <Field
                                         id="desc"
                                         name="desc"
-                                        className="w-full min-h-96 p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                                        className="w-full min-h-96 p-4  text-sm border-gray-200 rounded-lg shadow-sm"
                                         placeholder="Write something!"
                                     />
                                 </div>
                             </div>
-                            <div className="flex space-x-4">
+                            <div className="flex space-x-4 items-center">
                                 <div className="flex flex-col w-full">
                                     <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
-                                        Number of Seats
+                                        # of Seats
                                     </label>
                                     <Field
                                         id="num_seats"
                                         name="num_seats"
-                                        className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                                        className="w-full p-4  text-sm border-gray-200 rounded-lg shadow-sm"
                                         placeholder="420"
                                     />
                                     {errors.num_seats && touched.num_seats ? (
@@ -310,7 +321,7 @@ function CreateEvent() {
                                         <Field
                                             name="seat_price"
                                             id="seat_price"
-                                            className="w-full p-4 pr-12 text-sm border-stone-200 rounded-l-lg shadow-sm"
+                                            className="w-full p-4  text-sm border-stone-200 rounded-l-lg shadow-sm"
                                             placeholder="0.42"
                                         />
                                         <div className="bg-sky-800 text-stone-100 font-bold p-4 text-sm rounded-r-lg">
@@ -322,6 +333,9 @@ function CreateEvent() {
                                             {errors.seat_price}
                                         </div>
                                     ) : null}
+                                </div>
+                                <div className="">
+                                    <DisplayWallet short />
                                 </div>
                             </div>
                             <div className="flex justify-between">
@@ -341,38 +355,57 @@ function CreateEvent() {
                                 </div>
                                 <div className="mt-10">
                                     <button
-                                        className="relative inline-flex items-center px-8 py-3 overflow-hidden btn-submit rounded group focus:outline-none focus:ring"
+                                        className={`relative inline-flex items-center px-8 py-3 overflow-hidden ${
+                                            touched.title && isValid && !isSubmitting
+                                                ? "btn-submit"
+                                                : "btn-disabled"
+                                        } rounded group focus:outline-none focus:ring`}
                                         type="submit"
                                     >
-                                        <span className="absolute right-0 transition-transform translate-x-full group-hover:-translate-x-4">
+                                        {isSubmitting ? (
+                                            <span className="absolute right-0 mr-10 transition-transform translate-x-full">
                                             <svg
-                                                className="w-5 h-5"
-                                                xmlns="http://www.w3.org/2000/svg"
+                                                role="status"
+                                                className="w-5 h-5 mx-2 my-0 text-stone-200 animate-spin dark:text-stone-200 fill-amber-500"
+                                                viewBox="0 0 100 101"
                                                 fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg"
                                             >
                                                 <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                                    fill="currentColor"
+                                                />
+                                                <path
+                                                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                                    fill="currentFill"
                                                 />
                                             </svg>
-                                        </span>
+                                            </span>
+                                        ) : (
+                                            <span className="absolute right-0 transition-transform translate-x-full group-hover:-translate-x-4">
+                                                <svg
+                                                    className="w-5 h-5"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                                    />
+                                                </svg>
+                                            </span>
+                                        )}
 
-                                        <span className="text-sm font-medium transition-all group-hover:mr-4">
-                                          Create 
+                                        <span className={`text-sm font-medium transition-all mx-2 ${!isSubmitting ? "group-hover:mr-4" : "-translate-x-3"}`}>
+                                            Create
                                         </span>
                                     </button>
-
-                                    {/* <button
-                                        type="submit"
-                                        className="button-primary px-4 font-bold"
-                                    >
-                                        Submit
-                                    </button> */}
                                 </div>
+                                {error && <div>{error}</div>}
                             </div>
                         </div>
                     </Form>

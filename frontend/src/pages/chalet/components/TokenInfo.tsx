@@ -64,7 +64,7 @@ function AddToken(props: any) {
             <div className="text-lg font-bold">
                 Add $LUCAS to your Wallet
             </div>
-            <button className="button-primary" onClick={() => handleAddToken()}>Add $LUCAS</button>
+            <button className="btn-primary" onClick={() => handleAddToken()}>Add $LUCAS</button>
         </div>
     );
 }
@@ -147,7 +147,7 @@ function TokenSale(props: any) {
                         <button
                             onClick={() => canBuy && handleTokenPurchase()}
                             className={`${
-                                canBuy ? "button-primary" : "button-disabled"
+                                canBuy ? "btn-primary" : "btn-primary"
                             } `}
                         >
                             {" "}

@@ -77,8 +77,8 @@ function Write() {
 function TopBar(props: any) {
     return (
         <div className="flex content-between flex-row-reverse mt-10 space-x-3">
-                <button className="button-primary mx-2" onClick={props.handlePublish}> publish</button>
-                <button className="button-ghost mx-2" onClick={props.handleSave}> save draft</button>
+                <button className="btn-primary mx-2" onClick={props.handlePublish}> publish</button>
+                <button className="btn-ghost mx-2" onClick={props.handleSave}> save draft</button>
         </div>
     );
 }

@@ -110,7 +110,7 @@ function Popup(props: any) {
                                         <a
                                             href={`https://mumbai.polygonscan.com/address/${props.user.walletAddr}`}
                                             target="__blank"
-                                            className="button-ghost"
+                                            className="btn-ghost"
                                             onClick={()=> console.log("clicked")}
                                         >
                                             View on Polygonscan

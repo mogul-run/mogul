@@ -235,7 +235,7 @@ function Comments(props: any) {
                     onChange={(e) => handleComment(e.target.value)}
                 />
                 <button
-                    className="button-primary rounded-r-full text-sm"
+                    className="btn-primary rounded-r-full text-sm"
                     onClick={() => submitComment()}
                 >
                     Send

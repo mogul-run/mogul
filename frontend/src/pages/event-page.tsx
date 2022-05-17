@@ -1,3 +1,4 @@
+import { child, get, getDatabase, ref } from "firebase/database";
 import { sample } from "lodash";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -34,12 +35,27 @@ const sample_event = {
 function EventPage() {
     const [loading, setLoading] = useState(true);
     const [signup, setSignup] = useState(false);
+    const [event, setEvent] = useState({});
     const { event_id } = useParams();
     const { getUser } = useAuth();
     let { handleModal } = useAuthModal();
+    const db = getDatabase();
 
     const getEvent = () => {
         setLoading(false);
+        console.log(event_id)
+        get(child(ref(db), `events/${event_id}`))
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val())
+                    setEvent(snapshot.val());
+                } else {
+                    console.log("no data");
+                }
+            })
+            .catch((error) => {
+                console.log("Error:", error);
+            });
     };
 
     const handleSignup = () => {
@@ -52,8 +68,8 @@ function EventPage() {
 
     const handleSuccess = () => {
         // function to add current user to event participants list when tx succeeds
-        console.log(getUser().displayName, "to be added")
-    }
+        console.log(getUser().displayName, "to be added");
+    };
 
     useEffect(() => {
         getEvent();
@@ -71,7 +87,7 @@ function EventPage() {
                     <div className="mt-10 max-w-[768px] md:w-full m-10 md:grid md:grid-cols-5 md:grid-flow-row gap-8 sm:flex sm:flex-col space-y-4">
                         <div className="col-span-3 flex flex-col space-y-8">
                             <div className="mt-10">
-                                <button className="button-ghost">
+                                <button className="btn-ghost">
                                     {sample_event.emojis}
                                 </button>
                                 <div className="mt-2 text-3xl font-bold">
