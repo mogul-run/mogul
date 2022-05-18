@@ -300,14 +300,19 @@ function EventPage() {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="col-span-2 p-4">
+                            <div className="outline">
                                 <label className="block uppercase tracking-wide text-stone-600 text-sm font-bold mb-1">
-                                   Signups 
+                                    Signups
                                 </label>
-                                <div className="max-h-64 overflow-scroll">
-                                    {toArray(event.participants).map((p) => (
-                                        <div>{p}</div>
-                                    ))}
+                                <div className="max-h-32 overflow-scroll">
+                                    <ul>
+                                        {" "}
+                                        {toArray(event.participants).map(
+                                            (val, key) => (
+                                                <li>{key + 1}. {val}</li>
+                                            )
+                                        )}
+                                    </ul>
                                 </div>
                             </div>
                         </div>
