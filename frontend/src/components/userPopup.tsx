@@ -16,7 +16,7 @@ function UserPopup(props: any) {
         <div>
             {open && <Popup handleClose={handleClose} user={props.user} />}
             <div
-                className="cursor-pointer flex items-center rounded-full hover:-rotate-2 -mx-2 px-2"
+                className="cursor-pointer flex items-center rounded-full underline hover:decoration-2 hover:decoration-amber-600 hover:underline-offset-4 transition-all -mx-2 px-2"
                 onClick={(e) => handleOpen(e)}
             >
                 <img

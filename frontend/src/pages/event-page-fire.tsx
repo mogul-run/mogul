@@ -140,9 +140,11 @@ function EventPage() {
                         <div className="mt-10">
                             <div className="grid sm:grid-cols-5 grid-flow-row-dense grid-cols-1 gap-4">
                                 <div className="ml-5 sm:col-span-2 mt-2 text-xl">
-                                    <span className="script text-2xl font-bold">
-                                        mogul
-                                    </span>
+                                    <Link to="/" className="nostyle">
+                                        <span className="script text-2xl font-bold">
+                                            mogul
+                                        </span>
+                                    </Link>
                                     <span className=""> presents</span>
                                 </div>
                                 <div className="sm:col-span-3 text-center hover:animate-pulse transition-all mt-2 text-5xl font-bold text-stone-100 bg-gradient-to-r from-amber-600 to-red-700 px-5 py-3 rounded-tl-full rounded-br-full">
@@ -156,12 +158,37 @@ function EventPage() {
                                 </div>
                                 <div className="ml-10 sm:col-span-2 flex flex-col items-end text-lg mb-10 font-bold">
                                     <div>May 27, 2022 @ 9:00pm</div>
-                                    <a
-                                        href="https://goo.gl/maps/iL3xqZjEyjzUwT9y8"
-                                        target="__blank"
-                                    >
-                                        <div className="flex text-sky-800 items-center rounded text-sm">
-                                            {" "}
+                                    {getUser() ? (
+                                        <a
+                                            href="https://goo.gl/maps/iL3xqZjEyjzUwT9y8"
+                                            target="__blank"
+                                        >
+                                            <div className="flex text-sky-800 items-center rounded text-sm">
+                                                {" "}
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-6 w-6 p-1"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                    strokeWidth={2}
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                                    />
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                                    />
+                                                </svg>
+                                                Quema Dr. and Paseo Padre
+                                            </div>
+                                        </a>
+                                    ) : (
+                                        <div className="flex text-sky-800 cursor-pointer" onClick={handleModal}>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 className="h-6 w-6 p-1"
@@ -181,26 +208,34 @@ function EventPage() {
                                                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                                                 />
                                             </svg>
-                                            Quema Dr and Paseo Padre
+                                            ????
                                         </div>
-                                    </a>
+                                    )}
                                 </div>
-                                <div className="sm:col-span-3  mt-10 rounded bg-stone-200 p-5">
-                                    a night of fire toasted snacks and drinks.
-                                    hosted deep in the wilderness of fremont,
-                                    ca.
+                                <div className="sm:col-span-3 mt-0 rounded bg-stone-200 p-5 mr-5">
+                                    a night of fire-toasted snacks, drinks, and
+                                    stargazing, hosted at a wilderness location
+                                    in fremont, ca. bring warm layers,
+                                    comfortable shoes, flashlights, and good
+                                    vibes!
                                 </div>
-                                <div className="sm:col-span-2 mt-2 flex text-md font-bold">
-                                    sponsored by
-                                    <a
-                                        href="https://poler.com/"
-                                        target="__blank"
-                                    >
-                                        <img
-                                            className="h-24 hover:scale-150 transition-all"
-                                            src="https://i.imgur.com/rLmT1xB.png"
-                                        />
-                                    </a>
+                                <div className="sm:col-span-2 mt-2 flex flex-col text-md space-y-2">
+                                    <div className="mt-2 flex text-md font-bold">
+                                        sponsored by
+                                        <a
+                                            href="https://poler.com/"
+                                            target="__blank"
+                                        >
+                                            <img
+                                                className="h-24 hover:scale-150 transition-all"
+                                                src="https://i.imgur.com/rLmT1xB.png"
+                                            />
+                                        </a>
+                                    </div>
+                                    <div className="text-sm">
+                                        we'll be raffling away some poler gear
+                                        at the campfire!
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -228,25 +263,36 @@ function EventPage() {
                                 )}
                             </div>
                             <div
-                                className={`mt-5 flex flex-col w-full space-x-5 items-center ${
+                                className={`my-5 flex flex-col w-full space-x-5 items-center ${
                                     loading && "hidden"
                                 }`}
                             >
-                                <div className="text-xl underline mb-3">
-                                    who's coming
+                                <div className="text-xl hover:rotate-2 underline-offset-2 hover:underline-offset-8 transition-all font-bold mb-3">
+                                    campfire attendees
                                 </div>
                                 <div className="flex flex-col max-h-32 space-y-2">
-                                    {participants.map((u) => {
-                                        return (
-                                            <div className="">
-                                                <UserPopup user={u} />
-                                            </div>
-                                        );
-                                    })}
+                                    {getUser() ? (
+                                        participants.map((u) => {
+                                            return (
+                                                <div className="">
+                                                    <UserPopup user={u} />
+                                                </div>
+                                            );
+                                        })
+                                    ) : (
+                                        <div>
+                                            <span
+                                                onClick={handleModal}
+                                                className="cursor-pointer text-sky-700"
+                                            >
+                                                sign in
+                                            </span>{" "}
+                                            to view list
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

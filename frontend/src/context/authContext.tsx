@@ -22,11 +22,11 @@ export const AuthProvider: React.FC = ({ children }) => {
     const { ethereum } = window as any;
 
     function login(email: string, password: string) {
-        return signInWithEmailAndPassword(auth, email, password);
+        return signInWithEmailAndPassword(auth, email, password).then(() => window.location.reload());
     }
 
     function signOut() {
-        return auth.signOut();
+        return auth.signOut().then(() => window.location.reload());
     }
 
     function signUp(email: string, password: string) {
@@ -57,7 +57,7 @@ export const AuthProvider: React.FC = ({ children }) => {
                 })
                 .then((accounts: string[]) => {
                     setWalletAddr(accounts[0]);
-                    setCurrentChain(ethereum.chainId)
+                    setCurrentChain(ethereum.chainId);
                 });
 
             ethereum.on("accountsChanged", (accounts: string[]) => {
@@ -153,11 +153,9 @@ export const AuthProvider: React.FC = ({ children }) => {
         return currentChain;
     }
 
-
     // recipient: eth wallet addr
     // amount: plaintext eth ex: 0.30 eth. we need to convert this to wei in txParams
     async function sendTransaction(recipient: string, value: string) {
-
         const txParams = {
             nonce: "0x00", // ignored by MetaMask
             // gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
