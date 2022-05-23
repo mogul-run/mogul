@@ -1,5 +1,14 @@
-import { child, get, getDatabase, ref } from "firebase/database";
-import { sample } from "lodash";
+import {
+    child,
+    getDatabase,
+    onValue,
+    onChildChanged,
+    push,
+    ref,
+    remove,
+    set,
+} from "firebase/database";
+import { sample, toArray } from "lodash";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { User } from "../components/navbar";
@@ -8,6 +17,7 @@ import UserPopup from "../components/userPopup";
 import { useAuth } from "../context/authContext";
 import { ModalContext, useAuthModal } from "../context/modalContext";
 import { TokenSale } from "./chalet/components/TokenInfo";
+import { Comments } from "./mogulrun/components/post";
 
 const sample_event = {
     emojis: "🧘‍♂🌲",
@@ -33,21 +43,83 @@ const sample_event = {
 };
 
 function EventPage() {
-    const [ERC20Bal, setERC20Bal] = useState("");
-    const [ETHBal, setETHBal] = useState("");
-    const [userAllowed, setUserAllowed] = useState(false);
-    const [purchased, setPurchased] = useState(false);
-    const [signup, setSignup] = useState(false);
-    const { getUser } = useAuth();
+    const [loading, setLoading] = useState(true);
+    const [openComment, setOpenComment] = useState(false);
+    const [userRSVPd, setUserRSVPd] = useState(false);
+    const [participants, setParticipants] = useState<any[]>([]);
+    const [comments, setComments] = useState<any[]>([]);
+    const { getUser, getWallet } = useAuth();
     let { handleModal } = useAuthModal();
     const db = getDatabase();
 
-    const handleSignup = () => {
+    useEffect(() => {
+        getParticipants();
+        getComments();
+        setLoading(false);
+    }, []);
+
+    const getParticipants = () => {
+        onValue(
+            ref(db, `/events/fire-1/participants`),
+            (snapshot) => {
+                if (snapshot.exists()) {
+                    if (snapshot.val()[getUser().uid]) {
+                        setUserRSVPd(true);
+                    }
+                    // console.log(participants_arr)
+                    setParticipants(toArray(snapshot.val()));
+                }
+            },
+            {
+                onlyOnce: false,
+            }
+        );
+    };
+    const getComments = () => {
+        onValue(
+            ref(db, `/events/fire-1/comments`),
+            (snapshot) => {
+                if (snapshot.exists()) {
+                    setComments(toArray(snapshot.val()).reverse());
+                }
+            },
+            {
+                onlyOnce: false,
+            }
+        );
+    };
+
+    const handleRSVP = () => {
         if (!getUser()) {
             handleModal();
         } else {
-            setSignup(!signup);
+            // add user to rsvp list
+            const new_user = {
+                displayName: getUser().displayName,
+                photoURL: getUser().photoURL,
+                walletAddr: getWallet(),
+            };
+            set(
+                ref(db, `events/fire-1/participants/${getUser().uid}`),
+                new_user
+            )
+                .then(() => {
+                    setUserRSVPd(true);
+                })
+                .catch((error) => {
+                    console.log("error: ", error);
+                });
         }
+    };
+    const handleRemoveRSVP = () => {
+        // add user to rsvp list
+        remove(ref(db, `events/fire-1/participants/${getUser().uid}`))
+            .then(() => {
+                setUserRSVPd(false);
+            })
+            .catch((error) => {
+                console.log("error: ", error);
+            });
     };
 
     const handleSuccess = () => {
@@ -79,11 +151,11 @@ function EventPage() {
                                     </span>
                                     <span className="font-light ">fire</span>
                                 </div>
-                                <div className="ml-20 font-mono sm:col-span-3 font-sans mt-2 text-3xl font-bold">
+                                <div className="ml-20 font-serif sm:col-span-3 mt-2 text-3xl">
                                     no. 1
                                 </div>
-                                <div className="ml-10 sm:col-span-2 text-center text-lg mb-10 font-bold">
-                                    May 27, 2022 @ 9:00pm
+                                <div className="ml-10 sm:col-span-2 flex flex-col items-end text-lg mb-10 font-bold">
+                                    <div>May 27, 2022 @ 9:00pm</div>
                                     <a
                                         href="https://goo.gl/maps/iL3xqZjEyjzUwT9y8"
                                         target="__blank"
@@ -113,12 +185,12 @@ function EventPage() {
                                         </div>
                                     </a>
                                 </div>
-                                <div className="sm:col-span-3 rounded bg-stone-200 p-5">
-                                    a night of fire toasted snacks, drinks, and
-                                    gear raffles. hosted deep in the wilderness
-                                    of fremont, ca.
+                                <div className="sm:col-span-3  mt-10 rounded bg-stone-200 p-5">
+                                    a night of fire toasted snacks and drinks.
+                                    hosted deep in the wilderness of fremont,
+                                    ca.
                                 </div>
-                                <div className="sm:col-span-2 flex text-md font-bold">
+                                <div className="sm:col-span-2 mt-2 flex text-md font-bold">
                                     sponsored by
                                     <a
                                         href="https://poler.com/"
@@ -132,16 +204,49 @@ function EventPage() {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-5 flex flex-col">
-                            <div>
-
+                        <div className="flex flex-col md:flex-row-reverse">
+                            {" "}
+                            <div
+                                className={`mt-5 flex w-full space-x-5 justify-center items-start ${
+                                    loading && "hidden"
+                                }`}
+                            >
+                                {userRSVPd ? (
+                                    <div
+                                        className="font-bold text-red-500 p-1 rounded outline outline-stone-100 hover:outline-red-500 text-2xl cursor-pointer"
+                                        onClick={handleRemoveRSVP}
+                                    >
+                                        un-R.S.V.P
+                                    </div>
+                                ) : (
+                                    <div
+                                        className="btn-ghost font-bold text-2xl cursor-pointer"
+                                        onClick={handleRSVP}
+                                    >
+                                        R.S.V.P
+                                    </div>
+                                )}
                             </div>
-                            Campfire no.1 will be open to all. However, meal and
-                            raffle tickets will be available for sale.
-                            <div className="bg-stone-200 p-10">
-                                <TokenSale />
+                            <div
+                                className={`mt-5 flex flex-col w-full space-x-5 items-center ${
+                                    loading && "hidden"
+                                }`}
+                            >
+                                <div className="text-xl underline mb-3">
+                                    who's coming
+                                </div>
+                                <div className="flex flex-col max-h-32 space-y-2">
+                                    {participants.map((u) => {
+                                        return (
+                                            <div className="">
+                                                <UserPopup user={u} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

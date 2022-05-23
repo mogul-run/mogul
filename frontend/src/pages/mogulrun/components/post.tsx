@@ -114,7 +114,7 @@ export function TextPost(props: any) {
                                     shakasArr.some(
                                         (shaka) => shaka.name === getUser()?.uid
                                     )
-                                        ? `bg-orange-500 text-white`
+                                        ? `bg-amber-500 text-white`
                                         : `text-stone-600`
                                 }`}
                                 onClick={() => handleShaka()}
@@ -142,6 +142,7 @@ export function TextPost(props: any) {
                                 {props.post.comments
                                     ? props.post.comments.length
                                     : "0"}{" "}
+                                {props.post.comments.length > 1 ? "s" : ""}{" "}
                                 comments
                             </div>
                         </div>
@@ -172,7 +173,7 @@ export function TextPost(props: any) {
                 {selected && (
                     <div className="p-2">
                         <Comments
-                            post_key={props.post.key}
+                            comment_path={`the-mogul-run/post/${props.post.key}/comments`}
                             comments={props.post.comments}
                         />
                     </div>
@@ -182,7 +183,7 @@ export function TextPost(props: any) {
     );
 }
 
-function Comments(props: any) {
+export function Comments(props: any) {
     const [comment, setComment] = useState("");
     const handleComment = (comment: string) => {
         setComment(comment);
@@ -207,7 +208,7 @@ function Comments(props: any) {
             };
             console.log("submitting comment: ", newComment);
             push(
-                ref(db, `the-mogul-run/posts/${props.post_key}/comments`),
+                ref(db, `${props.comment_path}`),
                 newComment
             )
                 .then(() => {
@@ -230,7 +231,7 @@ function Comments(props: any) {
             <div className="flex space-x-1">
                 <input
                     className="inline-flex items-center bg-stone-200 px-5 py-1.5 rounded-l-full w-full"
-                    placeholder="comment"
+                    placeholder="say something!"
                     value={comment}
                     onChange={(e) => handleComment(e.target.value)}
                 />
