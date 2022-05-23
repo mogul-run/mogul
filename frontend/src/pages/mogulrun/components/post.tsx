@@ -52,8 +52,7 @@ export function TextPost(props: any) {
             }
             if (props.post.text.length > 35) {
                 return "md:col-span-4 sm:col-span-1 row-span-2";
-            }
-            else {
+            } else {
                 return `md:col-span-3 sm:col-span-1 row-span-1`;
             }
         }
@@ -85,10 +84,12 @@ export function TextPost(props: any) {
                                 {props.post.text}
                             </h5>
                             <h5 className="mt-2 text-xl font-bold ">
-                                {props.post.media && <img src={props.post.media} />}
+                                {props.post.media && (
+                                    <img src={props.post.media} />
+                                )}
                             </h5>
                             <div className="flex flex-row items-center mt-2 text-stone-500 font-normal">
-                                <UserPopup user={props.post.author}/>
+                                <UserPopup user={props.post.author} />
                             </div>
                             <div className="flex items-center justify-between mt-6">
                                 <p className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
@@ -142,8 +143,8 @@ export function TextPost(props: any) {
                                 {props.post.comments
                                     ? props.post.comments.length
                                     : "0"}{" "}
+                                comment
                                 {props.post.comments.length > 1 ? "s" : ""}{" "}
-                                comments
                             </div>
                         </div>
                     </div>
@@ -207,10 +208,7 @@ export function Comments(props: any) {
                 },
             };
             console.log("submitting comment: ", newComment);
-            push(
-                ref(db, `${props.comment_path}`),
-                newComment
-            )
+            push(ref(db, `${props.comment_path}`), newComment)
                 .then(() => {
                     setComment("");
                 })

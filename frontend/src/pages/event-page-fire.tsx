@@ -80,7 +80,7 @@ function EventPage() {
             ref(db, `/events/fire-1/comments`),
             (snapshot) => {
                 if (snapshot.exists()) {
-                    setComments(toArray(snapshot.val()).reverse());
+                    setComments(toArray(snapshot.val()));
                 }
             },
             {
@@ -299,15 +299,33 @@ function EventPage() {
                                 </div>
                             </div>
                         </div>
+                        <div
+                            onClick={() => setOpenComment(!openComment)}
+                            className="flex items-center text-sm text-stone-400 cursor-pointer hover:text-stone-600 decoration-solid"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-4 h-4 mr-1"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+                                />
+                            </svg>
+                            {comments ? comments.length : "0"} comment
+                            {comments.length > 1 ? "s" : ""} 
+                        </div>
+                        {openComment && <Comments comment_path="/events/fire-1/comments" comments={comments}/>}
                     </div>
                 </div>
             </div>
         </div>
     );
-}
-
-function LoadingPage() {
-    return <div>loading </div>;
 }
 
 export default EventPage;
