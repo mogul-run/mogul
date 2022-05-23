@@ -151,7 +151,7 @@ function EventPage() {
                                     <span className="font-bold font-serif">
                                         camp
                                     </span>
-                                    <span className="font-light ">fire</span>
+                                    <span className="font-bold">fire</span>
                                 </div>
                                 <div className="ml-20 font-serif sm:col-span-3 mt-2 text-3xl">
                                     no. 1
@@ -187,7 +187,7 @@ function EventPage() {
                                                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                                                     />
                                                 </svg>
-                                                Quema Dr. and Paseo Padre
+                                                Quema Dr / Paseo Padre
                                             </div>
                                         </a>
                                     ) : (
