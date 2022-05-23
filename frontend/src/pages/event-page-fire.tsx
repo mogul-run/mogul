@@ -157,7 +157,10 @@ function EventPage() {
                                     no. 1
                                 </div>
                                 <div className="ml-10 sm:col-span-2 flex flex-col items-end text-lg mb-10 font-bold">
-                                    <div>May 27, 2022 @ 9:00pm</div>
+                                    <div className="flex ">
+                                        {" "}
+                                        May 27, 2022 @ 8:30pm
+                                    </div>
                                     {getUser() ? (
                                         <a
                                             href="https://goo.gl/maps/iL3xqZjEyjzUwT9y8"
@@ -188,7 +191,10 @@ function EventPage() {
                                             </div>
                                         </a>
                                     ) : (
-                                        <div className="flex text-sky-800 cursor-pointer" onClick={handleModal}>
+                                        <div
+                                            className="flex text-sky-800 cursor-pointer"
+                                            onClick={handleModal}
+                                        >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 className="h-6 w-6 p-1"
