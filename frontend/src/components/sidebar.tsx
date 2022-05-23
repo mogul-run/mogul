@@ -1,10 +1,18 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate, useNavigationType } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { User } from "./navbar";
 import UserPopup from "./userPopup";
 
 function Sidebar(props: any) {
     const { getUser, signOut } = useAuth();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!getUser()) {
+            navigate("/");
+        }
+    }, []);
+
     return (
         <div className="w-60 h-full shadow-inner bg-stone-200 fixed">
             <div className="flex flex-col h-full justify-between items-start">
@@ -98,7 +106,7 @@ function Sidebar(props: any) {
                                     <div className="ml-2">Question Board</div>
                                 </div>
                             </Link>
-                            <div className="sidebar-link">
+                            <div className="sidebar-link cursor-not-allowed">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-6 w-6 p-1"
@@ -115,7 +123,7 @@ function Sidebar(props: any) {
                                 </svg>
                                 <div className="ml-2">Alerts</div>
                             </div>
-                            <div className="sidebar-link">
+                            <div className="sidebar-link cursor-not-allowed">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-6 w-6 p-1"
@@ -159,34 +167,59 @@ function Sidebar(props: any) {
                             <label className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-1 ml-2">
                                 My Groups
                             </label>
-                            <div className="cursor-not-allowed sidebar-link">
-                                Sender Central
-                            </div>
+                            <Link to="/m/sender-central">
+                                <div className="sidebar-link">
+                                    Sender Central
+                                </div>
+                            </Link>
                         </div>
-                        <div className="">
+                        <div className="rounded">
                             <label className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-1 ml-2">
                                 Events
                             </label>
+                            <Link to="/e/fire-1" className="sidebar-link">
+                                <div className="flex items-center">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6 p-1"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+                                        />
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+                                        />
+                                    </svg>
+                                    <div className="ml-1">
+                                        burb campfire no. 1
+                                    </div>
+                                </div>
+                            </Link>
                             <Link to="/e/create" className="sidebar-link">
                                 <div className="flex items-center">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6 p-1"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                    />
-                                </svg>
-                                <div className="ml-1">
-
-                                Create Event
-                                </div>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6 p-1"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                        />
+                                    </svg>
+                                    <div className="ml-1">Create Event</div>
                                 </div>
                             </Link>
                         </div>

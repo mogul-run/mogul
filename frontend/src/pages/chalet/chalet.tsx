@@ -66,7 +66,7 @@ function Chalet(props: any) {
     }, [purchased]);
 
     return (
-        <div className="chalet-wrapper">
+        <div className="flex flex-col items-center sidebar-content chalet-wrapper">
             <div className="chalet-info">
                 <div className="chalet-top-wrapper flex space-x-4 p-4 ">
                     {/* <div className="text-xl font-bold">Lucas</div> */}

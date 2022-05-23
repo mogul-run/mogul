@@ -23,6 +23,8 @@ import Signup, { SignupPage } from "./pages/signup";
 import { ModalProvider } from "./context/modalContext";
 import CreateEvent from "./pages/create-event";
 import EventPageTree from "./pages/event-page-tree";
+import Chalet from "./pages/chalet/chalet";
+import EventPageFire from "./pages/event-page-fire";
 
 function WithNavFooter({
     children,
@@ -164,12 +166,21 @@ function App() {
                         }
                     />
                     <Route path="/e/tree" element={<EventPageTree />} />
+                    <Route path="/e/fire-1" element={<EventPageFire/>} />
                     <Route path="/e/:event_id" element={<EventPage />} />
                     <Route
                         path="/:user_id/posts"
                         element={
                             <WithSidebar>
                                 <UserPosts />
+                            </WithSidebar>
+                        }
+                    />
+                    <Route
+                        path="/m/sender-central"
+                        element={
+                            <WithSidebar>
+                                    <Chalet />
                             </WithSidebar>
                         }
                     />

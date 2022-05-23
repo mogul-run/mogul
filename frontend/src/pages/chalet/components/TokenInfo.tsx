@@ -69,7 +69,7 @@ function AddToken(props: any) {
     );
 }
 
-function TokenSale(props: any) {
+export function TokenSale(props: any) {
     const [numTokens, setNumTokens] = useState(0);
     const [cost, setCost] = useState(0);
     const [error, setError] = useState("");

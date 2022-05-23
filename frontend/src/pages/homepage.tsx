@@ -237,12 +237,11 @@ function Content5() {
         <div className="content-container five">
             <div className="tgob-pitch">
                 <div className="pitch-header">
-                    Want to be one of the first creators on Mogul?
+                    Want to learn more about Mogul?
                 </div>
-                You've got to earn your spot in...
                 <div className="tgob-script">
-                    <Link to="/tgob" className="tgob-link">
-                        The Game of B.U.M.
+                    <Link to="/e/fire-1" className="btn-ghost">
+                        join us at campfire no. 1
                     </Link>
                 </div>
             </div>

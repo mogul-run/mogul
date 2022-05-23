@@ -27,9 +27,9 @@ export default function Navbar(props: any) {
                         <div className="navlink"> discord</div>
                     </a> */}
 
-                    <Link to="/tgob" className="nostyle">
+                    {/* <Link to="/tgob" className="nostyle">
                         <div className="navlink">T.G.o.B</div>
-                    </Link>
+                    </Link> */}
                 </div>
                 <div className="auth-buttons">
                     {/* <div

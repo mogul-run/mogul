@@ -16,7 +16,7 @@ function UserPopup(props: any) {
         <div>
             {open && <Popup handleClose={handleClose} user={props.user} />}
             <div
-                className="cursor-pointer flex items-center rounded-full hover:-rotate-2 py-1 -mx-2 px-2"
+                className="cursor-pointer flex items-center rounded-full hover:-rotate-2 -mx-2 px-2"
                 onClick={(e) => handleOpen(e)}
             >
                 <img
@@ -72,8 +72,8 @@ function Popup(props: any) {
                     <div className="flex flex-col items-center space-y-2">
                         <div className="grid grid-cols-3 gap-4 justify-evenly">
                             <div className="flex flex-col items-center justify-center">
-                                <div className="text-3xl font-bold">3</div>{" "}
-                                <div className="font-bold">Posts</div>
+                                {/* <div className="text-3xl font-bold">3</div>{" "}
+                                <div className="font-bold">Posts</div> */}
                             </div>
                             <img
                                 className="h-48 w-48 object-cover bg-sky-600 -mt-20 p-1 rounded-lg shadow-md"
@@ -85,12 +85,12 @@ function Popup(props: any) {
                                 alt="profile pic"
                             />
                             <div className="flex flex-col justify-center items-center">
-                                <div className="text-3xl font-bold">
+                                {/* <div className="text-3xl font-bold">
                                     34.2 MATIC
                                 </div>
                                 <div className="font-bold">
                                     Paid to bounties
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
