@@ -166,7 +166,7 @@ function App() {
                         }
                     />
                     <Route path="/e/tree" element={<EventPageTree />} />
-                    <Route path="/e/fire-1" element={<EventPageFire/>} />
+                    <Route path="/e/fire" element={<EventPageFire/>} />
                     <Route path="/e/:event_id" element={<EventPage />} />
                     <Route
                         path="/:user_id/posts"

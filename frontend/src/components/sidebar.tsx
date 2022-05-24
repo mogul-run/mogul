@@ -199,7 +199,7 @@ function Sidebar(props: any) {
                                         />
                                     </svg>
                                     <div className="ml-1">
-                                        burb campfire no. 1
+                                        campfire no. 1
                                     </div>
                                 </div>
                             </Link>
