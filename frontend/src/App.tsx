@@ -25,6 +25,7 @@ import CreateEvent from "./pages/create-event";
 import EventPageTree from "./pages/event-page-tree";
 import Chalet from "./pages/chalet/chalet";
 import EventPageFire from "./pages/event-page-fire";
+import Guide from "./pages/guide";
 
 function WithNavFooter({
     children,
@@ -165,9 +166,10 @@ function App() {
                             </WithSidebar>
                         }
                     />
+                    <Route path="/guides/:post_id" element={<Guide />} />
                     <Route path="/e/tree" element={<EventPageTree />} />
-                    <Route path="/e/fire" element={<EventPageFire/>} />
-                    <Route path="/e/:event_id" element={<EventPage />} />
+                    <Route path="/e/fire" element={<EventPageFire />} />
+                    <Route path="/e/:guide_id" element={<EventPage />} />
                     <Route
                         path="/:user_id/posts"
                         element={
@@ -180,7 +182,7 @@ function App() {
                         path="/m/sender-central"
                         element={
                             <WithSidebar>
-                                    <Chalet />
+                                <Chalet />
                             </WithSidebar>
                         }
                     />

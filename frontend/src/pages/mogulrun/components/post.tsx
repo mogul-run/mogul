@@ -27,14 +27,15 @@ export function TextPost(props: any) {
             remove(
                 ref(
                     db,
-                    `the-mogul-run/posts/${props.post.key}/shakas/${user_match.id}`
+                    // `the-mogul-run/posts/${props.post.key}/shakas/${user_match.id}`,
+                    `${props.path}/${props.post.key}/shakas/${user_match.id}`
                 )
             ).catch((error) => {
                 console.log("error: ", error);
             });
         } else {
             push(
-                ref(db, `the-mogul-run/posts/${props.post.key}/shakas/`),
+                ref(db, `${props.path}/${props.post.key}/shakas/`),
                 getUser().uid
             ).catch((error) => {
                 console.log("error: ", error);
@@ -144,7 +145,7 @@ export function TextPost(props: any) {
                                     ? props.post.comments.length
                                     : "0"}{" "}
                                 comment
-                                {props.post.comments.length > 1 ? "s" : ""}{" "}
+                                {props.post.comments.length !== 1 ? "s" : ""}{" "}
                             </div>
                         </div>
                     </div>

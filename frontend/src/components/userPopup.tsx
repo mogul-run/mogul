@@ -30,7 +30,11 @@ function UserPopup(props: any) {
                 />
 
                 <span className="">
-                    <b> {props.user.displayName}</b>{" "}
+                    <div>
+                        <div>
+                            <b> {props.user.displayName}</b>{" "}
+                        </div>
+                    </div>
                 </span>
             </div>
         </div>
@@ -111,7 +115,9 @@ function Popup(props: any) {
                                             href={`https://mumbai.polygonscan.com/address/${props.user.walletAddr}`}
                                             target="__blank"
                                             className="btn-ghost"
-                                            onClick={()=> console.log("clicked")}
+                                            onClick={() =>
+                                                console.log("clicked")
+                                            }
                                         >
                                             View on Polygonscan
                                         </a>

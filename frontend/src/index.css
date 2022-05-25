@@ -196,6 +196,19 @@ code {
         justify-content: center;
     }
 
+    h1 {
+        font-size: theme("fontSize.2xl");
+        font-weight: theme("fontWeight.bold");
+    }
+    h2 {
+        font-size: theme("fontSize.xl");
+        font-weight: theme("fontWeight.bold");
+    }
+    h3 {
+        font-size: theme("fontSize.lg");
+        font-weight: theme("fontWeight.bold");
+    }
+
     @media only screen and (max-width: 800px) {
         .navbar {
             margin: 0px;

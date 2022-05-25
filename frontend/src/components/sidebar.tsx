@@ -103,10 +103,10 @@ function Sidebar(props: any) {
                                             d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
                                         />
                                     </svg>
-                                    <div className="ml-2">Question Board</div>
+                                    <div className="ml-2">The Bulletin</div>
                                 </div>
                             </Link>
-                            <div className="sidebar-link cursor-not-allowed">
+                            {/* <div className="sidebar-link cursor-not-allowed">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-6 w-6 p-1"
@@ -139,8 +139,8 @@ function Sidebar(props: any) {
                                     />
                                 </svg>{" "}
                                 <div className="ml-2">Saved</div>
-                            </div>
-                            <Link
+                            </div> */}
+                            {/* <Link
                                 to={`/${getUser().uid}/posts`}
                                 className="nostyle"
                             >
@@ -161,7 +161,7 @@ function Sidebar(props: any) {
                                     </svg>
                                     <div className="ml-2">Your Posts</div>
                                 </div>
-                            </Link>
+                            </Link> */}
                         </div>
                         <div className="">
                             <label className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-1 ml-2">
@@ -177,6 +177,13 @@ function Sidebar(props: any) {
                             <label className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-1 ml-2">
                                 Events
                             </label>
+                            <Link to="/e/tree" className="sidebar-link">
+                                <div className="flex items-center">
+                                    <div className="ml-1">
+                                        Tree Yoga
+                                    </div>
+                                </div>
+                            </Link>
                             <Link to="/e/fire" className="sidebar-link">
                                 <div className="flex items-center">
                                     <svg
