@@ -240,7 +240,7 @@ function Content5() {
                     Want to learn more about Mogul?
                 </div>
                 <div className="tgob-script">
-                    <Link to="/e/fire-1" className="btn-ghost">
+                    <Link to="/e/fire" className="btn-ghost">
                         join us at campfire no. 1
                     </Link>
                 </div>

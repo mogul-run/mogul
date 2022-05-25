@@ -177,7 +177,7 @@ function Sidebar(props: any) {
                             <label className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-1 ml-2">
                                 Events
                             </label>
-                            <Link to="/e/fire-1" className="sidebar-link">
+                            <Link to="/e/fire" className="sidebar-link">
                                 <div className="flex items-center">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
