@@ -119,7 +119,7 @@ function EventPage() {
                                 <button className="btn-ghost">
                                     {sample_event.emojis}
                                 </button>
-                                <div className="mt-2 text-3xl font-bold">
+                                <div className="mt-2 text-4xl font-bold">
                                     {event.title
                                         ? event.title
                                         : sample_event.title}
