@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { getDatabase, push, ref, get, onValue } from "firebase/database";
 import { toArray } from "lodash";
 import { useAuth } from "../context/authContext";
-import "./feed.css";
 
 const test_content = [
     {
@@ -141,7 +140,7 @@ function PostContent(props: any) {
             <div className="text-lg my-3">Hot take incoming!</div>
             <textarea
                 onChange={(event) => handlePost(event.target.value)}
-                className="text-input rounded p-1"
+                className="overflow-wrap rounded p-1"
             />
             <div className="my-2">
                 <button

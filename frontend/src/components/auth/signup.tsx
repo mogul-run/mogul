@@ -8,9 +8,9 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../../context/authContext";
 import { Link } from "react-router-dom";
-import GoogleButton from "../components/google-button";
+import GoogleButton from "./google-button";
 
 export function SignupPage(props: any) {
     const [email, setEmail] = useState("");
@@ -63,7 +63,7 @@ export function SignupPage(props: any) {
 
 function Signup(props: any) {
     return (
-        <div className="login-wrapper">
+        <div className="flex flex-col items-center justify-center">
             <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
                 <div className="max-w-lg mx-auto text-center">
                     <h1 className="text-2xl font-bold sm:text-3xl">

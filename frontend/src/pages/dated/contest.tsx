@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../context/appContext"
+import { AppContext } from "../../context/appContext";
 
 
 export const ContestPage: React.FC = () => {

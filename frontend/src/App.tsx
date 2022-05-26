@@ -2,26 +2,26 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/homepage";
-import TGOB from "./pages/TGOB";
-import Navbar from "./components/navbar";
-import Sidebar from "./components/sidebar";
-import Footer from "./components/footer";
 import ScrollToTop from "./utils/scrollToTop";
-import Team from "./pages/team";
 import { useAuth } from "./context/authContext";
 import { NotFound } from "./pages/notFound";
 import AccountSettings from "./pages/account-settings";
 import MogulPad from "./pages/mogulpad";
 import MogulRun from "./pages/mogulrun/mogulrun";
-import Write from "./pages/write";
+import Write from "./pages/guides/write";
 import UserPosts from "./pages/user-posts";
-import EventPage from "./pages/event-page";
 import { ModalProvider } from "./context/modalContext";
-import CreateEvent from "./pages/create-event";
-import EventPageTree from "./pages/event-page-tree";
+import CreateEvent from "./pages/events/create-event";
 import Chalet from "./pages/chalet/chalet";
-import EventPageFire from "./pages/event-page-fire";
-import Guide from "./pages/guide";
+import Guide from "./pages/guides/guide";
+import Sidebar from "./components/nav/sidebar";
+import Footer from "./components/nav/footer";
+import Navbar from "./components/nav/navbar";
+import EventPageTree from "./pages/events/event-page-tree";
+import EventPageFire from "./pages/events/event-page-fire";
+import EventPage from "./pages/events/event-page-tree";
+import TGOB from "./pages/landing/TGOB";
+import Team from "./pages/landing/team";
 
 function WithNavFooter({
     children,

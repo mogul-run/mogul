@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Link, useNavigate, useNavigationType } from "react-router-dom";
-import { useAuth } from "../context/authContext";
-import { User } from "./navbar";
-import UserPopup from "./userPopup";
+import { useAuth } from "../../context/authContext";
+import UserPopup from "../social/userPopup";
 
 function Sidebar(props: any) {
     const { getUser, signOut } = useAuth();

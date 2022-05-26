@@ -2,8 +2,8 @@ import { Editor, EditorState, RichUtils } from "draft-js";
 import "draft-js/dist/Draft.css";
 import { getDatabase, push, ref } from "firebase/database";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useAuth } from "../context/authContext";
 import ReactMarkdown from "react-markdown";
+import { useAuth } from "../../context/authContext";
 
 // component for
 function Write() {

@@ -4,10 +4,10 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Menu from "./components/Menu";
 import TokenInfo from "./components/TokenInfo";
-import { User } from "../../components/navbar";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import Carrots from "../../img/carrots.png";
+import { User } from "../../components/auth/current-user";
 
 const tabs = [
     {

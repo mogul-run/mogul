@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import UploadButton from "../components/upload-button";
-import DisplayWallet from "../components/display-wallet";
+import DisplayWallet from "../components/web3/display-wallet";
 
 function AccountSettings(props: any) {
     const { getWallet, connectWallet } = useAuth();

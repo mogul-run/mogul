@@ -1,10 +1,10 @@
 import { getAdditionalUserInfo } from "firebase/auth";
-import UserPopup from "../components/userPopup";
+import UserPopup from "../../components/social/userPopup";
 import ReactMarkdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
-import { Board } from "../components/board";
-import { User } from "../components/navbar";
+import { Board } from "../../components/social/board";
+import { User } from "../../components/auth/current-user";
 
 const guide = {
     title: "Out of the gym and into the rocks",

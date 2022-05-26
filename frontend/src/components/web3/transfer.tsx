@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/authContext";
-import UserPopup from "./userPopup";
+import { useAuth } from "../../context/authContext";
+import UserPopup from "../social/userPopup";
 
 function Transfer(props: any) {
     const [error, setError] = useState("");

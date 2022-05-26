@@ -1,5 +1,5 @@
 import "./team.css";
-import lucas from "../img/lucas.jpg";
+import lucas from "../../img/lucas.jpg";
 
 function Team() {
     return (

@@ -1,5 +1,4 @@
 import "./TGOB.css";
-import "./homepage.css";
 
 function TGOB() {
     return (

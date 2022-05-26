@@ -2,11 +2,12 @@ import { child, get, getDatabase, onValue, push, ref } from "firebase/database";
 import { sample, toArray, update } from "lodash";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { User } from "../components/navbar";
-import Transfer from "../components/transfer";
-import UserPopup from "../components/userPopup";
-import { useAuth } from "../context/authContext";
-import { ModalContext, useAuthModal } from "../context/modalContext";
+import { User } from "../../components/auth/current-user";
+import { Comments } from "../../components/social/post";
+import UserPopup from "../../components/social/userPopup";
+import Transfer from "../../components/web3/transfer";
+import { useAuth } from "../../context/authContext";
+import { useAuthModal } from "../../context/modalContext";
 
 const sample_event = {
     emojis: "🧘‍♂🌲",

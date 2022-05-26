@@ -5,9 +5,9 @@ import {
 } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { useAuth } from "../context/authContext";
-import { ModalContext } from "../context/modalContext";
-import Signup from "../pages/signup";
+import { useAuth } from "../../context/authContext";
+import { ModalContext } from "../../context/modalContext";
+import Signup from "./signup";
 import Login from "./login";
 
 function LoginModal() {
