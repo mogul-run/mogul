@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Login, { LoginPage } from "./components/login";
+import Login from "./components/login";
 import Chalet from "./pages/chalet/chalet";
 import MogulRun from "./pages/mogulrun/mogulrun";
 import AccountSettings from "./pages/account-settings";
@@ -20,7 +20,6 @@ function ChaletRouter() {
     <>
         <Routes>
             <Route path="/" element={<Chalet />} />
-            <Route path="/login" element={<LoginPage />} />
             <Route path="/account-settings" element={<AccountSettings/>} />
         </Routes>
     </>
@@ -31,7 +30,6 @@ function MogulRunRouter() {
     <>
         <Routes>
             <Route path="/" element={<MogulRun />} />
-            <Route path="/login" element={<LoginPage />} />
             <Route path="/account-settings" element={<AccountSettings/>} />
         </Routes>
     </>

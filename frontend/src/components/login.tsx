@@ -6,41 +6,6 @@ import { useAuth } from "../context/authContext";
 import GoogleButton from "./google-button";
 import { Link } from "react-router-dom";
 
-export function LoginPage() {
-    const { login } = useAuth();
-    const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const { getUser } = useAuth();
-
-    useEffect(() => {
-        if (getUser()) {
-            navigate("/");
-        }
-    }, []);
-
-    const handleLogin = () => {
-        login(email, password)
-            .then(() => {
-                navigate(-1);
-            })
-            .catch((error: Error) => {
-                setError(error.message);
-                console.log("Error with Login: ", error);
-            });
-    };
-    return (
-        <Login
-            handleLogin={handleLogin}
-            setEmail={setEmail}
-            setPassword={setPassword}
-            error={error}
-            page={true}
-        />
-    );
-}
-
 function Login(props: any) {
     return (
         <div className="login-wrapper">

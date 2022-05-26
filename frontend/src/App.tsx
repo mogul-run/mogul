@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/homepage";
-import TestSale from "./pages/test-sale";
 import TGOB from "./pages/TGOB";
 import Navbar from "./components/navbar";
 import Sidebar from "./components/sidebar";
 import Footer from "./components/footer";
-import Feed from "./pages/feed";
 import ScrollToTop from "./utils/scrollToTop";
 import Team from "./pages/team";
-import Login, { LoginPage } from "./components/login";
 import { useAuth } from "./context/authContext";
 import { NotFound } from "./pages/notFound";
 import AccountSettings from "./pages/account-settings";
@@ -19,7 +16,6 @@ import MogulRun from "./pages/mogulrun/mogulrun";
 import Write from "./pages/write";
 import UserPosts from "./pages/user-posts";
 import EventPage from "./pages/event-page";
-import Signup, { SignupPage } from "./pages/signup";
 import { ModalProvider } from "./context/modalContext";
 import CreateEvent from "./pages/create-event";
 import EventPageTree from "./pages/event-page-tree";
@@ -119,22 +115,6 @@ function App() {
                         element={
                             <WithNavFooter>
                                 <Team />
-                            </WithNavFooter>
-                        }
-                    />
-                    <Route
-                        path="/login"
-                        element={
-                            <WithNavFooter>
-                                <LoginPage />
-                            </WithNavFooter>
-                        }
-                    />
-                    <Route
-                        path="/Signup"
-                        element={
-                            <WithNavFooter>
-                                <SignupPage />
                             </WithNavFooter>
                         }
                     />

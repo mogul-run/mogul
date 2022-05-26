@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { useAuth } from "../context/authContext";
+import { useAuthModal } from "../context/modalContext";
 
 export default function Navbar(props: any) {
     const { getUser } = useAuth();
@@ -53,6 +54,7 @@ function classNames(...classes: any[]) {
 
 export function User(props: any) {
     const { getUser, getWallet, signOut } = useAuth();
+    const {handleModal} = useAuthModal();
     return (
         <div>
             {getUser() ? (
@@ -127,19 +129,19 @@ export function User(props: any) {
                     </Transition>
                 </Menu>
             ) : (
-                <div className="space-x-1">
-                    <Link
-                        className="px-5 py-2 text-sm font-medium text-stone-600 bg-stone-200 hover:bg-stone-300 rounded-lg"
-                        to="/login"
+                <div className="flex space-x-1">
+                    <div
+                        className="cursor-pointer px-5 py-2 text-sm font-medium text-stone-600 bg-stone-200 hover:bg-stone-300 rounded-lg"
+                        onClick={() => handleModal(true)}
                     >
                         Log in
-                    </Link>
-                    <Link
-                        className="px-5 py-2 text-sm font-medium text-white bg-sky-600 hover:opacity-80 rounded-lg"
-                        to="/signup"
+                    </div>
+                    <div
+                        className="cursor-pointer px-5 py-2 text-sm font-medium text-white bg-sky-600 hover:opacity-80 rounded-lg"
+                        onClick={() => handleModal(false)}
                     >
                         Sign up
-                    </Link>
+                    </div>
                 </div>
             )}
         </div>

@@ -1,5 +1,5 @@
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthModal from "../components/auth-modal";
 import useModal from "../hooks/useModal";
 
@@ -10,10 +10,10 @@ export function useAuthModal() {
 }
 
 export const ModalProvider : React.FC = ({children}) => {
-  let { modal, handleModal } = useModal();
+  let { modal, handleModal, is_login} = useModal();
   return (
-    <ModalContext.Provider value={{ modal, handleModal }}>
-      <AuthModal/>
+    <ModalContext.Provider value={{ modal, handleModal, is_login}}>
+      <AuthModal />
       {children}
     </ModalContext.Provider>
   );

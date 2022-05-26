@@ -54,7 +54,7 @@ function Guide() {
             <div className="space-y-3 md:w-[768px] w-full">
                 <img
                     src={guide.cover_url}
-                    className="w-full h-64 object-cover rounded shadow-lg"
+                    className="w-full h-64 object-cover rounded shadow-lg mb-10"
                 />
                 <GuideHeader />
                 <GuideContent />
@@ -132,7 +132,7 @@ function EventBlurb() {
 
 // place for readers to post comments, questions, questions with bounties
 function DiscussionBlurb() {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     return (
         <div className="">
             <div
@@ -153,7 +153,7 @@ function DiscussionBlurb() {
                         d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
                     />
                 </svg>
-                Lets talk!
+                Questions? Comments?
             </div>
             {open && <GuideBoard setOpen={setOpen} />}
         </div>

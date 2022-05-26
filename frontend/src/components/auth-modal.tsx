@@ -3,7 +3,7 @@ import {
     getAuth,
     updateProfile,
 } from "firebase/auth";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useAuth } from "../context/authContext";
 import { ModalContext } from "../context/modalContext";
@@ -78,13 +78,17 @@ function SignupModal() {
 }
 
 function AuthModal() {
-    const [login, setLogin] = useState(true);
-    let { handleModal, modal } = useContext(ModalContext);
+    let { handleModal, modal, is_login } = useContext(ModalContext);
+    const [isLogin, setIsLogin] = useState(is_login);
     const handleClose = (event: any) => {
         if ("close-auth-modal" === event.target.id) {
             handleModal();
         }
     };
+
+    useEffect(() => {
+        setIsLogin(is_login);
+    }, [is_login, modal]);
 
     if (modal) {
         return createPortal(
@@ -94,29 +98,29 @@ function AuthModal() {
                 className="fixed top-0 left-0 h-screen w-full flex items-center justify-center bg-stone-800 bg-opacity-80"
             >
                 <div className="bg-stone-200 rounded">
-                        <div className="flex justify-center text-sm font-medium border-b border-stone-300">
-                            <div
-                                className={`cursor-pointer p-4 -mb-px border-b ${
-                                    !login
-                                        ? "border-transparent"
-                                        : "text-mblue border-current"
-                                } hover:text-mblue`}
-                                onClick={() => setLogin(true)}
-                            >
-                                Login
-                            </div>
-                            <div
-                                className={`cursor-pointer p-4 -mb-px border-b ${
-                                    login
-                                        ? "border-transparent"
-                                        : "text-mblue border-current"
-                                } hover:text-mblue`}
-                                onClick={() => setLogin(false)}
-                            >
-                                Signup
-                            </div>
+                    <div className="flex justify-center text-sm font-medium border-b border-stone-300">
+                        <div
+                            className={`cursor-pointer p-4 -mb-px border-b ${
+                                !isLogin
+                                    ? "border-transparent"
+                                    : "text-mblue border-current"
+                            } hover:text-mblue`}
+                            onClick={() => setIsLogin(true)}
+                        >
+                            Login
                         </div>
-                    {login ? <LoginModal /> : <SignupModal />}
+                        <div
+                            className={`cursor-pointer p-4 -mb-px border-b ${
+                                isLogin
+                                    ? "border-transparent"
+                                    : "text-mblue border-current"
+                            } hover:text-mblue`}
+                            onClick={() => setIsLogin(false)}
+                        >
+                            Signup
+                        </div>
+                    </div>
+                    {isLogin ? <LoginModal /> : <SignupModal />}
                 </div>
             </div>,
             document.querySelector("#modal-root")!
