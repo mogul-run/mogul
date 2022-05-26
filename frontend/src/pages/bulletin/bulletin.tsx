@@ -26,7 +26,7 @@ function MogulRun() {
         <div className="flex flex-col ">
             <div className="topbar">
                 <div className="mogul-header text-3xl font-bold">
-                    The Mogul Run
+                   the bulletin 
                 </div>
                 <div className="">
                     <User />

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function MogulPad(props: any) {
+function Home(props: any) {
     return (
         <div className="flex min-h-100">
             <Content />
@@ -33,4 +33,4 @@ function Content() {
     );
 }
 
-export default MogulPad;
+export default Home;

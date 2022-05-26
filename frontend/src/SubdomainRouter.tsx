@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Chalet from "./pages/chalet/chalet";
-import MogulRun from "./pages/mogulrun/mogulrun";
+import MogulRun from "./pages/bulletin/bulletin";
 import AccountSettings from "./pages/account-settings";
 
 function SubdomainRouter(props: any) {

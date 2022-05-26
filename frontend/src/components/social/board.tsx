@@ -99,12 +99,13 @@ export function Board(props: any) {
     return (
         <div className="mr-content w-full p-2 space-y-2 ">
             {/* <div className="flex flex-col md:border-2 md:p-1 rounded-lg border-dashed border-orange-400"> */}
-            <div className="flex flex-col md:border-2">
-                <div className="flex flex-row-reverse justify-between items-center ">
+            <div className="flex flex-col">
+                <div className="flex flex-col justify-between items-center ">
                     {" "}
+                    {getUser() && <PostContent tags={tags} path={props.path} />}
                     <div className="space-x-2 items-center  ">
                         {props.tags && (
-                            <div>
+                            <div className="my-8">
                                 <div className="font-bold text-sm text-stone-500 ">
                                     Filter by tag:
                                 </div>
@@ -138,7 +139,6 @@ export function Board(props: any) {
                             </div>
                         )}
                     </div>
-                    {getUser() && <PostContent tags={tags} path={props.path} />}
                 </div>
             </div>
             {/* <div className="grid gap-4 place-content-stretch md:grid-cols-7 sm:grid-cols-1 grid-flow-row-dense auto-rows-max"> */}
@@ -285,7 +285,7 @@ function PostContent(props: any) {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="w-full bg-stone-100 shadow-md p-2 space-y-2 rounded">
+            <div className="w-full bg-stone-100 shadow-md p-2 space-y-2 rounded max-w-96">
                 {/* <div className="text-sm my-2 text-stone-500 font-bold">
                     Speak your mind...
                 </div> */}
