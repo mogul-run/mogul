@@ -3,9 +3,9 @@
     width: max-content;
 }
 
-.mr-content {
-    /* width: 800px; */
-}
+/* .mr-content {
+    width: 800px;
+} */
 
 .tags {
     max-width: 500px;
@@ -20,13 +20,13 @@
 }
 
 @media only screen and (max-width: 800px) {
-    .content {
-        /* width: 90%; */
+    /* .content {
+        width: 90%;
         padding: 50px;
-    }
-    .mr-content {
-        /* width: 90%%; */
-    }
+    } */
+    /* .mr-content {
+        width: 90%%;
+    } */
     .tags {
         max-width: 250px;
     }

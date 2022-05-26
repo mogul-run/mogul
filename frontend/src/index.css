@@ -19,7 +19,7 @@ code {
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
+@layer components {    
     a {
         color: theme("colors.sky.600");
         text-decoration: none;
@@ -195,6 +195,16 @@ code {
         margin-top: 50px;
         justify-content: center;
     }
+    
+    .homepage {
+        @apply flex flex-col justify-start h-max
+    }
+
+    .uno {
+        @apply mx-auto w-fit mt-9
+    }
+
+
 
     @media only screen and (max-width: 800px) {
         .navbar {

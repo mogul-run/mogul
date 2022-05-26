@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'mogulstone': '#E7E3DC',
         'morange':'#ff9800',
         'mblue': '#00acc1',
       },
