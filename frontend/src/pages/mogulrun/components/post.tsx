@@ -44,19 +44,20 @@ export function TextPost(props: any) {
     }
 
     function returnColSpan() {
-        if (props.post.bounty) {
+        // if (props.post.bounty) {
             // bounty posts should be full width
-            return "sm:col-span-1 md:col-span-7";
-        } else {
-            if (props.post.text.length > 70) {
-                return "md:col-span-5 sm:col-span-1 row-span-2";
-            }
-            if (props.post.text.length > 35) {
-                return "md:col-span-4 sm:col-span-1 row-span-2";
-            } else {
-                return `md:col-span-3 sm:col-span-1 row-span-1`;
-            }
-        }
+            // return "sm:col-span-1 md:col-span-7";
+            return "col-span-1";
+        // } else {
+        //     if (props.post.text.length > 70) {
+        //         return "md:col-span-5 sm:col-span-1 row-span-2";
+        //     }
+        //     if (props.post.text.length > 35) {
+        //         return "md:col-span-4 sm:col-span-1 row-span-2";
+        //     } else {
+        //         return `md:col-span-3 sm:col-span-1 row-span-1`;
+        //     }
+        // }
     }
 
     return (
@@ -76,7 +77,7 @@ export function TextPost(props: any) {
                             onClick={() => handleSelected()}
                         >
                             {" "}
-                            {/* <p className="text-xs font-medium text-gray-500"> */}
+                            {/* <p className="text-xs font-medium text-stone-500"> */}
                             <p className="text-sm text-stone-400 font-medium">
                                 {props.post.posted && props.post.posted}
                             </p>

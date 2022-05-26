@@ -72,7 +72,6 @@ code {
         width: max-content;
         border-radius: theme("borderRadius.lg");
         padding: theme("spacing.2") theme("spacing.4");
-        
     }
 
     .btn-ghost:hover {
@@ -194,6 +193,18 @@ code {
         margin-left: 50px;
         margin-top: 50px;
         justify-content: center;
+    }
+
+    textarea {
+        border: none;
+        overflow: auto;
+        outline: none;
+
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+
+        resize: none;
     }
 
     h1 {

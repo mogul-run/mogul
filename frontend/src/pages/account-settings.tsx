@@ -104,7 +104,7 @@ function AccountSettings(props: any) {
                         <DisplayWallet/>
                     </div>
                     <div className="">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        <label className="block uppercase tracking-wide text-stone-700 text-xs font-bold mb-2">
                             Profile Photo
                         </label>
                         <UploadButton selectedImage={selectedImage} handlePhotoUpload={handleProfileUpload}/>

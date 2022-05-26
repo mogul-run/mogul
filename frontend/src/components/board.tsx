@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { TextPost } from "../pages/mogulrun/components/post";
 import UploadButton from "./upload-button";
+import UserPopup from "./userPopup";
 
 export interface postType {
     posted: string;
@@ -31,7 +32,6 @@ export interface postType {
 const mediaTypes = ["photo", "video"];
 
 export function Board(props: any) {
-    const [openPost, setOpenPost] = useState(false);
     const [posts, setPosts] = useState<any[]>([]);
     const [filteredPosts, setFilteredPosts] = useState<any[]>([]);
     const [selectedTags, setSelectedTags] = useState<String[]>([]);
@@ -92,18 +92,15 @@ export function Board(props: any) {
         //     });
         //     setFilteredPosts(filtered_posts);
         // } else {
-            setFilteredPosts(posts);
+        setFilteredPosts(posts);
         // }
     }, [selectedTags]);
 
-    function handlePost() {
-        setOpenPost(!openPost);
-    }
-
     return (
         <div className="mr-content w-full p-2 space-y-2 ">
-            <div className="flex flex-col md:border-2 md:p-1 rounded-lg border-dashed border-orange-400">
-                <div className="flex flex-row-reverse space-x-1 justify-between items-center md:p-2">
+            {/* <div className="flex flex-col md:border-2 md:p-1 rounded-lg border-dashed border-orange-400"> */}
+            <div className="flex flex-col md:border-2">
+                <div className="flex flex-row-reverse justify-between items-center ">
                     {" "}
                     <div className="space-x-2 items-center  ">
                         {props.tags && (
@@ -141,38 +138,15 @@ export function Board(props: any) {
                             </div>
                         )}
                     </div>
-                    {getUser() && (
-                        <div
-                            className="btn-primary font-bold text-sm flex h-10 items-center md:px-3"
-                            onClick={() => handlePost()}
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                strokeWidth={2}
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                />
-                            </svg>
-                        </div>
-                    )}
+                    {getUser() && <PostContent tags={tags} path={props.path} />}
                 </div>
-
-                {openPost && (
-                    <PostContent setOpenPost={setOpenPost} tags={tags} path={props.path} />
-                )}
             </div>
-            <div className="grid gap-4 place-content-stretch md:grid-cols-7 sm:grid-cols-1 grid-flow-row-dense auto-rows-max">
+            {/* <div className="grid gap-4 place-content-stretch md:grid-cols-7 sm:grid-cols-1 grid-flow-row-dense auto-rows-max"> */}
+            <div className="grid gap-4 place-content-stretch md:grid-cols-1 sm:grid-cols-1 grid-flow-row-dense auto-rows-max">
                 {posts.map((post) => {
                     switch (post.type) {
                         case "text":
-                            return <TextPost post={post} path={props.path}/>;
+                            return <TextPost post={post} path={props.path} />;
                     }
                 })}
             </div>
@@ -181,6 +155,7 @@ export function Board(props: any) {
 }
 
 function PostContent(props: any) {
+    const [openPost, setOpenPost] = useState(false);
     const [post, setPost] = useState("");
     const [selectedTags, setSelectedTags] = useState<String[]>([]);
     const [selectedMedia, setSelectedMedia] = useState<string | undefined>(
@@ -296,129 +271,151 @@ function PostContent(props: any) {
         }
         push(ref(db, props.path), newPost)
             .then((x) => {
-                props.setOpenPost(false);
+                setOpenPost(false);
+                setPost("");
+                setBounty("");
                 setSubmitting(false);
             })
             .catch((error) => {
                 console.log("error: ", error);
-                handleError(error.value());
+                handleError(error);
                 setSubmitting(false);
             });
     };
 
     return (
-        <div className="flex flex-col">
-            <div className="w-full bg-stone-200 p-3 space-y-2">
-                <div className="text-sm my-2 text-stone-500 font-bold">
-                    Hot take incoming!
-                </div>
-                <div className="flex">
+        <div className="flex flex-col w-full">
+            <div className="w-full bg-stone-100 shadow-md p-2 space-y-2 rounded">
+                {/* <div className="text-sm my-2 text-stone-500 font-bold">
+                    Speak your mind...
+                </div> */}
+                {openPost && (
+                    <div className="my-2">
+                        <UserPopup user={getUser()} />
+                    </div>
+                )}
+                <div className="flex" onClick={() => setOpenPost(true)}>
                     <textarea
                         onChange={(event) => handlePost(event.target.value)}
-                        className="text-input bg-stone-100 rounded-l p-2 w-full"
+                        value={post}
+                        className="bg-stone-100 rounded-l p-1 text-md w-full h-max-content"
                         placeholder="What's on your mind?"
+                        rows={openPost ? 3 : 1}
                     />
                     <div className="error text-red-500">{error}</div>
                 </div>
-                <div>
-                    <div className="text-sm my-2 text-stone-500 font-bold">
-                        Upload Images
-                    </div>
-                    <UploadButton
-                        handlePhotoUpload={handleUploadPicture}
-                        selectedImage={selectedMediaFile}
-                    />
-                    {props.tags && (
-                        <div>
-                            <div className="text-sm my-2 text-stone-500 font-bold">
-                                Add Tags
+                {openPost && (
+                    <div>
+                        <div className="flex flex-wrap justify-between">
+                            <div>
+                                <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                    Upload Images
+                                </label>
+                                <UploadButton
+                                    handlePhotoUpload={handleUploadPicture}
+                                    selectedImage={selectedMediaFile}
+                                />
                             </div>
-                            <div className="overflow-scroll flex space-x-2">
-                                {props.tags.map((tag: string) => {
-                                    if (selectedTags.includes(tag)) {
-                                        return (
-                                            <strong
-                                                onClick={() => handleTags(tag)}
-                                                className="cursor-pointer border text-white bg-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
-                                            >
-                                                {tag}
-                                            </strong>
-                                        );
-                                    } else {
-                                        return (
-                                            <strong
-                                                onClick={() => handleTags(tag)}
-                                                className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
-                                            >
-                                                {tag}
-                                            </strong>
-                                        );
-                                    }
-                                })}
+                            <div className="p1">
+                                <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                    Include Bounty
+                                </label>
+                                <div className="flex">
+                                    <div className="relative shadow-sm p-1 bg-gradient-to-r from-orange-300 to-orange-600 rounded-full">
+                                        <input
+                                            className="inline-flex items-center bg-stone-100 px-5 py-1.5 pr-12 rounded-full w-40"
+                                            placeholder="0.00"
+                                            onChange={(e) =>
+                                                handleBounty(e.target.value)
+                                            }
+                                        />
+                                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 text-stone-600">
+                                            MATIC
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            {props.tags && (
+                                <div>
+                                    <div className="text-sm my-2 text-stone-500 font-bold">
+                                        Add Tags
+                                    </div>
+                                    <div className="overflow-scroll flex space-x-2">
+                                        {props.tags.map((tag: string) => {
+                                            if (selectedTags.includes(tag)) {
+                                                return (
+                                                    <strong
+                                                        onClick={() =>
+                                                            handleTags(tag)
+                                                        }
+                                                        className="cursor-pointer border text-white bg-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
+                                                    >
+                                                        {tag}
+                                                    </strong>
+                                                );
+                                            } else {
+                                                return (
+                                                    <strong
+                                                        onClick={() =>
+                                                            handleTags(tag)
+                                                        }
+                                                        className="cursor-pointer border text-orange-500 border-current uppercase px-5 py-1.5 rounded-full text-sm tracking-wide"
+                                                    >
+                                                        {tag}
+                                                    </strong>
+                                                );
+                                            }
+                                        })}
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
-                <div
-                    className="p1 
-                "
-                >
-                    <div className="text-sm my-2 text-stone-500 font-bold">
-                        Add Bounty
-                    </div>
-                    <div
-                        className="flex
-                    "
-                    >
-                        <div
-                            className="relative shadow-sm p-1 bg-gradient-to-r from-orange-300 to-orange-600 rounded-full
-                        "
-                        >
-                            <input
-                                className="inline-flex items-center bg-stone-100 px-5 py-1.5 pr-12 rounded-full w-40"
-                                placeholder="0.00"
-                                onChange={(e) => handleBounty(e.target.value)}
-                            />
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-3 text-stone-600">
-                                MATIC
-                            </div>
+                        <div className="flex w-full justify-center p-2 space-x-4 mt-5">
+                            {" "}
+                            <button
+                                className="text-sm text-stone-600 hover:text-stone-400"
+                                onClick={() => setOpenPost(false)}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className={`btn-primary rounded-lg text-sm flex items-center justify-center ${
+                                    submitting && "cursor-not-allowed"
+                                }`}
+                                onClick={
+                                    post
+                                        ? () =>
+                                              !submitting && handlePostSubmit()
+                                        : () =>
+                                              handleError(
+                                                  "Can't submit an empty post"
+                                              )
+                                }
+                            >
+                                {submitting ? (
+                                    <svg
+                                        role="status"
+                                        className="w-5 h-5 mx-3 my-0 text-stone-200 animate-spin dark:text-stone-200 fill-morange"
+                                        viewBox="0 0 100 101"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                            fill="currentColor"
+                                        />
+                                        <path
+                                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                            fill="currentFill"
+                                        />
+                                    </svg>
+                                ) : (
+                                    <>Submit</>
+                                )}
+                            </button>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="flex w-full justify-center p-2">
-                {" "}
-                <button
-                    className={`btn-primary rounded-lg text-sm flex items-center justify-center ${
-                        submitting && "cursor-not-allowed"
-                    }`}
-                    onClick={
-                        post
-                            ? () => !submitting && handlePostSubmit()
-                            : () => handleError("Can't submit an empty post")
-                    }
-                >
-                    {submitting ? (
-                        <svg
-                            role="status"
-                            className="w-5 h-5 mx-3 my-0 text-stone-200 animate-spin dark:text-stone-200 fill-morange"
-                            viewBox="0 0 100 101"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                                fill="currentFill"
-                            />
-                        </svg>
-                    ) : (
-                        <>Submit</>
-                    )}
-                </button>
+                )}
             </div>
         </div>
     );

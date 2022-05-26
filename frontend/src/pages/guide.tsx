@@ -30,6 +30,8 @@ Making the transition towards climbing outdoors is no small feat!
 
 ## subheader
 
+![tux, lol](https://i.imgur.com/5T4PBDW.jpeg)
+
 ### triple subheader
 
 * Lists
@@ -134,7 +136,7 @@ function DiscussionBlurb() {
     return (
         <div className="">
             <div
-                className="flex cursor-pointer text-sky-800 hover:underline font-bold"
+                className="flex cursor-pointer text-sky-800 hover:underline font-bold mb-10"
                 onClick={() => setOpen(!open)}
             >
                 <svg
@@ -153,15 +155,32 @@ function DiscussionBlurb() {
                 </svg>
                 Lets talk!
             </div>
-            {open && <GuideBoard />}
+            {open && <GuideBoard setOpen={setOpen} />}
         </div>
     );
 }
 
-function GuideBoard() {
+function GuideBoard(props: any) {
     const { guide_id } = useParams();
     return (
-        <div className="w-96 h-full shadow-lg bg-stone-200 absolute top-0 right-0">
+        <div className="w-96 h-full fixed overflow-scroll shadow-lg bg-stone-200 top-0 right-0">
+            <div onClick={() => props.setOpen(false)} className="hover:text-stone-400 cursor-pointer rounded pl-3 pt-3">
+                {" "}
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>{" "}
+            </div>
             <Board path={`/guide/${guide_id}`} tags={false} />
         </div>
     );

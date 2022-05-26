@@ -50,7 +50,7 @@ function Login(props: any) {
                         🛹 Yew!!! You're almost there
                     </h1>
 
-                    <h2 className="mt-4 text-gray-500">
+                    <h2 className="mt-4 text-stone-500">
                         We're just gonna need to check some credentials...
                     </h2>
                 </div>
@@ -72,7 +72,7 @@ function Login(props: any) {
                             <span className="absolute inset-y-0 inline-flex items-center right-4">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className="w-5 h-5 text-gray-400"
+                                    className="w-5 h-5 text-stone-400"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -105,7 +105,7 @@ function Login(props: any) {
                             <span className="absolute inset-y-0 inline-flex items-center right-4">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className="w-5 h-5 text-gray-400"
+                                    className="w-5 h-5 text-stone-400"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -130,7 +130,7 @@ function Login(props: any) {
                     <div className="flex flex-col">
                         <div className="flex items-center justify-between">
                             {props.page ? (
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-stone-500">
                                     No account?{" "}
                                     <Link to="/signup" className="">
                                         Sign up

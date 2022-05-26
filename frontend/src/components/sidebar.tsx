@@ -164,7 +164,7 @@ function Sidebar(props: any) {
                             </Link> */}
                         </div>
                         <div className="">
-                            <label className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-1 ml-2">
+                            <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1 ml-2">
                                 My Groups
                             </label>
                             <Link to="/m/sender-central">
@@ -174,7 +174,7 @@ function Sidebar(props: any) {
                             </Link>
                         </div>
                         <div className="rounded">
-                            <label className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-1 ml-2">
+                            <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1 ml-2">
                                 Events
                             </label>
                             <Link to="/e/tree" className="sidebar-link">
