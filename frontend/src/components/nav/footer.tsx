@@ -1,18 +1,17 @@
 import {Link} from "react-router-dom";
-import "./footer.css";
 
 export default function Footer() {
     return (
         <div className="footer">
             <div className="footer-items">
                 <div className="footer-item">
-                    <Link className="disabled" to="/">About</Link>
+                    <Link className="cursor-not-allowed" to="/">About</Link>
                 </div>
                 <div className="footer-item">   
                     <Link to="/team">Team</Link>
                 </div>
                 <div className="footer-item">
-                    <Link className="disabled" to="/">FAQ</Link>
+                    <Link className="cursor-not-allowed" to="/">FAQ</Link>
                 </div>
                 <div className="footer-item">
                     <a href="https://discord.gg/8AXyshRRVM">Discord</a>

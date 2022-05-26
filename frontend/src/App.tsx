@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/homepage";
 import ScrollToTop from "./utils/scrollToTop";
@@ -95,7 +95,7 @@ function WithSidebar({
 }
 
 function App() {
-    const { getUser, signOut, getWallet } = useAuth();
+    const { getUser } = useAuth();
 
     return (
         <div className="app">
@@ -123,8 +123,6 @@ function App() {
                         element={
                             <WithSidebar>
                                 <AccountSettings
-                                    user={getUser()}
-                                    walletAddr={getWallet()}
                                 />
                             </WithSidebar>
                         }

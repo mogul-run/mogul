@@ -1,12 +1,11 @@
 import { updateProfile } from "@firebase/auth";
 import { useAuth } from "../context/authContext";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { FirebaseError } from "firebase/app";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import UploadButton from "../components/upload-button";
 import DisplayWallet from "../components/web3/display-wallet";
 
-function AccountSettings(props: any) {
+function AccountSettings() {
     const { getWallet, connectWallet } = useAuth();
     const [username, setUsername] = useState("");
     const [selectedImage, setSelectedImage] = useState<File | null>(null);

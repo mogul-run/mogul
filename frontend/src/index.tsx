@@ -6,11 +6,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "@fontsource/dm-mono";
 import "@fontsource/alegreya";
-import { AppContext, AppContextProvider } from "./context/appContext";
+import { AppContextProvider } from "./context/appContext";
 import SubDomainRouter from "./SubdomainRouter";
 import { AuthProvider } from "./context/authContext";
 import ReactGA from "react-ga4";
-import { ModalProvider } from "./context/modalContext";
 
 const parsedData = window.location.host.split(".");
 ReactGA.initialize("G-WGSG8KJ0Z1");
@@ -22,15 +21,15 @@ ReactDOM.render(
     <React.StrictMode>
         <AppContextProvider>
             <AuthProvider>
-                    <BrowserRouter basename={process.env.PUBLIC_URL}>
-                        {/* temporarily hardcode in chalet -- should use from sort of subdomain switch */}
-                        {(parsedData.length >= 2 && subDomain === "the") ||
-                        subDomain === "lucas" ? (
-                            <SubDomainRouter subdomain={parsedData[0]} />
-                        ) : (
-                            <App />
-                        )}
-                    </BrowserRouter>
+                <BrowserRouter basename={process.env.PUBLIC_URL}>
+                    {/* temporarily hardcode in chalet -- should use from sort of subdomain switch */}
+                    {(parsedData.length >= 2 && subDomain === "the") ||
+                    subDomain === "lucas" ? (
+                        <SubDomainRouter subdomain={parsedData[0]} />
+                    ) : (
+                        <App />
+                    )}
+                </BrowserRouter>
             </AuthProvider>
         </AppContextProvider>
     </React.StrictMode>,

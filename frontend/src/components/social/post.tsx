@@ -1,8 +1,7 @@
 import { getDatabase, push, ref, remove } from "firebase/database";
-import { toArray } from "lodash";
-import { useEffect, useRef, useState } from "react";
 import UserPopup from "./userPopup";
 import { useAuth } from "../../context/authContext";
+import { useState } from "react";
 
 export function TextPost(props: any) {
     const [selected, setSelected] = useState(false);

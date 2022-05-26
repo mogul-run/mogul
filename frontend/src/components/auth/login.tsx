@@ -1,7 +1,3 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
-import { useAuth } from "../../context/authContext";
 import GoogleButton from "./google-button";
 import { Link } from "react-router-dom";
 
