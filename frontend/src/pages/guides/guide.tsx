@@ -248,7 +248,7 @@ function GuideBoard(props: any) {
                     />
                 </svg>{" "}
             </div>
-            <Board path={`/guide/${guide_id}/comments`} tags={false} />
+            <Board path={`/guides/${guide_id}/comments`} tags={false} />
         </div>
     );
 }

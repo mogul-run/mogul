@@ -6,6 +6,7 @@ import { Guide } from "../../types/types";
 import { useAuth } from "../../context/authContext";
 
 function EditTopBar(props: any) {
+    const navigate = useNavigate();
     return (
         <div className="flex content-between flex-row-reverse mt-10 ">
             <div className="flex ml-2">
@@ -27,6 +28,13 @@ function EditTopBar(props: any) {
             >
                 {" "}
                 publish edits
+            </button>
+            <button
+                className={`btn-ghost mx-2`}
+                onClick={() => navigate(`/guides/${props.guideId}`)}
+            >
+                {" "}
+              cancel 
             </button>
             {/* <button className="btn-ghost mx-2" onClick={props.handleSave}>
                 {" "}

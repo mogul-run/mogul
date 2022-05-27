@@ -148,7 +148,7 @@ export function TextEditor(props: any) {
         <div className="grid grid-cols-2 gap-4">
             <div className="">
                 <textarea
-                    className="bg-stone-100"
+                    className="bg-stone-100 rounded"
                     value={props.input}
                     placeholder="Write something!"
                     cols={40}
