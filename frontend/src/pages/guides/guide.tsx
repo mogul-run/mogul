@@ -1,4 +1,4 @@
-import { getAdditionalUserInfo } from "firebase/auth";
+import { AuthErrorCodes, getAdditionalUserInfo } from "firebase/auth";
 import UserPopup from "../../components/social/userPopup";
 import ReactMarkdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import { User } from "../../components/auth/current-user";
 import EventPreview from "../../components/preview-cards/event-preview";
 import { child, get, getDatabase, onValue, ref } from "firebase/database";
 import { Guide as GuideType } from "../../types/types";
+import { useAuth } from "../../context/authContext";
 
 // const guide = {
 //     title: "Out of the gym and into the rocks",
@@ -55,6 +56,7 @@ function Guide() {
     const [guide, setGuide] = useState<GuideType>();
     const [loading, setLoading] = useState(true);
     const db = getDatabase();
+    const { getUser } = useAuth();
 
     useEffect(() => {
         getGuide();
@@ -86,6 +88,13 @@ function Guide() {
                 guide ? (
                     <div>
                         <div className="space-y-3 md:w-[768px] w-full">
+                            {getUser() && getUser().uid === guide.author.uid && (
+                                <div className="flex flex-row-reverse">
+                                    <Link to={`/guides/${guide_id}/edit`}>
+                                        <div className="btn-ghost">edit</div>
+                                    </Link>
+                                </div>
+                            )}
                             {guide.cover_url && (
                                 <img
                                     src={guide.cover_url}
@@ -128,12 +137,12 @@ function GuideHeader(props: any) {
         <div className="space-y-3 md:w-[768px] w-full">
             <div className="text-5xl font-bold script">{props.guide.title}</div>
             <div className="grid grid-cols-3">
-                <div className="text-lg col-span-2 italic script">
+                {/* <div className="text-lg col-span-2 italic script">
                     {props.guide.desc}
-                </div>
-                <div className="w-full text-right">
+                </div> */}
+                <div className="w-full">
                     <div className="col-span-1 serif text-sm p-1">
-                        {props.guide.date}
+                        {props.guide.posted}
                     </div>
                 </div>
             </div>

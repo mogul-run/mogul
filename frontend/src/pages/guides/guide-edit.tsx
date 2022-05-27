@@ -41,7 +41,7 @@ function GuideEdit() {
     const [guide, setGuide] = useState<Guide>();
     const [input, setInput] = useState("");
     const [guideId, setGuideId] = useState("");
-    const [submitting, setSubmitting] = useState(false)
+    const [submitting, setSubmitting] = useState(false);
     const [title, setTitle] = useState("");
     const [loading, setLoading] = useState(true);
     const { getUser, getWallet } = useAuth();
@@ -50,14 +50,14 @@ function GuideEdit() {
 
     useEffect(() => {
         getGuide();
-    }, []);
+    }, [guide_id]);
 
     useEffect(() => {
         if (guide) {
-        setTitle(guide.title)
-        setInput(guide.md_text);
+            setTitle(guide.title);
+            setInput(guide.md_text);
         }
-    }, [guide])
+    }, [guide]);
 
     const getGuide = () => {
         // setLoading(false);
@@ -66,9 +66,11 @@ function GuideEdit() {
 
             (snapshot) => {
                 if (snapshot.exists()) {
-                    console.log(snapshot.val());
                     setGuide(snapshot.val());
                     setLoading(false);
+                    if (!getUser() || getUser().uid !== snapshot.val().author.uid) {
+                        navigate(`/guides/${guide_id}`);
+                    }
                 }
                 setLoading(false);
             },
@@ -109,15 +111,17 @@ function GuideEdit() {
                 console.log("error: ", error);
                 setSubmitting(false);
             });
-
-    }
+    };
 
     return (
         <div>
             {!loading && guide && (
                 <div className="w-full flex items-center justify-center">
                     <div className="lg:w-[768px] md:w-[540px] w-full h-full">
-                        <EditTopBar guideId={guide_id}  handlePublish={handlePublish}/>
+                        <EditTopBar
+                            guideId={guide_id}
+                            handlePublish={handlePublish}
+                        />
                         <GuideEditor
                             title={title}
                             setTitle={setTitle}
