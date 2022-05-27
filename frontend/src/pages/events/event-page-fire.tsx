@@ -157,7 +157,7 @@ function EventPage() {
                                 <div className="ml-10 sm:col-span-2 flex flex-col items-end text-lg mb-10 font-bold">
                                     <div className="flex ">
                                         {" "}
-                                        May 27, 2022 @ 8:30pm
+                                        ????
                                     </div>
                                     {getUser() ? (
                                         <a
