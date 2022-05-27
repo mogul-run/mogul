@@ -8,6 +8,7 @@ import UserPopup from "../../components/social/userPopup";
 import Transfer from "../../components/web3/transfer";
 import { useAuth } from "../../context/authContext";
 import { useAuthModal } from "../../context/modalContext";
+import {Event, User as UserType} from "../../types/types";
 
 const sample_event = {
     emojis: "🧘‍♂🌲",
@@ -33,25 +34,6 @@ const sample_event = {
     media: ["https://i.imgur.com/cov0ZJB.jpg", ""],
 };
 
-type Event = {
-    title: string;
-    author: User;
-    date: string;
-    desc: string;
-    duration: string;
-    hook: string;
-    id: string;
-    location: string;
-    num_seats: number;
-    participants: User[];
-    seat_price: number;
-};
-type User = {
-    displayName: string;
-    photoURL: string;
-    walletAddr: string;
-    uid: string;
-};
 
 function EventPage() {
     const [loading, setLoading] = useState(true);

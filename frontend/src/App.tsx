@@ -22,6 +22,7 @@ import EventPageFire from "./pages/events/event-page-fire";
 import EventPage from "./pages/events/event-page-tree";
 import TGOB from "./pages/landing/TGOB";
 import Team from "./pages/landing/team";
+import GuideEdit from "./pages/guides/guide-edit";
 
 function WithNavFooter({
     children,
@@ -144,10 +145,11 @@ function App() {
                             </WithSidebar>
                         }
                     />
-                    <Route path="/guides/:post_id" element={<Guide />} />
+                    <Route path="/guides/:guide_id" element={<Guide />} />
+                    <Route path="/guides/:guide_id/edit" element={<GuideEdit />} />
                     <Route path="/e/tree" element={<EventPageTree />} />
                     <Route path="/e/fire" element={<EventPageFire />} />
-                    <Route path="/e/:guide_id" element={<EventPage />} />
+                    <Route path="/e/:post_id" element={<EventPage />} />
                     <Route
                         path="/:user_id/posts"
                         element={

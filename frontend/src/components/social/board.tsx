@@ -143,12 +143,18 @@ export function Board(props: any) {
             </div>
             {/* <div className="grid gap-4 place-content-stretch md:grid-cols-7 sm:grid-cols-1 grid-flow-row-dense auto-rows-max"> */}
             <div className="grid gap-4 place-content-stretch md:grid-cols-1 sm:grid-cols-1 grid-flow-row-dense auto-rows-max">
-                {posts.map((post) => {
-                    switch (post.type) {
-                        case "text":
-                            return <TextPost post={post} path={props.path} />;
-                    }
-                })}
+                {posts.length > 0 ? (
+                    posts.map((post) => {
+                        switch (post.type) {
+                            case "text":
+                                return (
+                                    <TextPost post={post} path={props.path} />
+                                );
+                        }
+                    })
+                ) : (
+                    <div className="text-lg my-2 text-stone-500">There's nothing here yet...</div>
+                )}
             </div>
         </div>
     );
