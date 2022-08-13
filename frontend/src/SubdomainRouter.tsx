@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Chalet from "./pages/chalet/chalet";
+import Chalet from "./pages/club/club";
 import MogulRun from "./pages/bulletin/bulletin";
 import AccountSettings from "./pages/account-settings";
 

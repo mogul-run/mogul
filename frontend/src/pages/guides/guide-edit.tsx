@@ -8,7 +8,7 @@ import { useAuth } from "../../context/authContext";
 function EditTopBar(props: any) {
     const navigate = useNavigate();
     return (
-        <div className="flex content-between flex-row-reverse mt-10 ">
+        <div className="flex content-between flex-row-reverse mt-10 items-center mb-5">
             <div className="flex ml-2">
                 <div className="bg-stone-200 p-2 rounded-l-lg text-stone-500 font-bold text-sm">
                     mogul.run/guides/

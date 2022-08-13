@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import "../chalet.css";
 import { useAuth } from "../../../context/authContext";
 import Carrots  from "../../../img/carrots.png";
 
 function TokenInfo(props: any) {
     return (
-        <div className="grid md:grid-cols-3 md:grid-rows-3 md:grid-flow-row-dense gap-2 token-wrapper">
+        <div className="grid md:grid-cols-3 md:grid-rows-3 md:grid-flow-row-dense gap-2 justify-around">
             <div className="col-span-2 row-span-2 token-sale divide-y outline-nopad">
                 <TokenSale setPurchased={props.setPurchased} />
             </div>

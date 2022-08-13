@@ -1,4 +1,3 @@
-import "./chalet.css";
 import { useEffect, useState } from "react";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -67,10 +66,10 @@ function Chalet(props: any) {
 
     return (
         <div className="flex flex-col items-center sidebar-content chalet-wrapper">
-            <div className="chalet-info">
-                <div className="chalet-top-wrapper flex space-x-4 p-4 ">
+            <div className="w-full flex flex-col items-center justify-between">
+                <div className="flex w-full justify-center items-center p-4">
                     {/* <div className="text-xl font-bold">Lucas</div> */}
-                    <div className="chalet-top">
+                    <div className="flex flex-row-reverse">
                         <div className="auth-button">
                             {" "}
                             {getUser() ? (
@@ -115,9 +114,9 @@ function Chalet(props: any) {
                         </div>
                         {/* <div className="text-xl font-bold">Lucas</div> */}
                         {" "}
-                        <div className="chalet-top-inner flex space-x-4">
+                        <div className="flex flex-col md:flex-row space-x-4">
                             {" "}
-                            <div className="chalet-img flex w-1/6 flex-col items-start justify-center">
+                            <div className="flex flex-col items-start justify-center">
                                 <img
                                     className="w-full rounded"
                                     src={Carrots}
@@ -151,13 +150,13 @@ function Chalet(props: any) {
                     </div>
                 </div>
 
-                <div className="chalet-tabs w-100">
+                <div className="w-full border-b-2">
                     <div className="tabs-list flex justify-center">
                         {tabs.map((tab, id) => {
                             return (
                                 <div
-                                    className={`tab-button text-lg font-bold px-3 py-3 ${
-                                        selected == tab.url && "selected"
+                                    className={`tab-button cursor-pointer hover:bg-stone-200 rounded text-lg font-bold px-3 py-3 ${
+                                        selected == tab.url && "text-sky-700 border-b-4 border-b-sky-700"
                                     }`}
                                     key={id}
                                     onClick={() => handleSelected(tab.url)}
@@ -170,7 +169,7 @@ function Chalet(props: any) {
                 </div>
             </div>
             <div className="flex flex-col items-center p-3 m-4">
-                <div className="chalet-content flex flex-col items-start">
+                <div className="w-full md:w-[768px] flex flex-col items-start">
                     <ChaletContent
                         selected={selected}
                         ERC20Bal={ERC20Bal}

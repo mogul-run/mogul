@@ -6,13 +6,13 @@ import ScrollToTop from "./utils/scrollToTop";
 import { useAuth } from "./context/authContext";
 import { NotFound } from "./pages/notFound";
 import AccountSettings from "./pages/account-settings";
-import MogulPad from "./pages/home";
+import Home from "./pages/home";
 import MogulRun from "./pages/bulletin/bulletin";
 import Write from "./pages/guides/write";
 import UserPosts from "./pages/user-posts";
 import { ModalProvider } from "./context/modalContext";
 import CreateEvent from "./pages/events/create-event";
-import Chalet from "./pages/chalet/chalet";
+import Chalet from "./pages/club/club";
 import Guide from "./pages/guides/guide";
 import Sidebar from "./components/nav/sidebar";
 import Footer from "./components/nav/footer";
@@ -23,6 +23,7 @@ import EventPage from "./pages/events/event-page-tree";
 import TGOB from "./pages/landing/TGOB";
 import Team from "./pages/landing/team";
 import GuideEdit from "./pages/guides/guide-edit";
+import Alpha from "./pages/alpha/alpha";
 
 function WithNavFooter({
     children,
@@ -123,8 +124,7 @@ function App() {
                         path="/settings"
                         element={
                             <WithSidebar>
-                                <AccountSettings
-                                />
+                                <AccountSettings />
                             </WithSidebar>
                         }
                     />
@@ -146,7 +146,10 @@ function App() {
                         }
                     />
                     <Route path="/guides/:guide_id" element={<Guide />} />
-                    <Route path="/guides/:guide_id/edit" element={<GuideEdit />} />
+                    <Route
+                        path="/guides/:guide_id/edit"
+                        element={<GuideEdit />}
+                    />
                     <Route path="/e/tree" element={<EventPageTree />} />
                     <Route path="/e/fire" element={<EventPageFire />} />
                     <Route path="/e/:post_id" element={<EventPage />} />
@@ -167,17 +170,25 @@ function App() {
                         }
                     />
                     <Route
+                        path="/c/:club-id"
+                        element={
+                            <WithSidebar>
+                                <Chalet />
+                            </WithSidebar>
+                        }
+                    />
+                    <Route
                         path="/"
                         element={
-                            getUser() ? (
-                                <WithSidebar>
-                                    <MogulPad />
-                                </WithSidebar>
-                            ) : (
-                                <WithNavFooter>
-                                    <HomePage />
-                                </WithNavFooter>
-                            )
+                            // getUser() ? (
+                            //     <WithSidebar>
+                            //         <Home />
+                            //     </WithSidebar>
+                            // ) : (
+                            <WithNavFooter>
+                                <HomePage />
+                            </WithNavFooter>
+                            // )
                         }
                     />
                     <Route
@@ -188,6 +199,8 @@ function App() {
                             </WithSidebar>
                         }
                     />
+                    <Route path="/alpha" element={<Alpha/>} />
+                    <Route path="/alpha/:nft_id" element={<Alpha/>} />
                     <Route
                         path="*"
                         element={
