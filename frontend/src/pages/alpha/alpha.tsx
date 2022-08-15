@@ -63,7 +63,7 @@ function Alpha() {
                                     </div>
                                     <div
                                         className="text-xs text-orange-600 mx-2 cursor-pointer"
-                                        onClick={() => navigate(`collection/alpha/`)}
+                                        onClick={() => navigate(`/collection/alpha/`)}
                                     >
                                         bring me home
                                     </div>
@@ -71,7 +71,6 @@ function Alpha() {
                             </div>
                         </div>
                     ) : (
-                        // <div className={`w-[${drawing_width}px]`}>
                         <div className="flex space-y-2 items-center">
                             <div>
                                 <div className="text-6xl bold mb-2">α</div>

@@ -64,7 +64,7 @@ function HouseCard(props: any) {
                     {props.house.name}
                 </div>
                 <div>
-                    <p className="max-w-sm mt-2 text-gray-700"></p>
+                    <p className="mt-2 text-gray-700"></p>
                 </div>
                 <div className="flex flex-col space-y-4 text-gray-900">
                     <div>

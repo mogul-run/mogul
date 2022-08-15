@@ -7,7 +7,7 @@ function About() {
                 <img className="flex-1" src={figs} />
             </div>
             <div className="w-3/5">
-                <div className="flex-0 text-4xl">About</div>
+                <div className="text-4xl">About</div>
                 Sender Central
             </div>
         </div>

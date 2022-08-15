@@ -13,7 +13,7 @@ const collections = [alpha];
 function Collections() {
     return (
         <div className="content-container flex-col">
-            <div className="flex justify-between items-center">
+            {/* <div className="flex justify-between items-center">
                 <div className="mb-4">
                     <div className="text-4xl uppercase italic font-bold tracking-wider">
                         Collections
@@ -45,7 +45,7 @@ function Collections() {
                 {collections.map((collection) => {
                     return <CollectionsCards collection={collection} />;
                 })}
-            </div>
+            </div> */}
         </div>
     );
 }
@@ -57,7 +57,7 @@ function CollectionsCards(props: any) {
             className="flex space-x-5"
             to={`/collection/${props.collection.collection_id}`}
         >
-            <div className="flex flex-col w-96">
+            {/* <div className="flex flex-col w-96">
                 <img
                     className="object-cover w-96 h-96 rounded"
                     src={props.collection.img_url}
@@ -69,18 +69,18 @@ function CollectionsCards(props: any) {
                             Genesis Series: lucasxsong
                         </div>
 
-                        <p className="max-w-sm mt-2 text-gray-700"></p>
+                        <p className="mt-2 text-gray-700"></p>
                     </div>
                     <div>
                         <UserPopup user={getUser()} />
                     </div>
                 </div>
                 <div>
-                    <p className="max-w-sm mt-2 text-gray-700">
+                    <p className="mt-2 text-gray-700">
                         A series of 57 nfts.{" "}
                     </p>
                 </div>
-            </div>
+            </div> */}
         </Link>
     );
 }
