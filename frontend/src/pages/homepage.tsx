@@ -11,7 +11,7 @@ function HomePage(props: any) {
         <div className="homepage">
                 <div className="content">
                     <ContentUno />
-                    <FeaturedCommunities/>
+                    {/* <FeaturedCommunities/> */}
                     <ContentDos />
                     <ContentTres />
                     <Content4 />
