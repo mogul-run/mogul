@@ -93,7 +93,7 @@ function Alpha() {
                             </div>
                             <div>
                                 <div
-                                    className="btn-ghost font-bold cursor-pointer"
+                                    className="btn-ghost font-bold cursor-not-allowed"
                                     onClick={() => handleLMK()}
                                 >
                                     lmk when

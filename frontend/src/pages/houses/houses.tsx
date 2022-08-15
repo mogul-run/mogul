@@ -54,14 +54,16 @@ function HouseCard(props: any) {
     const { getUser } = useAuth();
     return (
         <Link className="" to={`/house/${props.house.house_id}`}>
-            <div className="flex w-full justify-between items-center outline rounded">
-                <img
-                    className="object-cover w-32 h-32 rounded-full"
-                    src={props.house.img_url}
-                    alt=""
-                />
-                <div className="mt-4 text-xl font-bold text-gray-900">
-                    {props.house.name}
+            <div className="flex w-full justify-between items-center outline rounded hover:shadow-sm">
+                <div className="flex items-center space-x-4">
+                    <img
+                        className="object-cover w-32 h-32 rounded-full"
+                        src={props.house.img_url}
+                        alt=""
+                    />
+                    <div className="text-2xl font-bold uppercase tracking-wider text-gray-900">
+                        {props.house.name}
+                    </div>
                 </div>
                 <div>
                     <p className="mt-2 text-gray-700"></p>
@@ -69,11 +71,16 @@ function HouseCard(props: any) {
                 <div className="flex flex-col space-y-4 text-gray-900">
                     <div>
                         <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
-                            hosted by:
+                            hosted by
                         </label>
                         <UserPopup user={getUser()} />
                     </div>
-                    <div>members: 13</div>
+                    <div>
+                        <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                            members
+                        </label>
+                        13
+                    </div>
                 </div>
             </div>
         </Link>

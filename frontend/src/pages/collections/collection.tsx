@@ -66,7 +66,7 @@ function CollectionsCards(props: any) {
                 <div className="flex justify-between items-center">
                     <div>
                         <div className="mt-4 text-xl font-bold text-gray-900">
-                            Genesis Series: lucasxsong
+                           Genesis Collection 
                         </div>
 
                         <p className="mt-2 text-gray-700"></p>
@@ -77,7 +77,7 @@ function CollectionsCards(props: any) {
                 </div>
                 <div>
                     <p className="mt-2 text-gray-700">
-                        A series of 57 nfts.{" "}
+                        A series of 10 NFTs redeemable for curated outdoor experiences.{" "}
                     </p>
                 </div>
             </div>
