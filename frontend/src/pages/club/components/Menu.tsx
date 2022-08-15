@@ -1,4 +1,3 @@
-import "../chalet.css";
 import Bananas from "../../../img/bananas.png";
 
 function Menu() {

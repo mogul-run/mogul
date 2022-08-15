@@ -11,13 +11,79 @@ function HomePage(props: any) {
         <div className="homepage">
                 <div className="content">
                     <ContentUno />
+                    {/* <FeaturedCommunities/> */}
                     <ContentDos />
                     <ContentTres />
                     <Content4 />
-                    <Content5 />
+                    {/* <Content5 /> */}
                 </div>
         </div>
     );
+}
+
+function FeaturedCommunities() {
+    return (
+        <div className="flex items-center justify-around bg-stone-200 outline rounded shadow-inner p-10 w-full">
+            <div className="w-96">
+                <div className="text-xl font-bold text-stone-600">
+                    Featured Collection 
+                </div>
+            </div>
+            <div className="w-96">
+                <div className="text-md font-bold">
+                    <FeaturedCommunityCard/>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const community = {
+    name: "Fremont Surf Club",
+    desc: "A community of surfers in the Fremont area.",
+    path: "/c/fremont-surf-club",
+}
+
+function FeaturedCommunityCard() {
+    return (
+            <Link
+                to={community.path}
+                className="grid grid-cols-3 items-center bg-stone-100 shadow-md rounded p-3 "
+            >
+                {/* <img
+                    className="col-span-1 rounded w-40 h-40 object-cover"
+                /> */}
+                <div className="col-span-2 text-stone-600">
+                    <div className="text-2xl font-bold">{community.name}</div>
+                    <div className="text-md mt-2 font-light">{community.desc}</div>
+                    <div className="flex mt-6 w-full justify-between items-center">
+                        {/* <div className="">
+                            <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                hosted by
+                            </label>
+                            <UserPopup user={event.author} />
+                        </div>
+                        <div className="">
+                            <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                location
+                            </label>
+                            {event.location}
+                        </div>
+                        <div className="">
+                            {event.duration && (
+                                <>
+                                    {" "}
+                                    <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                        duration
+                                    </label>
+                                    {event.duration}
+                                </>
+                            )}
+                        </div> */}
+                    </div>
+                </div>
+            </Link>
+    )
 }
 
 function ContentUno() {

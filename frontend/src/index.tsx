@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "@fontsource/dm-mono";
+import "@fontsource/inter";
 import "@fontsource/alegreya";
 import { AppContextProvider } from "./context/appContext";
 import SubDomainRouter from "./SubdomainRouter";

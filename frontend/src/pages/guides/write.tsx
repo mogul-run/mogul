@@ -132,12 +132,12 @@ function TopBar(props: any) {
 
 function TitleInput(props: any) {
     return (
-        <div className="text-2xl font-bold mb-4">
+        <div className="text-2xl font-bold mb-4 script">
             <input
                 onChange={(e) => props.setTitle(e.target.value)}
                 value={props.title}
                 placeholder="What's your title?"
-                className="bg-stone-100 py-1 rounded focus: outline-none"
+                className="bg-stone-100 py-1 rounded focus:outline-none script w-full"
             />
         </div>
     );
@@ -145,10 +145,10 @@ function TitleInput(props: any) {
 
 export function TextEditor(props: any) {
     return (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 script">
             <div className="">
                 <textarea
-                    className="bg-stone-100 rounded"
+                    className="bg-stone-100 rounded focus:outline-none"
                     value={props.input}
                     placeholder="Write something!"
                     cols={40}

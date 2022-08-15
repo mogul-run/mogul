@@ -33,11 +33,6 @@
     flex-grow: 1;
 }
 
-.content-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 25px 50px;
-}
 
 .definition-header {
     font-size: 22px;

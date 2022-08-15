@@ -6,13 +6,13 @@ import ScrollToTop from "./utils/scrollToTop";
 import { useAuth } from "./context/authContext";
 import { NotFound } from "./pages/notFound";
 import AccountSettings from "./pages/account-settings";
-import MogulPad from "./pages/home";
+import Home from "./pages/home";
 import MogulRun from "./pages/bulletin/bulletin";
 import Write from "./pages/guides/write";
 import UserPosts from "./pages/user-posts";
 import { ModalProvider } from "./context/modalContext";
 import CreateEvent from "./pages/events/create-event";
-import Chalet from "./pages/chalet/chalet";
+import Chalet from "./pages/club/club";
 import Guide from "./pages/guides/guide";
 import Sidebar from "./components/nav/sidebar";
 import Footer from "./components/nav/footer";
@@ -23,6 +23,9 @@ import EventPage from "./pages/events/event-page-tree";
 import TGOB from "./pages/landing/TGOB";
 import Team from "./pages/landing/team";
 import GuideEdit from "./pages/guides/guide-edit";
+import Alpha from "./pages/alpha/alpha";
+import Collections from "./pages/collections/collection";
+import Houses from "./pages/houses/houses";
 
 function WithNavFooter({
     children,
@@ -31,14 +34,18 @@ function WithNavFooter({
 }) {
     const { getUser, signOut, getWallet } = useAuth();
     return (
-        <div>
-            <Navbar
-                handleLogout={signOut}
-                user={getUser()}
-                walletAddr={getWallet()}
-            />
-            {children}
-            <Footer />
+        <div className="h-screen flex flex-col">
+            <div className="">
+                <Navbar
+                    handleLogout={signOut}
+                    user={getUser()}
+                    walletAddr={getWallet()}
+                />
+            </div>
+            <div className="flex-1 overflow-y-hide"> {children}</div>
+            <div className="">
+                <Footer />
+            </div>
         </div>
     );
 }
@@ -103,14 +110,14 @@ function App() {
             <ModalProvider>
                 <ScrollToTop />
                 <Routes>
-                    <Route
+                    {/* <Route
                         path="/tgob"
                         element={
                             <WithNavFooter>
                                 <TGOB />
                             </WithNavFooter>
                         }
-                    />
+                    /> */}
                     <Route
                         path="/team"
                         element={
@@ -122,21 +129,20 @@ function App() {
                     <Route
                         path="/settings"
                         element={
-                            <WithSidebar>
-                                <AccountSettings
-                                />
-                            </WithSidebar>
+                            <WithNavFooter>
+                                <AccountSettings />
+                            </WithNavFooter>
                         }
                     />
-                    <Route
+                    {/* <Route
                         path="/write"
                         element={
                             <WithSidebar>
                                 <Write />
                             </WithSidebar>
                         }
-                    />
-                    <Route
+                    /> */}
+                    {/* <Route
                         path="/e/create"
                         element={
                             <WithSidebar>
@@ -144,9 +150,20 @@ function App() {
                                 <CreateEvent />
                             </WithSidebar>
                         }
+                    /> */}
+                    {/* <Route
+                        path="/questions"
+                        element={
+                            <WithSidebar>
+                                <MogulRun />
+                            </WithSidebar>
+                        }
+                    /> */}
+                    {/* <Route path="/guides/:guide_id" element={<Guide />} />
+                    <Route
+                        path="/guides/:guide_id/edit"
+                        element={<GuideEdit />}
                     />
-                    <Route path="/guides/:guide_id" element={<Guide />} />
-                    <Route path="/guides/:guide_id/edit" element={<GuideEdit />} />
                     <Route path="/e/tree" element={<EventPageTree />} />
                     <Route path="/e/fire" element={<EventPageFire />} />
                     <Route path="/e/:post_id" element={<EventPage />} />
@@ -157,35 +174,73 @@ function App() {
                                 <UserPosts />
                             </WithSidebar>
                         }
-                    />
+                    /> */}
                     <Route
                         path="/m/sender-central"
                         element={
-                            <WithSidebar>
+                            <WithNavFooter>
                                 <Chalet />
-                            </WithSidebar>
+                            </WithNavFooter>
                         }
                     />
                     <Route
                         path="/"
                         element={
-                            getUser() ? (
-                                <WithSidebar>
-                                    <MogulPad />
-                                </WithSidebar>
-                            ) : (
-                                <WithNavFooter>
-                                    <HomePage />
-                                </WithNavFooter>
-                            )
+                            // getUser() ? (
+                            //     <WithNavFooter>
+                            //         <Home />
+                            //     </WithNavFooter>
+                            // ) : (
+                            <WithNavFooter>
+                                <HomePage />
+                            </WithNavFooter>
+                            // )
                         }
                     />
                     <Route
-                        path="/questions"
+                        path="/collections"
                         element={
-                            <WithSidebar>
-                                <MogulRun />
-                            </WithSidebar>
+                            // getUser() ? (
+                            //     <WithNavFooter>
+                            //         <Home />
+                            //     </WithNavFooter>
+                            // ) : (
+                            <WithNavFooter>
+                                <Collections />
+                            </WithNavFooter>
+                            // )
+                        }
+                    />
+                    <Route
+                        path="/collection/:collection_id"
+                        element={
+                            <WithNavFooter>
+                                <Alpha />
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/collection/:collection_id/:nft_id"
+                        element={
+                            <WithNavFooter>
+                                <Alpha />
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/houses"
+                        element={
+                            <WithNavFooter>
+                                <Houses />
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/house/:house_id"
+                        element={
+                            <WithNavFooter>
+                                <Chalet />
+                            </WithNavFooter>
                         }
                     />
                     <Route

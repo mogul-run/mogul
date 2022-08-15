@@ -27,7 +27,7 @@ function HomeContent(props: any) {
 function TokenWall(props: any) {
     const tokensNeeded = props.holdingRequirement - Number(props.ERC20Bal);
     return (
-        <div className="flex flex-col w-full text-xl token-wall">
+        <div className="flex flex-col w-full text-xl">
             <div className="text-3xl font-bold">Bummer...</div>
             <img className="w-96 my-4" src={Morels} />
             <div className="my-2">
