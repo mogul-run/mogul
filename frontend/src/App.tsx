@@ -35,13 +35,15 @@ function WithNavFooter({
     const { getUser, signOut, getWallet } = useAuth();
     return (
         <div className="h-screen flex flex-col">
-            <Navbar
-                handleLogout={signOut}
-                user={getUser()}
-                walletAddr={getWallet()}
-            />
-            <div className="h-full flex-1"> {children}</div>
-            <div className="h-100 flex-0">
+            <div className="">
+                <Navbar
+                    handleLogout={signOut}
+                    user={getUser()}
+                    walletAddr={getWallet()}
+                />
+            </div>
+            <div className="flex-1 overflow-y-hide"> {children}</div>
+            <div className="">
                 <Footer />
             </div>
         </div>
@@ -229,7 +231,7 @@ function App() {
                         path="/houses"
                         element={
                             <WithNavFooter>
-                                <Houses/>
+                                <Houses />
                             </WithNavFooter>
                         }
                     />

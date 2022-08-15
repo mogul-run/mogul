@@ -13,11 +13,33 @@ const houses = [house];
 function Houses() {
     return (
         <div className="content-container flex-col">
-            <div className="mb-4">
-                <div className="text-4xl uppercase italic font-bold tracking-wider">
-                    Houses
+            <div className="flex justify-between items-center">
+                <div className="mb-4">
+                    <div className="text-4xl uppercase italic font-bold tracking-wider">
+                        Houses
+                    </div>
+                    <div className="text-md mb-4 text-gray-500">
+                        {" "}
+                        Token-gated Community Spaces{" "}
+                    </div>
                 </div>
-                <div className="text-xl mb-4"> Description </div>
+                <div className="btn-ghost flex items-center cursor-not-allowed">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 p-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        />
+                    </svg>
+                    <div className="uppercase">Create New House</div>
+                </div>
             </div>
             <div className="">
                 {houses.map((house) => {
