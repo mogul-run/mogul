@@ -42,7 +42,7 @@ function Sidebar(props: any) {
                     </div>
 
                     <div className="space-y-3">
-                        <div className="relative">
+                        {/* <div className="relative">
                             <input
                                 className="h-8 m-1 px-2 pr-14 text-sm bg-stone-100 placeholder-stone-300 border-stone-200 rounded-lg focus:z-10"
                                 placeholder="Search"
@@ -65,7 +65,7 @@ function Sidebar(props: any) {
                                     ></path>
                                 </svg>
                             </button>
-                        </div>
+                        </div> */}
                         <div>
                             <Link to="/" className="nostyle">
                                 <div className="sidebar-link">
@@ -86,7 +86,7 @@ function Sidebar(props: any) {
                                     <div className="ml-2">Home</div>
                                 </div>
                             </Link>
-                            <Link to="/questions" className="nostyle">
+                            {/* <Link to="/questions" className="nostyle">
                                 <div className="sidebar-link">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +104,8 @@ function Sidebar(props: any) {
                                     </svg>
                                     <div className="ml-2">the bulletin</div>
                                 </div>
-                            </Link>
-                            {/* <div className="sidebar-link cursor-not-allowed">
+                            </Link> */}
+                            <div className="sidebar-link cursor-not-allowed">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-6 w-6 p-1"
@@ -138,8 +138,8 @@ function Sidebar(props: any) {
                                     />
                                 </svg>{" "}
                                 <div className="ml-2">Saved</div>
-                            </div> */}
-                            {/* <Link
+                            </div> 
+                            <Link
                                 to={`/${getUser().uid}/posts`}
                                 className="nostyle"
                             >
@@ -158,11 +158,11 @@ function Sidebar(props: any) {
                                             d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                                         />
                                     </svg>
-                                    <div className="ml-2">Your Posts</div>
+                                    <div className="ml-2">Your Collections </div>
                                 </div>
-                            </Link> */}
+                            </Link>
                         </div>
-                        <div className="">
+                        {/* <div className="">
                             <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1 ml-2">
                                 My Groups
                             </label>
@@ -171,8 +171,8 @@ function Sidebar(props: any) {
                                     Sender Central
                                 </div>
                             </Link>
-                        </div>
-                        <div className="rounded">
+                        </div> */}
+                        {/* <div className="rounded">
                             <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1 ml-2">
                                 Events
                             </label>
@@ -228,11 +228,11 @@ function Sidebar(props: any) {
                                     <div className="ml-1">Create Event</div>
                                 </div>
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="text-center w-full">
-                    <Link to="/write" className="nostyle">
+                    {/* <Link to="/write" className="nostyle">
                         <div className="sidebar-link">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -250,7 +250,7 @@ function Sidebar(props: any) {
                             </svg>
                             <div className="ml-2">Create Guide</div>
                         </div>
-                    </Link>
+                    </Link> */}
                     <Link to="/settings" className="nostyle">
                         <div className="sidebar-link">
                             <svg

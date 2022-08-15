@@ -180,15 +180,15 @@ function App() {
                     <Route
                         path="/"
                         element={
-                            // getUser() ? (
-                            //     <WithSidebar>
-                            //         <Home />
-                            //     </WithSidebar>
-                            // ) : (
+                            getUser() ? (
+                                <WithSidebar>
+                                    <Home />
+                                </WithSidebar>
+                            ) : (
                             <WithNavFooter>
                                 <HomePage />
                             </WithNavFooter>
-                            // )
+                            )
                         }
                     />
                     <Route
@@ -200,6 +200,7 @@ function App() {
                         }
                     />
                     <Route path="/alpha" element={<Alpha/>} />
+
                     <Route path="/alpha/:nft_id" element={<Alpha/>} />
                     <Route
                         path="*"

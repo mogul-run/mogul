@@ -17,8 +17,11 @@ function Content() {
                 Feel free to take a look around to see what we've been working
                 on!
             </div> */}
-            <div className="text-2xl font-bold">Featured Stories</div>
-            <Link to="/guides/real-rock">
+            <div className="text-2xl font-bold">NFT Auctions</div>
+            <div>
+                NFT Auctions
+            </div>
+            {/* <Link to="/guides/real-rock">
                 <div className="card">
                     <div className="text-lg font-bold text-stone-700">
                         Venturing Onto Real Rock
@@ -28,7 +31,7 @@ function Content() {
                         fun!.
                     </div>
                 </div>
-            </Link>
+            </Link> */}
         </div>
     );
 }
