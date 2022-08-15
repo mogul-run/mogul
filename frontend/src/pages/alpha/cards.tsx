@@ -101,7 +101,7 @@ export default ({ width, height, margin = defaultMargin }: PolygonProps) => {
                                 nft_id == String(i + 1) ? "scale-125" : ""
                             } hover:scale-105 hover:rotate-15 transition-all cursor-pointer`}
                             onClick={() => {
-                                navigate(`/alpha/${i + 1}`);
+                                navigate(`/collection/alpha/${i + 1}`);
                             }}
                         />
                     </Group>

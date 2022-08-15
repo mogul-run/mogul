@@ -23,13 +23,10 @@ function HomePage(props: any) {
 
 function FeaturedCommunities() {
     return (
-        // <div className="">
-        //     Featured Communities
-        // </div>
         <div className="flex items-center justify-around bg-stone-200 outline rounded shadow-inner p-10 w-full">
             <div className="w-96">
                 <div className="text-xl font-bold text-stone-600">
-                    Featured Community
+                    Featured Collection 
                 </div>
             </div>
             <div className="w-96">

@@ -65,7 +65,7 @@ function Chalet(props: any) {
     }, [purchased]);
 
     return (
-        <div className="flex flex-col items-center sidebar-content chalet-wrapper">
+        <div className="flex flex-col items-center chalet-wrapper">
             <div className="w-full flex flex-col items-center justify-between">
                 <div className="flex w-full justify-center items-center p-4">
                     {/* <div className="text-xl font-bold">Lucas</div> */}
@@ -74,11 +74,6 @@ function Chalet(props: any) {
                             {" "}
                             {getUser() ? (
                                 <div className="flex flex-col text-right items-end space-y-4">
-                                    <User
-                                        handleLogout={props.handleLogout}
-                                        user={getUser()}
-                                        walletAddr={getWallet()}
-                                    />
                                     <div className="space-y-1 flex flex-col">
                                         <div className="token-balances flex flex-col items-end">
                                             <div className="font-bold">
@@ -123,7 +118,7 @@ function Chalet(props: any) {
                                 ></img>
                             </div>
                             <div className="chalet-header flex flex-col items-start justify-center">
-                                <div className="text-3xl">Sender Central</div>
+                                <div className="text-3xl">House of B.O.B </div>
                                 <div className="flex flex-col space-x-1 token-info">
                                     <div className="flex justify-center message-primary items-center space-x-2 my-1">
                                         <div>💸 Transact with:</div>

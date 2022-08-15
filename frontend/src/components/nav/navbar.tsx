@@ -16,20 +16,12 @@ export default function Navbar(props: any) {
             <div className="navbuttons">
                 <div className="navlinks">
                     {/* <div className="navlink" onClick={scrollToContent}>About</div> */}
-                    {/* <Link to="/feed " className="nostyle">
-                        {getUser() && <div className="navlink">feed</div>}
-                    </Link> */}
-                    {/* <a
-                        href="https://discord.gg/8AXyshRRVM"
-                        target="__blank"
-                        className="nostyle"
-                    >
-                        <div className="navlink"> discord</div>
-                    </a> */}
-
-                    {/* <Link to="/tgob" className="nostyle">
-                        <div className="navlink">T.G.o.B</div>
-                    </Link> */}
+                    <Link to="/collections" className="nostyle">
+                        <div className="navlink uppercase tracking-widest">collections</div>
+                    </Link>
+                    <Link to="/houses" className="nostyle uppercase tracking-widest">
+                        <div className="navlink ">houses</div>
+                    </Link>
                 </div>
                 <div className="auth-buttons">
                     {/* <div
@@ -46,4 +38,3 @@ export default function Navbar(props: any) {
         </div>
     );
 }
-

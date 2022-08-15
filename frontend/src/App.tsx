@@ -24,6 +24,8 @@ import TGOB from "./pages/landing/TGOB";
 import Team from "./pages/landing/team";
 import GuideEdit from "./pages/guides/guide-edit";
 import Alpha from "./pages/alpha/alpha";
+import Collections from "./pages/collections/collection";
+import Houses from "./pages/houses/houses";
 
 function WithNavFooter({
     children,
@@ -32,14 +34,16 @@ function WithNavFooter({
 }) {
     const { getUser, signOut, getWallet } = useAuth();
     return (
-        <div>
+        <div className="h-screen flex flex-col">
             <Navbar
                 handleLogout={signOut}
                 user={getUser()}
                 walletAddr={getWallet()}
             />
-            {children}
-            <Footer />
+            <div className="h-full flex-1"> {children}</div>
+            <div className="h-100 flex-0">
+                <Footer />
+            </div>
         </div>
     );
 }
@@ -104,14 +108,14 @@ function App() {
             <ModalProvider>
                 <ScrollToTop />
                 <Routes>
-                    <Route
+                    {/* <Route
                         path="/tgob"
                         element={
                             <WithNavFooter>
                                 <TGOB />
                             </WithNavFooter>
                         }
-                    />
+                    /> */}
                     <Route
                         path="/team"
                         element={
@@ -123,20 +127,20 @@ function App() {
                     <Route
                         path="/settings"
                         element={
-                            <WithSidebar>
+                            <WithNavFooter>
                                 <AccountSettings />
-                            </WithSidebar>
+                            </WithNavFooter>
                         }
                     />
-                    <Route
+                    {/* <Route
                         path="/write"
                         element={
                             <WithSidebar>
                                 <Write />
                             </WithSidebar>
                         }
-                    />
-                    <Route
+                    /> */}
+                    {/* <Route
                         path="/e/create"
                         element={
                             <WithSidebar>
@@ -144,8 +148,16 @@ function App() {
                                 <CreateEvent />
                             </WithSidebar>
                         }
-                    />
-                    <Route path="/guides/:guide_id" element={<Guide />} />
+                    /> */}
+                    {/* <Route
+                        path="/questions"
+                        element={
+                            <WithSidebar>
+                                <MogulRun />
+                            </WithSidebar>
+                        }
+                    /> */}
+                    {/* <Route path="/guides/:guide_id" element={<Guide />} />
                     <Route
                         path="/guides/:guide_id/edit"
                         element={<GuideEdit />}
@@ -160,48 +172,75 @@ function App() {
                                 <UserPosts />
                             </WithSidebar>
                         }
-                    />
+                    /> */}
                     <Route
                         path="/m/sender-central"
                         element={
-                            <WithSidebar>
+                            <WithNavFooter>
                                 <Chalet />
-                            </WithSidebar>
-                        }
-                    />
-                    <Route
-                        path="/c/:club-id"
-                        element={
-                            <WithSidebar>
-                                <Chalet />
-                            </WithSidebar>
+                            </WithNavFooter>
                         }
                     />
                     <Route
                         path="/"
                         element={
-                            getUser() ? (
-                                <WithSidebar>
-                                    <Home />
-                                </WithSidebar>
-                            ) : (
+                            // getUser() ? (
+                            //     <WithNavFooter>
+                            //         <Home />
+                            //     </WithNavFooter>
+                            // ) : (
                             <WithNavFooter>
                                 <HomePage />
                             </WithNavFooter>
-                            )
+                            // )
                         }
                     />
                     <Route
-                        path="/questions"
+                        path="/collections"
                         element={
-                            <WithSidebar>
-                                <MogulRun />
-                            </WithSidebar>
+                            // getUser() ? (
+                            //     <WithNavFooter>
+                            //         <Home />
+                            //     </WithNavFooter>
+                            // ) : (
+                            <WithNavFooter>
+                                <Collections />
+                            </WithNavFooter>
+                            // )
                         }
                     />
-                    <Route path="/alpha" element={<Alpha/>} />
-
-                    <Route path="/alpha/:nft_id" element={<Alpha/>} />
+                    <Route
+                        path="/collection/:collection_id"
+                        element={
+                            <WithNavFooter>
+                                <Alpha />
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/collection/:collection_id/:nft_id"
+                        element={
+                            <WithNavFooter>
+                                <Alpha />
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/houses"
+                        element={
+                            <WithNavFooter>
+                                <Houses/>
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/house/:house_id"
+                        element={
+                            <WithNavFooter>
+                                <Chalet />
+                            </WithNavFooter>
+                        }
+                    />
                     <Route
                         path="*"
                         element={

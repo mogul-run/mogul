@@ -17,10 +17,15 @@ function Content() {
                 Feel free to take a look around to see what we've been working
                 on!
             </div> */}
-            <div className="text-2xl font-bold">NFT Auctions</div>
-            <div>
-                NFT Auctions
-            </div>
+            {/* <div className="text-2xl font-bold">Mogul</div> */}
+            <Link to="/alpha">
+                <div className="card">
+                    <div className="text-lg font-bold text-stone-700">
+                        Alpha Series
+                    </div>
+                    <div className="text-md text-stone-700">Lol</div>
+                </div>
+            </Link>
             {/* <Link to="/guides/real-rock">
                 <div className="card">
                     <div className="text-lg font-bold text-stone-700">

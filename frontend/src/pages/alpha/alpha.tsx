@@ -27,7 +27,6 @@ function Alpha() {
     const handleWant = () => {
         if (getUser()) {
             // add user to rsvp list
-            console.log(getUser());
         } else {
             handleModal(true);
         }
@@ -64,7 +63,7 @@ function Alpha() {
                                     </div>
                                     <div
                                         className="text-xs text-orange-600 mx-2 cursor-pointer"
-                                        onClick={() => navigate(`/alpha/`)}
+                                        onClick={() => navigate(`collection/alpha/`)}
                                     >
                                         bring me home
                                     </div>
