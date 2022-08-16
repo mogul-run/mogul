@@ -7,6 +7,10 @@ const alpha = {
     name: "Alpha Series",
     img_url: "https://i.imgur.com/rWcSsf0.jpg",
     collection_id: "alpha",
+    author: {
+        displayName: "lucasxsong",
+        photoURL: "https://i.imgur.com/rWcSsf0.jpg",
+    }
 };
 const collections = [alpha];
 
@@ -72,7 +76,7 @@ function CollectionsCards(props: any) {
                         <p className="mt-2 text-gray-700"></p>
                     </div>
                     <div>
-                        <UserPopup user={getUser()} />
+                        <UserPopup user={props.collection.author}/>
                     </div>
                 </div>
                 <div>

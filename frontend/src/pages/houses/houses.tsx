@@ -6,6 +6,10 @@ const house = {
     name: "the house of bob",
     img_url: "https://i.imgur.com/c5bDFvw.jpg",
     house_id: "alpha",
+    author: {
+        displayName: "lucasxsong",
+        photoURL: "https://i.imgur.com/rWcSsf0.jpg",
+    },
 };
 
 const houses = [house];
@@ -73,7 +77,7 @@ function HouseCard(props: any) {
                         <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                             hosted by
                         </label>
-                        <UserPopup user={getUser()} />
+                        <UserPopup user={props.house.author} />
                     </div>
                     <div>
                         <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
