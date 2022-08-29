@@ -14,9 +14,11 @@ function CoursePreview(props: any) {
                     className="col-span-1 rounded w-40 h-40 object-cover"
                 />
                 <div className="col-span-2 text-stone-600">
-                    <div className="text-2xl font-bold">{props.course.title}</div>
+                    <div className="text-2xl font-bold">
+                        {props.course.title}
+                    </div>
                     <div className="text-md">{props.course.hook}</div>
-                    <div className="flex mt-6 w-full justify-between items-center">
+                    <div className="flex flex-wrap mt-6 w-full justify-between items-baseline space-y-3">
                         <div className="">
                             <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                                 hosted by
@@ -39,6 +41,23 @@ function CoursePreview(props: any) {
                                     {props.course.duration}
                                 </>
                             )}
+                        </div>
+                        <div>
+                            {" "}
+                            <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
+                                Enrollment Type
+                            </label>
+                            <div className="flex  space-x-2">
+                                <div className="outline text-sm rounded-full text-gray-500 px-2">
+                                    In Person
+                                </div>
+                                <div className="outline text-sm rounded-full text-gray-500 px-2">
+                                    Virtual
+                                </div>
+                                <div className="outline text-sm rounded-full text-gray-500 px-2">
+                                    Asynchronous
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

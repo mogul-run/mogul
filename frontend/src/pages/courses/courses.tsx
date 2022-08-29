@@ -13,9 +13,9 @@ const surf_course = {
         displayName: "Lucas Song",
         walletAddr: "0xCe4E67E407aB231925DF614a5e72687fD597324B",
     },
-    location: "Rock State Park",
+    location: "SF Bay Area",
     duration: "4 weeks",
-    cover_url: "https://i.imgur.com/r3OuB8r.png",
+    cover_url: "https://i.imgur.com/8wHHHoi.jpg",
     hook: "Build a strong base to become a confident surfer. Targeted towards beginning surfers that live inland, but open to all levels and localities. ",
     desc: "",
     materials_list: [
@@ -52,7 +52,7 @@ const climbing = {
     media: ["https://i.imgur.com/cov0ZJB.jpg", ""],
 };
 
-const courses= [surf_course, climbing];
+const courses= [surf_course ];
 
 function Courses() {
     return (

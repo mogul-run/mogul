@@ -29,6 +29,7 @@ import Courses from "./pages/courses/courses";
 import Houses from "./pages/houses/houses";
 import CoursePage from "./pages/courses/course-page";
 import CreateCourse from "./pages/courses/create-course";
+import CoursePageSurf from "./pages/courses/course-page-surf";
 
 export function WithNavFooter({
     children,
@@ -219,6 +220,14 @@ function App() {
                         element={
                             <WithNavFooter>
                                 <CreateCourse/>
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/course/valley_surfers"
+                        element={
+                            <WithNavFooter>
+                                <CoursePageSurf/>
                             </WithNavFooter>
                         }
                     />

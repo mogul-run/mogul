@@ -29,11 +29,8 @@ export type Guide = {
 export type Course = {
     title: string;
     author: User;
-    photoURL: string;
     hook: string;
-    id: string;
     location: string;
-    date: string;
     duration: string;
     desc: string;
     seat_price: number;
