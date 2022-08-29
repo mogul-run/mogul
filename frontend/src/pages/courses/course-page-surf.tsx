@@ -338,7 +338,7 @@ const EnrollmentMenu = () => {
     return (
         <div
             className={`
-             outline-box flex flex-col md:flex-row justify-between`}
+             outline-box flex flex-col flex-wrap md:flex-row justify-between`}
         >
             <div className="flex flex-col text-xl items-center justify-center bg-stone-100 h-full space-y-5 ">
                 <div className="grid grid-cols-2 gap-3">
@@ -348,7 +348,7 @@ const EnrollmentMenu = () => {
                         </div>
                         <div className="flex flex-col space-y-3 h-full justify-center">
                             <div
-                                className="outline px-2 py-1 text-stone-600 hover:bg-orange-400 hover:text-stone-100 cursor-pointer"
+                                className={`outline px-2 py-1 text-stone-600 hover:bg-orange-400 hover:text-stone-100 cursor-pointer ${"inperson" === enrollment ? "bg-orange-400 text-stone-100" : ""}`}
                                 onClick={() => setEnrollment("inperson")}
                             >
                                 <div className="font-bold text-xl tracking-wider">
@@ -360,25 +360,28 @@ const EnrollmentMenu = () => {
                                 </div>
                             </div>
                             <div
-                                className="outline px-2 py-1 text-stone-600 hover:bg-orange-400 hover:text-stone-100 cursor-pointer"
+                                className={`outline px-2 py-1 text-stone-600 hover:bg-orange-400 hover:text-stone-100 cursor-pointer ${"virtual" === enrollment ? "bg-orange-400 text-stone-100" : ""}`}
                                 onClick={() => setEnrollment("virtual")}
                             >
                                 <div className="font-bold text-xl tracking-wider">
                                     Virtual
                                 </div>
                                 <div className="text-sm">
-                                    Follow along the in-person class with virtual training assessments and virtual coaching sessions. 
+                                    Follow along the in-person class with
+                                    virtual training assessments and virtual
+                                    coaching sessions.
                                 </div>
                             </div>
                             <div
-                                className="outline px-2 py-1 text-stone-600 hover:bg-orange-400 hover:text-stone-100 cursor-pointer"
+                                className={`outline px-2 py-1 text-stone-600 hover:bg-orange-400 hover:text-stone-100 cursor-pointer ${"async" === enrollment ? "bg-orange-400 text-stone-100" : ""}`}
                                 onClick={() => setEnrollment("async")}
                             >
                                 <div className="font-bold text-xl tracking-wider">
-                                   Asynchronous 
+                                    Asynchronous
                                 </div>
                                 <div className="text-sm">
-                                    Receive course notes emailed to you after the course terminates. 
+                                    Receive course notes emailed to you after
+                                    the course terminates.
                                 </div>
                             </div>
                         </div>
@@ -390,12 +393,14 @@ const EnrollmentMenu = () => {
                 </div>
             </div>
             {signup && (
-                <Transfer
-                    note="For Inland Surf Training"
-                    to={surf_course.author}
-                    amount={surf_course.seat_price}
-                    handleSuccess={handleSuccess}
-                />
+                <div className="flex w-full justify-center mt-3">
+                    <Transfer
+                        note="For Inland Surf Training"
+                        to={surf_course.author}
+                        amount={surf_course.seat_price}
+                        handleSuccess={handleSuccess}
+                    />
+                </div>
             )}
         </div>
     );
@@ -419,8 +424,50 @@ function EnrollmentSwitch(props: any) {
                             <span> Seats Left</span>
 
                             <span className="block mt-1 text-lg text-stone-600">
-                                3
+                                4
                             </span>
+                        </label>
+                    </div>
+
+                    <div className="relative">
+                        <label className="block p-4 text-sm uppercase font-medium transition-colors border border-stone-100 rounded-lg shadow-sm cursor-pointer hover:bg-stone-50 ">
+                            <span> Seat Price</span>
+
+                            <span className="block mt-1 text-stone-600 text-lg">
+                                0.3 ETH
+                            </span>
+                        </label>
+                    </div>
+                    <div className="col-span-2 flex items-end">
+                        <button
+                            className="nostyle relative inline-block group focus:outline-none focus:ring"
+                            onClick={props.handleSignup}
+                        >
+                            <span className="rounded absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-morange group-hover:translate-y-0 group-hover:translate-x-0"></span>
+
+                            <span className="rounded relative inline-block px-8 py-3 text-lg font-bold tracking-widest uppercase border-2 border-current group-active:text-opacity-75">
+                                Grab a seat!
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            );
+
+        case "virtual":
+            return (
+                <div className="grid grid-cols-3 gap-3">
+                    <div className="relative col-span-2 ">
+                        <label className="block p-4 text-sm uppercase transition-colors border border-stone-100 rounded-lg shadow-sm cursor-pointer hover:bg-stone-50 ">
+                            <span> Next Session</span>
+                            <span className="block mt-1 text-md text-stone-600">
+                                September 4, 2022 - October 4, 2022
+                            </span>
+                        </label>
+                    </div>
+                    <div className="relative">
+                        <label className="block p-4 text-sm uppercase transition-colors border border-stone-100 rounded-lg shadow-sm cursor-pointer hover:bg-stone-50 ">
+                            <span> Seats Left</span>
+                            <span className="block mt-1 text-lg text-stone-600">8</span>
                         </label>
                     </div>
 
@@ -447,11 +494,11 @@ function EnrollmentSwitch(props: any) {
                     </div>
                 </div>
             );
-
-        case "virtual":
-            return <div></div>;
         case "async":
-            return <div></div>;
+            return <div>
+                keep me in the loop!
+
+            </div>;
     }
     return <div />;
 }
