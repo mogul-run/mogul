@@ -57,7 +57,7 @@ function Houses() {
 function HouseCard(props: any) {
     const { getUser } = useAuth();
     return (
-        <Link className="" to={`/house/${props.house.house_id}`}>
+        <Link className="" to={`/house/${props.house.house_id}/home`}>
             <div className="flex w-full justify-between items-center outline rounded hover:shadow-sm">
                 <div className="flex items-center space-x-4">
                     <img
@@ -83,7 +83,7 @@ function HouseCard(props: any) {
                         <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-1">
                             members
                         </label>
-                        13
+                        ???
                     </div>
                 </div>
             </div>

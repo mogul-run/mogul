@@ -152,7 +152,7 @@ export function TextEditor(props: any) {
                     value={props.input}
                     placeholder="Write something!"
                     cols={40}
-                    rows={30}
+                    rows={45}
                     onChange={(e) => props.setInput(e.target.value)}
                 />
             </div>

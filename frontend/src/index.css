@@ -93,7 +93,7 @@ code {
 
     .ticker {
         padding: theme("spacing.1") theme("spacing.3");
-        background-color: theme("colors.gray.200");
+        background-color: theme("colors.gray.300");
         border-radius: theme("borderRadius.lg");
         width: max-content;
     }

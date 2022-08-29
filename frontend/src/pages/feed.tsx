@@ -51,7 +51,7 @@ function Feed(props: any) {
 
     useEffect(() => {
         if (!getUser()) {
-            navigate("/");
+            // navigate("/");
         } else {
             getPosts();
         }

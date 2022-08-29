@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Chalet from "./pages/club/club";
 import MogulRun from "./pages/bulletin/bulletin";
 import AccountSettings from "./pages/account-settings";
+import { WithNavFooter } from "./App";
 
 function SubdomainRouter(props: any) {
     switch (props.subdomain) {
@@ -9,29 +10,28 @@ function SubdomainRouter(props: any) {
             return <ChaletRouter />;
         case "the":
             return <MogulRunRouter />;
-        
     }
-    return <div/>
+    return <div />;
 }
 
 function ChaletRouter() {
     return (
-    <>
-        <Routes>
-            <Route path="/" element={<Chalet />} />
-            <Route path="/account-settings" element={<AccountSettings/>} />
-        </Routes>
-    </>
+        <>
+            <Routes>
+                <Route path="/" element={<Chalet />} />
+                <Route path="/account-settings" element={<AccountSettings />} />
+            </Routes>
+        </>
     );
 }
 function MogulRunRouter() {
     return (
-    <>
-        <Routes>
-            <Route path="/" element={<MogulRun />} />
-            <Route path="/account-settings" element={<AccountSettings/>} />
-        </Routes>
-    </>
+        <>
+            <Routes>
+                <Route path="/" element={<MogulRun />} />
+                <Route path="/account-settings" element={<AccountSettings />} />
+            </Routes>
+        </>
     );
 }
 
