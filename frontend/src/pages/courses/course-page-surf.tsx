@@ -182,7 +182,8 @@ function CoursePage() {
                             </div>
                             <div className="text-md">
                                 The ocean can be a dangerous place for the
-                                uninitiated.
+                                uninitiated. We'll help you learn your limits
+                                and develop your confidence in the ocean.
                             </div>
                         </div>
                         <div>
@@ -190,9 +191,9 @@ function CoursePage() {
                                 Locals Only Safety Training
                             </div>
                             <div className="text-md">
-                                No one wants to get their head bashed into by a
-                                local. Learn how to be a respectful surfer in
-                                the lineup.
+                                No one wants to get chewed out by a local. Learn
+                                how to be a respectful surfer in the lineup
+                                while still getting your waves.
                             </div>
                         </div>
                         <div>
@@ -254,38 +255,44 @@ function CoursePage() {
                                     )}
                                 </div>
                             </div> */}
-                <div className="grid md:grid-cols-2 grid-cols-1 gap-3 flex-wrap pb-10">
-                    <div>
-                        <div className="text-lg tracking-widest">
-                            Meet Your Instructor, Lucas
+                <div className="grid md:grid-cols-2 grid-cols-1 gap-4 flex-wrap pb-10">
+                    <div className="flex flex-col items-center space-y-4">
+                        <img
+                            src="https://i.imgur.com/rWcSsf0.jpg"
+                            className="h-40 w-48 object-cover rounded-t-full rounded-b-lg"
+                        />
+                        <div className="text-xl tracking-widest italic font-bold script">
+                            About Your Instructor, Lucas
                         </div>
-                        <div className="text-md">
-                            Lucas grew up in Sunny Fremont, CA and spent his
-                            childhood years playing in the pool.
+                        <div className="text-sm">
+                            Lucas is a proud inland surfer with a love/hate
+                            relationship with Highway 17. When not at the beach,
+                            you can find him ripping the many concrete waves within
+                            Fremont and doing pool training with other members of the
+                            Fremont Surf Club.{" "}
                         </div>
                     </div>
-                    <div className="outline-box px-3 py-7 bg-gradient-to-br from-purple-700 to-teal-400 text-stone-100">
+                    <div className="outline-box h-max px-3 py-7 bg-gradient-to-br from-purple-700 to-teal-400 text-stone-100">
                         <div className="text-2xl tracking-widest font-bold animate-bounce mb-2">
                             CRYPTO GOODIES!
                         </div>
                         <div className="text-sm">
-                            There will be two types of NFTs released to The
-                            course NFT will be available to mint after
-                            graduation of the first cohort. Attendees that pass
-                            the course will be entitled to a free mint, and
-                            remaining NFTs will be released to the general
-                            public.
+                            Course attendees have the option to purchase their
+                            seat in the course by minting an NFT. By minting an
+                            NFT, you have direct ownership over your membership
+                            in the creator's community.
                             <div className="mt-2 text-lg font-bold">
                                 NFT owners get perks like:
                             </div>
-                            <ul className="built">
-                                <li>Access to a creator houses.</li>
-                                <li></li>
+                            <ul className="built space-y-2">
+                                <li>Access to a creator house on Mogul</li>
+                                <li>Airdropped ERC20 Social Tokens</li>
+                                <li>Early Supporter Bragging Rights</li>
                             </ul>
                         </div>
-                        <div className="btn-std mt-3">
+                        {/* <div className="btn-std mt-3">
                             Read More About Mogul NFTs
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div
@@ -317,6 +324,16 @@ function CoursePage() {
                         />
                     </div>
                 )}
+                <div className="font-sm text-gray-500 pb-4">
+                    Want to share your unique perspective with a course like
+                    this? Send us
+                    <a href="mailto:lucas@mogul.run"> an email </a> or
+                    <a href="https://discord.gg/8AXyshRRVM">
+                        {" "}
+                        a message on Discord
+                    </a>
+                    .
+                </div>
             </div>
         </div>
     );
@@ -389,17 +406,17 @@ const EnrollmentMenu = (props: any) => {
              outline-box flex flex-col flex-wrap md:flex-row justify-between`}
         >
             <div className="flex flex-col flex-wrap  text-xl items-center justify-center bg-stone-100 h-full space-y-5 ">
-                <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
+                <div className="md:grid md:grid-cols-2 flex flex-wrap md:gap-3 space-y-3">
                     <div className="col-span-2 flex flex-col">
                         <div className="text-2xl text-stone-500 uppercase tracking-widest">
                             Course Syllabus
                         </div>
                         <div className="text-xs text-stone-500">
-                        We'll teach you everything you need to know to not be kookin it.  
+                            Our options for enrolling in this course.
                         </div>
                     </div>
                     <div className="flex flex-col">
-                        <div className="flex flex-col space-y-3 h-full justify-center">
+                        <div className="flex flex-col space-y-3 h-48 justify-center">
                             <div
                                 className={`outline px-2 py-1 text-stone-600 cursor-pointer ${
                                     "inperson" === enrollment
@@ -412,8 +429,7 @@ const EnrollmentMenu = (props: any) => {
                                     In-Person
                                 </div>
                                 <div className="text-xs">
-                                    Full fledged course with multiple in-person
-                                    trainings and surf sessions. Limited seats.{" "}
+                                    For those local to the SF Bay Area.
                                 </div>
                             </div>
                             <div
@@ -428,8 +444,7 @@ const EnrollmentMenu = (props: any) => {
                                     Virtual
                                 </div>
                                 <div className="text-xs">
-                                    Follow along virtually, with training
-                                    programs and video coaching sessions.
+                                    For those who can't make it in person.
                                 </div>
                             </div>
                             <div
@@ -444,8 +459,7 @@ const EnrollmentMenu = (props: any) => {
                                     Asynchronous
                                 </div>
                                 <div className="text-xs">
-                                    Receive course notes emailed to you after
-                                    the course ends.
+                                    Just want to stay in the loop?
                                 </div>
                             </div>
                         </div>
@@ -455,11 +469,11 @@ const EnrollmentMenu = (props: any) => {
                         handleSignup={handleSignup}
                         course={props.course}
                     />
-                    <div className="flex flex-col items-around justify-around p-2 space-y-4">
+                    <div className="flex flex-col items-around justify-p-2 space-y-4">
                         <div className="text-sm uppercase tracking-wider text-stone-500">
-                            Questions? Want to enroll? Reach out. 
+                            Questions? Want to enroll? Reach out.
                         </div>
-                        <div className="outline-dashed outline outline-2">
+                        <div className="outline outline-dashed rounded outline-2">
                             {" "}
                             {getUser() ? (
                                 <div>
@@ -538,13 +552,14 @@ const EnrollmentMenu = (props: any) => {
                             handleUnsubscribe={handleUnsubscribe}
                         />
                     </div>
-                    <div className="col-span-2 text-xs flex items-center text-stone-500 justify-center">
-                        Family and friends discounts are  
-                        available.{" "}
+                    <div className="col-span-2 text-xs flex items-center text-stone-500 justify-center text-center">
+                        Prices vary based on course length. Reach out to Lucas
+                        to talk about scheduling or pricing. Family and friends
+                        discounts are available.{" "}
                     </div>
                 </div>
             </div>
-            {signup && (
+            {/* {signup && (
                 <div className="flex w-full justify-center mt-3">
                     <Transfer
                         note="For Inland Surf Training"
@@ -553,7 +568,7 @@ const EnrollmentMenu = (props: any) => {
                         handleSuccess={handleSuccess}
                     />
                 </div>
-            )}
+            )} */}
         </div>
     );
 };
@@ -606,24 +621,20 @@ function EnrollmentSwitch(props: any) {
         //     );
         case "inperson":
             return (
-                <div className="flex flex-col items-around p-2 space-y-3">
+                <div className="flex flex-col justify-around items-around p-2 space-y-3">
                     <div className="uppercase tracking-widest font-bold text-sm">
-                       Includes 
+                        Nothing better than learning in person!
                     </div>
                     <div className="text-sm">
                         Inland Surfer Prep Session (pool days, skateboarding)
                     </div>
+                    <div className="text-sm">On-the-Water Surf Sessions</div>
                     <div className="text-sm">
-                        On-the-Water Surf Sessions 
-                    </div>
-                    <div className="text-sm">
-                        Gear: Surfboard, Skateboard, and Goggles
-                    </div>
-                    <div className="text-sm">
-                        Access to the course's private Discord channel.
+                        Permanent access to private discussion board and Discord
+                        channel.
                     </div>
                     <div className="uppercase tracking-widest font-bold text-sm">
-                        Price: $200+ (Dependent on class size and course length)
+                        Price: <span className="ticker">0.2ETH</span> and up *
                     </div>
                 </div>
             );
@@ -631,33 +642,36 @@ function EnrollmentSwitch(props: any) {
         case "virtual":
             return (
                 <div className="flex flex-col items-around p-2 space-y-3">
+                    <div className="uppercase justify-around tracking-widest font-bold text-sm">
+                        Internet Surfers Unite
+                    </div>
+                    <div className="text-sm">Detailed Training Plans</div>
+                    <div className="text-sm">
+                        Video Coaching Calls: from surfboard talk to popup and
+                        paddling analysis.
+                    </div>
+                    <div className="text-sm">
+                        Permanent access to private discussion board and Discord
+                        channel.
+                    </div>
                     <div className="uppercase tracking-widest font-bold text-sm">
-                       Includes 
-                    </div>
-                    <div className="text-sm">
-                        Detailed Training Plans
-                    </div>
-                    <div className="text-sm">
-                        Video Coaching Calls: from Surfboard Consultation to Popup and Paddling. 
-                    </div>
-                    <div className="text-sm">
-                        Access to the course's private Discord channel.
-                    </div>
-                    <div className="uppercase tracking-widest font-bold text-sm">
-                        Price: $20+
+                        Price: <span className="ticker">0.03ETH</span> and up
                     </div>
                 </div>
             );
         case "async":
             return (
-                <div className="flex flex-col items-around p-2 space-y-3">
+                <div className="flex flex-col justify-around items-around p-2 space-y-3">
                     <div className="text-sm">
-                        Receive course notes after the course is over. 
+                        Interested in the course but don't want to commit yet?
+                        Enroll in our asynchrounous course and get access to
+                        course notes and public Discord channel.
                     </div>
                     <div className="uppercase tracking-widest font-bold text-sm">
-                        FREE!
+                        Price: FREE!
                     </div>
-                </div>);
+                </div>
+            );
     }
     return <div />;
 }
