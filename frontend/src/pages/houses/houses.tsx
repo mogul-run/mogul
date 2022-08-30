@@ -17,8 +17,8 @@ const houses = [house];
 function Houses() {
     return (
         <div className="content-container flex-col">
-            <div className="flex justify-between items-center">
-                <div className="mb-4">
+            <div className="flex flex-wrap justify-between items-center mb-2">
+                <div className="mb-1">
                     <div className="text-4xl uppercase italic font-bold tracking-wider">
                         Houses
                     </div>
@@ -27,7 +27,7 @@ function Houses() {
                         Token-gated Community Spaces{" "}
                     </div>
                 </div>
-                <div className="btn-ghost flex items-center cursor-not-allowed">
+                <div className="btn-ghost mb-1 flex items-center cursor-not-allowed">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6 p-1"
@@ -58,7 +58,7 @@ function HouseCard(props: any) {
     const { getUser } = useAuth();
     return (
         <Link className="" to={`/house/${props.house.house_id}/home`}>
-            <div className="flex w-full justify-between items-center outline rounded hover:shadow-sm">
+            <div className="flex flex-wrap w-full justify-between items-center outline rounded hover:shadow-sm">
                 <div className="flex items-center space-x-4">
                     <img
                         className="object-cover w-32 h-32 rounded-full"

@@ -7,7 +7,7 @@ function CoursePreview(props: any) {
             {" "}
             <Link
                 to={props.course.path}
-                className="grid grid-cols-3 items-center bg-stone-100 shadow-md rounded p-3 "
+                className="grid md:grid-cols-3 grid-cols-1 items-center bg-stone-100 shadow-md rounded p-3 "
             >
                 <img
                     src={props.course.cover_url}

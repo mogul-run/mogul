@@ -67,7 +67,7 @@ function Signup(props: any) {
             <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
                 <div className="max-w-lg mx-auto text-center">
                     <h1 className="text-2xl font-bold sm:text-3xl">
-                        🧗 Welcome, it's very nice to meet you
+                        🧗 Nice to meet ya!
                     </h1>
 
                     <h2 className="mt-4 text-stone-500">
