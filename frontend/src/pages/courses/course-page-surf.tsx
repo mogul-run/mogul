@@ -493,8 +493,12 @@ const EnrollmentMenu = (props: any) => {
                                             />
                                         </svg>
                                         <a href="tel:5105168818 text-stone-700">
-                                            510-516-8818 {" "}
-                                        </a> <div className="text-xs text-stone-500 ml-2"> Text or Call </div>
+                                            510-516-8818{" "}
+                                        </a>{" "}
+                                        <div className="text-xs text-stone-500 ml-2">
+                                            {" "}
+                                            Text or Call{" "}
+                                        </div>
                                     </div>
                                     <div className="text-lg flex items-center text-bold ">
                                         <svg
@@ -644,7 +648,9 @@ function EnrollmentSwitch(props: any) {
                     <div className="uppercase justify-around tracking-widest font-bold text-sm">
                         Internet Surfers Unite
                     </div>
-                    <div className="text-sm">Establish an Inland Training Plan</div>
+                    <div className="text-sm">
+                        Establish an Inland Training Plan
+                    </div>
                     <div className="text-sm">
                         Video Coaching Calls: from surfboard talk to popup and
                         paddling analysis.
@@ -668,7 +674,7 @@ function EnrollmentSwitch(props: any) {
                         subscribe button below to enroll.
                     </div>
                     <div className="uppercase tracking-widest font-bold text-sm">
-                        Price: FREE!
+                        Price:<span className="ticker">FREE!</span>{" "}
                     </div>
                 </div>
             );
