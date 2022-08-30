@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import UserPopup from "../social/userPopup";
 
-function CoursePreview(props: any) {
+export function CoursePreview(props: any) {
     return (
         <>
             {" "}

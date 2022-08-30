@@ -267,9 +267,9 @@ function CoursePage() {
                         <div className="text-sm">
                             Lucas is a proud inland surfer with a love/hate
                             relationship with Highway 17. When not at the beach,
-                            you can find him ripping the many concrete waves within
-                            Fremont and doing pool training with other members of the
-                            Fremont Surf Club.{" "}
+                            you can find him ripping the many concrete waves
+                            within Fremont and doing pool training with other
+                            members of the Fremont Surf Club.{" "}
                         </div>
                     </div>
                     <div className="outline-box h-max px-3 py-7 bg-gradient-to-br from-purple-700 to-teal-400 text-stone-100">
@@ -324,7 +324,7 @@ function CoursePage() {
                         />
                     </div>
                 )}
-                <div className="font-sm text-gray-500 pb-4">
+                <div className="font-sm text-gray-500 pb-4 text-center">
                     Want to share your unique perspective with a course like
                     this? Send us
                     <a href="mailto:lucas@mogul.run"> an email </a> or
@@ -493,8 +493,8 @@ const EnrollmentMenu = (props: any) => {
                                             />
                                         </svg>
                                         <a href="tel:5105168818 text-stone-700">
-                                            510-516-8818
-                                        </a>
+                                            510-516-8818 {" "}
+                                        </a> <div className="text-xs text-stone-500 ml-2"> Text or Call </div>
                                     </div>
                                     <div className="text-lg flex items-center text-bold ">
                                         <svg
@@ -553,8 +553,7 @@ const EnrollmentMenu = (props: any) => {
                         />
                     </div>
                     <div className="col-span-2 text-xs flex items-center text-stone-500 justify-center text-center">
-                        Prices vary based on course length. Reach out to Lucas
-                        to talk about scheduling or pricing. Family and friends
+                        Prices vary based on course length. Family and friends
                         discounts are available.{" "}
                     </div>
                 </div>
@@ -634,7 +633,7 @@ function EnrollmentSwitch(props: any) {
                         channel.
                     </div>
                     <div className="uppercase tracking-widest font-bold text-sm">
-                        Price: <span className="ticker">0.2ETH</span> and up *
+                        Price: <span className="ticker">0.2ETH</span> and up
                     </div>
                 </div>
             );
@@ -645,7 +644,7 @@ function EnrollmentSwitch(props: any) {
                     <div className="uppercase justify-around tracking-widest font-bold text-sm">
                         Internet Surfers Unite
                     </div>
-                    <div className="text-sm">Detailed Training Plans</div>
+                    <div className="text-sm">Establish an Inland Training Plan</div>
                     <div className="text-sm">
                         Video Coaching Calls: from surfboard talk to popup and
                         paddling analysis.
@@ -665,7 +664,8 @@ function EnrollmentSwitch(props: any) {
                     <div className="text-sm">
                         Interested in the course but don't want to commit yet?
                         Enroll in our asynchrounous course and get access to
-                        course notes and public Discord channel.
+                        course notes and public Discord channel. Just hit that
+                        subscribe button below to enroll.
                     </div>
                     <div className="uppercase tracking-widest font-bold text-sm">
                         Price: FREE!
