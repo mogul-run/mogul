@@ -41,10 +41,15 @@ export default function Navbar(props: any) {
                     </div>
                     {mobileMenuOpen ? (
                         <div className="float-left px-2">
-                            <div className="w-full flex flex-col sticky top-0 left-0 h-72">
-                                <Link to="/collections" className="nostyle">
+                            <div className="w-full flex flex-col items-end sticky top-0 left-0 h-48">
+                                {/* <Link to="/collections" className="nostyle">
                                     <div className="navlink uppercase tracking-wider font-normal">
                                         collections
+                                    </div>
+                                </Link> */}
+                                <Link to="/courses" className="nostyle">
+                                    <div className="navlink uppercase tracking-wider font-normal">
+                                       courses 
                                     </div>
                                 </Link>
                                 <Link
@@ -70,9 +75,14 @@ export default function Navbar(props: any) {
                     <div className="navbuttons">
                         <div className="navlinks">
                             {/* <div className="navlink" onClick={scrollToContent}>About</div> */}
-                            <Link to="/collections" className="nostyle">
+                            {/* <Link to="/collections" className="nostyle">
                                 <div className="navlink uppercase tracking-wider">
                                     collections
+                                </div>
+                            </Link> */}
+                            <Link to="/courses" className="nostyle">
+                                <div className="navlink uppercase tracking-wider font-normal">
+                                   courses 
                                 </div>
                             </Link>
                             <Link

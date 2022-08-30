@@ -135,8 +135,8 @@
 }
 
 .built {
-    padding-inline-start: 1ch;
-    list-style-type: "🤙";
+    padding-inline-start: 2ch;
+    list-style-type: "🤙 ";
 }
 
 .tres {

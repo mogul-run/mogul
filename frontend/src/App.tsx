@@ -25,9 +25,13 @@ import Team from "./pages/landing/team";
 import GuideEdit from "./pages/guides/guide-edit";
 import Alpha from "./pages/alpha/alpha";
 import Collections from "./pages/collections/collection";
+import Courses from "./pages/courses/courses";
 import Houses from "./pages/houses/houses";
+import CoursePage from "./pages/courses/course-page";
+import CreateCourse from "./pages/courses/create-course";
+import CoursePageSurf from "./pages/courses/course-page-surf";
 
-function WithNavFooter({
+export function WithNavFooter({
     children,
 }: {
     children: React.ReactNode | React.ReactNode[];
@@ -134,14 +138,14 @@ function App() {
                             </WithNavFooter>
                         }
                     />
-                    {/* <Route
+                    <Route
                         path="/write"
                         element={
-                            <WithSidebar>
+                            <WithNavFooter>
                                 <Write />
-                            </WithSidebar>
+                            </WithNavFooter>
                         }
-                    /> */}
+                    />
                     {/* <Route
                         path="/e/create"
                         element={
@@ -159,7 +163,7 @@ function App() {
                             </WithSidebar>
                         }
                     /> */}
-                    {/* <Route path="/guides/:guide_id" element={<Guide />} />
+                    <Route path="/guides/:guide_id" element={<Guide />} />
                     <Route
                         path="/guides/:guide_id/edit"
                         element={<GuideEdit />}
@@ -173,14 +177,6 @@ function App() {
                             <WithSidebar>
                                 <UserPosts />
                             </WithSidebar>
-                        }
-                    /> */}
-                    <Route
-                        path="/m/sender-central"
-                        element={
-                            <WithNavFooter>
-                                <Chalet />
-                            </WithNavFooter>
                         }
                     />
                     <Route
@@ -212,6 +208,38 @@ function App() {
                         }
                     />
                     <Route
+                        path="/courses"
+                        element={
+                            <WithNavFooter>
+                                <Courses/>
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/course/create"
+                        element={
+                            <WithNavFooter>
+                                <CreateCourse/>
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/course/valley-surfers"
+                        element={
+                            <WithNavFooter>
+                                <CoursePageSurf/>
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/course/:course_id"
+                        element={
+                            <WithNavFooter>
+                                <CoursePage/>
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
                         path="/collection/:collection_id"
                         element={
                             <WithNavFooter>
@@ -237,6 +265,14 @@ function App() {
                     />
                     <Route
                         path="/house/:house_id"
+                        element={
+                            <WithNavFooter>
+                                <Chalet />
+                            </WithNavFooter>
+                        }
+                    />
+                    <Route
+                        path="/house/:house_id/:subpage_id"
                         element={
                             <WithNavFooter>
                                 <Chalet />

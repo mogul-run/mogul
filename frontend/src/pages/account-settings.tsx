@@ -4,6 +4,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import UploadButton from "../components/upload-button";
 import DisplayWallet from "../components/web3/display-wallet";
+import { useNavigate } from "react-router-dom";
 
 function AccountSettings() {
     const { getWallet, connectWallet } = useAuth();
@@ -13,12 +14,6 @@ function AccountSettings() {
     const { getUser } = useAuth();
     const hiddenFileInput = useRef<HTMLInputElement | null>(null);
 
-    useEffect(() => {
-        // if(getUser().photoURL) {
-        //   setSelectedImage(getUser().photoURL)
-        // }
-        console.log(getUser());
-    }, []);
     const handleUsername = (username: string) => {
         setUsername(username);
     };
@@ -31,7 +26,6 @@ function AccountSettings() {
     };
 
     const handleSubmit = () => {
-
         // case where user updates image
         if (selectedImage) {
             const storage = getStorage();
@@ -49,7 +43,7 @@ function AccountSettings() {
                     console.log(error);
                 });
             });
-        } 
+        }
         // non image profile update
         // for now, just update displayName
         else {
@@ -88,7 +82,7 @@ function AccountSettings() {
                                 onChange={(e) => handleUsername(e.target.value)}
                             />
                         </div>
-                        <div className="w-full mb-6 md:mb-0">
+                        {/* <div className="w-full mb-6 md:mb-0">
                             <label className="block uppercase tracking-wide text-stone-600 text-xs font-bold mb-2">
                                 Bio
                             </label>
@@ -99,20 +93,20 @@ function AccountSettings() {
                                 // placeholder={getUser().displayName}
                                 // onChange={(e) => handleUsername(e.target.value)}
                             />
-                        </div>
-                        <DisplayWallet/>
+                        </div> */}
+                        <DisplayWallet />
                     </div>
                     <div className="">
                         <label className="block uppercase tracking-wide text-stone-700 text-xs font-bold mb-2">
                             Profile Photo
                         </label>
-                        <UploadButton selectedImage={selectedImage} handlePhotoUpload={handleProfileUpload}/>
+                        <UploadButton
+                            selectedImage={selectedImage}
+                            handlePhotoUpload={handleProfileUpload}
+                        />
                     </div>
                 </div>
-                <button
-                    className="btn-primary"
-                    onClick={() => handleSubmit()}
-                >
+                <button className="btn-primary" onClick={() => handleSubmit()}>
                     Save Changes{" "}
                 </button>
                 <div className="error text-red-500 my-2">{error}</div>

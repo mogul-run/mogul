@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Home from "./components/Home";
 import About from "./components/About";
-import Menu from "./components/Menu";
+import Marketplace from "./components/Marketplace";
 import TokenInfo from "./components/TokenInfo";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import Carrots from "../../img/carrots.png";
 import { User } from "../../components/auth/current-user";
+import UserPopup from "../../components/social/userPopup";
 
 const tabs = [
     {
@@ -14,8 +15,8 @@ const tabs = [
         url: "home",
     },
     {
-        name: "Menu",
-        url: "menu",
+        name: "Marketplace",
+        url: "marketplace",
     },
     {
         name: "Token Info",
@@ -28,10 +29,13 @@ const tabs = [
 ];
 
 const exampleChalet = {
-    name: "Da Spot",
+    name: "The House of Bob",
     id: "40404",
     tokenAddr: "0x622D77bF93ef6f33aFa895789318615878754f4f",
-    owner: "Lucas",
+    owner: {
+        displayName: "lucasxsong",
+        photoURL: "https://i.imgur.com/rWcSsf0.jpg",
+    },
     tokenTicker: "$LUCAS",
     holdingRequirement: 150,
 };
@@ -39,22 +43,20 @@ const exampleChalet = {
 // will create chalet page for mogul.run/c/[creator]
 // for now, we are hard coding for /c/lucas
 function Chalet(props: any) {
-    //sets default selection to tab #1
-    const [selected, setSelected] = useState(tabs[0].url);
+    const [expand, setExpand] = useState(false);
     const [ERC20Bal, setERC20Bal] = useState("");
     const [ETHBal, setETHBal] = useState("");
     const [userAllowed, setUserAllowed] = useState(false);
     const [purchased, setPurchased] = useState(false);
 
     const { getWallet, getUser, getERC20Balance, getETHBalance } = useAuth();
+    const { subpage_id, house_id } = useParams();
+    console.log(subpage_id);
 
-    const handleSelected = (value: string) => {
-        setSelected(value);
-    };
     useEffect(() => {
         getERC20Balance(exampleChalet.tokenAddr).then((resp: string) => {
             setERC20Bal(resp);
-            if (Number(resp) >= exampleChalet.holdingRequirement) {
+            if (Number(resp) >= exampleChalet.holdingRequirement && getUser()) {
                 setUserAllowed(true);
             }
         });
@@ -66,8 +68,8 @@ function Chalet(props: any) {
 
     return (
         <div className="flex flex-col items-center chalet-wrapper">
-            <div className="w-full flex flex-col items-center justify-between">
-                <div className="flex w-full justify-center items-center p-4">
+            <div className="w-full flex flex-col items-center justify-between bg-stone-200">
+                <div className="flex content-container justify-center items-center pt-3">
                     {/* <div className="text-xl font-bold">Lucas</div> */}
                     <div className="flex flex-row-reverse">
                         <div className="auth-button">
@@ -80,7 +82,7 @@ function Chalet(props: any) {
                                                 Balances{" "}
                                             </div>
                                             <div
-                                                className={`ticker my-1 text-white ${
+                                                className={`ticker my-1 text-sm text-white ${
                                                     Number(ERC20Bal) >=
                                                     exampleChalet.holdingRequirement
                                                         ? "bg-green-500"
@@ -90,57 +92,68 @@ function Chalet(props: any) {
                                                 {ERC20Bal}{" "}
                                                 {exampleChalet.tokenTicker}
                                             </div>
-                                            <div className="ticker my-1">
+                                            <div className="ticker text-sm my-1">
                                                 {ETHBal} $ETH
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             ) : (
-                                <div className="btn-primary">
-                                    <Link
-                                        to="/login"
-                                        className="text-white hover:text-slate-600"
-                                    >
-                                        login
-                                    </Link>
-                                </div>
+                                <div className=""></div>
                             )}
                         </div>
-                        {/* <div className="text-xl font-bold">Lucas</div> */}
-                        {" "}
                         <div className="flex flex-col md:flex-row space-x-4">
                             {" "}
                             <div className="flex flex-col items-start justify-center">
                                 <img
-                                    className="w-full rounded"
-                                    src={Carrots}
+                                    className="w-32 h-32 object-cover rounded-full"
+                                    src={"https://i.imgur.com/c5bDFvw.jpg"}
                                 ></img>
                             </div>
                             <div className="chalet-header flex flex-col items-start justify-center">
-                                <div className="text-3xl">House of B.O.B </div>
-                                <div className="flex flex-col space-x-1 token-info">
-                                    <div className="flex justify-center message-primary items-center space-x-2 my-1">
-                                        <div>💸 Transact with:</div>
-                                        <div className="ticker-primary">
-                                            {exampleChalet.tokenTicker}
-                                        </div>
-                                        <div className="ticker-primary ">
-                                            $ETH
-                                        </div>
+                                <div>
+                                    <div className="text-2xl font-bold uppercase tracking-wider text-gray-900">
+                                        {exampleChalet.name}
                                     </div>
-                                    <div className="flex justify-center message-primary items-center space-x-2 my-1 bold">
-                                        <div>🔑 Holding Requirement: </div>
-                                        <div className="ticker-primary">
-                                            {exampleChalet.holdingRequirement}{" "}
-                                            {exampleChalet.tokenTicker}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="my-1 text-md chalet-bio">
-                                    One part bumsport history class, one part outdoor training camp, one part guidebook to California's most wonderful spots, and whatever else you can fit into the mixing bowl makes Sender Central! 
+                                    <UserPopup user={exampleChalet.owner} />
                                 </div>
                             </div>
+                            {expand ? (
+                                <div className="flex items-between">
+                                    <div className="flex flex-col space-x-1 token-info">
+                                        <div className="flex justify-center message-primary items-center space-x-2 my-1">
+                                            <div>💸 Transact with:</div>
+                                            <div className="ticker-primary">
+                                                {exampleChalet.tokenTicker}
+                                            </div>
+                                            <div className="ticker-primary ">
+                                                $ETH
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-center message-primary items-center space-x-2 my-1 bold">
+                                            <div>🔑 Holding Requirement: </div>
+                                            <div className="ticker-primary">
+                                                {
+                                                    exampleChalet.holdingRequirement
+                                                }{" "}
+                                                {exampleChalet.tokenTicker}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="my-1 text-md chalet-bio">
+                                        One part bumsport history class, one
+                                        part outdoor training camp, one part
+                                        guidebook to California's most wonderful
+                                        spots, and whatever else you can fit
+                                        into the mixing bowl makes The House of
+                                        B.O.B!
+                                    </div>
+                                </div>
+                            ) : (
+                                <div onClick={() => setExpand(!expand)}>
+                                    {/* expand */}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -149,15 +162,20 @@ function Chalet(props: any) {
                     <div className="tabs-list flex justify-center">
                         {tabs.map((tab, id) => {
                             return (
-                                <div
-                                    className={`tab-button cursor-pointer hover:bg-stone-200 rounded text-lg font-bold px-3 py-3 ${
-                                        selected == tab.url && "text-sky-700 border-b-4 border-b-sky-700"
-                                    }`}
-                                    key={id}
-                                    onClick={() => handleSelected(tab.url)}
-                                >
-                                    {tab.name}
-                                </div>
+                                <Link to={`/house/${house_id}/${tab.url}`}>
+                                    {" "}
+                                    <div
+                                        className={`tab-button cursor-pointer ${
+                                            tab.url === subpage_id
+                                                ? "text-sky-700 border-b-4 border-b-sky-700"
+                                                : "text-gray-500"
+                                        } hover:bg-stone-300 rounded text-lg font-bold px-3 py-3`}
+                                        key={id}
+                                        onClick={() => tab.url}
+                                    >
+                                        {tab.name}
+                                    </div>
+                                </Link>
                             );
                         })}
                     </div>
@@ -166,7 +184,6 @@ function Chalet(props: any) {
             <div className="flex flex-col items-center p-3 m-4">
                 <div className="w-full md:w-[768px] flex flex-col items-start">
                     <ChaletContent
-                        selected={selected}
                         ERC20Bal={ERC20Bal}
                         holdingRequirement={exampleChalet.holdingRequirement}
                         userAllowed={userAllowed}
@@ -180,14 +197,22 @@ function Chalet(props: any) {
 }
 
 function ChaletContent(props: any) {
+    const { subpage_id, house_id } = useParams();
     const content = () => {
-        switch (props.selected) {
+        switch (subpage_id) {
             case "home":
-                return <Home chaletId={props.chaletId} userAllowed={props.userAllowed} ERC20Bal={props.ERC20Bal} holdingRequirement={props.holdingRequirement}/>;
-            case "menu":
-                return <Menu />;
+                return (
+                    <Home
+                        chaletId={props.chaletId}
+                        userAllowed={props.userAllowed}
+                        ERC20Bal={props.ERC20Bal}
+                        holdingRequirement={props.holdingRequirement}
+                    />
+                );
+            case "marketplace":
+                return <Marketplace/>;
             case "token-info":
-                return <TokenInfo setPurchased={props.setPurchased}/>;
+                return <TokenInfo setPurchased={props.setPurchased} />;
             case "about":
                 return <About />;
         }

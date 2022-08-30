@@ -32,10 +32,11 @@ code {
 
     .btn-std {
         cursor: pointer;
-        background-color: theme("colors.stone.400");
+        background-color: theme("colors.amber.600");
         color: white;
         width: max-content;
         border-radius: theme("borderRadius.lg");
+        font-size: theme("fontSize.sm");
         padding: theme("spacing.1") theme("spacing.2");
     }
 
@@ -48,6 +49,7 @@ code {
         background-color: theme("colors.sky.600");
         color: white;
         width: max-content;
+        font-size: theme("fontSize.sm");
         border-radius: theme("borderRadius.lg");
         padding: theme("spacing.1") theme("spacing.2");
     }
@@ -63,6 +65,8 @@ code {
         width: max-content;
         border-radius: theme("borderRadius.lg");
         padding: theme("spacing.1") theme("spacing.2");
+        font-size: theme("fontSize.sm");
+        cursor: pointer;
     }
 
     .btn-submit {
@@ -72,6 +76,7 @@ code {
         width: max-content;
         border-radius: theme("borderRadius.lg");
         padding: theme("spacing.2") theme("spacing.4");
+        font-size: theme("fontSize.sm");
     }
 
     .btn-ghost:hover {
@@ -82,8 +87,10 @@ code {
         background-color: theme("colors.gray.300");
         color: white;
         cursor: not-allowed;
+        width: max-content;
         border-radius: theme("borderRadius.lg");
         padding: theme("spacing.1") theme("spacing.2");
+        font-size: theme("fontSize.sm");
     }
 
     .btn-disabled:hover {
@@ -93,7 +100,7 @@ code {
 
     .ticker {
         padding: theme("spacing.1") theme("spacing.3");
-        background-color: theme("colors.gray.200");
+        background-color: theme("colors.gray.300");
         border-radius: theme("borderRadius.lg");
         width: max-content;
     }
@@ -186,7 +193,7 @@ code {
     }
     .outline-box:hover {
         box-shadow: 6px 6px 0 0 theme("colors.stone.600"),
-            10px 10px 0 0 theme("colors.amber.600");
+            10px 10px 0 0 theme("colors.amber.500");
         border-radius: theme("borderRadius.md");
     }
 

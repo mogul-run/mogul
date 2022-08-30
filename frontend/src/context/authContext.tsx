@@ -6,6 +6,7 @@ import { getEmitHelpers } from "typescript";
 import { AppContextType } from "./appContext";
 import { Contract, ethers, providers } from "ethers";
 import { formatEther, formatUnits } from "ethers/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = React.createContext<any | null>(null);
 
@@ -26,7 +27,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     function signOut() {
-        return auth.signOut().then(() => window.location.reload());
+        return auth.signOut().then(() => window.location.replace("/"));
     }
 
     function signUp(email: string, password: string) {

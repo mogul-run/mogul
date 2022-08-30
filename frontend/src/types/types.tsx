@@ -1,4 +1,3 @@
-
 export type Event = {
     title: string;
     author: User;
@@ -16,6 +15,7 @@ export type User = {
     displayName: string;
     photoURL: string;
     walletAddr: string;
+    email: string;
     uid: string;
 };
 
@@ -25,4 +25,15 @@ export type Guide = {
     author: User;
     date: string;
     md_text: string;
-}
+};
+
+export type Course = {
+    title: string;
+    author: User;
+    hook: string;
+    location: string;
+    duration: string;
+    desc: string;
+    seat_price: number;
+    num_seats: number;
+};
