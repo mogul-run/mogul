@@ -15,6 +15,7 @@ export type User = {
     displayName: string;
     photoURL: string;
     walletAddr: string;
+    email: string;
     uid: string;
 };
 

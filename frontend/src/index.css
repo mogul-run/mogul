@@ -66,6 +66,7 @@ code {
         border-radius: theme("borderRadius.lg");
         padding: theme("spacing.1") theme("spacing.2");
         font-size: theme("fontSize.sm");
+        cursor: pointer;
     }
 
     .btn-submit {
@@ -86,6 +87,7 @@ code {
         background-color: theme("colors.gray.300");
         color: white;
         cursor: not-allowed;
+        width: max-content;
         border-radius: theme("borderRadius.lg");
         padding: theme("spacing.1") theme("spacing.2");
         font-size: theme("fontSize.sm");

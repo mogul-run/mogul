@@ -22,12 +22,13 @@ import { getAdditionalUserInfo } from "firebase/auth";
 
 const surf_course = {
     title: "The Inlanders Guide to Surfing",
-    id: "valley_surfers",
+    id: "valley-surfers",
     author: {
         photoURL:
             "https://firebasestorage.googleapis.com/v0/b/mogul-run.appspot.com/o/user%2FvlITP8crPWNU1jjE1TCosD6L20x2%2Fprofile_img?alt=media&token=481869b3-dfd6-4844-b917-0757ed8bc2c0",
         displayName: "lucasxsong",
         walletAddr: "0xCe4E67E407aB231925DF614a5e72687fD597324B",
+        email: "hi@gmail.com",
         uid: "123",
     },
     location: "SF Bay Area, CA",
@@ -54,27 +55,24 @@ function CoursePage() {
     const { course_id } = useParams();
 
     useEffect(() => {
-        getParticipants();
+        getCourse();
+        // getParticipants();
         getComments();
     }, []);
 
-    const getParticipants = () => {
+    const getCourse = () => {
+        const courseRef = ref(db, `/course/valley-surfers`);
         onValue(
-            ref(db, `/course/valley-surfers/participants`),
+            courseRef,
             (snapshot) => {
-                if (snapshot.exists()) {
-                    if (snapshot.val()[getUser().uid]) {
-                        setUserRSVPd(true);
-                    }
-                    // console.log(participants_arr)
-                    setParticipants(toArray(snapshot.val()));
-                }
+                const data = snapshot.val();
+                setComments(toArray(data.comments));
+                setCourse(data);
             },
-            {
-                onlyOnce: false,
-            }
+            { onlyOnce: false }
         );
     };
+
     const getComments = () => {
         onValue(
             ref(db, `/course/valley-surfers/comments`),
@@ -130,8 +128,8 @@ function CoursePage() {
     return (
         <div className="flex flex-col w-full justify-center items-center">
             <div className="max-w-[768px] md:w-full mx-10 sm:mx-2 flex flex-col space-y-8">
-                <div className="mt-4 max-w-[768px] md:w-full md:grid md:grid-cols-5 md:grid-flow-row gap-8 sm:flex sm:flex-col space-y-4">
-                    <div className="col-span-3 flex flex-col space-y-8">
+                <div className="mt-4 max-w-[768px] md:w-full md:grid md:grid-cols-5 md:grid-flow-row gap-8 sm:flex sm:flex-col">
+                    <div className="col-span-3 flex flex-col space-y-10">
                         <div className="mt-10">
                             <div className="mt-2 text-3xl font-bold">
                                 The Inlander's Guide to Surfing
@@ -158,6 +156,7 @@ function CoursePage() {
                             </div>
                         </div>
                         <div className="text-stone-500 text-md">
+                            Learning to surf as an inlander is a challenge.
                             Always wanted to feel the thrill of riding the surf
                             but not sure where to start? We'll take you from
                             landlubber to salty surfer.
@@ -168,14 +167,14 @@ function CoursePage() {
                             src={
                                 "https://firebasestorage.googleapis.com/v0/b/mogul-run.appspot.com/o/user%2FvlITP8crPWNU1jjE1TCosD6L20x2%2Fprofile_img?alt=media&token=481869b3-dfd6-4844-b917-0757ed8bc2c0"
                             }
-                            className="object-cover w-[300px] h-[400px] rounded bg-morange p-1"
+                            className="object-cover w-[300px] h-[400px] rounded p-1 bg-gradient-to-tr from-amber-400 to-red-600"
                         />
                     </div>
                 </div>
-                <div className="my-10 flex flex-col space-y-3">
+                <div className="py-6 flex flex-col space-y-3">
                     <div className="grid md:grid-cols-2 gap-2">
                         <div className="uppercase text-md font-bold text-gray-500 tracking-widest">
-                            This Course Includes...
+                            In this course, you'll learn...
                         </div>
                         <div>
                             <div className="text-lg font-bold">
@@ -224,7 +223,9 @@ function CoursePage() {
                         </div>
                     </div>
                 </div>{" "}
-                <EnrollmentMenu />
+                <div className="py-6">
+                    <EnrollmentMenu course={course} />
+                </div>
                 {/* <div
                                 className={`my-5 flex flex-col w-full space-x-5 items-center`}
                             >
@@ -268,19 +269,18 @@ function CoursePage() {
                             CRYPTO GOODIES!
                         </div>
                         <div className="text-sm">
-                            The course NFT will be available to mint after
+                            There will be two types of NFTs released to The
+                            course NFT will be available to mint after
                             graduation of the first cohort. Attendees that pass
                             the course will be entitled to a free mint, and
                             remaining NFTs will be released to the general
                             public.
-                            <div className="mt-2 text-lg font-bold">NFT owners get perks like:</div>
+                            <div className="mt-2 text-lg font-bold">
+                                NFT owners get perks like:
+                            </div>
                             <ul className="built">
-                                <li>
-                                    Access to a creator houses.
-                                </li>
-                                <li>
-
-                                </li>
+                                <li>Access to a creator houses.</li>
+                                <li></li>
                             </ul>
                         </div>
                         <div className="btn-std mt-3">
@@ -322,11 +322,55 @@ function CoursePage() {
     );
 }
 
-const EnrollmentMenu = () => {
+const EnrollmentMenu = (props: any) => {
     const [signup, setSignup] = useState(false);
     const [enrollment, setEnrollment] = useState("inperson");
     let { handleModal } = useAuthModal();
     const { getUser, getWallet } = useAuth();
+    const [userSubscribed, setUserSubscribed] = useState(false);
+    const db = getDatabase();
+    useEffect(() => {
+        if (
+            props.course.subscribers &&
+            props.course.subscribers[getUser().uid]
+        ) {
+            console.log(props.course.subscribers);
+            setUserSubscribed(true);
+        }
+    }, []);
+    const handleSubscribe = () => {
+        if (!getUser()) {
+            handleModal();
+        } else {
+            console.log(getUser());
+            // add user to rsvp list
+            const new_user = {
+                uid: getUser().uid,
+                displayName: getUser().displayName,
+                email: getUser().email,
+            };
+            set(
+                ref(db, `/course/valley-surfers/subscribers/${getUser().uid}`),
+                new_user
+            )
+                .then(() => {
+                    setUserSubscribed(true);
+                })
+                .catch((error) => {
+                    console.log("error: ", error);
+                });
+        }
+    };
+    const handleUnsubscribe = () => {
+        // add user to rsvp list
+        remove(ref(db, `/course/valley-surfers/subscribers/${getUser().uid}`))
+            .then(() => {
+                setUserSubscribed(false);
+            })
+            .catch((error) => {
+                console.log("error: ", error);
+            });
+    };
     const handleSignup = () => {
         if (!getUser()) {
             handleModal();
@@ -346,10 +390,15 @@ const EnrollmentMenu = () => {
         >
             <div className="flex flex-col flex-wrap  text-xl items-center justify-center bg-stone-100 h-full space-y-5 ">
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
-                    <div className="flex flex-col">
-                        <div className="text-2xl text-stone-500 uppercase tracking-widest mb-3">
-                            Enrollment Options
+                    <div className="col-span-2 flex flex-col">
+                        <div className="text-2xl text-stone-500 uppercase tracking-widest">
+                            Course Syllabus
                         </div>
+                        <div className="text-xs text-stone-500">
+                        We'll teach you everything you need to know to not be kookin it.  
+                        </div>
+                    </div>
+                    <div className="flex flex-col">
                         <div className="flex flex-col space-y-3 h-full justify-center">
                             <div
                                 className={`outline px-2 py-1 text-stone-600 cursor-pointer ${
@@ -379,9 +428,8 @@ const EnrollmentMenu = () => {
                                     Virtual
                                 </div>
                                 <div className="text-xs">
-                                    Follow along the in-person class with
-                                    virtual training assessments and virtual
-                                    coaching sessions.
+                                    Follow along virtually, with training
+                                    programs and video coaching sessions.
                                 </div>
                             </div>
                             <div
@@ -397,7 +445,7 @@ const EnrollmentMenu = () => {
                                 </div>
                                 <div className="text-xs">
                                     Receive course notes emailed to you after
-                                    the course terminates.
+                                    the course ends.
                                 </div>
                             </div>
                         </div>
@@ -405,7 +453,95 @@ const EnrollmentMenu = () => {
                     <EnrollmentSwitch
                         enrollment={enrollment}
                         handleSignup={handleSignup}
+                        course={props.course}
                     />
+                    <div className="flex flex-col items-around justify-around p-2 space-y-4">
+                        <div className="text-sm uppercase tracking-wider text-stone-500">
+                            Questions? Want to enroll? Reach out. 
+                        </div>
+                        <div className="outline-dashed outline outline-2">
+                            {" "}
+                            {getUser() ? (
+                                <div>
+                                    <div className="text-lg flex items-center text-bold">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth={1.5}
+                                            stroke="currentColor"
+                                            className="w-6 h-6 p-1 mr-2"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+                                            />
+                                        </svg>
+                                        <a href="tel:5105168818 text-stone-700">
+                                            510-516-8818
+                                        </a>
+                                    </div>
+                                    <div className="text-lg flex items-center text-bold ">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth={1.5}
+                                            stroke="currentColor"
+                                            className="w-6 h-6 p-1 mr-2"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M7.875 14.25l1.214 1.942a2.25 2.25 0 001.908 1.058h2.006c.776 0 1.497-.4 1.908-1.058l1.214-1.942M2.41 9h4.636a2.25 2.25 0 011.872 1.002l.164.246a2.25 2.25 0 001.872 1.002h2.092a2.25 2.25 0 001.872-1.002l.164-.246A2.25 2.25 0 0116.954 9h4.636M2.41 9a2.25 2.25 0 00-.16.832V12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 12V9.832c0-.287-.055-.57-.16-.832M2.41 9a2.25 2.25 0 01.382-.632l3.285-3.832a2.25 2.25 0 011.708-.786h8.43c.657 0 1.281.287 1.709.786l3.284 3.832c.163.19.291.404.382.632M4.5 20.25h15A2.25 2.25 0 0021.75 18v-2.625c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125V18a2.25 2.25 0 002.25 2.25z"
+                                            />
+                                        </svg>
+                                        <a href="mailto:lucas@mogul.run">
+                                            lucas@mogul.run
+                                        </a>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="h-32 flex items-center justify-center">
+                                    <div
+                                        className="btn-primary flex items-center"
+                                        onClick={() => handleModal(false)}
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth={1.5}
+                                            stroke="currentColor"
+                                            className="w-6 h-6 p-1 mr-2"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                                            />
+                                        </svg>
+                                        Sign in to view contact info
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    <div className="flex flex-col items-center justify-center space-y-3">
+                        <div className="text-sm uppercase tracking-wider text-stone-500">
+                            Keep me in the loop!
+                        </div>
+                        <SubscribeButton
+                            userSubscribed={userSubscribed}
+                            handleSubscribe={handleSubscribe}
+                            handleUnsubscribe={handleUnsubscribe}
+                        />
+                    </div>
+                    <div className="col-span-2 text-xs flex items-center text-stone-500 justify-center">
+                        Family and friends discounts are  
+                        available.{" "}
+                    </div>
                 </div>
             </div>
             {signup && (
@@ -423,8 +559,6 @@ const EnrollmentMenu = () => {
 };
 
 function EnrollmentSwitch(props: any) {
-    const { getUser } = useAuth();
-    let { handleModal } = useAuthModal();
     switch (props.enrollment) {
         // case "inperson":
         //     return (
@@ -472,98 +606,82 @@ function EnrollmentSwitch(props: any) {
         //     );
         case "inperson":
             return (
-                <div className="flex flex-col items-around justify-around p-2">
-                    <div className="text-sm">
-                        Got any questions? Want to sign up for the course?
+                <div className="flex flex-col items-around p-2 space-y-3">
+                    <div className="uppercase tracking-widest font-bold text-sm">
+                       Includes 
                     </div>
-                    {getUser() ? (
-                        <div>
-                            <div className="text-lg flex items-center text-bold">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="w-6 h-6 p-1 mr-2"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-                                    />
-                                </svg>
-                                <a href="tel:5105168818 text-stone-700">
-                                    510-516-8818
-                                </a>
-                            </div>
-                            <div className="text-lg flex items-center text-bold ">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="w-6 h-6 p-1 mr-2"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M7.875 14.25l1.214 1.942a2.25 2.25 0 001.908 1.058h2.006c.776 0 1.497-.4 1.908-1.058l1.214-1.942M2.41 9h4.636a2.25 2.25 0 011.872 1.002l.164.246a2.25 2.25 0 001.872 1.002h2.092a2.25 2.25 0 001.872-1.002l.164-.246A2.25 2.25 0 0116.954 9h4.636M2.41 9a2.25 2.25 0 00-.16.832V12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 12V9.832c0-.287-.055-.57-.16-.832M2.41 9a2.25 2.25 0 01.382-.632l3.285-3.832a2.25 2.25 0 011.708-.786h8.43c.657 0 1.281.287 1.709.786l3.284 3.832c.163.19.291.404.382.632M4.5 20.25h15A2.25 2.25 0 0021.75 18v-2.625c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125V18a2.25 2.25 0 002.25 2.25z"
-                                    />
-                                </svg>
-                                <a href="mailto:lucas@mogul.run">
-                                    lucas@mogul.run
-                                </a>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="h-32 flex items-center justify-center">
-                            <div
-                                className="btn-primary flex items-center"
-                                onClick={() => handleModal(false)}
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="w-6 h-6 p-1 mr-2"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-                                    />
-                                </svg>
-                                Sign in to view contact info
-                            </div>
-                        </div>
-                    )}
                     <div className="text-sm">
-                        Discounts and scholarships are available on case by case
-                        basis and are likely to be granted to friends and family
-                        ;).{" "}
+                        Inland Surfer Prep Session (pool days, skateboarding)
+                    </div>
+                    <div className="text-sm">
+                        On-the-Water Surf Sessions 
+                    </div>
+                    <div className="text-sm">
+                        Gear: Surfboard, Skateboard, and Goggles
+                    </div>
+                    <div className="text-sm">
+                        Access to the course's private Discord channel.
+                    </div>
+                    <div className="uppercase tracking-widest font-bold text-sm">
+                        Price: $200+ (Dependent on class size and course length)
                     </div>
                 </div>
             );
 
         case "virtual":
             return (
-                <div className="flex flex-col p-2 justify-around">
-                    <div className="text-sm">
-                        Virtual class schedule is dependent on in-person class
-                        schedules. Want to be notified when a course is
-                        starting?
+                <div className="flex flex-col items-around p-2 space-y-3">
+                    <div className="uppercase tracking-widest font-bold text-sm">
+                       Includes 
                     </div>
-                    <div className="btn-primary">Sign Up</div>
+                    <div className="text-sm">
+                        Detailed Training Plans
+                    </div>
+                    <div className="text-sm">
+                        Video Coaching Calls: from Surfboard Consultation to Popup and Paddling. 
+                    </div>
+                    <div className="text-sm">
+                        Access to the course's private Discord channel.
+                    </div>
+                    <div className="uppercase tracking-widest font-bold text-sm">
+                        Price: $20+
+                    </div>
                 </div>
             );
         case "async":
-            return <div>keep me in the loop!</div>;
+            return (
+                <div className="flex flex-col items-around p-2 space-y-3">
+                    <div className="text-sm">
+                        Receive course notes after the course is over. 
+                    </div>
+                    <div className="uppercase tracking-widest font-bold text-sm">
+                        FREE!
+                    </div>
+                </div>);
     }
     return <div />;
+}
+
+function SubscribeButton(props: any) {
+    return (
+        <div>
+            {props.userSubscribed ? (
+                <div
+                    className="btn-ghost"
+                    onClick={() => props.handleUnsubscribe()}
+                >
+                    Unsubscribe
+                </div>
+            ) : (
+                <div
+                    className="btn-primary"
+                    onClick={() => props.handleSubscribe()}
+                >
+                    Subscribe to Email Updates
+                </div>
+            )}
+        </div>
+    );
 }
 
 export default CoursePage;

@@ -224,7 +224,7 @@ function App() {
                         }
                     />
                     <Route
-                        path="/course/valley_surfers"
+                        path="/course/valley-surfers"
                         element={
                             <WithNavFooter>
                                 <CoursePageSurf/>

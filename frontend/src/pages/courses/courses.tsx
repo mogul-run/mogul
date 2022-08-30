@@ -6,7 +6,7 @@ import { useAuth } from "../../context/authContext";
 const surf_course = {
     emojis: "🧘‍♂🌲",
     title: "The Inlanders Guide to Surfing",
-    path: "/course/valley_surfers",
+    path: "/course/valley-surfers",
     author: {
         photoURL:
             "https://firebasestorage.googleapis.com/v0/b/mogul-run.appspot.com/o/user%2FvlITP8crPWNU1jjE1TCosD6L20x2%2Fprofile_img?alt=media&token=481869b3-dfd6-4844-b917-0757ed8bc2c0",
