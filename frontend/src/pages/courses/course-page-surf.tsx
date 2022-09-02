@@ -129,7 +129,7 @@ function CoursePage() {
         <div className="flex flex-col w-full justify-center items-center">
             <div className="max-w-[768px] md:w-full mx-10 sm:mx-2 flex flex-col space-y-8">
                 <div className="mt-4 max-w-[768px] md:w-full md:grid md:grid-cols-5 md:grid-flow-row gap-8 sm:flex sm:flex-col">
-                    <div className="col-span-3 flex flex-col space-y-10">
+                    <div className="col-span-3 flex flex-col space-y-10 md:pb-0 pb-5">
                         <div className="mt-10">
                             <div className="mt-2 text-3xl font-bold">
                                 The Inlander's Guide to Surfing
@@ -155,11 +155,8 @@ function CoursePage() {
                                 </div>
                             </div>
                         </div>
-                        <div className="text-stone-500 text-md">
-                            Learning to surf as an inlander is a challenge.
-                            Always wanted to feel the thrill of riding the surf
-                            but not sure where to start? We'll take you from
-                            landlubber to salty surfer.
+                        <div className="text-stone-600 text-md">
+                            Just because you live an hour away from the ocean, doesn't mean you can't learn to surf. I've always lived pretty far from the waves – in college and now at home. In this course, you'll learn the techniques and training that I practice to make the most out of your precious time in the water. 
                         </div>
                     </div>
                     <div className="col-span-2 flex items-center justify-center">
@@ -180,7 +177,7 @@ function CoursePage() {
                             <div className="text-lg font-bold">
                                 How To Be Cool With Poseidon 101
                             </div>
-                            <div className="text-md">
+                            <div className="text-md text-gray-600">
                                 The ocean can be a dangerous place for the
                                 uninitiated. We'll help you learn your limits
                                 and develop your confidence in the ocean.
@@ -190,7 +187,7 @@ function CoursePage() {
                             <div className="text-lg font-bold">
                                 Locals Only Safety Training
                             </div>
-                            <div className="text-md">
+                            <div className="text-md text-gray-600">
                                 No one wants to get chewed out by a local. Learn
                                 how to be a respectful surfer in the lineup
                                 while still getting your waves.
@@ -200,21 +197,19 @@ function CoursePage() {
                             <div className="text-lg font-bold">
                                 Surfboard Technician Certification
                             </div>
-                            <div className="text-md">
+                            <div className="text-md text-gray-600">
                                 The ins and outs of surfboard design,
-                                construction, and care. We'll teach you how to
-                                pick the right board for your skill level and
-                                the conditions.
+                                construction, and care. We'll teach you how to fix dings,
+                                how different fin setups effect your ride, and how to pick the right board.
                             </div>
                         </div>
                         <div className="">
                             <div className="text-lg font-bold">
                                 Concrete Wave Shred-ology
                             </div>
-                            <div className="text-md">
+                            <div className="text-md text-gray-600">
                                 Just because you're inland doesn't mean ya can't
-                                surf! Learn techniques to keep surf fitness and
-                                skills sharp when you can't get to the beach.
+                                get your surfing in! Learn how to surf the concrete waves around you: sidewalks, bowls, and hills.  
                             </div>
                         </div>
                         <div className="col-span-1 flex justify-end items-end mt-2">
@@ -284,7 +279,7 @@ function CoursePage() {
                             <div className="mt-2 text-lg font-bold">
                                 NFT owners get perks like:
                             </div>
-                            <ul className="built space-y-2">
+                            <ul className="built space-y-2 ml-2 mt-2">
                                 <li>Access to a creator house on Mogul</li>
                                 <li>Airdropped ERC20 Social Tokens</li>
                                 <li>Early Supporter Bragging Rights</li>
