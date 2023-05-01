@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import Chalet from "./pages/club/club";
-import MogulRun from "./pages/bulletin/bulletin";
-import AccountSettings from "./pages/account-settings";
+import Chalet from "./communities/club/club";
+import MogulRun from "./communities/bulletin/bulletin";
+import AccountSettings from "./communities/account-settings";
 import { WithNavFooter } from "./App";
 
 function SubdomainRouter(props: any) {

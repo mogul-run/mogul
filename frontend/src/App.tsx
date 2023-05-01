@@ -1,35 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
-import HomePage from "./pages/homepage";
+import HomePage from "./communities/homepage";
 import ScrollToTop from "./utils/scrollToTop";
 import { useAuth } from "./context/authContext";
-import { NotFound } from "./pages/notFound";
-import AccountSettings from "./pages/account-settings";
-import Home from "./pages/home";
-import MogulRun from "./pages/bulletin/bulletin";
-import Write from "./pages/guides/write";
-import UserPosts from "./pages/user-posts";
+import { NotFound } from "./communities/notFound";
+import AccountSettings from "./communities/account-settings";
+import Home from "./communities/home";
+import MogulRun from "./communities/bulletin/bulletin";
+import Write from "./communities/guides/write";
+import UserPosts from "./communities/user-posts";
 import { ModalProvider } from "./context/modalContext";
-import CreateEvent from "./pages/events/create-event";
-import Chalet from "./pages/club/club";
-import Guide from "./pages/guides/guide";
+import CreateEvent from "./communities/events/create-event";
+import Chalet from "./communities/club/club";
+import Guide from "./communities/guides/guide";
 import Sidebar from "./components/nav/sidebar";
 import Footer from "./components/nav/footer";
 import Navbar from "./components/nav/navbar";
-import EventPageTree from "./pages/events/event-page-tree";
-import EventPageFire from "./pages/events/event-page-fire";
-import EventPage from "./pages/events/event-page-tree";
-import TGOB from "./pages/landing/TGOB";
-import Team from "./pages/landing/team";
-import GuideEdit from "./pages/guides/guide-edit";
-import Alpha from "./pages/alpha/alpha";
-import Collections from "./pages/collections/collection";
-import Courses from "./pages/courses/courses";
-import Houses from "./pages/houses/houses";
-import CoursePage from "./pages/courses/course-page";
-import CreateCourse from "./pages/courses/create-course";
-import CoursePageSurf from "./pages/courses/course-page-surf";
+import EventPageTree from "./communities/events/event-page-tree";
+import EventPageFire from "./communities/events/event-page-fire";
+import EventPage from "./communities/events/event-page-tree";
+import TGOB from "./communities/landing/TGOB";
+import Team from "./communities/landing/team";
+import GuideEdit from "./communities/guides/guide-edit";
+import Alpha from "./communities/alpha/alpha";
+import Collections from "./communities/collections/collection";
+import Courses from "./communities/courses/courses";
+import Houses from "./communities/houses/houses";
+import CoursePage from "./communities/courses/course-page";
+import CreateCourse from "./communities/courses/create-course";
+import CoursePageSurf from "./communities/courses/course-page-surf";
+import LabsLanding from "./labs/landing";
 
 export function WithNavFooter({
     children,
@@ -179,6 +180,8 @@ function App() {
                             </WithSidebar>
                         }
                     />
+                    <Route path="/" element={<LabsLanding />} />
+                    {/* #### old component for homepage  
                     <Route
                         path="/"
                         element={
@@ -188,11 +191,11 @@ function App() {
                             //     </WithNavFooter>
                             // ) : (
                             <WithNavFooter>
-                                <HomePage />
+                                <LabsLanding/>
                             </WithNavFooter>
                             // )
                         }
-                    />
+                    /> */}
                     <Route
                         path="/collections"
                         element={
@@ -211,7 +214,7 @@ function App() {
                         path="/courses"
                         element={
                             <WithNavFooter>
-                                <Courses/>
+                                <Courses />
                             </WithNavFooter>
                         }
                     />
@@ -219,7 +222,7 @@ function App() {
                         path="/course/create"
                         element={
                             <WithNavFooter>
-                                <CreateCourse/>
+                                <CreateCourse />
                             </WithNavFooter>
                         }
                     />
@@ -227,7 +230,7 @@ function App() {
                         path="/course/valley-surfers"
                         element={
                             <WithNavFooter>
-                                <CoursePageSurf/>
+                                <CoursePageSurf />
                             </WithNavFooter>
                         }
                     />
@@ -235,7 +238,7 @@ function App() {
                         path="/course/:course_id"
                         element={
                             <WithNavFooter>
-                                <CoursePage/>
+                                <CoursePage />
                             </WithNavFooter>
                         }
                     />
