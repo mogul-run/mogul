@@ -50,32 +50,32 @@ export const AuthProvider: React.FC = ({ children }) => {
     // Check if user is connected with Metamask and update 'walletAddr' state
     useEffect(() => {
         // Setup Listen Handlers on MetaMask change events
-        if (ethereum) {
-            // Add Listener when accounts switch
-            ethereum
-                .request({
-                    method: "eth_requestAccounts",
-                })
-                .then((accounts: string[]) => {
-                    setWalletAddr(accounts[0]);
-                    setCurrentChain(ethereum.chainId);
-                });
+        // if (ethereum) {
+        //     // Add Listener when accounts switch
+        //     ethereum
+        //         .request({
+        //             method: "eth_requestAccounts",
+        //         })
+        //         .then((accounts: string[]) => {
+        //             setWalletAddr(accounts[0]);
+        //             setCurrentChain(ethereum.chainId);
+        //         });
 
-            ethereum.on("accountsChanged", (accounts: string[]) => {
-                console.log("Account changed: ", accounts[0]);
-                setWalletAddr(accounts[0]);
-                window.location.reload();
-            });
+        //     ethereum.on("accountsChanged", (accounts: string[]) => {
+        //         console.log("Account changed: ", accounts[0]);
+        //         setWalletAddr(accounts[0]);
+        //         window.location.reload();
+        //     });
 
-            // Do something here when Chain changes
-            ethereum.on("chainChanged", (chainId: string) => {
-                console.log("Chain ID changed: ", chainId);
-                setCurrentChain(chainId);
-                window.location.reload();
-            });
-        } else {
-            console.log("Please install MetaMask to use this service!");
-        }
+        //     // Do something here when Chain changes
+        //     ethereum.on("chainChanged", (chainId: string) => {
+        //         console.log("Chain ID changed: ", chainId);
+        //         setCurrentChain(chainId);
+        //         window.location.reload();
+        //     });
+        // } else {
+        //     console.log("Please install MetaMask to use this service!");
+        // }
     }, []);
 
     function getWallet() {

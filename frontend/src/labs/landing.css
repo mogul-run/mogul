@@ -1,0 +1,4 @@
+.landing-background {
+    background-image: url( './background.svg' );
+    background-size: cover;
+ }
