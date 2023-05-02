@@ -8,7 +8,7 @@ import "@fontsource/dm-mono";
 import "@fontsource/inter";
 import "@fontsource/alegreya";
 import { AppContextProvider } from "./context/appContext";
-import SubDomainRouter from "./SubdomainRouter";
+import SubDomainRouter from "./routes/SubdomainRouter";
 import { AuthProvider } from "./context/authContext";
 import ReactGA from "react-ga4";
 
@@ -24,8 +24,8 @@ ReactDOM.render(
             <AuthProvider>
                 <BrowserRouter basename={process.env.PUBLIC_URL}>
                     {/* temporarily hardcode in chalet -- should use from sort of subdomain switch */}
-                    {(parsedData.length >= 2 && subDomain === "the") ||
-                    subDomain === "lucas" ? (
+                    {(parsedData.length >= 2 && subDomain === "tea") ||
+                    subDomain === "communities" ? (
                         <SubDomainRouter subdomain={parsedData[0]} />
                     ) : (
                         <App />
