@@ -21,7 +21,6 @@ const subDomain = parsedData[0];
 ReactDOM.render(
     <React.StrictMode>
         <AppContextProvider>
-            <AuthProvider>
                 <BrowserRouter basename={process.env.PUBLIC_URL}>
                     {/* temporarily hardcode in chalet -- should use from sort of subdomain switch */}
                     {(parsedData.length >= 2 && subDomain === "tea") ||
@@ -31,7 +30,6 @@ ReactDOM.render(
                         <App />
                     )}
                 </BrowserRouter>
-            </AuthProvider>
         </AppContextProvider>
     </React.StrictMode>,
     document.getElementById("root")
