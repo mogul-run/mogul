@@ -1,9 +1,3 @@
-import { Route, Routes } from "react-router-dom";
-import Chalet from "../communities/club/club";
-import MogulRun from "../communities/bulletin/bulletin";
-import AccountSettings from "../communities/account-settings";
-import { WithNavFooter } from "../App";
-import CommunitiesHomePage from "../communities/homepage";
 import { CommunitiesRouter } from "./CommunitiesRouter";
 import { TeaRouter } from "./TeaRouter";
 

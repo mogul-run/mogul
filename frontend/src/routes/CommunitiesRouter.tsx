@@ -1,7 +1,6 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Chalet from "../communities/club/club";
 import AccountSettings from "../communities/account-settings";
-import { WithNavFooter, WithSidebar } from "../App";
 import Team from "../communities/landing/team";
 import Write from "../communities/guides/write";
 import Guide from "../communities/guides/guide";
@@ -21,7 +20,86 @@ import Collections from "../communities/collections/collection";
 import { ModalProvider } from "../context/modalContext";
 import ScrollToTop from "../utils/scrollToTop";
 import HomePage from "../communities/homepage";
-import { AuthProvider } from "../context/authContext";
+import { AuthProvider, useAuth } from "../context/authContext";
+import Navbar from "../communities/components/nav/navbar";
+import Footer from "../communities/components/nav/footer";
+import { useEffect, useState } from "react";
+import Sidebar from "../communities/components/nav/sidebar";
+
+export function WithNavFooter({
+    children,
+}: {
+    children: React.ReactNode | React.ReactNode[];
+}) {
+    const { getUser, signOut, getWallet } = useAuth();
+    return (
+        <div className="h-screen flex flex-col">
+            <div className="">
+                <Navbar
+                    handleLogout={signOut}
+                    user={getUser()}
+                    walletAddr={getWallet()}
+                />
+            </div>
+            <div className="flex-1 overflow-y-hide"> {children}</div>
+            <div className="">
+                <Footer />
+            </div>
+        </div>
+    );
+}
+export function WithSidebar({
+    children,
+}: {
+    children: React.ReactNode | React.ReactNode[];
+}) {
+    const [open, setOpen] = useState(true);
+    const { getUser, signOut, getWallet } = useAuth();
+    const navigate = useNavigate();
+    useEffect(() => {
+        // if not auth, nav back to home
+        if (!getUser()) {
+            navigate("/");
+        } else {
+            if (window.innerWidth <= 800) {
+                setOpen(false);
+            }
+        }
+    }, []);
+
+    const handleOpen = () => {
+        setOpen(!open);
+    };
+    return (
+        <div className="flex flex-row">
+            {open ? (
+                <div className="w-64">
+                    <Sidebar handleOpen={handleOpen} />{" "}
+                </div>
+            ) : (
+                <div className="fixed left-5 top-5 bg-stone-200 p-2 opacity-80 rounded cursor-pointer">
+                    <div onClick={handleOpen}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M4 6h16M4 12h16M4 18h7"
+                            />
+                        </svg>
+                    </div>
+                </div>
+            )}
+            <div className="w-full ml-10">{children}</div>
+        </div>
+    );
+}
 
 export function CommunitiesRouter() {
     return (
