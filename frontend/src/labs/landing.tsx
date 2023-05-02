@@ -15,7 +15,7 @@ function Landing() {
                         <a href="https://communities.mogul.run"> communities </a>
                     </li>
                     <li>
-                        <a className="cursor-not-allowed"> apparel </a>
+                        <a className="cursor-not-allowed"> gear </a>
                     </li>
                 </ul>
             </div>

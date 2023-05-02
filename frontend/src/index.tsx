@@ -22,9 +22,8 @@ ReactDOM.render(
         <AppContextProvider>
                 <BrowserRouter basename={process.env.PUBLIC_URL}>
                     {/* temporarily hardcode in chalet -- should use from sort of subdomain switch */}
-                    {(parsedData.length >= 2 && subDomain === "tea") ||
-                    subDomain === "communities" ? (
-                        <SubdomainRouter subdomain={parsedData[0]} />
+                   {parsedData.length >= 2  ? (
+                        <SubdomainRouter subdomain={subDomain} />
                     ) : (
                         <App />
                     )}
