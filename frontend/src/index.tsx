@@ -8,8 +8,7 @@ import "@fontsource/dm-mono";
 import "@fontsource/inter";
 import "@fontsource/alegreya";
 import { AppContextProvider } from "./context/appContext";
-import SubDomainRouter from "./routes/SubdomainRouter";
-import { AuthProvider } from "./context/authContext";
+import SubdomainRouter from "./routes/SubdomainRouter";
 import ReactGA from "react-ga4";
 
 const parsedData = window.location.host.split(".");
@@ -25,7 +24,7 @@ ReactDOM.render(
                     {/* temporarily hardcode in chalet -- should use from sort of subdomain switch */}
                     {(parsedData.length >= 2 && subDomain === "tea") ||
                     subDomain === "communities" ? (
-                        <SubDomainRouter subdomain={parsedData[0]} />
+                        <SubdomainRouter subdomain={parsedData[0]} />
                     ) : (
                         <App />
                     )}
