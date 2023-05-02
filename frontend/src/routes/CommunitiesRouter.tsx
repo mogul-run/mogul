@@ -1,9 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Chalet from "../communities/club/club";
-import MogulRun from "../communities/bulletin/bulletin";
 import AccountSettings from "../communities/account-settings";
 import { WithNavFooter, WithSidebar } from "../App";
-import CommunitiesHomePage from "../communities/homepage";
 import Team from "../communities/landing/team";
 import Write from "../communities/guides/write";
 import Guide from "../communities/guides/guide";
@@ -20,11 +18,16 @@ import CoursePage from "../communities/courses/course-page";
 import CoursePageSurf from "../communities/courses/course-page-surf";
 import Courses from "../communities/courses/courses";
 import Collections from "../communities/collections/collection";
+import { ModalProvider } from "../context/modalContext";
+import ScrollToTop from "../utils/scrollToTop";
+import HomePage from "../communities/homepage";
 
 
 export function CommunitiesRouter() {
     return (
         <>
+            <ModalProvider>
+                <ScrollToTop />
                 <Routes>
                     <Route
                         path="/team"
@@ -83,7 +86,6 @@ export function CommunitiesRouter() {
                             </WithSidebar>
                         }
                     />
-                    {/* #### old component for homepage  
                     <Route
                         path="/"
                         element={
@@ -93,11 +95,11 @@ export function CommunitiesRouter() {
                             //     </WithNavFooter>
                             // ) : (
                             <WithNavFooter>
-                                <LabsLanding/>
+                                <HomePage/>
                             </WithNavFooter>
                             // )
                         }
-                    /> */}
+                    />
                     <Route
                         path="/collections"
                         element={
@@ -193,6 +195,7 @@ export function CommunitiesRouter() {
                         }
                     />
             </Routes>
+            </ModalProvider>
         </>
     );
 }

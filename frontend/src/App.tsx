@@ -89,12 +89,9 @@ function App() {
 
     return (
         <div className="app">
-            <ModalProvider>
-                <ScrollToTop />
-                <Routes>
-                    <Route path="/" element={<LabsLanding />} />
-                </Routes>
-            </ModalProvider>
+            <Routes>
+                <Route path="/" element={<LabsLanding />} />
+            </Routes>
         </div>
     );
 }
