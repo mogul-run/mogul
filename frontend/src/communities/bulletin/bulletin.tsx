@@ -1,6 +1,6 @@
 import "./mogulrun.css";
-import { Board } from "../../components/social/board";
-import { User } from "../../components/auth/current-user";
+import { Board } from "../components/social/board";
+import { User } from "../components/auth/current-user";
 
 const tags = [
     "surf",

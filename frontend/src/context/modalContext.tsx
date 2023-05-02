@@ -1,6 +1,6 @@
 
 import React, { useContext, useEffect, useState } from "react";
-import AuthModal from "../components/auth/auth-modal";
+import AuthModal from "../communities/components/auth/auth-modal";
 import useModal from "../hooks/useModal";
 
 // let ModalContext;

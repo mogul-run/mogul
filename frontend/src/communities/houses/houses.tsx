@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import UserPopup from "../../components/social/userPopup";
+import UserPopup from "../components/social/userPopup";
 import { useAuth } from "../../context/authContext";
 
 const house = {

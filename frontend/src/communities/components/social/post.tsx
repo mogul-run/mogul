@@ -1,6 +1,6 @@
 import { getDatabase, push, ref, remove } from "firebase/database";
 import UserPopup from "./userPopup";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../../context/authContext";
 import { useState } from "react";
 
 export function TextPost(props: any) {

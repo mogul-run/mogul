@@ -7,12 +7,12 @@ import {
     uploadBytes,
 } from "firebase/storage";
 import { ChangeEvent, useState } from "react";
-import UploadButton from "../../components/upload-button";
+import UploadButton from "../components/upload-button";
 import { useAuth } from "../../context/authContext";
 import { TextEditor } from "../guides/write";
 import { Formik, Field, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import DisplayWallet from "../../components/web3/display-wallet";
+import DisplayWallet from "../components/web3/display-wallet";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const sample_event = {

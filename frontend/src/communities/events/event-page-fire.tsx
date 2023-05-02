@@ -11,9 +11,9 @@ import {
 import { sample, toArray } from "lodash";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { User } from "../../components/auth/current-user";
-import { Comments } from "../../components/social/post";
-import UserPopup from "../../components/social/userPopup";
+import { User } from "../components/auth/current-user";
+import { Comments } from "../components/social/post";
+import UserPopup from "../components/social/userPopup";
 import { useAuth } from "../../context/authContext";
 import { useAuthModal } from "../../context/modalContext";
 

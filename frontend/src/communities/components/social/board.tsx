@@ -7,7 +7,7 @@ import {
 } from "firebase/storage";
 import { toArray } from "lodash";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../../context/authContext";
 import { TextPost } from "./post";
 import UploadButton from "../upload-button";
 import UserPopup from "./userPopup";

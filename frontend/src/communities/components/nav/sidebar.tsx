@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useNavigate, useNavigationType } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../../context/authContext";
 import UserPopup from "../social/userPopup";
 
 function Sidebar(props: any) {

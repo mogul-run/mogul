@@ -2,8 +2,8 @@ import { updateProfile } from "@firebase/auth";
 import { useAuth } from "../context/authContext";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import UploadButton from "../components/upload-button";
-import DisplayWallet from "../components/web3/display-wallet";
+import UploadButton from "./components/upload-button";
+import DisplayWallet from "./components/web3/display-wallet";
 import { useNavigate } from "react-router-dom";
 
 function AccountSettings() {

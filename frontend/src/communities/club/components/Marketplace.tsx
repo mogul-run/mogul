@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PreviewCourse from "../../../components/preview-course/preview-course";
+import PreviewCourse from "../../components/preview-course/preview-course";
 const surf_course = {
     emojis: "🧘‍♂🌲",
     title: "The Inlanders Guide to Surfing",

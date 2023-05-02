@@ -1,5 +1,5 @@
-import { useAuth } from "../../context/authContext";
-import { useAuthModal } from "../../context/modalContext";
+import { useAuth } from "../../../context/authContext";
+import { useAuthModal } from "../../../context/modalContext";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { Fragment } from "react";

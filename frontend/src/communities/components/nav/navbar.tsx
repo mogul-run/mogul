@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import "./navbar.css";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../../context/authContext";
 import { User } from "../auth/current-user";
-import { useAuthModal } from "../../context/modalContext";
+import { useAuthModal } from "../../../context/modalContext";
 import { useState } from "react";
 
 export default function Navbar(props: any) {

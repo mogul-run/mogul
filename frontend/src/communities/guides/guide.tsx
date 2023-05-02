@@ -1,11 +1,11 @@
 import { AuthErrorCodes, getAdditionalUserInfo } from "firebase/auth";
-import UserPopup from "../../components/social/userPopup";
+import UserPopup from "../components/social/userPopup";
 import ReactMarkdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Board } from "../../components/social/board";
-import { User } from "../../components/auth/current-user";
-import EventPreview from "../../components/preview-cards/event-preview";
+import { Board } from "../components/social/board";
+import { User } from "../components/auth/current-user";
+import EventPreview from "../components/preview-cards/event-preview";
 import { child, get, getDatabase, onValue, ref } from "firebase/database";
 import { Guide as GuideType } from "../../types/types";
 import { useAuth } from "../../context/authContext";

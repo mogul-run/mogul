@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../../context/authContext";
 import { Link } from "react-router-dom";
 import GoogleButton from "./google-button";
 

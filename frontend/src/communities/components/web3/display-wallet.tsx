@@ -1,4 +1,4 @@
-import { useAuth } from "../../context/authContext";
+import { useAuth } from "../../../context/authContext";
 
 function DisplayWallet(props: any) {
     const { getWallet, connectWallet } = useAuth();

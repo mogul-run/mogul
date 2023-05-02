@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { User } from "../../components/auth/current-user";
-import PreviewCourse from "../../components/preview-course/preview-course";
-import UserPopup from "../../components/social/userPopup";
+import { User } from "../components/auth/current-user";
+import PreviewCourse from "../components/preview-course/preview-course";
+import UserPopup from "../components/social/userPopup";
 import { useAuth } from "../../context/authContext";
 const surf_course = {
     emojis: "🧘‍♂🌲",

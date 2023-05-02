@@ -4,9 +4,9 @@ import ScrollToTop from "./utils/scrollToTop";
 import "./App.css";
 import { useAuth } from "./context/authContext";
 import { ModalProvider } from "./context/modalContext";
-import Sidebar from "./components/nav/sidebar";
-import Footer from "./components/nav/footer";
-import Navbar from "./components/nav/navbar";
+import Sidebar from "./communities/components/nav/sidebar";
+import Footer from "./communities/components/nav/footer";
+import Navbar from "./communities/components/nav/navbar";
 import LabsLanding from "./labs/landing";
 
 export function WithNavFooter({

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { User } from "../../components/auth/current-user";
-import UserPopup from "../../components/social/userPopup";
+import { User } from "../components/auth/current-user";
+import UserPopup from "../components/social/userPopup";
 import { useAuth } from "../../context/authContext";
 
 const alpha = {

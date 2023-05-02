@@ -6,8 +6,8 @@ import TokenInfo from "./components/TokenInfo";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import Carrots from "../../img/carrots.png";
-import { User } from "../../components/auth/current-user";
-import UserPopup from "../../components/social/userPopup";
+import { User } from "../components/auth/current-user";
+import UserPopup from "../components/social/userPopup";
 
 const tabs = [
     {
