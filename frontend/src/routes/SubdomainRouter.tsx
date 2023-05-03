@@ -1,3 +1,4 @@
+import App from "../App";
 import { CommunitiesRouter } from "./CommunitiesRouter";
 import { TeaRouter } from "./TeaRouter";
 
@@ -7,6 +8,8 @@ function SubdomainRouter(props: any) {
             return <CommunitiesRouter/>;
         case "tea":
             return <TeaRouter/>;
+        case "" :
+            return <App/>
     }
     return <div />;
 }

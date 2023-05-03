@@ -11,22 +11,17 @@ import { AppContextProvider } from "./context/appContext";
 import SubdomainRouter from "./routes/SubdomainRouter";
 import ReactGA from "react-ga4";
 
-const parsedData = window.location.host.split(".");
 ReactGA.initialize("G-WGSG8KJ0Z1");
 ReactGA.send("pageview");
 
-// temp hard code route
+const parsedData = window.location.host.split(".");
 const subDomain = parsedData[0];
+
 ReactDOM.render(
     <React.StrictMode>
         <AppContextProvider>
                 <BrowserRouter basename={process.env.PUBLIC_URL}>
-                    {/* temporarily hardcode in chalet -- should use from sort of subdomain switch */}
-                   {parsedData.length >= 2  ? (
                         <SubdomainRouter subdomain={subDomain} />
-                    ) : (
-                        <App />
-                    )}
                 </BrowserRouter>
         </AppContextProvider>
     </React.StrictMode>,

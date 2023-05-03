@@ -22,7 +22,7 @@ function Landing() {
                         <a className="cursor-not-allowed"> gear </a>
                     </li>
                     <li>
-                        <a className="https://blog.mogul.run"> blog </a>
+                        <a href="https://blog.mogul.run"> blog </a>
                     </li>
                 </ul>
             </div>
