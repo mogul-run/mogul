@@ -6,6 +6,10 @@ function Landing() {
             <div className="flex flex-col w-96 h-96 gap-4 items-center justify-center rounded-full backdrop-grayscale backdrop-blur-sm">
                 <div className="text-2xl font-extrabold text-stone-300">
                     mogul run studios
+                <div className="text-xs font-light text-stone-300">
+                    {/* established 2021 */}
+                    in pursuit of higher callings
+                </div>
                 </div>
                 <ul className="flex flex-col gap-2">
                     <li>
@@ -16,6 +20,9 @@ function Landing() {
                     </li>
                     <li>
                         <a className="cursor-not-allowed"> gear </a>
+                    </li>
+                    <li>
+                        <a className="https://blog.mogul.run"> blog </a>
                     </li>
                 </ul>
             </div>
