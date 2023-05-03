@@ -8,10 +8,9 @@ function SubdomainRouter(props: any) {
             return <CommunitiesRouter/>;
         case "tea":
             return <TeaRouter/>;
-        case "" :
+        default:
             return <App/>
     }
-    return <div />;
 }
 
 
