@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import HomePage from "../subdomains/tea/homepage";
+import HomePage from "../subdomains/kits/homepage";
 
-export function TeaRouter() {
+export function KitsRouter() {
     return (
         <>
             <Routes>

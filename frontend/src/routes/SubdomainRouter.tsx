@@ -1,13 +1,13 @@
 import App from "../App";
 import { CommunitiesRouter } from "./CommunitiesRouter";
-import { TeaRouter } from "./TeaRouter";
+import { KitsRouter } from "./KitsRouter";
 
 function SubdomainRouter(props: any) {
     switch (props.subdomain) {
         case "communities":
             return <CommunitiesRouter/>;
-        case "tea":
-            return <TeaRouter/>;
+        case "kits":
+            return <KitsRouter/>;
         default:
             return <App/>
     }
