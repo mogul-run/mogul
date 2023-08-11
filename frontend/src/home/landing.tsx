@@ -16,7 +16,7 @@ function Landing() {
                     <li>
                         <Link 
                             to="/dinners"
-                            className="text-purple-500"
+                            className="text-yellow-400"
                         >
                             {" "}
                             dinners
