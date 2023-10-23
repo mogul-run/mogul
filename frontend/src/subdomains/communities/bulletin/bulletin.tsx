@@ -13,18 +13,15 @@ const tags = [
     "beta",
 ];
 
-function MogulRun() {
+function Bulletin() {
     return (
         <div className="flex flex-col ">
             <div className="topbar">
                 <div>
-                    <div className="mt-10 mogul-header text-3xl font-bold">
-                        the bulletin
+                    <div className="mt-4 text-4xl uppercase italic font-bold tracking-wider">
+                        the board
                     </div>
                     <div className="text-sm italic">a place to ask questions, share beta, or just shoot the shit</div>
-                </div>
-                <div className="">
-                    <User />
                 </div>
             </div>
             <div className="flex flex-col items-center p-2">
@@ -34,4 +31,4 @@ function MogulRun() {
     );
 }
 
-export default MogulRun;
+export default Bulletin;

@@ -25,6 +25,7 @@ import Navbar from "../subdomains/communities/components/nav/navbar";
 import Footer from "../subdomains/communities/components/nav/footer";
 import { useEffect, useState } from "react";
 import Sidebar from "../subdomains/communities/components/nav/sidebar";
+import Bulletin from "../subdomains/communities/bulletin/bulletin";
 
 export function WithNavFooter({
     children,
@@ -141,14 +142,14 @@ export function CommunitiesRouter() {
                             </WithSidebar>
                         }
                     /> */}
-                        {/* <Route
-                        path="/questions"
-                        element={
-                            <WithSidebar>
-                                <MogulRun />
-                            </WithSidebar>
-                        }
-                    /> */}
+                        <Route
+                            path="/bulletin"
+                            element={
+                                <WithNavFooter>
+                                    <Bulletin />
+                                </WithNavFooter>
+                            }
+                        />
                         <Route path="/guides/:guide_id" element={<Guide />} />
                         <Route
                             path="/guides/:guide_id/edit"

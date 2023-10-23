@@ -47,9 +47,14 @@ export default function Navbar(props: any) {
                                         collections
                                     </div>
                                 </Link> */}
+                                <Link to="/bulletin" className="nostyle">
+                                    <div className="navlink uppercase tracking-wider font-normal">
+                                        bulletin
+                                    </div>
+                                </Link>
                                 <Link to="/courses" className="nostyle">
                                     <div className="navlink uppercase tracking-wider font-normal">
-                                       courses 
+                                        courses
                                     </div>
                                 </Link>
                                 <Link
@@ -75,14 +80,19 @@ export default function Navbar(props: any) {
                     <div className="navbuttons">
                         <div className="navlinks">
                             {/* <div className="navlink" onClick={scrollToContent}>About</div> */}
-                            {/* <Link to="/collections" className="nostyle">
+                            <Link to="/collections" className="nostyle">
                                 <div className="navlink uppercase tracking-wider">
                                     collections
                                 </div>
-                            </Link> */}
+                            </Link>
+                            <Link to="/bulletin" className="nostyle">
+                                <div className="navlink uppercase tracking-wider font-normal">
+                                    bulletin
+                                </div>
+                            </Link>
                             <Link to="/courses" className="nostyle">
                                 <div className="navlink uppercase tracking-wider font-normal">
-                                   courses 
+                                    courses
                                 </div>
                             </Link>
                             <Link
